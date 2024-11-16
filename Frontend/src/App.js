@@ -4,14 +4,16 @@ import { Route,Routes } from 'react-router-dom';
 import Home from './Pages/Home'
 import Login from './Pages/Login';
 import Signup from './Pages/SignUp';
+import Contact from "./Pages/Contact";
 
 function App() {
   return (
     <div>
       <Routes>
-      <Route path="/" element={<Login />} />
-        {/* <Route path="/about" element={<About />} /> */}
-        {/* <Route path="/contact" element={<Contact />} /> */}
+      <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Contact" element={<Contact />} />
       </Routes>
     </div>
   );

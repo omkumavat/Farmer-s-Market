@@ -1,45 +1,59 @@
-import React, { useState } from 'react';
-import '../CSS/signup.css';
+import React, { useState } from "react";
+import "../CSS/signup.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle signup logic here
-    };
-
-    return (
-        <div className="form-container">
-            <form className="signup-form" onSubmit={handleSubmit}>
-                <h2>Sign Up</h2>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Sign Up</button>
-            </form>
+  return (
+    <div className="signup-container">
+     <div className="left-side">
+        <div className="text-overlay">
+            <h1>Empowering Farmers, Digitally</h1>
+            <p>"Grow your future, trade with trust, and harvest opportunities all in one place!"</p>
         </div>
-    );
+      </div>
+      <div className="signup-form">
+        <h2>Join Us!</h2>
+        <p>Sign up to start exploring Farmer's Market</p>
+        <form>
+          <input type="text" placeholder="Name" required />
+          <input type="email" placeholder="Email" required />
+          <div className="password-field">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="eye-icon"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+          <div className="password-field">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              required
+            />
+            <span
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="eye-icon"
+            >
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p className="login-link">
+          Already have an account? <a href="/login">Login</a>
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default Signup;

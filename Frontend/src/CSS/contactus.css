@@ -1,0 +1,131 @@
+.contact-us-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .contact-us-header {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Adjust the height of the image */
+    background-image: url('../bgimage.jpg'); /* Path to your image */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .contact-us-header h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .contact-us-header p {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+  
+  .contact-us-content {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 40px;
+  }
+  
+  .contact-us-details {
+    width: 48%;
+  }
+  
+  .contact-us-details h3 {
+    color: #4CAF50;
+  }
+  
+  .contact-us-details p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
+  }
+  
+  .contact-form {
+    width: 48%;
+  }
+  
+  .contact-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .contact-form label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contact-form textarea {
+    height: 150px;
+  }
+  
+  .contact-form .submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .contact-form .submit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .success-message {
+    color: green;
+    text-align: center;
+  }
+  
+  .map-container {
+    width: 100%;
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .map-container iframe {
+    border: 0;
+    width: 100%;
+    height: 450px;
+    border-radius: 8px;
+  }
+  
+
+  .contact-us-details p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .contact-us-details p svg {
+    margin-right: 10px; /* Space between icon and text */
+    font-size: 20px; /* Adjust the icon size */
+    color: #4CAF50; /* Change the icon color */
+  }
+  
