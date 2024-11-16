@@ -5,6 +5,7 @@
     margin-top: 50px;
   }
   
+  /* Contact Us Header */
   .contact-us-header {
     position: relative;
     width: 100%;
@@ -17,6 +18,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 20px; /* Added padding to prevent overlap */
+    box-sizing: border-box; /* Ensure padding doesn't overflow */
   }
   
   .contact-us-header h2 {
@@ -30,6 +33,7 @@
     margin-top: 10px;
   }
   
+  /* Contact Us Content */
   .contact-us-content {
     display: flex;
     justify-content: space-between;
@@ -101,6 +105,7 @@
     text-align: center;
   }
   
+  /* Map Section */
   .map-container {
     width: 100%;
     margin-top: 40px;
@@ -114,7 +119,7 @@
     border-radius: 8px;
   }
   
-
+  /* Adjust contact details paragraph with icon */
   .contact-us-details p {
     font-size: 16px;
     line-height: 1.5;
@@ -129,3 +134,7 @@
     color: #4CAF50; /* Change the icon color */
   }
   
+
+  .contact-us-container {
+    margin-top: 100px; /* Adjust depending on navbar height */
+  }
