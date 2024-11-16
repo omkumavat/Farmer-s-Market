@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-image: url('path/to/your/background-image.jpg'); /* Update with your image path */
+    /* background-image: url('../bgimage.jpg'); Update with your image path */
     background-size: cover;
     background-position: center;
     height: 100vh;

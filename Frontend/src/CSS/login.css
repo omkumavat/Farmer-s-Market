@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f8fa; /* Soft background */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url('./bgimage.jpg'); Replace with the actual path */
+    background-size: cover;
+    background-position: center;
+}
+
+.loginPage {
+    background: rgba(255, 255, 255, 0.9); /* Light background with transparency */
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.loginForm {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #4CAF50; /* Green border on focus */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight hover effect */
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.text-warning {
+    color: #ff4d4d; /* Error message in red */
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.mb-1 input[type="checkbox"] {
+    accent-color: #4CAF50; /* Checkbox styling */
+}
+
+.mb-1 label {
+    font-size: 12px;
+    color: #555;
+}
+
+.loginForm input[type="checkbox"]:focus-visible {
+    outline: none;
+}
