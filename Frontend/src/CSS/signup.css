@@ -10,13 +10,16 @@ body {
   .login-container, .signup-container {
     display: flex;
     flex-wrap: wrap;
-    height: 100vh;
+    height:100vh;
+    padding-top: 70px;
   }
+
+ 
   
   /* Background Image Section */
   .login-bg, .signup-bg {
     flex: 1;
-    background-image: url(../Images//forlogin2.jpg);
+    background-image: url('../Images/forlogin2.jpg');
     overflow: hidden;
   }
 

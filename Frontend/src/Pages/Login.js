@@ -3,11 +3,13 @@ import "../CSS/signup.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 import NavBar from '../Components/NavBar'
+import Footer from "../Components/Footer";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <><NavBar /><div className="login-container">
+    <><NavBar />
+    <div className="login-container">
           <div className="left-side">
               <div className="text-overlay">
                   <h1>Empowering Farmers, Digitally</h1>
@@ -45,7 +47,9 @@ const Login = () => {
                   Don’t have an account? <a href="/signup">Sign up</a>
               </p>
           </div>
-      </div></>
+      </div>
+      <Footer/>
+      </>
   );
 };
 

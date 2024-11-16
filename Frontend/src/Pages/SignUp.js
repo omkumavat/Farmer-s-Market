@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../CSS/signup.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-
+import NavBar from "../Components/NavBar";
+import Footer from '../Components/Footer';
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
+    <>
+     <NavBar/>
     <div className="signup-container">
      <div className="left-side">
         <div className="text-overlay">
@@ -53,6 +56,8 @@ const Signup = () => {
         </p>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
