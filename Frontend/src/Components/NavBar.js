@@ -9,12 +9,12 @@ const NavBar = () => {
         <span className="website-name">Verdica</span>
       </div>
       <ul className="nav-links">
-      <li className="nav-item"><a href="/about">Home</a></li>
+      <li className="nav-item"><a href="/">Home</a></li>
         <li className="nav-item2">
           <div className="dropdown">
             <button className="dropbtn">About</button>
             <div className="dropdown-content">
-              <a href="/">Sub Home 1</a>
+              <a href="/contact">Contact</a>
               <a href="/">Sub Home 2</a>
             </div>
           </div>
