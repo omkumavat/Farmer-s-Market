@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa'; // Import icons from react-icons
 import '../CSS/contactus.css'; // Ensure CSS file is linked
+import NavBar from '../Components/NavBar'
+import Footer from "../Components/Footer";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -43,6 +45,7 @@ const ContactUs = () => {
   };
 
   return (
+    <><NavBar />
     <div className="contact-us-container">
       {/* Contact Us Header Image with Text */}
       <div className="contact-us-header">
@@ -147,6 +150,8 @@ const ContactUs = () => {
         ></iframe>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 
