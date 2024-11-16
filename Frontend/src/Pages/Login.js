@@ -1,37 +1,52 @@
-import React, { useState } from 'react';
-import '../CSS/signup.css';
-
+import React, { useState } from "react";
+import "../CSS/signup.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
+import NavBar from '../Components/NavBar'
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle login logic here
-    };
-
-    return (
-        <div className="form-container">
-            <form className="login-form" onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    );
+  return (
+    <><NavBar /><div className="login-container">
+          <div className="left-side">
+              <div className="text-overlay">
+                  <h1>Empowering Farmers, Digitally</h1>
+                  <p>"Grow your future, trade with trust, and harvest opportunities all in one place!"</p>
+              </div>
+          </div>
+          <div className="login-form">
+              <h2>Welcome Back!</h2>
+              <p>Login to your Farmer's Market account</p>
+              <form>
+                  <input type="email" placeholder="Email" required />
+                  <div className="password-field">
+                      <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password"
+                          required />
+                      <span
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="eye-icon"
+                      >
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </span>
+                  </div>
+                  <button type="submit">Login</button>
+              </form>
+              <div className="social-login">
+                  <p>Or Login with</p>
+                  <div className="social-icons">
+                      <FaGoogle className="icon" />
+                      <FaFacebook className="icon" />
+                      <FaTwitter className="icon" />
+                  </div>
+              </div>
+              <p className="signup-link">
+                  Don’t have an account? <a href="/signup">Sign up</a>
+              </p>
+          </div>
+      </div></>
+  );
 };
 
 export default Login;
