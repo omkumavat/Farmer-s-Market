@@ -1,0 +1,372 @@
+.about-us-container {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Section */
+  .about-us-header {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+  .header-image {
+    background-image: url('../bgimage.jpg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+  }
+  
+  .header-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Content Section */
+  .content-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    height: 400px; /* Make sure both image and content are equal */
+  }
+  
+  .reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .content-image {
+    width: 50%; /* Half the width for image */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .about-image-left {
+    background-image: url('../bgimage.jpg'); /* Left image for content */
+  }
+  
+  .about-image-right {
+    background-image: url('../bgimage.jpg'); /* Right image for content */
+  }
+  
+  .content-right {
+    width: 50%; /* Half the width for content */
+    margin-left: 20px;
+  }
+  
+  .content-right h3 {
+    margin-bottom: 10px;
+  }
+  
+  .content-right p {
+    margin: 10px 0;
+  }
+  
+  .team-section {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .team-section h3 {
+    margin-bottom: 20px;
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .team-member {
+    width: 200px;
+    height: 300px; /* Rectangle size */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .member-left {
+    background-image: url('../bgimage.jpg'); /* Replace with left member image */
+  }
+  
+  .member-middle {
+    background-image: url('../bgimage.jpg'); /* Replace with middle member image */
+  }
+  
+  .member-right {
+    background-image: url('../bgimage.jpg'); /* Replace with right member image */
+  }
+  
+  .contact-icons {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  .contact-icons i {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .team-member .name {
+    position: absolute;
+    bottom: 40px; /* Add space for the name */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Services Section */
+  .services-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url('../bgimage.jpg'); /* Replace with your main background image */
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  .services-section h3 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .services-section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Space between the items */
+  }
+  
+  .service-item {
+    width: 250px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .service-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-item h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffa500;
+  }
+  
+  .service-item p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .service-item .icon {
+    font-size: 40px;
+    color: #ffa500;
+    margin-bottom: 10px;
+  }
+  
+  .service-item button {
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .service-item button:hover {
+    background-color: #cc8400;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-section {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .team-members {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-text {
+      font-size: 16px;
+    }
+  
+    .stats {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+
+/* Ensure header/navbar doesn't overlap with content */
+.about-us-container {
+    margin-top: 100px; /* Adjust depending on navbar height */
+  }
+  
+  /* Team Section Styles */
+  .team-section {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .team-members {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .team-member {
+    width: 200px;
+    height: 300px; /* Adjust according to your image size */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .team-member .name {
+    position: absolute;
+    bottom: 10px; /* Adjust spacing */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .contact-icons {
+    position: absolute;
+    bottom: 40px; /* Adjust space between icons and name */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Service Section */
+  .services-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url('../bgimage.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  .services-section h3 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .services-section p {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .service-item {
+    width: 250px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .service-item:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .service-item h4 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffa500;
+  }
+  
+  .service-item p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .service-item .icon {
+    font-size: 40px;
+    color: #ffa500;
+    margin-bottom: 10px;
+  }
+  
+  .service-item button {
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .service-item button:hover {
+    background-color: #cc8400;
+  }
+  
+
+
+  /* Styling for the contact icons */
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Spacing between icons */
+    position: absolute;
+    bottom: 30px; /* Adjust position if necessary */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .contact-icons .icon {
+    font-size: 24px; /* Adjust size of icons */
+    color: white; /* Icon color */
+    transition: color 0.3s;
+  }
+  
+  .contact-icons .icon:hover {
+    color: #ffa500; /* Change color on hover */
+  }
+  
+  
