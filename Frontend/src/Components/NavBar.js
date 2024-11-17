@@ -1,12 +1,12 @@
 import React from 'react';
-import '../CSS/navbar.css'; 
+import '../CSS/navbar.css';
 import '../Images/logo.jpg';
 
 const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="/Images/logo.jpg" alt="l" className="logo-image" />
+        <img src="/Images/logo.jpg" alt="logo" className="logo-image" />
         <span className="website-name">Verdica</span>
       </div>
       <ul className="nav-links">
@@ -58,7 +58,19 @@ const NavBar = () => {
             </div>
           </div>
         </li>
-        <li className="nav-item"><a href="/login">Login</a></li>
+        <li className="nav-item">
+          <div className="dropdown">
+            <button className="dropbtn">Login</button>
+            <div className="dropdown-content">
+              <a href="/login">As Farmer</a>
+              <div className="style-line"></div>
+              <a href="/login">As Dealer</a>
+              <div className="style-line"></div>
+              <a href="/login">As User</a>
+              <div className="style-line"></div>
+            </div>
+          </div>
+        </li>
       </ul>
     </nav>
   );
