@@ -244,6 +244,14 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         ))}
                     </div>
                 </div>
+                <div className="main-c">
+                    <div className="content-s">
+                        <h2 className="head1">We Are Always Ready to Help You</h2>
+                        <p className="head2">Helping farmers to emerging markets maximize their profits. We use agronomic machine learning, remote sensing, and mobile phones to deliver
+                            financing, farm products.</p>
+                        <button className="get-quote-button">GET A QUOTE</button>
+                    </div>
+                </div>
             </div >
             <Footer />
         </>

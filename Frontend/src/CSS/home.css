@@ -508,6 +508,49 @@
   font-size: large;
 }
 
+.main-c {
+  display: flex;
+  height: 350px;
+  width: 1580px;
+  background-image: url('../Images/forlogin.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+
+.content-s {
+  background-color: rgba(0, 0, 0, 0.644);
+  color: white;
+  padding: 40px;
+  text-align: center;
+  width: 1500px;
+}
+
+.get-quote-button {
+  background-color: #ff6600; /* Orange color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.get-quote-button:hover{
+  background-color: #febc36;
+  color: black;
+}
+.head1{
+    margin-top: 70px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.head2{
+  font-family: cursive;
+}
+
+
+
 
 @media (max-width: 768px) {
   .card-container {
