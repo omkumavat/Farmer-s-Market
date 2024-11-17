@@ -38,6 +38,29 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         }
     ];
 
+    const cards = [
+        {
+            icon: "🛠️",
+            title: "Industry Oriented",
+            description: "Enabling ecosystem for food agriculture.",
+        },
+        {
+            icon: "🚜",
+            title: "Modern Truck",
+            description: "The mission of Agroly is to facilitate.",
+        },
+        {
+            icon: "🌱",
+            title: "Farm Plans",
+            description: "Latest analysis by the Cadre Harmonisé.",
+        },
+        {
+            icon: "✔️",
+            title: "Service Guarantee",
+            description: "The Food and Agriculture Organization.",
+        },
+    ];
+
     const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
@@ -92,10 +115,19 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                     )}
                 </div>
                 <div>
-                    
+
+                </div>
+                <div className="card-section">
+                    {cards.map((card, index) => (
+                        <div key={index} className="card">
+                            <div className="card-icon">{card.icon}</div>
+                            <h3 className="card-title">{card.title}</h3>
+                            <p className="card-description">{card.description}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 };
