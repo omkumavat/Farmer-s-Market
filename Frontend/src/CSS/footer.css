@@ -136,13 +136,15 @@
   width: 22%;
 }
 
-.about-section {
+.about-sections {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 14px;
 }
 
-.about-section .social-icons {
+.about-sections .social-icons {
+  margin-left: 20px;
   margin-top: 10px; /* Add space between the text and social icons */
   text-align: center;
 }

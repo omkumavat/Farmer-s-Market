@@ -146,6 +146,401 @@
   line-height: 1.5;
 }
 
+/* Container */
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 1200px;
+  margin-left: 150px;
+  margin-right: 100px;
+  margin-top: 80px;
+  gap: 30px;
+}
+
+/* Left Image */
+.about-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Right Content */
+.about-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.subheading {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff7f50;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.heading {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 15px 0;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Features Section */
+.features {
+  margin-top: 20px;
+}
+
+.feature-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  font-size: 30px;
+  color: #ff7f50;
+  margin-right: 15px;
+}
+
+.feature-card h4 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #666;
+  margin: 5px 0 0;
+}
+
+.main-container {
+  display: flex;
+  height: 1000px;
+  width: 1580px;
+  margin-top: 100px;
+  background-image: url('../Images/forlogin.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  /* margin-bottom: 100px; */
+}
+
+.image-section, .content-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  margin-top: -100px;
+  margin-left: -20px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.content-section {
+  position: relative;
+  background-color: black;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  margin-left: -150px;
+  margin-top: 115px;
+  display: flex;
+  flex-direction: column;
+  height: 1000px;
+}
+
+.content-sec{
+ position: absolute;
+ left: 12px;
+}
+
+.header1{
+  margin-left: -50px;
+}
+.header2{
+  /* font-size: 30px; */
+  margin-left: 80px;
+}
+
+.header3{
+  margin-left: 78px;
+}
+
+.content-sec2{
+  display: flex;
+  top: 200px;
+  position: absolute;
+  left: 200px;
+  margin-left: -120px;
+  gap: 70px;
+ }
+
+ .trans-image{
+  background-color: transparent;
+  height: 100px;
+  width: 100px;
+ }
+
+.icon-container {
+  /* margin-left: -100px; */
+  /* margin: 20px 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  opacity: 0.3; /* Adjust opacity as needed */
+}
+/* CardLayout.css*/
+.card-layout {
+  position: relative;
+  width: 1580px;
+  height: 100vh;
+  background-image: url("../Images/forlogin.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} 
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 20px;
+  max-width: 80%;
+  z-index: 2; /* Ensure the cards appear above the background */
+}
+
+/* .card {
+  background-color: rgba(0, 0, 0, 0.7); 
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+} */
+
+.card {
+  position: relative;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.5s ease-in-out, transform 0.3s, box-shadow 0.3s; /* Add transition for background */
+  overflow: hidden; /* Prevent gradient overflow */
+}
+
+.card:hover {
+  background: linear-gradient(135deg, #f9a825, #f57c00); /* Change to the desired hover colors */
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  /* text-color: rgb(48, 48, 48); */
+}
+
+.card:hover* {
+  color: rgb(48, 48, 48);
+  transition: color 0.3s ease;
+}
+
+/* .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+} */
+
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #f9a825; /* Highlighted icon color */
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.card-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: white;
+}
+
+/* General Section Styling */
+.projects-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Grid Layout for Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 1200px;
+  margin-left: 180px;
+  margin-right: 90px;
+}
+
+
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  width: 350px;
+  /* max-width: 300px; */
+  height: 350px;
+  border-radius: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 35px;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+/* Overlay Styling */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 165, 0, 0.7); /* Transparent orange */
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translate(-100%, -100%); /* Start from top-left corner */
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+  transform: translate(0, 0); /* Fill the entire image */
+}
+
+.project-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* .section-title{
+  margin-left: 600px;
+  text-align: center;
+} */
+
+.pr-text{
+  margin-top: 80px;
+  height: 100px;
+  width: 1500px;
+  margin-left: 600px;
+  justify-content: center;
+}
+
+.section-title{
+  margin-left: 50px;
+  font-size: 50px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.section-subtitle{
+  margin-left: -20px;
+  font-size: large;
+}
+
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr; /* 1 card per row on mobile */
+  }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-image img {
+    max-width: 100%;
+  }
+}
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .card-section {

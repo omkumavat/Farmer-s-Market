@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-middle">
-      <div className="about-section">
+      <div className="about-sections">
   <h3>Agros</h3>
   <p>
     We are dedicated to the production and marketing of mass consumer
