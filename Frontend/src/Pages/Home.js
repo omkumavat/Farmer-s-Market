@@ -79,6 +79,53 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         { icon: "🌅", title: "Farm Plans", text: "While some cleaning companies use rotating cleaning plans, we’re equipped." },
     ];
 
+    const testimonials = [
+        {
+            name: 'Mark Thomas',
+            title: 'Marketing Department',
+            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            image: '/Images/test1.jpeg'
+        },
+        {
+            name: 'Mark Thomas',
+            title: 'Marketing Department',
+            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            image: '/Images/test2.jpeg'
+        },
+        {
+            name: 'Mark Thomas',
+            title: 'Marketing Department',
+            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            image: '/Images/test3.jpeg'
+        },
+        // ... other testimonials
+    ];
+
+    const stats = [
+        {
+            icon: '/Images/stats1.png',
+            number: '1120',
+            label: 'HAPPY CUSTOMERS'
+        },
+        {
+            icon: '/Images/stats2.png',
+            number: '1120',
+            label: 'COMPLETE GOALS'
+        },
+        {
+            icon: '/Images/stats3.png',
+            number: '1120',
+            label: 'QUALIFY STAFF'
+        },
+        {
+            icon: '/Images/stats4.png',
+            number: '1120',
+            label: 'AWARD RECEIVED'
+        },
+        // ... other stats
+    ];
+
+
     const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
@@ -100,6 +147,14 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         );
     };
 
+    const [activeIndex, setActiveIndex] = useState(0);
+
+    const handleDotClick = (index) => {
+        setActiveIndex(index);
+    };
+
+    
+
     return (
         <>
             <NavBar />
@@ -120,20 +175,19 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                             </div>
                         </div>
                     ))}
-                    {/* Show navigation buttons if showNavs is true */}
-                    {showNavs && (
-                        <>
-                            <button className="nav-btn prev-btn" onClick={goToPrevSlide}>
-                                &#8592;
-                            </button>
-                            <button className="nav-btn next-btn" onClick={goToNextSlide}>
-                                &#8594;
-                            </button>
-                        </>
-                    )}
+
+                    {/* Dots Navigation */}
                 </div>
                 <div>
-
+                <div className="dots-container">
+                        {slides.map((_, index) => (
+                            <div
+                                key={index}
+                                className={`dot ${index === currentSlide ? "active" : ""}`}
+                                onClick={() => setCurrentSlide(index)} // Update slide on click
+                            ></div>
+                        ))}
+                    </div>
                 </div>
                 <div className="card-section">
                     {cards.map((card, index) => (
@@ -192,7 +246,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                     </div>
                 </div>
 
-                <div className="main-container">
+                <div className="maincon">
                     <div className="image-section">
                         <img src="/Images/logo.jpg" alt="Image" />
                     </div>
@@ -205,15 +259,16 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         <div className="content-sec2">
                             <div className="icon-container">
                                 <img src="/Images/section1.png" className="trans-image" alt="Icon 1" />
-                                <p>Fresh & Healthy</p>
+                                <h2 className="xx">Extended Warranty</h2>
+                                <p>We put the extra in your ordinary for the balance life.</p>
                             </div>
                             <div className="icon-container">
                                 <img src="/Images/section2.png" className="trans-image" alt="Icon 2" />
-                                <p>Quality & Support</p>
+                                <h2>Friendly Support</h2>
+                                <p>The Industrial is responsible for minor and the codes..</p>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div className="card-layout">
                     <div className="card-container">
@@ -250,6 +305,43 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         <p className="head2">Helping farmers to emerging markets maximize their profits. We use agronomic machine learning, remote sensing, and mobile phones to deliver
                             financing, farm products.</p>
                         <button className="get-quote-button">GET A QUOTE</button>
+                    </div>
+                </div>
+                <div className="mains">
+                    <div className="testimonials">
+                        {testimonials.map((testimonial, index) => (
+                            <div className={`testimonialcard ${index === activeIndex ? 'active' : ''}`} key={index}>
+                                <div className="quote-icon">
+                                    <img src="/Images/q.png" alt="Quote Icon" className="q" />
+                                </div>
+                                <p className="tquote">{testimonial.quote}</p>
+                                <div className="styles-line"></div>
+                                <div className="userinfo">
+                                    <img src={testimonial.image} alt={testimonial.name} />
+                                    <div>
+                                        <h4>{testimonial.name}</h4>
+                                        <p>{testimonial.title}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+                    </div>
+                    <div className="dots">
+                        {testimonials.map((_, index) => (
+                            <span key={index} className={`dot ${index === activeIndex ? 'active' : ''}`} onClick={() => handleDotClick(index)}></span>
+                        ))}
+                    </div>
+                    <div className="stats-section">
+                        {stats.map((stat, index) => (
+                            <div className="stat-card" key={index}>
+                                <img src={stat.icon} alt={stat.label} />
+                                <div>
+                                    <h1>{stat.number}</h1>
+                                    <p>{stat.label}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div >

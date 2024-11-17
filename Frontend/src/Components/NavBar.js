@@ -24,7 +24,7 @@ const NavBar = () => {
             </div>
           </div>
         </li>
-        <li className="nav-item"><a href="/blogs">Blogs</a></li>
+        <li className="nav-item"><a href="/blogs">Solutions</a></li>
         <li className="nav-item">
           <div className="dropdown">
             <button className="dropbtn">Our Services</button>

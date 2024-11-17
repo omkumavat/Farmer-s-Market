@@ -1,9 +1,10 @@
 /* Styles for the slider container */
 .homepage-slider {
+  margin-top: 100px;
     position: relative;
     top: 100px; /* Ensures content outside the slider is hidden */
     width: 100%;
-    height: 600px;
+    height: 450px;
     background-image: url('../Images/forlogin2.jpg');
   }
 
@@ -52,6 +53,30 @@
     transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
   }
 
+  .dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+    gap: 10px;
+    width: 500px;
+    margin-left: 540px;
+    margin-bottom: -120px;
+  }
+  
+  .dot {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: #333; /* Highlight color for the active dot */
+  }
+  
   .slide-content{
     transform: translateX(10);
     position: relative;
@@ -201,6 +226,7 @@
 /* Features Section */
 .features {
   margin-top: 20px;
+  display: flex;
 }
 
 .feature-card {
@@ -237,14 +263,14 @@
   margin: 5px 0 0;
 }
 
-.main-container {
+.maincon {
   display: flex;
   height: 1000px;
   width: 1580px;
   margin-top: 100px;
   background-image: url('../Images/forlogin.jpg');
   background-size: cover;
-  background-position: center bottom;
+  background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
   /* margin-bottom: 100px; */
@@ -273,7 +299,7 @@
   margin-top: 115px;
   display: flex;
   flex-direction: column;
-  height: 1000px;
+  height: 650px;
 }
 
 .content-sec{
@@ -295,11 +321,11 @@
 
 .content-sec2{
   display: flex;
-  top: 200px;
+  top: 250px;
   position: absolute;
   left: 200px;
   margin-left: -120px;
-  gap: 70px;
+  gap: 100px;
  }
 
  .trans-image{
@@ -549,6 +575,149 @@
   font-family: cursive;
 }
 
+/* Main container */
+.mains {
+  display: flex;
+  flex-direction: column;
+  width: 1500px;
+  min-height: 100%; /* Fills viewport height */
+  background-color: white; 
+  padding: 40px; /* Padding around the edges */
+}
+
+/* Testimonial section */
+.testimonials {
+  margin-top: 70px;
+  margin-left: 120px;
+  margin-right: 120px;
+  gap: 10px;
+  height: 1px;
+  flex: 1; /* Takes up remaining space after stats section */
+  overflow: hidden; /* Ensures content doesn't overflow */
+  margin-bottom: -30px; /* Spacing between sections */
+  display: flex; /* Arranges cards horizontally */
+}
+
+/* Individual testimonial card */
+.testimonialcard {
+  height: 250px;
+  width: 70px;
+  flex: 1; /* Makes cards equally sized */
+  padding: 20px;
+  background-color: black; /* White background */
+  border-radius: 5px; /* Rounded corners */
+  margin: 10px; /* Spacing between cards */
+  text-align: center; /* Centers content within card */
+  transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Active testimonial card (hover effect) */
+.testimonialcard.active {
+  transform: scale(1.05); /* Slightly scales up on hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* More prominent shadow on hover */
+}
+.q{
+  width: 50px;
+  height: 50px;
+}
+/* Quote icon */
+.quote-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.tquote{
+  color: white;
+  margin-top: 6px;
+}
+
+.styles-line{
+  height: 1px;
+  background-color: rgb(206, 206, 206);
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 20px;  
+}
+
+/* User information section */
+.userinfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.userinfo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border-color: 2px solid  white;
+}
+
+.userinfo h4 {
+  margin-top: -20px;
+  color: rgb(255, 166, 0);
+  font-size: 18px;
+  /* margin-bottom: 10px; */
+}
+
+.userinfo p {
+  color:white;
+  font-size: 18px;
+  font-family: cursive;
+  margin-top: -20px;
+  margin-bottom: -10px;
+}
+
+
+/* Stats section */
+.stats-section {
+  display: flex;
+  flex-wrap: wrap; /* Allows stats to wrap on smaller screens */
+  justify-content: space-between; /* Evenly distributes stats */
+}
+
+/* Individual stat card */
+.stat-card {
+  flex: 1 0 20%; /* Makes stats responsive, minimum width 20% */
+  text-align: center;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.stat-card img{
+  width: 100px;
+  height: 100px;
+}
+
+
+/* Dots navigation */
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: 50px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc; /* Light gray color for inactive dots */
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dot.active {
+  background-color: #007bff; /* Blue color for active dot */
+}
+
 
 
 
@@ -589,3 +758,8 @@
     width: 90%;
   }
 }
+
+
+
+
+
