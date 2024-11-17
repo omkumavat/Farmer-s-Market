@@ -94,3 +94,83 @@
 .footer-bottom p {
   margin: 0;
 }
+
+
+.contact-info {
+  display: flex; /* Change to row layout */
+  justify-content: space-around; /* Distribute items evenly */
+  text-align: center;
+  padding: 10px 0; /* Add padding for better spacing */
+}
+
+.contact-info > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the content of each item */
+  margin: 0 15px; /* Space between each contact item */
+}
+
+.contact-info i {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ffa500;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.contact-info span {
+  font-size: 12px;
+  color: #aaa;
+}
+.footer-middle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.footer-middle div {
+  width: 22%;
+}
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.about-section .social-icons {
+  margin-top: 10px; /* Add space between the text and social icons */
+  text-align: center;
+}
+
+.social-icons i {
+  font-size: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.social-icons i:hover {
+  color: #ffa500;
+}
+
+
+.social-icons {
+  margin-top: 10px; /* Adds spacing between the text and icons */
+  text-align: center;
+}
+
+.social-icons i {
+  font-size: 20px; /* Icon size */
+  margin: 0 10px;  /* Space between icons */
+  cursor: pointer;
+  color: #aaa; /* Default icon color */
+}
+
+.social-icons i:hover {
+  color: #ffa500; /* Change color on hover */
+}

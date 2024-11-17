@@ -24,19 +24,21 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-middle">
-        <div className="about-section">
-          <h3>Agros</h3>
-          <p>
-            We are dedicated to the production and marketing of mass consumer
-            products. Its business units are the manufacture of chemicals for
-            household hygiene and personal care.
-          </p>
-          <div className="social-icons">
-            <i className="fa fa-facebook"></i>
-            <i className="fa fa-twitter"></i>
-            <i className="fa fa-instagram"></i>
-          </div>
-        </div>
+      <div className="about-section">
+  <h3>Agros</h3>
+  <p>
+    We are dedicated to the production and marketing of mass consumer
+    products. Its business units are the manufacture of chemicals for
+    household hygiene and personal care.
+  </p>
+  <div className="social-icons">
+    <i className="fab fa-facebook"></i>
+    <i className="fab fa-twitter"></i>
+    <i className="fab fa-instagram"></i>
+  </div>
+</div>
+
+
         <div className="quick-links">
           <h3>Quick Links</h3>
           <ul>
