@@ -24,7 +24,25 @@ const NavBar = () => {
             </div>
           </div>
         </li>
-        <li className="nav-item"><a href="/blogs">Solutions</a></li>
+        <li className="nav-item">
+          <div className="dropdown">
+            <button className="dropbtn">Solutions</button>
+            <div className="dropdown-content">
+              <a href="/Landpreservation">Land Preservation</a>
+              <div className="style-line"></div>
+              <a href="/WaterManagement">Water Management</a>
+              <div className="style-line"></div>
+              <a href="/Equipmentinstallation">Equipment Installation</a>
+              <div className="style-line"></div>
+              <a href="/Farminspection">Farm Inspection</a>
+              <div className="style-line"></div>
+              <a href="/Soilanalysis">Soil Analysis</a>
+              <div className="style-line"></div>
+              <a href="/Farmplans">Farm Plans</a>
+              <div className="style-line"></div>
+            </div>
+          </div>
+        </li>
         <li className="nav-item">
           <div className="dropdown">
             <button className="dropbtn">Our Services</button>

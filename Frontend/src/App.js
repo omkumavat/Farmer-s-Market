@@ -7,7 +7,13 @@ import Signup from './Pages/SignUp';
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Team from "./Pages/Team";
-import Sol from "./Pages/solutions1"
+import Landpreservation from "./Solutions/Landpreservation"
+import WaterManagement from "./Solutions/WaterManagement"
+import Equipmentinstallation from "./Solutions/Equipmentinstallation"
+import Farminspection from "./Solutions/Farminspection"
+import Soilanalysis from "./Solutions/Soilanalysis"
+import Farmplans from "./Solutions/Farmplans"
+
 
 function App() {
   return (
@@ -19,7 +25,12 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/About" element={<About />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/sol" element={<Sol />} />
+        <Route path="/Landpreservation" element={<Landpreservation />} />
+        <Route path="/WaterManagement" element={<WaterManagement />} />
+        <Route path="/Equipmentinstallation" element={<Equipmentinstallation />} />
+        <Route path="/Farminspection" element={<Farminspection />} />
+        <Route path="/Soilanalysis" element={<Soilanalysis />} />
+        <Route path="/Farmplans" element={<Farmplans />} />
       </Routes>
     </div>
   );
