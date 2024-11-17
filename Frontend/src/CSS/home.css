@@ -1,5 +1,6 @@
 /* Styles for the slider container */
 .homepage-slider {
+  margin-top: 100px;
     position: relative;
     top: 100px; /* Ensures content outside the slider is hidden */
     width: 100%;
