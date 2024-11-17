@@ -2,27 +2,40 @@
 import React, { useState, useEffect } from "react";
 import "../CSS/home.css";
 import NavBar from "../Components/NavBar";
+import Footer from "../Components/Footer";
 
-const Home = ({ showNavs = true, autoSlide = true, slideInterval = 3000 }) => {
+const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     const slides = [
         {
-            image: "/Images/forlogin.jpg",
+            image: "/Images/slider1.jpeg",
             text: "Good Health Conscious Living",
             button1: "About Us",
             button2: "Contact",
         },
         {
-            image: "/Images/logo.jpg",
+            image: "/Images/slider2.jpeg",
             text: "Green Agriculture Practices",
             button1: "Learn More",
             button2: "Join Us",
         },
         {
-            image: "/Images/forlogin.jpg",
+            image: "/Images/slider3.jpeg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
         },
+        {
+            image: "/Images/slider4.jpeg",
+            text: "Empowering Farmers",
+            button1: "Get Started",
+            button2: "Explore",
+        },
+        {
+            image: "/Images/slider5.jpeg",
+            text: "Empowering Farmers",
+            button1: "Get Started",
+            button2: "Explore",
+        }
     ];
 
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -58,7 +71,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 3000 }) => {
                             style={{ backgroundImage: `url(${slide.image})` }}
                         >
                             <div className="slide-content">
-                                <h1>{slide.text}</h1>
+                                <h1 className="texti">{slide.text}</h1>
                                 <div className="buttons">
                                     <button className="btn-primary">{slide.button1}</button>
                                     <button className="btn-secondary">{slide.button2}</button>
@@ -82,6 +95,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 3000 }) => {
                     
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };
