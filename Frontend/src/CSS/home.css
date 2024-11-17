@@ -489,15 +489,10 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* .section-title{
-  margin-left: 600px;
-  text-align: center;
-} */
-
 .pr-text{
   margin-top: 80px;
   height: 100px;
-  width: 1500px;
+  width: 100%;
   margin-left: 600px;
   justify-content: center;
 }
