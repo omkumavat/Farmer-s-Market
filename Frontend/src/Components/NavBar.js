@@ -49,11 +49,11 @@ const NavBar = () => {
             <div className="dropdown-content">
               <a href="/about">Market Insights</a>
               <div className="style-line"></div>
-              <a href="/contact">Weather Analysis</a>
+              <a href="/weather">Weather Analysis</a>
               <div className="style-line"></div>
               <a href="/team">Farm Produce</a>
               <div className="style-line"></div>
-              <a href="/team">Agricultural Products</a>
+              <a href="/dealer">Agricultural Products</a>
               <div className="style-line"></div>
             </div>
           </div>

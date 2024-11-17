@@ -253,8 +253,8 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                     <div className="content-section">
                         <div className="content-sec">
                             <h1 className="header1">WHY CHOOSE US</h1>
-                            <h2 className="header2">We Providing More Fresh Products</h2>
-                            <p className="header3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h2 className="header2">We Empower Farmers, Dealers and Transform Agriculture.</h2>
+                            <p className="header3">Discover a platform that connects you to fresh products, innovative tools, and sustainable solutions, all designed to help you grow and thrive.</p>
                         </div>
                         <div className="content-sec2">
                             <div className="icon-container">

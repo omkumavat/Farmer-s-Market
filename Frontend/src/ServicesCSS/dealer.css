@@ -1,0 +1,133 @@
+.mc {
+    display: flex;
+    height: 450px;
+    width: 1580px;
+    background-image: url('../Images/forlogin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+  }
+  
+  
+  .cs {
+    background-color:transparent;
+    color: white;
+    padding: 40px;
+    text-align: center;
+    width: 1580px;
+  }
+  
+  .get-quote-button {
+    background-color: #ff6600; /* Orange color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .get-quote-button:hover{
+    background-color: #febc36;
+    color: black;
+  }
+  .head1{
+      margin-left: -950px;
+      margin-top: 180px;
+      font-size: 60px;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  }
+  
+  .head2{
+    margin-left: -1000px;
+    font-size: 20px;
+    font-family: cursive;
+  }
+
+/* Container styling */
+.services-container {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 40px;
+  }
+  
+  /* Title and subtitle */
+  .services-title {
+    font-size: 2rem;
+    font-weight: bold;
+    /* margin-bottom: 10px; */
+    /* margin-right: -850px;
+    margin-left: 200px; */
+  }
+
+  .serv{
+    margin-left: 85px;
+  }
+  
+  .services-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 0px;
+    /* margin-left: 700px; */
+  }
+  
+  /* Grid container */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    margin-top: 20px;
+  }
+  
+  /* Individual cards */
+  .service-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Icon styling */
+  .service-icon {
+    font-size: 2rem;
+    color: #e67e22; /* Orange color */
+    margin-bottom: 15px;
+  }
+  
+  /* Card title */
+  .service-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+
+  }
+  
+  /* Description */
+  .service-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  /* Link button */
+  .service-link {
+    color: #e67e22;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  .service-link:hover {
+    text-decoration: underline;
+  }
+  
