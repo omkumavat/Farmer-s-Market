@@ -47,7 +47,7 @@ const NavBar = () => {
           <div className="dropdown">
             <button className="dropbtn">Our Services</button>
             <div className="dropdown-content">
-              <a href="/about">Market Insights</a>
+              <a href="/market">Market Insights</a>
               <div className="style-line"></div>
               <a href="/weather">Weather Analysis</a>
               <div className="style-line"></div>

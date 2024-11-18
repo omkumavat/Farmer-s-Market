@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../ServicesCSS/Market.css";
+import Footer from "../Components/Footer";
+import NavBar from "../Components/NavBar";
 
 const Market = () => {
   const [data, setData] = useState([]);
@@ -48,6 +50,8 @@ const Market = () => {
   };
 
   return (
+    <>
+      <NavBar />
     <div>
         <div className="market-page">
       <h1>Market Insight</h1>
@@ -100,6 +104,8 @@ const Market = () => {
       )}
     </div>
     </div>
+    <Footer />
+    </>
   );
 };
 
