@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import '../ServicesCSS/Weather.css';
 import Footer from "../Components/Footer";
@@ -5,55 +6,95 @@ import NavBar from "../Components/NavBar";
 import axios from 'axios';
 
 const Weather = () => {
-  // Weather state and logic
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState(null);
   const [city, setCity] = useState('Mumbai');
+  const [rainAlerts, setRainAlerts] = useState([]);
+  const [currentSeason, setCurrentSeason] = useState('');
+  const [seasonalCrops, setSeasonalCrops] = useState([]);
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
         const apiKey = '1652c40573d542a297f85139241811'; // Replace with your API key
-        const response = await axios.get(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
-        setWeather(response.data); // Update weather data
-        setError(null); // Clear previous errors
+        const response = await axios.get(
+          `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`
+        );
+
+        setWeather(response.data);
+        setError(null);
+
+        const alerts = response.data.forecast.forecastday
+          .filter(day => day.day.daily_chance_of_rain < 50)
+          .map(day => ({
+            date: day.date,
+            chance: day.day.daily_chance_of_rain,
+            condition: day.day.condition.text,
+          }));
+
+        setRainAlerts(alerts);
       } catch (err) {
-        setWeather(null); // Clear previous weather data
-        setError('Could not fetch weather data'); // Set error message
+        setWeather(null);
+        setError('Could not fetch weather data');
+        setRainAlerts([]);
       }
     };
 
     fetchWeather();
   }, [city]);
 
+  useEffect(() => {
+    // Calculate current season
+    const getSeason = (date) => {
+      const month = date.getMonth() + 1; // Months are 0-indexed
+      if (month >= 3 && month <= 5) return 'Spring';
+      if (month >= 6 && month <= 8) return 'Summer';
+      if (month >= 9 && month <= 11) return 'Autumn';
+      return 'Winter';
+    };
+
+    const season = getSeason(new Date());
+    setCurrentSeason(season);
+
+    // Map season to crops
+    const cropSuggestions = {
+      Spring: ['Wheat', 'Barley', 'Peas'],
+      Summer: ['Corn', 'Tomatoes', 'Cucumber'],
+      Autumn: ['Rice', 'Pumpkin', 'Carrots'],
+      Winter: ['Potatoes', 'Spinach', 'Broccoli'],
+    };
+
+    setSeasonalCrops(cropSuggestions[season]);
+  }, []);
+
   const services = [
     {
-      icon: "🧑‍🌾", // Replace with your SVG or image
+      icon: "🧑‍🌾",
       title: "Fertilizers",
       description: "Homes and thoroughly launder them between usage. We give our teams.",
     },
     {
-      icon: "🍎", // Replace with your SVG or image
+      icon: "🍎",
       title: "Seeds",
       description: "We are closely monitoring national, state and local health developments.",
     },
     {
-      icon: "🐄", // Replace with your SVG or image
+      icon: "🐄",
       title: "Agricultural Machinery and Tools",
       description: "Follow these tips from the CDC to help prevent the spread of the seasonal.",
     },
     {
-      icon: "🌾", // Replace with your SVG or image
+      icon: "🌾",
       title: "Post-Harvest Equipment",
       description: "Industra plays a large role in the comfort of your home, but many.",
     },
     {
-      icon: "🚜", // Replace with your SVG or image
+      icon: "🚜",
       title: "Farm Infrastructure",
       description: "We realize that every family has their own preferences, so we accommodate.",
     },
     {
-      icon: "📋", // Replace with your SVG or image
+      icon: "📋",
       title: "Irrigation Equipment",
       description: "While some cleaning companies use rotating cleaning plans, we’re equipped.",
     },
@@ -69,8 +110,6 @@ const Weather = () => {
             <p className="head2">PROVIDED BY VERDICA</p>
           </div>
         </div>
-
-        {/* Image Section */}
 
         {/* Weather Section */}
         <div className="weather-container">
@@ -95,6 +134,32 @@ const Weather = () => {
               <p>Wind Speed: {weather.current.wind_kph} km/h</p>
             </div>
           ) : !error && <p className="loading-message">Loading weather data...</p>}
+
+          {/* Rain Alerts Section */}
+          {rainAlerts.length > 0 && (
+            <div className="rain-alerts">
+              <h2>Rain Alerts</h2>
+              {rainAlerts.map((alert, index) => (
+                <div key={index} className="rain-alert">
+                  <p>Date: {alert.date}</p>
+                  <p>Chance of Rain: {alert.chance}%</p>
+                  <p>Condition: {alert.condition}</p>
+                  <p>Action: Prepare irrigation systems and protect crops.</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Seasonal Crops Section */}
+          <div className="seasonal-crops">
+            <h2>Season: {currentSeason}</h2>
+            <h3>Recommended Crops for {currentSeason}:</h3>
+            <ul>
+              {seasonalCrops.map((crop, index) => (
+                <li key={index}>{crop}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <div className="services-container">
@@ -124,24 +189,17 @@ const Weather = () => {
           <div className="content">
             <p className="sub-heading">AT VERDICA</p>
             <h1 className="main-heading">
-  For Accurate Weather Insights<br /> <span>Every Day</span>
-</h1>
-<p className="description">
-  At Verdica, we are dedicated to providing reliable and up-to-date weather information to help you plan your day effectively. Whether you're at home or on the go, access real-time weather updates tailored to your location.
-</p>
-<p className="description">
-  With a focus on precision and user-friendly design, Verdica offers detailed forecasts, current conditions, and alerts for changing weather patterns. From temperature and humidity to wind speed and precipitation, we bring you all the data you need.
-</p>
-<p className="description">
-  Verdica is your trusted weather companion, helping you stay informed and prepared no matter the season. Experience seamless access to weather details and take control of your plans with confidence.
-</p>
-
+              For Accurate Weather Insights<br /> <span>Every Day</span>
+            </h1>
+            <p className="description">
+              At Verdica, we are dedicated to providing reliable and up-to-date weather information to help you plan your day effectively.
+            </p>
           </div>
         </div>
 
         <div className="image-container">
           <img
-            src="/Images/slider1.jpeg" // Placeholder image URL
+            src="/Images/slider1.jpeg"
             alt="Sustainable Agriculture"
             className="farming-image"
           />
@@ -150,6 +208,6 @@ const Weather = () => {
       <Footer />
     </>
   );
-}
+};
 
 export default Weather;

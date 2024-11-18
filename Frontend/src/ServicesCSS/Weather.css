@@ -1,3 +1,16 @@
+/* Weather.css */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #007bff, #6c63ff);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures footer stays at the bottom */
+  height: 100vh;
+}
+
 .weather-container {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -139,3 +152,5 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
