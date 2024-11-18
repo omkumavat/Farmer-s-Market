@@ -15,6 +15,7 @@ import Soilanalysis from "./Solutions/Soilanalysis"
 import Farmplans from "./Solutions/Farmplans"
 import WeatherUpdates from './Services/Weather'
 import Dealer from './Services/Dealer';
+import Sidebar from './Components/Sidebar';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/Farmplans" element={<Farmplans />} />
         <Route path="/weather" element={<WeatherUpdates />} />
         <Route path="/dealer" element={<Dealer/>} />
+        <Route path="/side" element={<Sidebar/>} />
       </Routes>
     </div>
   );

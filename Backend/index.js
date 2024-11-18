@@ -1,48 +1,81 @@
 import express from "express";
-import cors from "cors";
-import { farmerRouter } from "./Routes/farmerRouter.js";
-import Jwt from "jsonwebtoken";
-import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+// import userRoutes from '../server/Routes/user.route.js'
+// import authRoutes from '../server/Routes/auth.route.js'
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+// import cloudinary from 'cloudinary';
+// import fileuPload from 'express-fileupload'
+import connectDB from "./Database/database.js";
+import User from "./Models/User.js";
 
-const app = express();
-
-// CORS configuration
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
-
-// Middleware setup
+const app=express();
 app.use(express.json());
-app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+dotenv.config();
+connectDB();
 
-// Farmer routes
-app.use("/auth", farmerRouter);
+app.get('/',(req,res) => {
+  res.send('Hello World')
+})
+app.post('/send', async (req, res) => {
+  const { name, email,mobileno, password,confirmpassword,role } = req.body;
 
-// Token verification middleware
-const verifyUser = (req, res, next) => {
-  const token = req.cookies.token;
-  if (token) {
-    Jwt.verify(token, "jwt_secret_key", (err, decoded) => {
-      if (err) return res.json({ Status: false, Error: "Invalid Token" });
-      req.id = decoded.id;
-      req.role = decoded.role;
-      next();
+  try {
+    const newUser = new User({ 
+      name, 
+      email, 
+      mobileno, password,confirmpassword,role 
     });
-  } else {
-    return res.json({ Status: false, Error: "Not authenticated" });
+    await newUser.save();
+    res.json({ message: "Sign-up successful!" });
+  } catch (err) {
+    next(err);
   }
-};
-
-// Verify route
-app.get("/verify", verifyUser, (req, res) => {
-  return res.json({ Status: true, role: req.role, id: req.id });
 });
+//   const cloudinaryConnect = () =>{
+//     try {
 
-// Start the server
+//         cloudinary.config({
+//             cloud_name:'dtobcdrww',
+//             api_key:'988281658147778',
+//             api_secret:'InjpwEKoNtJtcqOd5Uvf0ZTsD-8'
+//         })
+        
+//     } catch (error) {
+//         console.log(error); 
+//     }
+// }
+
+// cloudinaryConnect();
+
+// const app = express();
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+// // app.use('/', express.static(path.join(__dirname,'uploads')));
+// console.log((path.join(__dirname,'uploads')));
+// app.use(express.json());
+// app.use(fileuPload({
+//   useTempFiles : true,
+//   tempFileDir : '/tmp/'
+// }));
+
+// app.use('/server/user',userRoutes)
+// app.use('/server/auth',authRoutes)
+
+
+// //middleware for error handling
+// app.use((err,req,res,next) => {
+//     const statusCode = err.statusCode || 500;
+//     const message = err.message || 'internal server error';
+//     res.status(statusCode).json({
+//         success: false,
+//         statusCode,
+//         message
+//     })
+// })
+
 app.listen(4000, () => {
-  console.log("Server is running");
+  console.log("app is listening on port 4000");
 });
