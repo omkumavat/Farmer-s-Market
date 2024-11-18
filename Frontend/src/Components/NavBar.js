@@ -58,19 +58,7 @@ const NavBar = () => {
             </div>
           </div>
         </li>
-        <li className="nav-item">
-          <div className="dropdown">
-            <button className="dropbtn">Login</button>
-            <div className="dropdown-content">
-              <a href="/login">As Farmer</a>
-              <div className="style-line"></div>
-              <a href="/login">As Dealer</a>
-              <div className="style-line"></div>
-              <a href="/login">As User</a>
-              <div className="style-line"></div>
-            </div>
-          </div>
-        </li>
+        <li className="nav-item"><a href="/login">Login</a></li>
       </ul>
     </nav>
   );
