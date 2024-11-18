@@ -1,0 +1,83 @@
+/* MarketInsight.css
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50; 
+}
+
+
+div {
+    margin: 20px;
+}
+
+label {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #34495e; 
+}
+
+input {
+    margin: 10px 0 20px 0;
+    padding: 8px;
+    font-size: 14px;
+    width: 200px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+input:focus {
+    border-color: #2980b9; 
+    outline: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+    margin-top: 20px;
+    background-color: #ecf0f1; 
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db; 
+    color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+tbody tr:hover {
+    background-color: #f1c40f; 
+}
+
+*/
+/* Add to MarketInsight.css */
+/*
+.cardss {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardss h3 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.cardss p {
+    font-size: 16px;
+    color: #34495e;
+    margin: 8px 0;
+} */

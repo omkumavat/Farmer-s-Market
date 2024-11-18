@@ -1,21 +1,25 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-// Create context
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-// AuthProvider component
-export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+export default function AuthProvider({ children }) {
+  const initialAuthUser = localStorage.getItem("Users");
+  let parsedAuthUser;
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  try {
+    parsedAuthUser = initialAuthUser ? JSON.parse(initialAuthUser) : undefined;
+  } catch (e) {
+    console.error("Error parsing stored user data", e);
+    parsedAuthUser = undefined;
+  }
+
+  const [authUser, setAuthUser] = useState(parsedAuthUser);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={[authUser, setAuthUser]}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-// Custom hook to use the authentication context
 export const useAuth = () => useContext(AuthContext);

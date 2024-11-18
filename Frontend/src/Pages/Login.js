@@ -8,45 +8,44 @@ import axios from 'axios';  // Importing axios
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInFailure, signInSuccess } from "../Context/UserSlice";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext";
 const Login = ({ isAuthenticated, setIsAuthenticated }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState('');  // state for email
     const [password, setPassword] = useState('');  // state for password
-    const [error, setError] = useState('');  // state for handling errors
-    const dispatch = useDispatch();
+    // const [error, setError] = useState('');  // state for handling errors
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
+    const authUser=useAuth();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email || !password) {
-            return dispatch(signInFailure('All fields are required!!!'));
-        }
+        // if (!email || !password) {
+        //     // return dispatch(signInFailure('All fields are required!!!'));
+        // }
         try {
-            dispatch(signInStart());
+            // dispatch(signInStart());
             const res = await axios.post('http://localhost:4000/server/login', {
                 email,
                 password
             });
-            console.log(res);
-            const data = await res.json();
+            console.log(res.data.user.email);
+            const data = await res.data;
             console.log(data);
             if (data.success === false) {
-                dispatch(signInFailure(data.message))
+                // dispatch(signInFailure(data.message))
             }
 
-            if (res.ok) {
-                console.log(isAuthenticated)
-                setIsAuthenticated(true)
-                console.log(isAuthenticated)
-                dispatch(signInSuccess(data));
+            if (res) {
+                localStorage.setItem("Users", JSON.stringify(res.data.user));
                 navigate('/')
             }
             else {
-                dispatch(signInFailure(data));
+                // dispatch(signInFailure(data));
                 navigate('/')
             }
         }
         catch (error) {
-            dispatch(signInFailure(error.message));
+            // dispatch(signInFailure(error.message));
         }
     };
 
@@ -65,7 +64,7 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                     <p>Login to your Farmer's Market account</p>
 
                     {/* Show error message if there's any */}
-                    {error && <div className="error-message">{error}</div>}
+                    {/* {error && <div className="error-message">{error}</div>} */}
 
                     <form onSubmit={handleSubmit}>
                         <input
@@ -90,7 +89,7 @@ const Login = ({ isAuthenticated, setIsAuthenticated }) => {
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </span>
                         </div>
-                        <button type="submit">Login</button>
+                        <button type="submit" onClick={handleSubmit}>Login</button>
                     </form>
 
                     <div className="social-login">
