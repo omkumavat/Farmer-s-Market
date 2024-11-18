@@ -1,22 +1,21 @@
-/* MarketInsight.css */
-
-h1 {
+/* Specific styles for Market page */
+.market-page h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #2c3e50; /* Dark blue color */
 }
 
-div {
+.market-page div {
     margin: 20px;
 }
 
-label {
+.market-page label {
     font-size: 16px;
     margin-right: 10px;
     color: #34495e; /* Dark gray */
 }
 
-input {
+.market-page input {
     margin: 10px 0 20px 0;
     padding: 8px;
     font-size: 14px;
@@ -25,41 +24,38 @@ input {
     border-radius: 4px;
 }
 
-input:focus {
+.market-page input:focus {
     border-color: #2980b9; /* Blue border on focus */
     outline: none;
 }
 
-table {
+.market-page table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #ecf0f1; /* Light gray background */
 }
 
-th, td {
+.market-page th, .market-page td {
     padding: 10px;
     text-align: left;
     border: 1px solid #ddd;
 }
 
-th {
+.market-page th {
     background-color: #3498db; /* Blue */
     color: #ffffff; /* White text */
 }
 
-tbody tr:nth-child(even) {
+.market-page tbody tr:nth-child(even) {
     background-color: #f9f9f9; /* Light gray for even rows */
 }
 
-tbody tr:hover {
+.market-page tbody tr:hover {
     background-color: #f1c40f; /* Yellow highlight on hover */
 }
 
-
-/* Add to MarketInsight.css */
-
-.card {
+.market-page .card {
     background-color: #f9f9f9;
     padding: 20px;
     margin-top: 20px;
@@ -70,12 +66,12 @@ tbody tr:hover {
     margin-right: auto;
 }
 
-.card h3 {
+.market-page .card h3 {
     text-align: center;
     color: #2c3e50;
 }
 
-.card p {
+.market-page .card p {
     font-size: 16px;
     color: #34495e;
     margin: 8px 0;

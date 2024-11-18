@@ -1,99 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import "../ServicesCSS/Market.css";
-
-// const MarketInsight = () => {
-//   const [data, setData] = useState([]);
-//   const [filteredData, setFilteredData] = useState([]);
-//   const [filters, setFilters] = useState({
-//     state: '',
-//     district: '',
-//     commodity: '',
-//   });
-//   const [loading, setLoading] = useState(true); // Add loading state
-
-//   useEffect(() => {
-//     // Fetching data from API
-//     axios.get('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000')
-//       .then(response => {
-//         setData(response.data.records);
-//         setFilteredData(response.data.records);
-//         setLoading(false); // Data is loaded
-//       })
-//       .catch(error => {
-//         console.error('Error fetching data:', error);
-//         setLoading(false);
-//       });
-//   }, []);
-
-//   const handleFilterChange = (e) => {
-//     const { name, value } = e.target;
-//     setFilters(prevState => {
-//       const newFilters = { ...prevState, [name]: value };
-//       filterData(newFilters);
-//       return newFilters;
-//     });
-//   };
-
-//  const filterData = (filters) => {
-//   setFilteredData(
-//     data.filter(item => {
-//       return (
-//         (filters.state ? item.state.toLowerCase().includes(filters.state.toLowerCase()) : true) &&
-//         (filters.district ? item.district.toLowerCase().includes(filters.district.toLowerCase()) : true) &&
-//         (filters.commodity ? item.commodity.toLowerCase().includes(filters.commodity.toLowerCase()) : true)
-//       );
-//     })
-//   );
-// };
-
-
-//   return (
-//     <div>
-//       <h1>Market Insight</h1>
-//       <div>
-//         <label>State: </label>
-//         <input type="text" name="state" value={filters.state} onChange={handleFilterChange} />
-//         <label>District: </label>
-//         <input type="text" name="district" value={filters.district} onChange={handleFilterChange} />
-//         <label>Commodity: </label>
-//         <input type="text" name="commodity" value={filters.commodity} onChange={handleFilterChange} />
-//       </div>
-
-//       {loading ? (
-//         <p>Loading data...</p>
-//       ) : (
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>State</th>
-//               <th>District</th>
-//               <th>Market</th>
-//               <th>Commodity</th>
-//               <th>Variety</th>
-//               <th>Price (Min/Max/Modal)</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {filteredData.map((item, index) => (
-//               <tr key={index}>
-//                 <td>{item.state}</td>
-//                 <td>{item.district}</td>
-//                 <td>{item.market}</td>
-//                 <td>{item.commodity}</td>
-//                 <td>{item.variety}</td>
-//                 <td>{item.min_price} / {item.max_price} / {item.modal_price}</td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MarketInsight;
-
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -145,6 +49,7 @@ const Market = () => {
 
   return (
     <div>
+        <div className="market-page">
       <h1>Market Insight</h1>
       <div>
         <label>State: </label>
@@ -154,7 +59,7 @@ const Market = () => {
         <label>Commodity: </label>
         <input type="text" name="commodity" value={filters.commodity} onChange={handleFilterChange} />
       </div>
-
+      
       <table>
         <thead>
           <tr>
@@ -193,6 +98,7 @@ const Market = () => {
           <p><strong>Price (Modal):</strong> {selectedRow.modal_price}</p>
         </div>
       )}
+    </div>
     </div>
   );
 };
