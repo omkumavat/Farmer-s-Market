@@ -1,33 +1,17 @@
 /* Weather.css */
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #007bff, #6c63ff);
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Ensures footer stays at the bottom */
-  height: 100vh;
+  font-family: "Arial", sans-serif;
+  background-color: blue;
+  color: #333;
 }
 
 .weather-container {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  border-radius: 15px;
-  padding: 25px;
-  max-width: 450px;
-  width: 90%;
-  text-align: center;
-  margin: 0 auto;
-  flex-grow: 1; /* Makes sure the container takes available height */
+  margin-top: 100px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: slideIn 0.5s ease-out;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; /* Prevents content from overflowing */
+    flex-wrap: wrap;
+    height:100vh;
+    padding-top: 70px;
 }
 
 .weather-container:hover {
