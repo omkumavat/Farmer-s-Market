@@ -533,7 +533,7 @@
   font-size: large;
 }
 
-.main-c {
+.qm {
   display: flex;
   height: 350px;
   width: 1580px;
@@ -545,7 +545,7 @@
 }
 
 
-.content-s {
+.sm {
   background-color: rgba(0, 0, 0, 0.644);
   color: white;
   padding: 40px;
@@ -565,12 +565,12 @@
   background-color: #febc36;
   color: black;
 }
-.head1{
+.sm h2{
     margin-top: 70px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
-.head2{
+.sm p{
   font-family: cursive;
 }
 

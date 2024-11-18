@@ -23,6 +23,10 @@ const Dealer = () => {
         "/Images/dealer11.jpg",
         "/Images/dealer11.jpg",
         "/Images/dealer11.jpg",
+        "/Images/dealer11.jpg",
+        "/Images/dealer11.jpg",
+        "/Images/dealer11.jpg",
+        "/Images/dealer11.jpg",
         "/Images/dealer11.jpg"
     ];
 
@@ -138,7 +142,7 @@ const Dealer = () => {
                     <div className="brands">
                         <div className="sliderb">
                             {brandLogos.map((logo, index) => (
-                                <div key={index}>
+                                <div className="imgg" key={index}>
                                     <img src={logo} alt={`Brand ${index + 1}`} />
                                 </div>
                             ))}
