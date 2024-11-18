@@ -1,8 +1,47 @@
 import React from 'react';
 import '../CSS/navbar.css';
 import '../Images/logo.jpg';
-
+import { useSelector,useDispatch,useNavigate } from 'react-redux';
+import { useAuth } from "../Context/AuthContext";
+import { logoutStart, logoutSuccess } from "../Context/UserSlice";
+import { useEffect } from 'react';
+import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 const NavBar = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const { theme } = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [authUser] = useAuth();
+  const handleLogout = () => {
+    try {
+      // Dispatch the logout action to clear the currentUser state in Redux
+      dispatch(logoutStart());
+
+      // Remove user information from localStorage
+      // localStorage.removeItem("Users");
+      dispatch(logoutSuccess());
+      localStorage.removeItem("Users");
+      // Navigate to the projects page or any other page
+      navigate('/', { replace: true });
+
+      // Optionally reload the page to reset the application state
+      window.location.reload();
+
+      // Optionally, display a toast notification for success (if you're using a toast library)
+      // toast.success("Logout Successfully");
+    } catch (error) {
+      // Handle errors if any occur during the logout process
+      console.error("Error during logout: ", error);
+
+      // Optionally, display a toast notification for error
+      // toast.error("Error: " + error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(authUser)
+  }, [])
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -58,7 +97,29 @@ const NavBar = () => {
             </div>
           </div>
         </li>
-        <li className="nav-item"><a href="/login">Login</a></li>
+        {currentUser ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar alt="User" img={currentUser.profilePicture} rounded />
+            }
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">@{currentUser.Name}</span>
+            </Dropdown.Header>
+            <Link to={"/dashboard?tab=profile"}>
+              <Dropdown.Item> Profile </Dropdown.Item>
+            </Link>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleLogout}>Signout</Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <Button gradientDuoTone="purpleToBlue" outline onClick={(() => { navigate('/Login') })}>
+            SignIn
+          </Button>
+        )}
+        {/* <li className="nav-item"><a href="/login">Login</a></li> */}
       </ul>
     </nav>
   );

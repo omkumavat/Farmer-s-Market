@@ -1,15 +1,4 @@
-/* Weather.css */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #007bff, #6c63ff);
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Ensures footer stays at the bottom */
-  height: 100vh;
-}
+
 
 .weather-container {
   background: rgba(255, 255, 255, 0.9);

@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 import { Route,Routes } from 'react-router-dom';
 import Home from './Pages/Home'
 import Login from './Pages/Login';
@@ -18,11 +19,13 @@ import Dealer from './Services/Dealer';
 import Sidebar from './Components/Sidebar';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
+    
     <div>
       <Routes>
       <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
         <Route path="/" element={<Home />} />
         <Route path="/Contact" element={<Contact />} />
         <Route path="/About" element={<About />} />

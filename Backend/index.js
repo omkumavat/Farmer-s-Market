@@ -9,31 +9,25 @@ import dotenv from "dotenv";
 // import fileuPload from 'express-fileupload'
 import connectDB from "./Database/database.js";
 import User from "./Models/User.js";
+import cors from 'cors';
 
 const app=express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
+app.use(cors({
+  origin: 'http://localhost:3000',  // You can replace this with the actual frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing these methods
+  allowedHeaders: ['Content-Type'], // Allow these headers
+}));
 
 app.get('/',(req,res) => {
   res.send('Hello World')
 })
-app.post('/send', async (req, res) => {
-  const { name, email,mobileno, password,confirmpassword,role } = req.body;
 
-  try {
-    const newUser = new User({ 
-      name, 
-      email, 
-      mobileno, password,confirmpassword,role 
-    });
-    await newUser.save();
-    res.json({ message: "Sign-up successful!" });
-  } catch (err) {
-    next(err);
-  }
-});
+import user from './Routes/useroute.js';
+app.use('/server',user)
 //   const cloudinaryConnect = () =>{
 //     try {
 
