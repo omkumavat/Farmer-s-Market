@@ -2,113 +2,116 @@ import React, { useState } from "react";
 import "../CSS/signup.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
-import NavBar from '../Components/NavBar';
+import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
-import axios from 'axios';  // Importing axios
-import { useDispatch, useSelector } from 'react-redux';
-import { signInStart, signInFailure, signInSuccess } from "../Context/UserSlice";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-const Login = ({ isAuthenticated, setIsAuthenticated }) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState('');  // state for email
-    const [password, setPassword] = useState('');  // state for password
-    // const [error, setError] = useState('');  // state for handling errors
-    // const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const authUser=useAuth();
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        // if (!email || !password) {
-        //     // return dispatch(signInFailure('All fields are required!!!'));
-        // }
-        try {
-            // dispatch(signInStart());
-            const res = await axios.post('http://localhost:4000/server/login', {
-                email,
-                password
-            });
-            console.log(res.data.user.email);
-            const data = await res.data;
-            console.log(data);
-            if (data.success === false) {
-                // dispatch(signInFailure(data.message))
-            }
 
-            if (res) {
-                localStorage.setItem("Users", JSON.stringify(res.data.user));
-                navigate('/')
-            }
-            else {
-                // dispatch(signInFailure(data));
-                navigate('/')
-            }
-        }
-        catch (error) {
-            // dispatch(signInFailure(error.message));
-        }
-    };
+const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(""); // State for handling errors
 
-    return (
-        <>
-            <NavBar />
-            <div className="login-container">
-                <div className="left-side">
-                    <div className="text-overlay">
-                        <h1>Empowering Farmers, Digitally</h1>
-                        <p>"Grow your future, trade with trust, and harvest opportunities all in one place!"</p>
-                    </div>
-                </div>
-                <div className="login-form">
-                    <h2>Welcome Back!</h2>
-                    <p>Login to your Farmer's Market account</p>
+  const navigate = useNavigate();
+  const { login, } = useAuth(); // Destructure login function from context
 
-                    {/* Show error message if there's any */}
-                    {/* {error && <div className="error-message">{error}</div>} */}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="email"
-                            placeholder="Email"
-                            value={email}  // bind input to email state
-                            onChange={(e) => setEmail(e.target.value)}  // update email state
-                            required
-                        />
-                        <div className="password-field">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                placeholder="Password"
-                                value={password}  // bind input to password state
-                                onChange={(e) => setPassword(e.target.value)}  // update password state
-                                required
-                            />
-                            <span
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="eye-icon"
-                            >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </span>
-                        </div>
-                        <button type="submit" onClick={handleSubmit}>Login</button>
-                    </form>
+    if (!email || !password) {
+      setError("All fields are required!"); // Set error if fields are empty
+      return;
+    }
 
-                    <div className="social-login">
-                        <p>Or Login with</p>
-                        <div className="social-icons">
-                            <FaGoogle className="icon" />
-                            <FaFacebook className="icon" />
-                            <FaTwitter className="icon" />
-                        </div>
-                    </div>
+    try {
+      const res = await axios.post("http://localhost:4000/server/login", {
+        email,
+        password,
+      });
 
-                    <p className="signup-link">
-                        Don’t have an account? <a href="/signup">Sign up</a>
-                    </p>
-                </div>
+      const data = res.data;
+
+      if (data.success === false) {
+        setError(data.message); // Display error from backend
+        return;
+      }
+
+      // If login is successful
+      console.log(data.user);
+      login(data.user); // Update the auth context
+      localStorage.setItem("Users", JSON.stringify(data.user)); // Store user in local storage
+      navigate("/"); // Redirect to the homepage
+    } catch (error) {
+      setError("Login failed. Please try again."); // Catch general errors
+      console.error(error);
+    }
+  };
+
+  return (
+    <>
+      <NavBar />
+      <div className="login-container">
+        <div className="left-side">
+          <div className="text-overlay">
+            <h1>Empowering Farmers, Digitally</h1>
+            <p>
+              "Grow your future, trade with trust, and harvest opportunities all
+              in one place!"
+            </p>
+          </div>
+        </div>
+        <div className="login-form">
+          <h2>Welcome Back!</h2>
+          <p>Login to your Farmer's Market account</p>
+
+          {/* Display error message */}
+          {error && <div className="error-message">{error}</div>}
+
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <div className="password-field">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                className="eye-icon"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
             </div>
-            <Footer />
-        </>
-    );
+            <button type="submit">Login</button>
+          </form>
+
+          <div className="social-login">
+            <p>Or Login with</p>
+            <div className="social-icons">
+              <FaGoogle className="icon" />
+              <FaFacebook className="icon" />
+              <FaTwitter className="icon" />
+            </div>
+          </div>
+
+          <p className="signup-link">
+            Don’t have an account? <a href="/signup">Sign up</a>
+          </p>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 };
 
 export default Login;

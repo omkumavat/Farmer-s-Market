@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import AuthProvider from './Context/AuthContext.js';
+import {AuthProvider} from './Context/AuthContext.js';
 import { Provider } from 'react-redux';
 import store from './Context/Store'; // Import your store
 

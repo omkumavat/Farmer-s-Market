@@ -1,25 +1,66 @@
-import React, { createContext, useContext, useState } from "react";
+// import { createContext, useContext, useState } from 'react';
 
-export const AuthContext = createContext();
+// // Create Auth Context
+// const AuthContext = createContext();
 
-export default function AuthProvider({ children }) {
-  const initialAuthUser = localStorage.getItem("Users");
-  let parsedAuthUser;
+// // Provide Auth Context
+// export const AuthProvider = ({ children }) => {
+//   const [authUser, setAuthUser] = useState(null); // `null` means no user is logged in
 
-  try {
-    parsedAuthUser = initialAuthUser ? JSON.parse(initialAuthUser) : undefined;
-  } catch (e) {
-    console.error("Error parsing stored user data", e);
-    parsedAuthUser = undefined;
-  }
+//   const login = (user) => {
+//     setAuthUser(user); // Save user data (e.g., username or token)
+//     localStorage.setItem('authUser', JSON.stringify(user)); // Persist login state
+//   };
 
-  const [authUser, setAuthUser] = useState(parsedAuthUser);
+//   const logout = () => {
+//     setAuthUser(null); // Clear user data
+//     localStorage.removeItem('authUser'); // Clear login state
+//   };
 
-  return (
-    <AuthContext.Provider value={[authUser, setAuthUser]}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
+//   return (
+//     <AuthContext.Provider value={{ authUser, login, logout }}>
+//       {children}
+//     </AuthContext.Provider>
+//   );
+// };
 
-export const useAuth = () => useContext(AuthContext);
+// // Use Auth Context
+// export const useAuth = () => useContext(AuthContext);
+
+import React, { createContext, useContext, useState, useEffect } from 'react';
+
+const AuthContext = createContext();
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  // Restore user from localStorage on mount
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("Users"));
+    if (storedUser) {
+      setCurrentUser(storedUser);
+    }
+  }, []);
+
+  const login = (user) => {
+    setCurrentUser(user);
+    localStorage.setItem("Users", JSON.stringify(user));
+  };
+
+  const logout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("Users");
+  };
+
+  const value = {
+    currentUser,
+    login,
+    logout,
+  };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

@@ -1,64 +1,8 @@
-import DealerPCard from "../Components/DealerPCard";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
 import '../ServicesCSS/dealer.css'
 
-const Dealer = () => {
-
-    const products = [
-        {
-            discount: 33,
-            imgSrc: "https://via.placeholder.com/150",
-            title: "Glycel Herbicide",
-            brand: "Sumitomo",
-            price: 288,
-            oldPrice: 429,
-            saved: 141,
-            sizeOptions: ["500 ml"],
-        },
-        {
-            discount: 39,
-            imgSrc: "https://via.placeholder.com/150",
-            title: "Roundup Herbicide",
-            brand: "Monsanto",
-            price: 259,
-            oldPrice: 425,
-            saved: 166,
-            sizeOptions: ["500 ml"],
-        },
-        {
-            discount: 22,
-            imgSrc: "https://via.placeholder.com/150",
-            title: "Biovita Liquid BioFertilizer",
-            brand: "PI Industries",
-            price: 288,
-            oldPrice: 371,
-            saved: 83,
-            sizeOptions: ["250 ml"],
-        },
-        {
-            discount: 41,
-            imgSrc: "https://via.placeholder.com/150",
-            title: "Fantac Plus Growth Promoter",
-            brand: "Coromandel International",
-            price: 277,
-            oldPrice: 470,
-            saved: 193,
-            sizeOptions: ["100 ml"],
-        },
-        {
-            discount: 2,
-            imgSrc: "https://via.placeholder.com/150",
-            title: "Saaf Fungicide",
-            brand: "UPL",
-            price: 109,
-            oldPrice: 111,
-            saved: 2,
-            sizeOptions: ["100 gms"],
-        },
-
-    ];
-
+const Farmer = () => {
 
     const categories = [
         { name: "Offers", img: "/Images/dealer11.jpg", url: "/dealer/category/offers" },
@@ -90,36 +34,37 @@ const Dealer = () => {
 
     const services = [
         {
-            icon: "🧑‍🌾", // Replace with your SVG or image
-            title: "Fertilizers",
-            description: "Homes and thoroughly launder them between usage. We give our teams.",
-        },
-        {
-            icon: "🍎", // Replace with your SVG or image
-            title: "Seeds",
-            description: "We are closely monitoring national, state and local health developments.",
+            icon: "🌾", // Replace with your SVG or image
+            title: "Crop Production",
+            description: "Farmers provide high-quality crops, from grains to vegetables, grown with care and expertise.",
         },
         {
             icon: "🐄", // Replace with your SVG or image
-            title: "Agricultural Machinery and Tools",
-            description: "Follow these tips from the CDC to help prevent the spread of the seasonal.",
+            title: "Animal Husbandry",
+            description: "Farmers raise livestock for meat, milk, and other by-products, ensuring quality and sustainability.",
         },
         {
-            icon: "🌾", // Replace with your SVG or image
-            title: "Post-Harvest Equipment",
-            description: "Industra plays a large role in the comfort of your home, but many.",
+            icon: "🌱", // Replace with your SVG or image
+            title: "Organic Farming",
+            description: "Farmers offer organic produce, grown without harmful chemicals, ensuring a healthier option for consumers.",
         },
         {
             icon: "🚜", // Replace with your SVG or image
-            title: "Farm Infrastructure",
-            description: "We realize that every family has their own preferences, so we accommodate.",
+            title: "Land Preparation",
+            description: "Farmers provide land preparation services such as tilling, plowing, and soil fertilization for crop planting.",
         },
         {
-            icon: "📋", // Replace with your SVG or image
-            title: "Irrigation Equipment",
-            description: "While some cleaning companies use rotating cleaning plans, we’re equipped.",
+            icon: "🌻", // Replace with your SVG or image
+            title: "Flower Farming",
+            description: "Farmers grow flowers for sale to nurseries, markets, or for decoration in events and homes.",
+        },
+        {
+            icon: "🍯", // Replace with your SVG or image
+            title: "Honey Production",
+            description: "Farmers harvest honey from beehives, offering fresh, natural honey directly from the farm.",
         },
     ];
+    
 
     return (
         <><NavBar />
@@ -132,10 +77,9 @@ const Dealer = () => {
                 </div>
                 <div className="services-container">
                     <div className="serv">
-                        <h2 className="services-title">Agricultural Products</h2>
+                        <h2 className="services-title">Farm Produce</h2>
                         <p className="services-subtitle">
-                            Industra is a global community of practice that facilitates dialogue,
-                            information exchange and use of information.
+                        Verdica empowers farmers to connect and sell their produce directly, ensuring fair prices through a global community-driven platform.
                         </p>
                     </div>
                     <div className="services-grid">
@@ -159,12 +103,12 @@ const Dealer = () => {
                             For a Thriving Agricultural Community<br /> <span>Tomorrow</span>
                         </h1>
                         <p className="description">
-                            At Verdica, we are committed to building bridges between dealers and farmers, enabling seamless access to essential agricultural products and services. Our platform empowers dealers to showcase their offerings while ensuring quality and trust for farmers.
+                        Verdica provides a platform where farmers can offer essential services like land preparation, crop cultivation, and organic farming to others in the agricultural community. This enables farmers to showcase their skills and expertise.
                         </p>
                         <p className="description">
-                            With a focus on innovation and sustainability, Verdica provides verified dealers with a comprehensive platform to list, manage, and sell their products, from seeds and tools to advanced farming equipment. Together, we aim to create a thriving agricultural marketplace that benefits all stakeholders.
+                        Farmers can list, manage, and sell their services, helping them reach a broader audience. Verdica makes it easier for farmers to connect with those who need their services, ensuring mutual growth.
                         </p>
-                        <p className="description">Verdica is your trusted partner, connecting dealers with farmers to achieve mutual success while promoting sustainable agricultural practices.</p>
+                        <p className="description">Verdica is dedicated to creating a trusted environment where farmers can succeed by offering their valuable services. We aim to build a vibrant community that drives success and mutual benefit.</p>
                     </div>
 
                     {/* Image Section */}
@@ -194,14 +138,6 @@ const Dealer = () => {
                         ))}
                     </div>
                 </div>
-                {/* <div className="appsd"> */}
-                <div className="appsd">
-                    {/* <h2>Popular Products</h2> */}
-                    {products.map((product, index) => (
-                        <DealerPCard key={index} {...product} />
-                    ))}
-                {/* </div> */}
-                </div>
                 <div className="brandc">
                     <div className="brands">
                         <div className="sliderb">
@@ -219,4 +155,4 @@ const Dealer = () => {
     );
 }
 
-export default Dealer;
+export default Farmer;
