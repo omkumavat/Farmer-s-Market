@@ -1,33 +1,4 @@
-// import { createContext, useContext, useState } from 'react';
-
-// // Create Auth Context
-// const AuthContext = createContext();
-
-// // Provide Auth Context
-// export const AuthProvider = ({ children }) => {
-//   const [authUser, setAuthUser] = useState(null); // `null` means no user is logged in
-
-//   const login = (user) => {
-//     setAuthUser(user); // Save user data (e.g., username or token)
-//     localStorage.setItem('authUser', JSON.stringify(user)); // Persist login state
-//   };
-
-//   const logout = () => {
-//     setAuthUser(null); // Clear user data
-//     localStorage.removeItem('authUser'); // Clear login state
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ authUser, login, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// // Use Auth Context
-// export const useAuth = () => useContext(AuthContext);
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const AuthContext = createContext();
 
@@ -36,24 +7,30 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  // Restore user from localStorage on mount
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("Users"));
+  // Check if 'Users' exists in localStorage before attempting to parse it
+  const initialUser = (() => {
+    const storedUser = localStorage.getItem("Users");
     if (storedUser) {
-      setCurrentUser(storedUser);
+      try {
+        return JSON.parse(storedUser);  // Only parse if storedUser is not null or undefined
+      } catch (error) {
+        console.error("Error parsing user data from localStorage", error);
+        return null;
+      }
     }
-  }, []);
+    return null;
+  })();
+
+  const [currentUser, setCurrentUser] = useState(initialUser);
 
   const login = (user) => {
     setCurrentUser(user);
-    localStorage.setItem("Users", JSON.stringify(user));
+    localStorage.setItem("Users", JSON.stringify(user));  // Save user to localStorage
   };
 
   const logout = () => {
     setCurrentUser(null);
-    localStorage.removeItem("Users");
+    localStorage.removeItem("Users");  // Remove user data from localStorage
   };
 
   const value = {

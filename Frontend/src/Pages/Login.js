@@ -15,7 +15,7 @@ const Login = () => {
   const [error, setError] = useState(""); // State for handling errors
 
   const navigate = useNavigate();
-  const { login, } = useAuth(); // Destructure login function from context
+  const { login } = useAuth(); // Destructure login function from context
 
   const handleSubmit = async (e) => {
     e.preventDefault();

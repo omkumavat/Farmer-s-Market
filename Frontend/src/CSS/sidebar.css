@@ -8,13 +8,18 @@
   .sidebar {
     background-color: #2d3e50;
     color: white;
-    width: 250px;
+    margin-right: 1000px;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     transition: transform 0.3s ease;
     padding-top: 50px;
+    position: relative;
+    margin-left: -2px;
+    top: 10px;
+    margin-bottom: 12x;
+    height: 2000px;
   }
   
   .sidebar.closed {

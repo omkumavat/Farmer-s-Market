@@ -37,17 +37,12 @@ const Signup = () => {
     };
 
     try {
-      // Send data to the backend using axios
-      const response = await axios.post("http://localhost:4000/server/signup", userData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.post("http://localhost:4000/server/signup", {userData});
 
       // Handle successful response
-      if (response.data.success) {
+      if (response) {
         alert("Signup successful!");
-        // Redirect to login page or handle success (you can use `useNavigate` if using React Router)
+        localStorage.setItem("Users", JSON.stringify(response.data.users));
       } else {
         setError(response.data.message || "Signup failed. Please try again.");
       }
