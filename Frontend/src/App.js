@@ -19,10 +19,12 @@ import Market from "./Services/Market";
 import Farmer from './Services/Farmer';
 import Dashboard from './AdminDashboard/Dashboard'
 import { AuthProvider, useAuth } from './Context/AuthContext';
+import Product from"./cards/product"
 
 function App() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
+ 
 
   useEffect(() => {
     if (currentUser !== undefined) {
@@ -70,6 +72,7 @@ function App() {
               <Route path="/market" element={<Market />} />
               <Route path="/dashboard" element={<Sidebar />} />
               <Route path="*" element={<Navigate to="/login" />} />
+              <Route path="/product" element={<Product  />} />
             </>
           )}
         </Routes>

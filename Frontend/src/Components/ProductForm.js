@@ -136,7 +136,7 @@ const ProductForm = () => {
         }));
     };
     
-    
+
 
     const handleImages = (event) => {
         const files = event.target.files;
