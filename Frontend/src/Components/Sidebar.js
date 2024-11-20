@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../CSS/sidebar.css';
-import EditProfile from './EditProfile'
+import EditProfile from './EditProfile';
 import Sales from './Sales';
 import Products from './Products';
 import Orderes from './Orderes';
 import WishList from './WishList';
-import AddProduct from './AddProduct'
+import AddProduct from './AddProduct';
+import { useAuth } from '../Context/AuthContext';
+import NavBar from './NavBar';
+import Footer from './Footer';
+
 function Sidebar() {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-    const [selectedPage, setSelectedPage] = useState('Home');
+  const { currentUser } = useAuth();
+  const [isAuthReady, setIsAuthReady] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [selectedPage, setSelectedPage] = useState('Home');
+  console.log(currentUser);
   
-    const toggleSidebar = () => {
-      setIsSidebarOpen(!isSidebarOpen);
-    };
-  
-    const handlePageChange = (page) => {
-      setSelectedPage(page);
-    };
-  
-    return (
+  // Check if currentUser is loaded and not null
+  useEffect(() => {
+    if (currentUser !== null) {
+      setIsAuthReady(true); // Mark as ready once currentUser is loaded
+    }
+  }, [currentUser]);
+
+  if (!isAuthReady) {
+    return <div>Loading...</div>; // Loading state while checking auth
+  }
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handlePageChange = (page) => {
+    setSelectedPage(page);
+  };
+
+  return (
+    <>
+      <NavBar />
       <div className="app-container">
         <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
           <button className="toggle-btn" onClick={toggleSidebar}>
@@ -26,25 +46,29 @@ function Sidebar() {
           </button>
           <ul className="sidebar-menu">
             <li onClick={() => handlePageChange('ep')}>Edit Profile</li>
-            <li onClick={() => handlePageChange('sales')}>My Sales</li>
-            <li onClick={() => handlePageChange('order')}>My Orderes</li>
-            <li onClick={() => handlePageChange('product')}>My Products</li>
+            <li onClick={() => handlePageChange('order')}>My Orders</li>
             <li onClick={() => handlePageChange('wish')}>WishList</li>
-
-            <li onClick={() => handlePageChange('addp')}>Add Product</li>
+            {currentUser.role !== "other" && (
+              <>
+                <li onClick={() => handlePageChange('sales')}>My Sales</li>
+                <li onClick={() => handlePageChange('product')}>My Products</li>
+                <li onClick={() => handlePageChange('addp')}>Add Product</li>
+              </>
+            )}
           </ul>
         </div>
-  
+
         <div className="content">
-          {selectedPage === 'sales' && <h1><Sales/></h1>}
-          {selectedPage === 'order' && <h1><Orderes/></h1>}
-          {selectedPage === 'product' && <h1><Products/></h1>}
-          {selectedPage === 'wish' && <h1><WishList/></h1>}
+          {selectedPage === 'sales' && <Sales />}
+          {selectedPage === 'order' && <Orderes />}
+          {selectedPage === 'product' && <Products />}
+          {selectedPage === 'wish' && <WishList />}
           {selectedPage === 'ep' && <EditProfile />}
           {selectedPage === 'addp' && <AddProduct />}
         </div>
       </div>
-    );
+    </>
+  );
 }
 
 export default Sidebar;

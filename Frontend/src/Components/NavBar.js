@@ -1,15 +1,26 @@
 import React, { useEffect } from 'react';
 import '../CSS/navbar.css';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext'; // Ensure this context provides authentication state
 
 const NavBar = () => {
-  const { currentUser, logout } = useAuth(); 
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log("Current User:", currentUser); // Debug current user state
-  }, [currentUser]);
+  const { currentUser,logout } = useAuth();
+  // const [loading, setLoading] = useState(true);
+
+  // useEffect(() => {
+  //   if (currentUser !== null) {
+  //     setLoading(false);
+  //     console.log("Current User:", currentUser?.role);
+  //   }
+  // }, [currentUser]);
+
+  // if (loading) {
+  //   return <div>Loading...</div>; // Show a loader until currentUser is available
+  // }
 
   const handleLogout = async () => {
     try {
@@ -74,6 +85,7 @@ const NavBar = () => {
             </div>
           </div>
         </li>
+        <li className="nav-item"><a href="/dashboard">Dashboard</a></li>
         {currentUser ? (
           <li className="navitem logout" onClick={handleLogout}>Logout</li>
         ) : (

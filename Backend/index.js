@@ -1,17 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import dotenv from "dotenv";
-// import userRoutes from '../server/Routes/user.route.js'
-// import authRoutes from '../server/Routes/auth.route.js'
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-// import cloudinary from 'cloudinary';
-// import fileuPload from 'express-fileupload'
+import fileuPload from 'express-fileupload';
 import connectDB from "./Database/database.js";
 import User from "./Models/User.js";
 import cors from 'cors';
 
 const app=express();
+app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as needed
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 dotenv.config();
@@ -28,21 +26,19 @@ app.get('/',(req,res) => {
 
 import user from './Routes/useroute.js';
 app.use('/server',user)
-//   const cloudinaryConnect = () =>{
-//     try {
 
-//         cloudinary.config({
-//             cloud_name:'dtobcdrww',
-//             api_key:'988281658147778',
-//             api_secret:'InjpwEKoNtJtcqOd5Uvf0ZTsD-8'
-//         })
-        
-//     } catch (error) {
-//         console.log(error); 
-//     }
-// }
+import dealeroute from './Routes/dealeroute.js';
+app.use('/server',dealeroute)
 
-// cloudinaryConnect();
+app.use(fileuPload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/',
+  limits: { fileSize: 100 * 1024 * 1024 } 
+}));
+
+import cloudinaryConnect from "./Database/Cloudinary.js";
+cloudinaryConnect();
+
 
 // const app = express();
 // const __filename = fileURLToPath(import.meta.url);

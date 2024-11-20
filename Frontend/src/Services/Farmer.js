@@ -5,19 +5,20 @@ import '../ServicesCSS/dealer.css'
 const Farmer = () => {
 
     const categories = [
-        { name: "Offers", img: "/Images/dealer11.jpg", url: "/dealer/category/offers" },
-        { name: "Seeds", img: "/Images/dealer12.jpg", url: "/dealer/category/seeds" },
-        { name: "Fertilizers", img: "/Images/dealer13.jpg", url: "/dealer/category/fertilizers" },
-        { name: "Pesticides", img: "/Images/dealer14.png", url: "/dealer/category/pesticides" },
-        { name: "Machinery", img: "/Images/dealer15.jpg", url: "/dealer/category/machinery" },
-        { name: "Livestock", img: "/Images/dealer16.jpg", url: "/dealer/category/livestocks" },
-        { name: "Farm Equipment", img: "/Images/dealer17.jpg", url: "/dealer/category/farm-equipment" },
-        { name: "Farm Infrastructure", img: "/Images/dealer18.jpg", url: "/dealer/category/farm-infrastructure" },
-        { name: "Irrigation Equipment", img: "/Images/dealer19.jpg", url: "/dealer/category/irrigatin-equipment" },
-        { name: "Organic Farming", img: "/Images/dealer20.jpg", url: "/dealer/category/orgainc-farming" },
-        { name: "Animal Husbandry", img: "/Images/dealer21.jpg", url: "/dealer/category/animal-husbandry" },
-        { name: "New Products", img: "/Images/dealer22.jpg", url: "/dealer/category/new-products" },
+        { name: "Offers", img: "/Images/dealer11.jpg", url: "/farmer/category/offers" },
+        { name: "Fresh Produce", img: "/Images/farmer1.jpg", url: "/farmer/category/vegetable-crops" },
+        { name: "Grains and Cereals", img: "/Images/farmer2.jpg", url: "/farmer/category/fruits" },
+        { name: "Pulses and Legumes", img: "/Images/farmer3.jpg", url: "/farmer/category/dairy-products" },
+        { name: "Dairy and Milk Products", img: "/Images/farmer4.jpg", url: "/farmer/category/poultry" },
+        { name: "Livestock and Animal Products", img: "/Images/farmer5.jpg", url: "/farmer/category/honey" },
+        { name: "Organic Products", img: "/Images/farmer6.jpg", url: "/farmer/category/organic-farming" },
+        { name: "Value-Added Products", img: "/Images/farmer7.jpg", url: "/farmer/category/animal-husbandry" },
+        { name: "Specialty Crops", img: "/Images/farmer8.jpg", url: "/farmer/category/grains" },
+        { name: "Fibers and Raw Materials", img: "/Images/farmer9.jpg", url: "/farmer/category/herbs" },
+        { name: "Flowers & Plants", img: "/Images/farmer10.jpg", url: "/farmer/category/flowers-plants" },
+        { name: "By-products", img: "/Images/farmer11.jpg", url: "/farmer/category/vegetable-seeds" },
     ];
+    
 
     const brandLogos = [
         "/Images/dealer11.jpg",

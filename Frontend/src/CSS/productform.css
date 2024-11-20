@@ -1,0 +1,115 @@
+/* Container Styling */
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+    padding: 20px;
+    margin-top: 400px;
+    margin-left: -1200px;
+  }
+  
+  /* Form Wrapper */
+  .wrapper {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form Title */
+  .formTitle {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Input Fields */
+  .item {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .item label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  .item input, .item select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .item input:focus, .item select:focus {
+    border-color: #5d9df2;
+    outline: none;
+  }
+  
+  /* Description Styling */
+  .item.description .ql-container {
+    min-height: 150px;
+  }
+  
+  .item span {
+    color: red;
+    font-size: 12px;
+  }
+  
+  /* Image Previews */
+  .imagePreviews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .imagePreview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Submit Button */
+  .sendButton {
+    background-color: #5d9df2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sendButton:hover {
+    background-color: #4c8fdb;
+  }
+  
+  .sendButton:focus {
+    outline: none;
+  }
+  
+  /* Responsive Styling */
+  @media screen and (max-width: 768px) {
+    .wrapper {
+      padding: 20px;
+    }
+  
+    .formTitle {
+      font-size: 20px;
+    }
+  }
+  
