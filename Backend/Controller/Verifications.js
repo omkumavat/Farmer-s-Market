@@ -10,6 +10,63 @@ export const getVerifications = async (req, res) => {
     }
 };
 
+export const getVerificationStatus = async (req, res) => {
+    const  userId  = req.params.id;
+    // console.log(userId);
+
+    try {
+        const verification = await Verification.findOne({ userId });
+
+        if (!verification) {
+            return res.status(404).json({ isSubmitted:false });
+        }
+
+        res.status(200).json({
+            isSubmitted: true
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching verification status', error });
+    }
+};
+
+export const approveVerifiedUser = async (req, res) => {
+    const  userId  = req.params.id;
+    console.log(userId);
+
+    try {
+        
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { verified: true },
+            { new: true }
+          );
+      
+          if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+          }
+      
+          const updatedVeri = await Verification.findOneAndUpdate(
+            { userId: userId }, // Find the verification by userId
+            { status: "Approved" }, // Update the status to "Approved"
+            { new: true } // Return the updated document
+          );
+      
+          if (!updatedVeri) {
+            return res.status(404).json({ message: "Verification not found" });
+          }
+      
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ message: "User verified successfully", user: updatedUser });
+    } catch (error) {
+        console.error("Error updating user verification:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 export const getVerificationbyId = async (req, res) => {
     try {
         const verification = await Verification.findById(req.params.id);

@@ -4,9 +4,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import NavBar from "../Components/NavBar";
 import Footer from '../Components/Footer';
 import axios from 'axios'; // Import axios
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  // State hooks for form data and password visibility
+  const navi=useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileno, setMobileNumber] = useState("");
@@ -43,6 +44,8 @@ const Signup = () => {
       if (response) {
         alert("Signup successful!");
         localStorage.setItem("Users", JSON.stringify(response.data.users));
+        navi('/');
+        window.location.reload();
       } else {
         setError(response.data.message || "Signup failed. Please try again.");
       }

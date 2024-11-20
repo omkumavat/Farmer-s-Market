@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "../AdminDashboardCSS/verifications.css"; // Add styles here
+import "../AdminDashboardCSS/verifications.css";
 import axios from "axios";
+import AdminModal from "../Components/AdminModal";
 
 const Verifications = () => {
   const [verifications, setVerifications] = useState([]);
-  const [filter, setFilter] = useState("pending");
+  const [filter, setFilter] = useState("Pending");
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
     fetchVerifications();
-  }, []);
+    console.log(verifications)
+  }, [setVerifications]);
 
   const fetchVerifications = async () => {
     try {
@@ -19,17 +22,26 @@ const Verifications = () => {
     }
   };
 
-  const approveVerification = async (id) => {
-    try {
-      await axios.patch(`http://localhost:4000/verifications/${id}`);
-      fetchVerifications(); // Refresh the list after approval
-    } catch (error) {
-      console.error("Error approving verification", error);
-    }
+  const handleApproveClick = (userId) => {
+    setSelectedUserId(userId);
   };
 
-  const filteredVerifications = verifications.filter(
-    (v) => (filter === "pending" ? !v.verified : v.verified)
+  const handleModalClose = () => {
+    setSelectedUserId(null);
+  };
+
+  const handleApproveSuccess = () => {
+    fetchVerifications(); 
+  };
+
+  const sortedVerifications = verifications.sort((a, b) => {
+    if (a.status === "Pending" && b.status !== "Pending") return -1;
+    if (a.status !== "Pending" && b.status === "Pending") return 1;
+    return 0;
+  });
+
+  const filteredVerifications = sortedVerifications.filter(
+    (v) => (filter === "Pending" ? v.status === "Pending" : v.status === "Approved")
   );
 
   return (
@@ -37,16 +49,16 @@ const Verifications = () => {
       <h1>Verifications</h1>
       <div className="filter-buttons">
         <button
-          className={filter === "pending" ? "active" : ""}
-          onClick={() => setFilter("pending")}
+          className={filter === "Pending" ? "active" : ""}
+          onClick={() => setFilter("Pending")}
         >
           Pending
         </button>
         <button
-          className={filter === "verified" ? "active" : ""}
-          onClick={() => setFilter("verified")}
+          className={filter === "Approved" ? "active" : ""}
+          onClick={() => setFilter("Approved")}
         >
-          Verified
+          Approved
         </button>
       </div>
       <div className="verification-list">
@@ -54,17 +66,17 @@ const Verifications = () => {
           <div className="verification-card" key={verification._id}>
             <h2>{verification.name}</h2>
             <p>Email: {verification.email}</p>
-            <p>Mobile No .: {verification.mobileno}</p>
-            <p>Location .: {verification.location}</p>
+            <p>Mobile No.: {verification.mobileno}</p>
+            <p>Location: {verification.location}</p>
             <img
               src={verification.licenseImage}
               alt={`${verification.name}'s license`}
               className="license-image"
             />
-            {!verification.verified && (
+            {verification.status === "Pending" && (
               <button
                 className="approve-btn"
-                onClick={() => approveVerification(verification._id)}
+                onClick={() => handleApproveClick(verification.userId)}
               >
                 Approve
               </button>
@@ -72,6 +84,13 @@ const Verifications = () => {
           </div>
         ))}
       </div>
+      {selectedUserId && (
+        <AdminModal
+          userId={selectedUserId}
+          onClose={handleModalClose}
+          onApproveSuccess={handleApproveSuccess}
+        />
+      )}
     </div>
   );
 };

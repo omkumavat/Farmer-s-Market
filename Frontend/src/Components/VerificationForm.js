@@ -3,9 +3,10 @@ import axios from "axios";
 import "../CSS/verificationform.css";
 import { useAuth } from "../Context/AuthContext";
 
-const VerificationForm = () => {
+const VerificationForm = ({ onVerificationSuccess }) => {
     const { currentUser } = useAuth();
-    const [isAuthReady, setIsAuthReady] = useState();
+    const [isAuthReady, setIsAuthReady] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -16,6 +17,7 @@ const VerificationForm = () => {
     });
 
     const [errors, setErrors] = useState({});
+
     useEffect(() => {
         if (currentUser !== undefined) {
             setIsAuthReady(true); // Mark as ready once currentUser is loaded
@@ -66,24 +68,35 @@ const VerificationForm = () => {
             formDataToSend.append("location", formData.location);
             formDataToSend.append("userId", formData.userId);
             formDataToSend.append("licenseImage", formData.licenseImage);
-            console.log(formData)
+
             try {
+                setIsLoading(true); // Start loading
                 const response = await axios.post("http://localhost:4000/server/dealer/postverifications", formDataToSend, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 });
                 console.log("Form submitted:", response.data);
-                setFormData({
-                    name: "",
-                    email: "",
-                    mobileno: "",
-                    location: "",
-                    licenseImage: null,
-                });
-                setErrors({});
+
+                // Poll the backend to check for the status
+                const intervalId = setInterval(async () => {
+                    try {
+                        const statusResponse = await axios.get(
+                            `http://localhost:4000/server/dealer/getVerificationStatus/${currentUser._id}`
+                        );
+                        const { status } = statusResponse.data;
+                        if (status === "Pending") {
+                            clearInterval(intervalId); // Stop polling
+                            setIsLoading(false); // Stop loading
+                            onVerificationSuccess(); // Trigger parent success
+                        }
+                    } catch (error) {
+                        console.error("Error checking status:", error);
+                    }
+                }, 3000); // Poll every 3 seconds
             } catch (error) {
                 console.error("Error submitting form:", error);
+                setIsLoading(false); // Stop loading in case of error
             }
         }
     };
@@ -91,73 +104,79 @@ const VerificationForm = () => {
     return (
         <div className="verification-form-container">
             <h2>Verification Form</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="formgroup">
-                    <label htmlFor="name">Name</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Enter your name"
-                    />
-                    {errors.name && <span className="error">{errors.name}</span>}
+            {isLoading ? (
+                <div className="loading-spinner">
+                    <p>Submitting your verification form...</p>
                 </div>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <div className="formgroup">
+                        <label htmlFor="name">Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="Enter your name"
+                        />
+                        {errors.name && <span className="error">{errors.name}</span>}
+                    </div>
 
-                <div className="formgroup">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Enter your email"
-                    />
-                    {errors.email && <span className="error">{errors.email}</span>}
-                </div>
+                    <div className="formgroup">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Enter your email"
+                        />
+                        {errors.email && <span className="error">{errors.email}</span>}
+                    </div>
 
-                <div className="formgroup">
-                    <label htmlFor="mobileno">Mobile Number</label>
-                    <input
-                        type="text"
-                        id="mobileno"
-                        name="mobileno"
-                        value={formData.mobileno}
-                        onChange={handleChange}
-                        placeholder="Enter your 10-digit mobile number"
-                    />
-                    {errors.mobileno && <span className="error">{errors.mobileno}</span>}
-                </div>
+                    <div className="formgroup">
+                        <label htmlFor="mobileno">Mobile Number</label>
+                        <input
+                            type="text"
+                            id="mobileno"
+                            name="mobileno"
+                            value={formData.mobileno}
+                            onChange={handleChange}
+                            placeholder="Enter your 10-digit mobile number"
+                        />
+                        {errors.mobileno && <span className="error">{errors.mobileno}</span>}
+                    </div>
 
-                <div className="formgroup">
-                    <label htmlFor="location">Location</label>
-                    <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        placeholder="Enter your location"
-                    />
-                    {errors.location && <span className="error">{errors.location}</span>}
-                </div>
+                    <div className="formgroup">
+                        <label htmlFor="location">Location</label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                            placeholder="Enter your location"
+                        />
+                        {errors.location && <span className="error">{errors.location}</span>}
+                    </div>
 
-                <div className="formgroup">
-                    <label htmlFor="licenseImage">Upload License Image</label>
-                    <input
-                        type="file"
-                        id="licenseImage"
-                        name="licenseImage"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                    />
-                    {errors.licenseImage && <span className="error">{errors.licenseImage}</span>}
-                </div>
+                    <div className="formgroup">
+                        <label htmlFor="licenseImage">Upload License Image</label>
+                        <input
+                            type="file"
+                            id="licenseImage"
+                            name="licenseImage"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                        />
+                        {errors.licenseImage && <span className="error">{errors.licenseImage}</span>}
+                    </div>
 
-                <button className="sub" type="submit">Submit</button>
-            </form>
+                    <button className="sub" type="submit">Submit</button>
+                </form>
+            )}
         </div>
     );
 };

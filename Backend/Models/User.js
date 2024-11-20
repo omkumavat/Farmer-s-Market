@@ -65,7 +65,8 @@ const VerificationSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-  }
+  },
+  status: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' }
 });
 
 export const Verification = mongoose.model('Verification', VerificationSchema);
