@@ -1,28 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../CSS/navbar.css';
-import '../Images/logo.jpg';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../Context/AuthContext';  // Ensure this context provides authentication state
+import { useAuth } from '../Context/AuthContext'; // Ensure this context provides authentication state
 
 const NavBar = () => {
-  const { currentUser, logout } = useAuth();  // Use the context to get the currentUser and logout function
+  const { currentUser, logout } = useAuth(); 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  useEffect(() => {
+    console.log("Current User:", currentUser); // Debug current user state
+  }, [currentUser]);
+
+  const handleLogout = async () => {
     try {
-      logout();  // Call the logout function to update the authentication state
-      localStorage.removeItem("Users");  // Remove user data from localStorage
-      navigate('/', { replace: true });  // Redirect to home after logout
-      window.location.reload();  // Optional: Forces a reload of the page
+      await logout();
+      localStorage.removeItem("Users");
+      navigate('/', { replace: true });
+      window.location.reload();
     } catch (error) {
-      console.error("Error logging out:", error);
+      console.error("Error during logout:", error);
     }
   };
 
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="/Images/logo.jpg" alt="logo" className="logo-image" />
+        <img src="/Images/logo.jpg" alt="Verdica Logo" className="logo-image" />
         <span className="website-name">Verdica</span>
       </div>
       <ul className="nav-links">
@@ -36,7 +39,6 @@ const NavBar = () => {
               <a href="/contact">Contact Us</a>
               <div className="style-line"></div>
               <a href="/team">Our Team</a>
-              <div className="style-line"></div>
             </div>
           </div>
         </li>
@@ -55,7 +57,6 @@ const NavBar = () => {
               <a href="/Soilanalysis">Soil Analysis</a>
               <div className="style-line"></div>
               <a href="/Farmplans">Farm Plans</a>
-              <div className="style-line"></div>
             </div>
           </div>
         </li>
@@ -67,20 +68,17 @@ const NavBar = () => {
               <div className="style-line"></div>
               <a href="/weather">Weather Analysis</a>
               <div className="style-line"></div>
-              <a href="/team">Farm Produce</a>
+              <a href="/farmer">Farm Produce</a>
               <div className="style-line"></div>
               <a href="/dealer">Agricultural Products</a>
-              <div className="style-line"></div>
             </div>
           </div>
         </li>
-        {
-          currentUser ? (
-            <li className="nav-item" onClick={handleLogout}>LogOut</li>  
-          ) : (
-            <li className="nav-item"><a href="/login">Login</a></li>
-          )
-        }
+        {currentUser ? (
+          <li className="navitem logout" onClick={handleLogout}>Logout</li>
+        ) : (
+          <li className="nav-item"><a href="/login">Login</a></li>
+        )}
       </ul>
     </nav>
   );

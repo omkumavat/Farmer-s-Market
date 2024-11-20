@@ -45,7 +45,20 @@
     margin-left: 20px;
     
   }
-  
+  .navitem{
+    color: #ECF0F1;
+    margin-top: 9px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .navitem:hover{
+    cursor: pointer;
+    border-radius: 4px;
+    color: rgb(178, 126, 31);
+  }
   .nav-item a {
     position: relative;
     top: 19px;
@@ -57,7 +70,6 @@
   }
   
   .nav-item a:hover {
-    /* background-color: #1ABC9C; */
     border-radius: 4px;
     color: rgb(178, 126, 31);
   }
