@@ -24,7 +24,7 @@ async function uploadToCloudinary(fileBuffer, folder, quality, width, height) {
   };
 
   try {
-    const result = await cloudinary.v2.uploader.upload_stream(options);
+    const result = await cloudinary.uploader.upload_stream(options);
     return new Promise((resolve, reject) => {
       const stream = cloudinary.v2.uploader.upload_stream(options, (error, result) => {
         if (error) {
@@ -102,15 +102,15 @@ export const createProduct = async (req, res) => {
       images
     } = req.body;
 
-    // const imageBuffers = req.body.images.map((file) => file.buffer);
+    const imageBuffers = req.body.images.map((file) => file.buffer);
 
-    // // Upload images to Cloudinary
-    // const uploadPromises = imageBuffers.map((fileBuffer) =>
-    //   uploadToCloudinary(fileBuffer, 'FileFolder', 30, 500, 500)
-    // );
-    // const uploadResults = await Promise.all(uploadPromises);
-    // const uploadedUrls = uploadResults.map((result) => result.secure_url);
-    // console.log(uploadedUrls);
+    // Upload images to Cloudinary
+    const uploadPromises = imageBuffers.map((fileBuffer) =>
+      uploadToCloudinary(fileBuffer, 'FileFolder', 30, 500, 500)
+    );
+    const uploadResults = await Promise.all(uploadPromises);
+    const uploadedUrls = uploadResults.map((result) => result.secure_url);
+    console.log(uploadedUrls);
 
     // Create new product with uploaded image URLs
     const newProduct = new dealerProduct({
