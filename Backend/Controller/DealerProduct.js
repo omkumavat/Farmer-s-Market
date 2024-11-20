@@ -1,5 +1,5 @@
 import dealerProduct from '../Models/dealerProducts.js';
-import User from '../Models/User.js';
+import {User} from '../Models/User.js';
 import dotenv from 'dotenv';
 import cloudinary from 'cloudinary';
 import { upload } from '../Database/Cloudinary.js';

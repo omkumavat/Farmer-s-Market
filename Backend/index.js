@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import fileuPload from 'express-fileupload';
 import connectDB from "./Database/database.js";
-import User from "./Models/User.js";
+import {User} from "./Models/User.js";
 import cors from 'cors';
 
 const app=express();
@@ -29,6 +29,9 @@ app.use('/server',user)
 
 import dealeroute from './Routes/dealeroute.js';
 app.use('/server',dealeroute)
+
+import verificationroute from './Routes/verificationroute.js';
+app.use('/server',verificationroute);
 
 app.use(fileuPload({
   useTempFiles : true,

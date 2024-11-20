@@ -30,6 +30,7 @@ const Login = () => {
         email,
         password,
       });
+      console.log(res);
 
       const data = res.data;
 
@@ -40,9 +41,14 @@ const Login = () => {
 
       // If login is successful
       console.log(data.user);
-      login(data.user); // Update the auth context
-      localStorage.setItem("Users", JSON.stringify(data.user)); // Store user in local storage
-      navigate("/"); // Redirect to the homepage
+      login(data.user); 
+      console.log(data.user.role);
+      localStorage.setItem("Users", JSON.stringify(data.user));
+      if(data.user.role==="admin"){
+        navigate('/dash');
+      }else{
+        navigate('/');
+      }
     } catch (error) {
       setError("Login failed. Please try again."); // Catch general errors
       console.error(error);

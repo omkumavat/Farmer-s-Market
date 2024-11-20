@@ -23,12 +23,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  verified: { type: Boolean, default: false },
   profilePicture: {
     type: String,
     default:
       "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png",
   },
-  orders:[
+  orders: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Order',
@@ -53,6 +54,18 @@ const userSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-const User = mongoose.model('User', userSchema);
+export const User = mongoose.model('User', userSchema);
 
-export default User;
+const VerificationSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  mobileno: { type: String, required: true },
+  location:{type:String,required:true},
+  licenseImage: { type: String, required: true },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }
+});
+
+export const Verification = mongoose.model('Verification', VerificationSchema);
