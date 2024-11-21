@@ -33,7 +33,9 @@ export const uploadToCloudinary = async(fileBuffer, folder, quality, width, heig
       ],
       quality,
     };
-  
+
+
+    
     return new Promise((resolve, reject) => {
       // Use upload_stream for direct upload to Cloudinary
       const stream = cloudinary.uploader.upload_stream(options, (error, result) => {

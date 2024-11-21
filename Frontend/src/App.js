@@ -19,7 +19,8 @@ import Market from "./Services/Market";
 import Farmer from './Services/Farmer';
 import Dashboard from './AdminDashboard/Dashboard'
 import { AuthProvider, useAuth } from './Context/AuthContext';
-import Product from"./cards/product"
+import Product from"./cards/product";
+import Payment from "./cards/payment";
 
 function App() {
   const { currentUser } = useAuth();
@@ -73,6 +74,7 @@ function App() {
               <Route path="/dashboard" element={<Sidebar />} />
               <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/product" element={<Product  />} />
+              <Route path="/payment" element={<Payment  />} />
             </>
           )}
         </Routes>

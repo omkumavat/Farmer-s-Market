@@ -1,1 +1,23 @@
 weather api key:ea9e04c14bae4ad616ff49a5fd09ff7d
+
+
+
+ const productData = {
+    imageUrl: "../Images/forlogin.jpg",
+    name: "JANATHA AGRO SEAMAN GROWTH PROMOTER",
+    brand: "JANATHA AGRO PRODUCTS",
+    rating: 4.5,
+    originalPrice: 350,
+    discount: 6,
+    extraDiscount: "Extra 2% off on Online payments",
+    variants: [
+      { weight: "250 gms", price: 330 },
+      { weight: "500 gms", price: 460 },
+    ],
+    extraInfo: [
+      "Country of Origin: India",
+      "Secure Payments",
+      "In stock, Ready to Ship",
+    ],
+  };
+  

@@ -6,7 +6,7 @@ import fileuPload from 'express-fileupload';
 import connectDB from "./Database/database.js";
 import {User} from "./Models/User.js";
 import cors from 'cors';
-
+import payment from "./Routes/payment.js"
 const app=express();
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as needed
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
@@ -42,7 +42,7 @@ app.use(fileuPload({
 import cloudinaryConnect from "./Database/Cloudinary.js";
 cloudinaryConnect();
 
-
+app.use('/api/payment', payment);
 // const app = express();
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
