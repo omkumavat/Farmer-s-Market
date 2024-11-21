@@ -1,12 +1,16 @@
 .product-container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 20px auto;
-    border: 1px solid #ddd;
+    max-width: 1300px;
+    margin-top: 1000px;
+    position: relative;
+    top: 200px;
+    margin-bottom: 200px;
+    /* border: 1px solid #ddd; */
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    padding-bottom: 300px;
   }
   
   .product-image img {
@@ -214,7 +218,7 @@
     flex-wrap: wrap;
     max-width: 1200px;
     margin: 20px auto;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -280,9 +284,9 @@
   
 
   .product-description {
-    padding: 20px;
-    margin-top: 20px;
-    background-color: #b3b6cf;
+    padding: 40px;
+    margin-top: -300px;
+    background-color: white;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -300,10 +304,10 @@
     color: #007bff;
   }
   
-  .product-description p,
-  .product-description ul {
-    font-size: 16px;
-    color: #555;
+  .product-description pre {
+    font-size: 18px;
+    color: black;
+
     line-height: 1.6;
   }
   
@@ -345,5 +349,5 @@
     width: 100%;  /* Ensure the image takes full width of its parent container */
     height: auto;  /* Maintain aspect ratio */
     object-fit: cover;  /* Ensure the image covers the container area */
-    border-radius: 8px;  /* Optional: rounded corners for the image */
+    border-radius: 8px;  
   }

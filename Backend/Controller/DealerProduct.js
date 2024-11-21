@@ -54,6 +54,7 @@ export const createProduct = async (req, res) => {
     const {
       dealerid,
       title,
+      name,
       price,
       category,
       serviceType,
@@ -86,6 +87,7 @@ export const createProduct = async (req, res) => {
     const newProduct = new dealerProduct({
       dealerid,
       title,
+      name,
       price,
       category,
       serviceType,
@@ -141,7 +143,7 @@ export const getProductById = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const product = await dealerProduct.findById(id).populate("dealerid", "name email");
+    const product = await dealerProduct.findById(id).populate("dealerid");
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }

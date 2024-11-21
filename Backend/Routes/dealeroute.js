@@ -7,7 +7,7 @@ import { createProduct, validateProduct,getProductById,getAllProducts,
 
 router.post("/dealer/addproduct", validateProduct, createProduct);
 router.get('/dealer/getallproducts/:query',getAllProducts);
-router.get('/dealer/getproductid',getProductById);
+router.get('/dealer/getproductbyid/:id',getProductById);
 router.get('/dealer/getproductbyquery',getProducts);
 router.get('/dealer/getproductbycategory/:query',getProductsByCategory);
 export default router;
