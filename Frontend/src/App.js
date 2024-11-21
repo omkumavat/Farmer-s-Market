@@ -20,6 +20,8 @@ import Farmer from './Services/Farmer';
 import Dashboard from './AdminDashboard/Dashboard'
 import { AuthProvider, useAuth } from './Context/AuthContext';
 import Product from"./cards/product"
+import ProductCategoryPage from "./Pages/ProductCategoryPage"
+import Payment from "./cards/payment"
 
 function App() {
   const { currentUser } = useAuth();
