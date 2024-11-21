@@ -36,12 +36,12 @@ function Dashboard() {
   return (
     <>
       <NavBar />
-      <div className="app-container">
+      <div className="appcontainer">
         <div className={`sidebars ${isSidebarOpen ? 'open' : 'closed'}`}>
           <button className="toggle-btn" onClick={toggleSidebar}>
             {isSidebarOpen ? '←' : '→'}
           </button>
-          <ul className="sidebar-menu">
+          <ul className="sidebarmenu">
             <li onClick={() => handlePageChange('tk')}>Tickets</li>
             <li onClick={() => handlePageChange('ver')}>Verifications</li>
             <li onClick={() => handlePageChange('ua')}>User Analytics</li>
@@ -50,7 +50,7 @@ function Dashboard() {
           </ul>
         </div>
 
-        <div className="content">
+        <div className="contents">
           {selectedPage === 'tk' && <Tickets />}
           {selectedPage === 'ver' && <Verifications />}
           {selectedPage === 'ua' && <UserAnalytics />}

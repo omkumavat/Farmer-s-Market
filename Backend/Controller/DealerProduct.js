@@ -1,45 +1,10 @@
 import dealerProduct from '../Models/dealerProducts.js';
-import {User} from '../Models/User.js';
+import { User } from '../Models/User.js';
 import dotenv from 'dotenv';
 import cloudinary from 'cloudinary';
-import { upload } from '../Database/Cloudinary.js';
+import { upload, uploadToCloudinary } from '../Database/Cloudinary.js';
 import multer from 'multer';
 dotenv.config();
-
-const storage = multer.memoryStorage(); // Store files in memory as buffers
-export const uploadMiddleware = multer({ storage });
-
-async function uploadToCloudinary(fileBuffer, folder, quality, width, height) {
-  const options = {
-    folder,
-    resource_type: 'auto',
-    transformation: [
-      {
-        width: width || undefined,
-        height: height || undefined,
-        crop: 'limit',
-      },
-    ],
-    quality,
-  };
-
-  try {
-    const result = await cloudinary.uploader.upload_stream(options);
-    return new Promise((resolve, reject) => {
-      const stream = cloudinary.v2.uploader.upload_stream(options, (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(result);
-        }
-      });
-      stream.end(fileBuffer); // Send file buffer to Cloudinary
-    });
-  } catch (error) {
-    console.error('Cloudinary Upload Error:', error);
-    throw error;
-  }
-}
 
 export const validateProduct = (req, res, next) => {
   console.log(req.body);
@@ -95,6 +60,7 @@ export const createProduct = async (req, res) => {
       desc,
       quantity,
       size,
+      sizeUnit,
       largerSizeAvailable,
       smallerSizeAvailable,
       largerSizes,
@@ -102,17 +68,21 @@ export const createProduct = async (req, res) => {
       images
     } = req.body;
 
-    const imageBuffers = req.body.images.map((file) => file.buffer);
+    const imageUrls = [];
 
-    // Upload images to Cloudinary
-    const uploadPromises = imageBuffers.map((fileBuffer) =>
-      uploadToCloudinary(fileBuffer, 'FileFolder', 30, 500, 500)
-    );
-    const uploadResults = await Promise.all(uploadPromises);
-    const uploadedUrls = uploadResults.map((result) => result.secure_url);
-    console.log(uploadedUrls);
+    for (let image of images) {
+      const base64Image = image.split(';base64,').pop(); // Extract base64 string
 
-    // Create new product with uploaded image URLs
+      // Upload the image to Cloudinary
+      const uploadResponse = await cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`, {
+        folder: 'DealerProduct_images', // Optional: Cloudinary folder name
+        use_filename: true, // Optional: Use original file name
+        unique_filename: true, // Optional: Ensure a unique file name
+      });
+
+      // Save the image URL for reference
+      imageUrls.push(uploadResponse.secure_url);
+    }
     const newProduct = new dealerProduct({
       dealerid,
       title,
@@ -120,7 +90,8 @@ export const createProduct = async (req, res) => {
       category,
       serviceType,
       desc,
-      images: uploadedUrls, // Store Cloudinary URLs
+      sizeUnit,
+      images: imageUrls, // Store Cloudinary URLs
       quantity,
       size,
       largerSizeAvailable,
@@ -157,7 +128,7 @@ export const createProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
   try {
-    const filters = req.query; // Extract filters from query parameters
+    const filters = req.query; 
     const products = await dealerProduct.find(filters).populate("dealerid", "name email"); // Populate dealer details (name, email)
     res.status(200).json(products);
   } catch (error) {
@@ -186,7 +157,7 @@ export const getAllProducts = async (req, res) => {
     // Get the limit from the query parameter (default to 6 if not provided)
     const limit = parseInt(req.query.limit) || 1000;
     console.log(limit)
-    
+
     const products = await dealerProduct.find().limit(limit);
 
     return res.status(201).json({
@@ -196,5 +167,18 @@ export const getAllProducts = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: "Error fetching products", error: error.message });
+  }
+};
+
+export const getProductsByCategory = async (req, res) => {
+  try {
+    const  category  = req.query.category; 
+    console.log(category);
+    const products = await dealerProduct.find({ category }); 
+    console.log(products);
+    res.status(200).json({ success: true, data: products });
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch products by category" });
   }
 };

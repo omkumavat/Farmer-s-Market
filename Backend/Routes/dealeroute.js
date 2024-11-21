@@ -1,12 +1,13 @@
 import express from 'express';
 const router = express.Router();
 
-import { uploadMiddleware,createProduct, validateProduct,getProductById,getAllProducts,
-    getProducts
+import { createProduct, validateProduct,getProductById,getAllProducts,
+    getProducts,getProductsByCategory
  } from '../Controller/DealerProduct.js';
 
-router.post("/dealer/addproduct",uploadMiddleware.array('images',3), validateProduct, createProduct);
+router.post("/dealer/addproduct", validateProduct, createProduct);
 router.get('/dealer/getallproducts/:query',getAllProducts);
 router.get('/dealer/getproductid',getProductById);
 router.get('/dealer/getproductbyquery',getProducts);
+router.get('/dealer/getproductbycategory/:query',getProductsByCategory);
 export default router;

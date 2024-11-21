@@ -11,14 +11,14 @@
     top: 0;
     left: 0;
     bottom: 0;
-    /* width: -10px; */
     transition: transform 0.3s ease;
     padding-top: 50px;
     position: relative;
     margin-left: -2px;
     top: 10px;
     margin-bottom: 12x;
-    height: 2000px;
+    height: 1000px;
+    margin-top: 100px;
   }
   
   .sidebar.closed {

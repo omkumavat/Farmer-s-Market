@@ -1,4 +1,4 @@
-.app-container {
+.appcontainer {
   display: flex;
   height: 1000px; /* Full viewport height */
   overflow: hidden; /* Prevent scrollbars outside the layout */
@@ -43,23 +43,23 @@
   background-color: #3b4c63;
 }
 
-.sidebar-menu {
+.sidebarmenu {
   list-style-type: none;
   padding-left: 0;
 }
 
-.sidebar-menu li {
+.sidebarmenu li {
   padding: 15px;
   font-size: 18px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.sidebar-menu li:hover {
+.sidebarmenu li:hover {
   background-color: #4e5c6e;
 }
 
-.content {
+.contents {
   margin-left: 260px; /* Offset for sidebar width */
   padding: 20px;
   flex: 1;

@@ -7,14 +7,15 @@ import axios from "axios"; // Or your preferred HTTP library
 const AddProduct = () => {
     const { currentUser } = useAuth();
     const [isVerificationSubmitted, setIsVerificationSubmitted] = useState(false);
+    const [isStatus, isSetStatus] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch verification status from the backend
         const fetchStatus = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/server/dealer/getverificationstatus/${currentUser._id}`);
                 setIsVerificationSubmitted(response.data.isSubmitted);
+                isSetStatus(response.data.status);
             } catch (error) {
                 console.error("Failed to fetch verification status:", error);
             } finally {
@@ -24,14 +25,6 @@ const AddProduct = () => {
         fetchStatus();
     }, [currentUser._id]);
 
-    const handleVerificationSuccess = async () => {
-        setIsLoading(true);
-        try {
-            setIsVerificationSubmitted(true);
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     return (
         <>
@@ -40,9 +33,9 @@ const AddProduct = () => {
                 <>
                     {currentUser.role !== "other" && currentUser.verified && <ProductForm />}
                     {!currentUser.verified && currentUser.role !== "other" && !isVerificationSubmitted && (
-                        <VerificationForm onVerificationSuccess={handleVerificationSuccess} />
+                        <VerificationForm  />
                     )}
-                    {isVerificationSubmitted && <div>Status: Pending</div>}
+                    {isVerificationSubmitted && isStatus === "Pending" &&  <div>Status: Pending</div>}
                 </>
             )}
         </>

@@ -20,7 +20,7 @@ import Farmer from './Services/Farmer';
 import Dashboard from './AdminDashboard/Dashboard'
 import { AuthProvider, useAuth } from './Context/AuthContext';
 import Product from"./cards/product"
-
+import ProductCategoryPage from './Pages/ProductCategoryPage';
 function App() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
@@ -36,7 +36,7 @@ function App() {
     return <div>Loading...</div>; // Optional loading state while checking auth
   }
   // localStorage.clear();
-  const isAdmin = currentUser?.role === "admin";
+  const isAdmin = currentUser && currentUser?.role === "admin";
   console.log(isAdmin);
 
   return (
@@ -68,6 +68,8 @@ function App() {
               <Route path="/farmplans" element={<Farmplans />} />
               <Route path="/weather" element={<WeatherUpdates />} />
               <Route path="/dealer" element={<Dealer />} />
+              <Route path="/dealer/category/:category" element={<ProductCategoryPage />} />
+              <Route path="/dealer/:id/product" element={<Product />} />
               <Route path="/farmer" element={<Farmer />} />
               <Route path="/market" element={<Market />} />
               <Route path="/dashboard" element={<Sidebar />} />

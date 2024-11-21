@@ -22,6 +22,7 @@ export const getVerificationStatus = async (req, res) => {
         }
 
         res.status(200).json({
+            status:verification.status,
             isSubmitted: true
         });
     } catch (error) {

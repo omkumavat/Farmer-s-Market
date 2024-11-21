@@ -28,21 +28,21 @@ const Dealer = () => {
   // UseEffect to fetch the products when the component mounts
   useEffect(() => {
     fetchLimitedProducts(); // Only call this once on component mount
-  }, []); // Empty dependency array to ensure it runs once on mount
+  }, [setDisplayProducts]); // Empty dependency array to ensure it runs once on mount
 
   const categories = [
-    { name: "Offers", img: "/Images/dealer11.jpg", url: "/dealer/category/offers" },
-    { name: "Seeds", img: "/Images/dealer12.jpg", url: "/dealer/category/seeds" },
-    { name: "Fertilizers", img: "/Images/dealer13.jpg", url: "/dealer/category/fertilizers" },
-    { name: "Pesticides", img: "/Images/dealer14.png", url: "/dealer/category/pesticides" },
-    { name: "Machinery", img: "/Images/dealer15.jpg", url: "/dealer/category/machinery" },
-    { name: "Livestock", img: "/Images/dealer16.jpg", url: "/dealer/category/livestocks" },
-    { name: "Farm Equipment", img: "/Images/dealer17.jpg", url: "/dealer/category/farm-equipment" },
-    { name: "Farm Infrastructure", img: "/Images/dealer18.jpg", url: "/dealer/category/farm-infrastructure" },
-    { name: "Irrigation Equipment", img: "/Images/dealer19.jpg", url: "/dealer/category/irrigatin-equipment" },
-    { name: "Organic Farming", img: "/Images/dealer20.jpg", url: "/dealer/category/orgainc-farming" },
-    { name: "Animal Husbandry", img: "/Images/dealer21.jpg", url: "/dealer/category/animal-husbandry" },
-    { name: "New Products", img: "/Images/dealer22.jpg", url: "/dealer/category/new-products" },
+    { name: "Offers", img: "/Images/dealer11.jpg", url: "offers" },
+    { name: "Seeds", img: "/Images/dealer12.jpg", url: "Seeds" },
+    { name: "Fertilizers", img: "/Images/dealer13.jpg", url: "Fertilizers" },
+    { name: "Pesticides", img: "/Images/dealer14.png", url: "Pesticides and Herbicides" },
+    { name: "Machinery", img: "/Images/dealer15.jpg", url: "Agricultural Machinery and Tools" },
+    { name: "Livestock", img: "/Images/dealer16.jpg", url: "Livestock and Animal Farming Products" },
+    { name: "Farm Equipment", img: "/Images/dealer17.jpg", url: "Post-Harvest Equipment" },
+    { name: "Farm Infrastructure", img: "/Images/dealer18.jpg", url: "Farm Infrastructure" },
+    { name: "Irrigation Equipment", img: "/Images/dealer19.jpg", url: "Irrigation Equipment" },
+    { name: "Organic Farming", img: "/Images/dealer20.jpg", url: "Organic Farming Supplies" },
+    { name: "Animal Husbandry", img: "/Images/dealer21.jpg", url: "Dairy and Allied Products" },
+    { name: "New Products", img: "/Images/dealer22.jpg", url: "Miscellaneous Products" },
   ];
 
   const brandLogos = [
@@ -154,7 +154,7 @@ const Dealer = () => {
           <div className="categories-grid">
             {categories.map((category, index) => (
               <div key={index} className="category-item">
-                <a href={category.url}>
+                <a href={`/dealer/category/${category.url}`}>
                   <div className="category-image">
                     <img src={category.img} alt={category.name} />
                   </div>
@@ -166,9 +166,11 @@ const Dealer = () => {
         </div>
 
         <div className="appsd">
-          {/* Popular Products */}
+          <h1>Popular Products</h1>
           {displayProducts.map((product, index) => (
-            <DealerPCard key={index} {...product} />
+            <div>
+              <DealerPCard key={index} {...product} />
+              </div>
           ))}
         </div>
 

@@ -2,11 +2,10 @@
 import React, { useState } from "react";
 import "../CARDCSS/product.css";
 import pmethodImage from '../Images/pmethod.jpg';
-
-
-
-
+import { useParams } from "react-router-dom";
 const Product = () => {
+  const {id}=useParams();
+  console.log("id",id);
   const [selectedVariant, setSelectedVariant] = useState("250 gms");
   const [rating, setRating] = useState(5); // Default rating is 5
   const [isOriginChecked, setIsOriginChecked] = useState(true);
@@ -15,7 +14,7 @@ const Product = () => {
 
   const variants = [
     { size: "250 gms", price: "₹330" },
-    { size: "500 gms", price: "₹460" },
+    { size: "500 gms", price: "₹460" }, 
   ];
 
   const handleVariantClick = (size) => {

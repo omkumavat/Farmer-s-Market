@@ -18,7 +18,7 @@ function Solutions1() {
   return (
     <>
       <NavBar />
-      <div className="main-container">
+      <div className="maincont">
         {/* Hero Section */}
         <div className="hero">
           <h1>Land Preservation</h1>
@@ -26,11 +26,11 @@ function Solutions1() {
         </div>
 
         {/* Content Section */}
-        <div className="content">
+        <div className="cont">
           {/* Sidebar and Image Container */}
-          <div className="sidebar-container">
+          <div className="sidebarcont">
             {/* Sidebar */}
-            <div className="sidebar">
+            <div className="sides">
               <ul>
                 {[
                   "Land Preservation",
@@ -42,7 +42,7 @@ function Solutions1() {
                 ].map((item) => (
                   <li
                     key={item}
-                    className={`sidebar-item ${
+                    className={`itemside ${
                       activeLink === item ? "active" : ""
                     }`}
                     onClick={() => handleLinkClick(item)}
@@ -54,11 +54,11 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebar-image"></div>
+            <div className="sidebarimg"></div>
           </div>
 
           {/* Main Content */}
-          <div className="main-section">
+          <div className="mainsection">
             <h2>The Agricultural Engineering Provided by Agros</h2>
             <p>
               The vero eos et accusamus et iusto odio dignissimos ducimus qui

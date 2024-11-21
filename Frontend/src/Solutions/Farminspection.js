@@ -18,7 +18,7 @@ function Solutions1() {
   return (
     <>
       <NavBar />
-      <div className="main-container">
+      <div className="maincont">
         {/* Hero Section */}
         <div className="hero">
           <h1>Land Preservation</h1>
@@ -26,11 +26,11 @@ function Solutions1() {
         </div>
 
         {/* Content Section */}
-        <div className="content">
+        <div className="cont">
           {/* Sidebar and Image Container */}
-          <div className="sidebar-container">
+          <div className="sidebarcont">
             {/* Sidebar */}
-            <div className="sidebar">
+            <div className="sides">
               <ul>
                 {[
                   "Land Preservation",

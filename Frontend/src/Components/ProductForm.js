@@ -7,12 +7,9 @@ import axios from 'axios';
 
 const ProductForm = () => {
     const { currentUser } = useAuth();
-    console.log(currentUser);
     const [desc, setDesc] = useState("");
     const [price, setPrice] = useState(null);
-    const [name, setName] = useState("");
-    const [title,setTitle]=useState("");
-    const [image, setImage] = useState([]);
+    const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [serviceType, setServiceType] = useState("");
     const [size, setSize] = useState("");
@@ -20,19 +17,9 @@ const ProductForm = () => {
     const [sizeUnit, setSizeUnit] = useState("");
     const [largerSizeAvailable, setLargerSizeAvailable] = useState(false);
     const [smallerSizeAvailable, setSmallerSizeAvailable] = useState(false);
-    const [largerSizes, setLargerSizes] = useState([{  unit: "" }]);
-    const [smallerSizes, setSmallerSizes] = useState([{  unit: "" }]);
-    const [formData, setFormData] = useState({
-        title: "",
-        category: "",
-        serviceType: "",
-        sizeUnit: "",
-        desc: "",
-        largerSizeAvailable: false,
-        smallerSizeAvailable: false,
-        largerSizes: [{ unit: "" }],
-        smallerSizes: [{ unit: "" }],
-    });
+    const [largerSizes, setLargerSizes] = useState([]);
+    const [smallerSizes, setSmallerSizes] = useState([]);
+    const [images, setImages] = useState([]);
 
     const categoryData = {
         "Seeds": ["Hybrid Seeds", "Organic Seeds", "Vegetable Seeds", "Fruit Seeds", "Cereal and Grain Seeds", "Pulses and Legume Seeds", "Oilseed Crops"],
@@ -50,170 +37,112 @@ const ProductForm = () => {
     };
 
     const handleQuantityChange = (event) => {
-        const newQuantity = event.target.value;
-    
-        // Update both the standalone state and formData
-        setQuantity(newQuantity);
-        setFormData((prev) => ({
-            ...prev,
-            quantity: newQuantity,
-        }));
+        setQuantity(event.target.value);
     };
-    
+
     const handleLargerSizeQuantityChange = (index, field, value) => {
         const updatedSizes = [...largerSizes];
         updatedSizes[index][field] = value;
-    
-        // Update both the standalone state and formData
         setLargerSizes(updatedSizes);
-        setFormData((prev) => ({
-            ...prev,
-            largerSizes: updatedSizes,
-        }));
     };
-    
+
     const handleSmallerSizeQuantityChange = (index, field, value) => {
         const updatedSizes = [...smallerSizes];
         updatedSizes[index][field] = value;
-    
-        // Update both the standalone state and formData
         setSmallerSizes(updatedSizes);
-        setFormData((prev) => ({
-            ...prev,
-            smallerSizes: updatedSizes,
-        }));
     };
 
     const addLargerSize = () => {
-        const newSize = { quantity: "",price:"", size: "", unit: "" };
+        const newSize = { quantity: "", price: "", size: "", unit: "" };
         setLargerSizes((prev) => [...prev, newSize]);
-        setFormData((prev) => ({
-            ...prev,
-            largerSizes: [...prev.largerSizes, newSize],
-        }));
     };
-    
+
     const addSmallerSize = () => {
-        const newSize = { quantity: "",price:"", size: "", unit: "" };
+        const newSize = { quantity: "", price: "", size: "", unit: "" };
         setSmallerSizes((prev) => [...prev, newSize]);
-        setFormData((prev) => ({
-            ...prev,
-            smallerSizes: [...prev.smallerSizes, newSize],
-        }));
     };
 
-    const handleTitle=(event)=>{
+    const handleTitle = (event) => {
         setTitle(event.target.value);
-        setFormData((prev) => ({
-            ...prev,
-            title: title
-        }));
     }
 
-    const handlePrice=(event)=>{
+    const handlePrice = (event) => {
         setPrice(event.target.value);
-        setFormData((prev) => ({
-            ...prev,
-            price: event.target.value 
-        }));
     }
-    
+
     const removeLargerSize = (index) => {
         const updatedSizes = largerSizes.filter((_, i) => i !== index);
         setLargerSizes(updatedSizes);
-        setFormData((prev) => ({
-            ...prev,
-            largerSizes: updatedSizes,
-        }));
     };
-    
+
     const removeSmallerSize = (index) => {
         const updatedSizes = smallerSizes.filter((_, i) => i !== index);
         setSmallerSizes(updatedSizes);
-        setFormData((prev) => ({
-            ...prev,
-            smallerSizes: updatedSizes,
-        }));
     };
-    
 
-
-    const handleImages = (event) => {
+    const handleImages = async (event) => {
         const files = event.target.files;
-    
-        // Convert FileList to an array of URLs
-        const imageArray = Array.from(files).map((file) => URL.createObjectURL(file));
-        setImage([...(image || []), ...imageArray].slice(0, 3))
-        // Update `formData` directly
-        setFormData((prev) => ({
-            ...prev,
-            images: [...(prev.images || []), ...imageArray].slice(0, 3), // Ensure only 3 images
-        }));
+
+        const imageArray = await Promise.all(
+            Array.from(files).map((file) =>
+                new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);  // base64 encoded string
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                })
+            )
+        );
+
+        setImages((prev) => [...prev, ...imageArray].slice(0, 3)); // Only allow 3 images
     };
-    
 
     const handleQuillChange = (value) => {
         setDesc(value);
-        setFormData((prev) => ({
-            ...prev,
-            desc: value,
-        }));
     };
 
     const handleCategoryChange = (event) => {
         setCategory(event.target.value);
-        setFormData((prev) => ({
-            ...prev,
-            category: event.target.value,
-        }));
         setServiceType("");
     };
 
     const handleSizeChange = (event) => {
         setSize(event.target.value);
-        setFormData((prev) => ({
-            ...prev,
-            size: event.target.value,
-        }));
     };
 
     const handleServiceType = (event) => {
         setServiceType(event.target.value);
-        setFormData((prev) => ({
-            ...prev,
-            serviceType: event.target.value,
-        }));
     };
 
     const handleSizeUnitChange = (event) => {
         setSizeUnit(event.target.value);
-        setFormData((prev) => ({
-            ...prev,
-            sizeUnit: event.target.value,
-        }));
     };
 
     const handleLargerSizeChange = (event) => {
         setLargerSizeAvailable(event.target.value === "yes");
-        setFormData((prev) => ({
-            ...prev,
-            largerSizeAvailable: event.target.value === "yes",
-        }));
     };
 
     const handleSmallerSizeChange = (event) => {
         setSmallerSizeAvailable(event.target.value === "yes");
-        setFormData((prev) => ({
-            ...prev,
-            smallerSizeAvailable: event.target.value === "yes",
-        }));
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const payload = {
-            ...formData,
+            title,
+            category,
+            serviceType,
+            size,
+            quantity,
+            sizeUnit,
+            desc,
+            price,
+            images,
+            largerSizeAvailable,
+            smallerSizeAvailable,
+            largerSizes,
+            smallerSizes,
             dealerid: currentUser._id,
         };
         console.log(payload);
@@ -221,14 +150,14 @@ const ProductForm = () => {
         try {
             const response = await axios.post(
                 "http://localhost:4000/server/dealer/addproduct",
-                payload, // Directly pass payload
+                payload,
                 {
                     headers: {
                         "Content-Type": "application/json",
                     },
                 }
             );
-            
+
             console.log("Response:", response.data);
             alert("Product added successfully!");
         } catch (error) {
@@ -247,7 +176,7 @@ const ProductForm = () => {
                     {/* Title Field */}
                     <div className="item">
                         <label htmlFor="title">Title</label>
-                        <input id="title" name="title" type="text" onChange={ handleTitle} required placeholder="Enter product title" />
+                        <input id="title" name="title" type="text" onChange={handleTitle} required placeholder="Enter product title" />
                     </div>
 
                     {/* Price Field */}
@@ -293,7 +222,7 @@ const ProductForm = () => {
                         <label htmlFor="images">Images</label>
                         <input type="file" id="images" name="images" multiple onChange={handleImages} accept="image/*" />
                         <div className="imagePreviews">
-                            {image.map((img, index) => (
+                            {images.map((img, index) => (
                                 <img key={index} src={img} alt={`Uploaded preview ${index + 1}`} className="imagePreview" />
                             ))}
                         </div>
@@ -311,7 +240,7 @@ const ProductForm = () => {
                             required
                             placeholder="Enter product size"
                         />
-                        <select id="sizeUnit" value={sizeUnit} onChange={ handleSizeUnitChange} required>
+                        <select id="sizeUnit" value={sizeUnit} onChange={handleSizeUnitChange} required>
                             <option value="">Select Unit</option>
                             <option value="kg">kg</option>
                             <option value="g">g</option>
