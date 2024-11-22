@@ -7,6 +7,20 @@
     background: #fff;
     margin: 10px;
   }
+
+  .product-list{
+    margin-top: 200px;
+    margin-left: -1240px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+}
+.farm{
+  /* margin-top: 200px; */
+}
+.product-display-page{
+    margin-top: 150px;
+}
   
   .discount-badge {
     background-color: #ff6600;

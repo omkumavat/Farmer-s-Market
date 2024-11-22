@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"; // Ensure Link is imported
 import "../CSS/pcard.css";
 
-const DealerPCard = ({ _id, productName, pricePerUnit, images,quantity  , unit }) => {
+const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity  , unit }) => {
 //   console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
 
   return (
@@ -30,4 +30,4 @@ const DealerPCard = ({ _id, productName, pricePerUnit, images,quantity  , unit }
   );
 };
 
-export default DealerPCard;
+export default FarmerProduct;

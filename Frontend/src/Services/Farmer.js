@@ -31,17 +31,17 @@ const Farmer = () => {
 
     const categories = [
         { name: "Offers", img: "/Images/dealer11.jpg", url: "/farmer/category/offers" },
-        { name: "Fresh Produce", img: "/Images/farmer1.jpg", url: "/farmer/category/vegetable-crops" },
-        { name: "Grains and Cereals", img: "/Images/farmer2.jpg", url: "/farmer/category/fruits" },
-        { name: "Pulses and Legumes", img: "/Images/farmer3.jpg", url: "/farmer/category/dairy-products" },
-        { name: "Dairy and Milk Products", img: "/Images/farmer4.jpg", url: "/farmer/category/poultry" },
-        { name: "Livestock and Animal Products", img: "/Images/farmer5.jpg", url: "/farmer/category/honey" },
-        { name: "Organic Products", img: "/Images/farmer6.jpg", url: "/farmer/category/organic-farming" },
-        { name: "Value-Added Products", img: "/Images/farmer7.jpg", url: "/farmer/category/animal-husbandry" },
-        { name: "Specialty Crops", img: "/Images/farmer8.jpg", url: "/farmer/category/grains" },
-        { name: "Fibers and Raw Materials", img: "/Images/farmer9.jpg", url: "/farmer/category/herbs" },
-        { name: "Flowers & Plants", img: "/Images/farmer10.jpg", url: "/farmer/category/flowers-plants" },
-        { name: "By-products", img: "/Images/farmer11.jpg", url: "/farmer/category/vegetable-seeds" },
+        { name: "Fresh Produce", img: "/Images/farmer1.jpg", url: "Fresh Produce" },
+        { name: "Grains and Cereals", img: "/Images/farmer2.jpg", url: "Grains and Cereals" },
+        { name: "Pulses and Legumes", img: "/Images/farmer3.jpg", url: "Pulses and Legumes" },
+        { name: "Dairy and Milk Products", img: "/Images/farmer4.jpg", url: "Dairy and Milk Products" },
+        { name: "Livestock and Animal Products", img: "/Images/farmer5.jpg", url: "Livestock and Animal Products" },
+        { name: "Organic Products", img: "/Images/farmer6.jpg", url: "Organic Products" },
+        { name: "Value-Added Products", img: "/Images/farmer7.jpg", url: "Value-Added Products" },
+        { name: "Specialty Crops", img: "/Images/farmer8.jpg", url: "Specialty Crops" },
+        { name: "Fibers and Raw Materials", img: "/Images/farmer9.jpg", url: "Fibers and Raw Materials" },
+        { name: "Flowers & Plants", img: "/Images/farmer10.jpg", url: "Flowers & Plants" },
+        { name: "By-products", img: "/Images/farmer11.jpg", url: "By-products" },
     ];
 
 
@@ -153,7 +153,7 @@ const Farmer = () => {
                         {categories.map((category, index) => (
 
                             <div key={index} className="category-item">
-                                <a href={category.url}>
+                                 <a href={`/farmer/category/${category.url}`}>
                                     <div className="category-image">
                                         <img src={category.img} alt={category.name} />
                                     </div>
