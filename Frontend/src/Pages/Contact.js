@@ -12,8 +12,8 @@ const ContactUs = () => {
   };
   
   const defaultCenter = {
-    lat: 40.712776, // Example latitude (New York)
-    lng: -74.005974, // Example longitude (New York)
+    lat: 18.4575, // Example latitude (New York)
+    lng: 73.8508, // Example longitude (New York)
   };
   
   const [formData, setFormData] = useState({
