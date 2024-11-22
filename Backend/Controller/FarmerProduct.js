@@ -122,3 +122,16 @@ export const getAllProducts = async (req, res) => {
     }
   };
   
+
+  export const getProductsByCategory = async (req, res) => {
+    try {
+      const  category  = req.query.category; 
+      console.log(category);
+      const products = await FarmerProduct.find({ category }); 
+      console.log(products);
+      res.status(200).json({ success: true, data: products });
+    } catch (error) {
+      console.error("Error fetching products by category:", error);
+      res.status(500).json({ success: false, message: "Failed to fetch products by category" });
+    }
+  };

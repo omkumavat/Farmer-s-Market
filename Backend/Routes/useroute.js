@@ -7,4 +7,7 @@ import { sendEmail } from '../Controller/EmailService.js';
 router.post("/signup", signup);
 router.post("/login", login);
 router.post('/sendmail', sendEmail);
+
+import {fetchMyProducts} from '../Controller/DashBoard.js'
+router.get('/fetchmyproducts/:id', fetchMyProducts);
 export default router;
