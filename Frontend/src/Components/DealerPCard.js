@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"; // Ensure Link is imported
 import "../CSS/pcard.css";
 
 const DealerPCard = ({ _id, title, price, images, largerSizes, smallerSizes, size, sizeUnit }) => {
-  console.log(_id,title, price, images, largerSizes, smallerSizes, size,sizeUnit);
+  console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
 
   return (
     <div className="product-card">

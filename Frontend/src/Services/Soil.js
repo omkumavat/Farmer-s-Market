@@ -9,6 +9,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+
   // Fetch coordinates for the entered location
   const fetchCoordinates = async () => {
     setError(null);

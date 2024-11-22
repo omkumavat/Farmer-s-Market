@@ -118,6 +118,7 @@ const FarmerProductForm = () => {
     };
 
     const handleSubmit = async (e) => {
+        setIsAuthReady(false);
         e.preventDefault();
         if (validateForm()) {
             try {
@@ -138,6 +139,7 @@ const FarmerProductForm = () => {
                 alert("Failed to add the product. Please try again.");
             }
         }
+        setIsAuthReady(true);
     };
     return (
         <div className="form-container">
