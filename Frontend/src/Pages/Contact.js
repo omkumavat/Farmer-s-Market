@@ -141,7 +141,7 @@ const ContactUs = () => {
         <h3>Our Office Location</h3>
         {/* Embed Google Map */}
         <iframe
-          src="https://www.google.com/maps/embed/v1/place?q=New+York,NY&key=YOUR_GOOGLE_MAPS_API_KEY"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0w1lvfJkEcNqp-3gJ-9s8GSLr8GrhzoQ"
           width="600"
           height="450"
           style={{ border: 0 }}

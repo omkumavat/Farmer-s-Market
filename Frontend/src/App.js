@@ -24,6 +24,7 @@ import ProductCategoryPage from './Pages/ProductCategoryPage';
 import PaymentButton from './cards/payment'
 import Loader from './Components/Loader';
 import TicketPage from './Pages/TicketPage';
+import Soil from "./Services/Soil";
 
 function App() {
   const { currentUser } = useAuth();
@@ -80,6 +81,7 @@ function App() {
               <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/payment" element={<PaymentButton  />} />
               <Route path="/ticket" element={<TicketPage  />} />
+              <Route path="/soil" element={<Soil  />} />
             </>
           )}
         </Routes>
