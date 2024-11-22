@@ -1,10 +1,11 @@
-import FarmerProduct from "../Models/farmerProducts";
-import { User } from "../Models/User.js";
+import FarmerProduct from "../Models/farmerProducts.js";
+import { User } from '../Models/User.js';
 import cloudinary from 'cloudinary';
 import { upload, uploadToCloudinary } from '../Database/Cloudinary.js';
-// Controller to create a new product
-const createProduct = async (req, res) => {
+
+export const createProduct = async (req, res) => {
     try {
+        console.log(req.body);
         const {
             productName,
             category,
@@ -20,17 +21,38 @@ const createProduct = async (req, res) => {
             availableFrom,
             availableUntil,
             userId,
+            images
         } = req.body;
 
-        // Handle image upload to Cloudinary
-        const uploadedImages = [];
-        if (req.files && req.files.length > 0) {
-            for (let i = 0; i < req.files.length; i++) {
-                const image = req.files[i];
-                const uploadedImage = await cloudinary.uploader.upload(image.path);
-                uploadedImages.push(uploadedImage.secure_url); // Add the secure URL of the uploaded image
+        const imageUrls = [];
+
+        for (let image of images) {
+            let base64Image; // Change `const` to `let` to allow reassignment
+
+            if (typeof image === 'string' && image.startsWith('data:image')) {
+                // Split the base64 string to extract the image data (after 'data:image/png;base64,')
+                base64Image = image.split(',')[1]; // Extract the base64 string from the image
+            } else {
+                // Handle the case where the image is not a base64 string, assuming it's a file path or URL
+                base64Image = image; // If not a base64, you need to upload directly (this is a placeholder for your actual file handling logic)
+            }
+
+            try {
+                // Upload the image to Cloudinary
+                const uploadResponse = await cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`, {
+                    folder: 'FarmerProduct_images', // Optional: Cloudinary folder name
+                    use_filename: true, // Optional: Use original file name
+                    unique_filename: true, // Optional: Ensure a unique file name
+                });
+
+                // Save the image URL for reference
+                imageUrls.push(uploadResponse.secure_url);
+            } catch (error) {
+                console.error('Error uploading image to Cloudinary:', error);
+                // Handle any errors you encounter during the upload
             }
         }
+
 
         // Create new product document
         const newProduct = new FarmerProduct({
@@ -40,7 +62,7 @@ const createProduct = async (req, res) => {
             quantity,
             pricePerUnit,
             description,
-            images: uploadedImages,
+            images: imageUrls,
             qualityGrade,
             unit,
             farmAddress,
@@ -65,5 +87,3 @@ const createProduct = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
-
-module.exports = { createProduct };

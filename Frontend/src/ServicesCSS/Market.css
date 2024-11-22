@@ -1,78 +1,108 @@
-/* Specific styles for Market page */
-.market-page h1 {
+/* Container styling */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 150px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  /* Header Styling */
+  .header {
     text-align: center;
     margin-bottom: 20px;
-    color: #2c3e50; /* Dark blue color */
-}
-
-.market-page div {
-    margin: 20px;
-}
-
-.market-page label {
-    font-size: 16px;
-    margin-right: 10px;
-    color: #34495e; /* Dark gray */
-}
-
-.market-page input {
-    margin: 10px 0 20px 0;
-    padding: 8px;
-    font-size: 14px;
-    width: 200px;
-    border: 1px solid #bdc3c7; /* Light gray border */
-    border-radius: 4px;
-}
-
-.market-page input:focus {
-    border-color: #2980b9; /* Blue border on focus */
-    outline: none;
-}
-
-.market-page table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #ecf0f1; /* Light gray background */
-}
-
-.market-page th, .market-page td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-.market-page th {
-    background-color: #3498db; /* Blue */
-    color: #ffffff; /* White text */
-}
-
-.market-page tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Light gray for even rows */
-}
-
-.market-page tbody tr:hover {
-    background-color: #f1c40f; /* Yellow highlight on hover */
-}
-
-.market-page .card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.market-page .card h3 {
-    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 36px;
     color: #2c3e50;
-}
-
-.market-page .card p {
+  }
+  
+  .header p {
+    font-size: 18px;
+    color: #7f8c8d;
+  }
+  
+  /* Filter Section Styling */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #333db3;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .filter-bar select,
+  .filter-bar input {
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .filter-bar select:disabled,
+  .filter-bar input:disabled {
+    background-color: #e1e1e1;
+  }
+  
+  .filter-bar label {
+    font-weight: bold;
+    color: #f0f4f7;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Go button */
+  .filter-bar button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .filter-bar button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Data Display Section */
+  .data-display {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #a43981;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .data-display h3 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .data-item {
+    background-color: #ecf0f1;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .data-item p {
     font-size: 16px;
     color: #34495e;
-    margin: 8px 0;
-}
+    margin: 5px 0;
+  }
+  
+  .data-item strong {
+    color: #2980b9;
+  }
+  
+  

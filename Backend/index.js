@@ -39,6 +39,9 @@ app.use('/server',verificationroute);
 import cart from './Routes/cart.js';
 app.use('/server',cart);
 
+import farmeroute from './Routes/farmeroute.js';
+app.use('/server',farmeroute);
+
 
 app.use(fileuPload({
   useTempFiles : true,

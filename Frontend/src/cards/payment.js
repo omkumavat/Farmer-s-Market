@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
 function PaymentButton() {
   const [amount, setAmount] = useState(100); // Amount in INR (100 INR)
 
+  
   const handlePayment = async () => {
     try {
       const response = await fetch('http://localhost:4000/api/payment/create-order', {
@@ -14,6 +14,8 @@ function PaymentButton() {
       });
 
       const order = await response.json();
+
+
 
       // Create Razorpay options object
       const options = {

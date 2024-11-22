@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Loader from "./Loader";
 import "../CSS/farmerproductform.css";
 import ReactQuill from "react-quill";
-
+import axios from "axios";
+import { useAuth } from "../Context/AuthContext";
 const farmProduceCategories = {
     "Fresh Produce": ["Fruits", "Vegetables", "Exotic Produce"],
     "Grains and Cereals": ["Wheat", "Rice", "Maize", "Barley", "Millet"],
@@ -17,18 +19,32 @@ const farmProduceCategories = {
 };
 
 const FarmerProductForm = () => {
+    const { currentUser } = useAuth();
+    const [isAuthReady, setIsAuthReady] = useState(false);
+    const [images, setImages] = useState([]);
     const [formData, setFormData] = useState({
+        userId: currentUser._id,
         productName: "",
         category: "",
         subCategory: "",
         quantity: "",
         pricePerUnit: "",
         description: "",
-        images: [],
+        images:[]
     });
 
     const [errors, setErrors] = useState({});
     const [imagePreviews, setImagePreviews] = useState([]);
+
+    useEffect(() => {
+        if (currentUser !== undefined) {
+            setIsAuthReady(true); // Mark as ready once currentUser is loaded
+        }
+    }, [currentUser]);
+
+    if (!isAuthReady) {
+        return <Loader />;
+    }
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -39,31 +55,53 @@ const FarmerProductForm = () => {
         setFormData({ ...formData, category: e.target.value, subCategory: "" });
     };
 
-    const handleImageUpload = (e) => {
-        const files = Array.from(e.target.files);
+    const handleImageUpload = async (event) => {
+        const files = event.target.files;
+        
+        // Check if files are selected
+        if (files.length > 0) {
+            // Convert File objects to Base64 for formData
+            const imageArray = await Promise.all(
+                Array.from(files).map((file) =>
+                    new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);  // base64 encoded string
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    })
+                )
+            );
     
-        if (files.length > 3) {
-            setErrors({ ...errors, images: "You can upload up to 3 images only." });
-            return;
+            // Set image previews using File objects (not base64)
+            const imagePreviews = Array.from(files).map(file =>
+                URL.createObjectURL(file)
+            );
+    
+            // Update state with the base64 image data for formData
+            setImages((prevImages) => {
+                const updatedImages = [...prevImages, ...imageArray];
+                // Limit to 3 images if necessary
+                return updatedImages.slice(0, 3);
+            });
+    
+            // Update formData with the new images array (base64 encoded)
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                images: [...prevFormData.images, ...imageArray].slice(0, 3), // Limit to 3
+            }));
+    
+            // Set the image preview URLs
+            setImagePreviews((prevPreviews) => [
+                ...prevPreviews,
+                ...imagePreviews,
+            ]);
+    
+            // Clear image-related errors
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                images: "",
+            }));
         }
-    
-        // Update formData with an array of image files
-        setFormData((prevData) => ({
-            ...prevData,
-            images: [...prevData.images, ...files], // Append new images to existing ones
-        }));
-    
-        // Update image previews
-        setImagePreviews((prevPreviews) => [
-            ...prevPreviews,
-            ...files.map((file) => URL.createObjectURL(file)),
-        ]);
-    
-        // Clear any existing errors
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            images: "",
-        }));
     };
     
 
@@ -73,26 +111,34 @@ const FarmerProductForm = () => {
         if (!formData.category) newErrors.category = "Category is required.";
         if (!formData.subCategory) newErrors.subCategory = "Sub-category is required.";
         if (!formData.quantity) newErrors.quantity = "Quantity is required.";
-        if (!formData.farmAddress) newErrors.farmAddress = "Quantity is required.";
-        if (!formData.availableFrom) newErrors.availableFrom = "Quantity is required.";
-        if (!formData.availableUntil) newErrors.availableUntil = "Quantity is required.";
-        if (!formData.districtState) newErrors.districtState = "Quantity is required.";
-        if (!formData.pincode) newErrors.pincode = "Quantity is required.";
         if (!formData.pricePerUnit) newErrors.pricePerUnit = "Price per unit is required.";
         if (formData.images.length === 0) newErrors.images = "At least one image is required.";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log("Form Submitted:", formData);
-            alert("Product listed successfully!");
-            // Upload data and images to the backend/cloudinary
+            try {
+                console.log(formData)
+                const response = await axios.post(
+                    "http://localhost:4000/server/farmer/addproduct",
+                    formData,
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                console.log("Response:", response.data);
+                alert("Product added successfully!");
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("Failed to add the product. Please try again.");
+            }
         }
     };
-
     return (
         <div className="form-container">
             <h2>List Your Product</h2>

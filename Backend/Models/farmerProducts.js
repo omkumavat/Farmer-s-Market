@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { User } from "./User";
+import { User } from "./User.js";
 const farmerProductSchema = new mongoose.Schema({
   productName: { type: String, required: true },
   category: { type: String, required: true },
@@ -7,7 +7,10 @@ const farmerProductSchema = new mongoose.Schema({
   quantity: { type: String, required: true },
   pricePerUnit: { type: String, required: true },
   description: { type: String, required: true },
-  images: [{ type: String, required: true }], // Stores image URLs or filenames
+  images: {
+    type: [String],
+    required: true
+  },
   qualityGrade: { type: String, required: true },
   unit: { type: String, required: true },
   farmAddress: { type: String, required: true },
