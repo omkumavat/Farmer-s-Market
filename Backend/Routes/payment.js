@@ -2,6 +2,8 @@ import express from 'express';
 import Razorpay from 'razorpay';
 const router = express.Router();
 
+
+
 // Initialize Razorpay instance with your credentials
 const razorpay = new Razorpay({
   key_id: 'rzp_test_nwUngHToxCY8p6', // Replace with your Razorpay Key ID
@@ -10,7 +12,6 @@ const razorpay = new Razorpay({
 
 router.post('/create-order', async (req, res) => {
   const { amount } = req.body; // Amount in INR (in paise, e.g., 100 INR = 10000 paise)
-  
   try {
     const order = await razorpay.orders.create({
       amount: amount * 100, // Convert amount to paise
