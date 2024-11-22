@@ -8,7 +8,7 @@ const loadingCircleVariants = {
   },
 };
 const loadingCircleTransition = {
-  duration: 1.5,
+  duration: 0.5,
   repeat: Infinity,
   repeatType: "reverse",
   ease: "easeInOut",

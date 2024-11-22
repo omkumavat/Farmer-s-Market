@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import Product from '../cards/product';
+import FarmerProduct from "../cards/FarmerProduct";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DealerPCard from "../Components/DealerPCard";
+import { useAuth } from "../Context/AuthContext";
 
 const ProductPage = () => {
     const { id } = useParams();
+    const {currentUser}=useAuth();
     const [category, setCategory] = useState("");
     const [Products, setProducts] = useState({});
+    const [FarmerProducts, setFarmerProducts] = useState({});
     const [CategoryProduct, setCategoryProduct] = useState([]);
 
     useEffect(() => {
@@ -27,7 +31,21 @@ const ProductPage = () => {
             }
         };
 
+        const fetchFarmerProduct = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:4000/server/farmer/getproductbyid/${id}`
+                );
+                const data = response.data;
+                setFarmerProducts(data);
+                // setCategory(data.category); 
+            } catch (error) {
+                console.error("Error fetching product by ID:", error);
+            }
+        };
+
         fetchProduct();
+        fetchFarmerProduct();
     }, [id]); 
 
     useEffect(() => {
@@ -45,7 +63,8 @@ const ProductPage = () => {
         <>
             <NavBar />
             <div>
-                <Product id={id} />
+                   { FarmerProducts && <FarmerProduct id={id}/>}
+                   { Products && <Product id={id}/>}
             </div>
             <div>
                 <div className="product-list">

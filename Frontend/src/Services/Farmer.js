@@ -1,8 +1,33 @@
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
 import '../ServicesCSS/dealer.css'
-
+import FarmerProduct from "../Components/FarmerProduct";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../Context/AuthContext";
 const Farmer = () => {
+    const [displayProducts, setDisplayProducts] = useState([]);
+    const fetchLimitedProducts = async () => {
+        try {
+            const response = await axios.get("http://localhost:4000/server/farmer/getallproducts/all?limit=6");
+            if (!response) {
+                throw new Error("Failed to fetch products");
+            }
+            const data = response.data;
+
+            console.log(response.data.data);
+            setDisplayProducts(response.data.data);
+            console.log(displayProducts);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
+
+    // UseEffect to fetch the products when the component mounts
+    useEffect(() => {
+        fetchLimitedProducts(); // Only call this once on component mount
+    }, []); // Empty dependency array to ensure it runs once on mount
+
 
     const categories = [
         { name: "Offers", img: "/Images/dealer11.jpg", url: "/farmer/category/offers" },
@@ -18,7 +43,7 @@ const Farmer = () => {
         { name: "Flowers & Plants", img: "/Images/farmer10.jpg", url: "/farmer/category/flowers-plants" },
         { name: "By-products", img: "/Images/farmer11.jpg", url: "/farmer/category/vegetable-seeds" },
     ];
-    
+
 
     const brandLogos = [
         "/Images/dealer11.jpg",
@@ -65,7 +90,7 @@ const Farmer = () => {
             description: "Farmers harvest honey from beehives, offering fresh, natural honey directly from the farm.",
         },
     ];
-    
+
 
     return (
         <><NavBar />
@@ -80,7 +105,7 @@ const Farmer = () => {
                     <div className="serv">
                         <h2 className="services-title">Farm Produce</h2>
                         <p className="services-subtitle">
-                        Verdica empowers farmers to connect and sell their produce directly, ensuring fair prices through a global community-driven platform.
+                            Verdica empowers farmers to connect and sell their produce directly, ensuring fair prices through a global community-driven platform.
                         </p>
                     </div>
                     <div className="services-grid">
@@ -104,10 +129,10 @@ const Farmer = () => {
                             For a Thriving Agricultural Community<br /> <span>Tomorrow</span>
                         </h1>
                         <p className="description">
-                        Verdica provides a platform where farmers can offer essential services like land preparation, crop cultivation, and organic farming to others in the agricultural community. This enables farmers to showcase their skills and expertise.
+                            Verdica provides a platform where farmers can offer essential services like land preparation, crop cultivation, and organic farming to others in the agricultural community. This enables farmers to showcase their skills and expertise.
                         </p>
                         <p className="description">
-                        Farmers can list, manage, and sell their services, helping them reach a broader audience. Verdica makes it easier for farmers to connect with those who need their services, ensuring mutual growth.
+                            Farmers can list, manage, and sell their services, helping them reach a broader audience. Verdica makes it easier for farmers to connect with those who need their services, ensuring mutual growth.
                         </p>
                         <p className="description">Verdica is dedicated to creating a trusted environment where farmers can succeed by offering their valuable services. We aim to build a vibrant community that drives success and mutual benefit.</p>
                     </div>
@@ -138,6 +163,14 @@ const Farmer = () => {
 
                         ))}
                     </div>
+                </div>
+                <div className="appsd">
+                    <h1>Popular Products</h1>
+                    {displayProducts.map((product, index) => (
+                        <div>
+                            <FarmerProduct key={index} {...product} />
+                        </div>
+                    ))}
                 </div>
                 <div className="brandc">
                     <div className="brands">
