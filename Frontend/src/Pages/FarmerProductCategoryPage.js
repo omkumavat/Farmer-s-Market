@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import DealerPCard from "../Components/DealerPCard";
-import NavBar from "../Components/NavBar";
+import FarmerProduct from "../Components/FarmerProduct";
+import '../CSS/farmerproductcategorypage.css'
 import Footer from "../Components/Footer";
-const ProductCategoryPage = () => {
+import NavBar from "../Components/NavBar";
+const FarmerProductCategoryPage = () => {
     const { category } = useParams();
     console.log(category);
     const [products, setProducts] = useState([]);
@@ -16,7 +18,7 @@ const ProductCategoryPage = () => {
         if (category) {
             // Fetch products by category
             axios
-                .get(`http://localhost:4000/server/dealer/getproductbycategory/all?category=${category}`)
+                .get(`http://localhost:4000/server/farmer/getproductbycategory/all?category=${category}`)
                 .then((response) => {
                     setProducts(response.data.data);
                 })
@@ -43,7 +45,7 @@ const ProductCategoryPage = () => {
                         <div className="product-list">
                             {products.map((product, index) => (
                                     <div>
-                                        <DealerPCard {...product} />
+                                        <FarmerProduct {...product} />
                                     </div>
                             ))}
                         </div>
@@ -65,4 +67,4 @@ const ProductCategoryPage = () => {
     );
 }
 
-export default ProductCategoryPage;
+export default FarmerProductCategoryPage;

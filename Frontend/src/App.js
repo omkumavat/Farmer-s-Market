@@ -24,7 +24,7 @@ import ProductCategoryPage from './Pages/ProductCategoryPage';
 import PaymentButton from './cards/payment'
 import Loader from './Components/Loader';
 import TicketPage from './Pages/TicketPage';
-import Soil from "./Services/Soil";
+import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage'
 
 function App() {
   const { currentUser } = useAuth();
@@ -74,6 +74,7 @@ function App() {
               <Route path="/weather" element={<WeatherUpdates />} />
               <Route path="/dealer" element={<Dealer />} />
               <Route path="/dealer/category/:category" element={<ProductCategoryPage />} />
+              <Route path="/farmer/category/:category" element={<FarmerProductCategoryPage />} />
               <Route path="/dealer/:id/product" element={<ProductPage />} />
               <Route path="/farmer" element={<Farmer />} />
               <Route path="/market" element={<Market />} />
