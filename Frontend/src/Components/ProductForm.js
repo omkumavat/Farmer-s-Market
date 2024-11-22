@@ -10,6 +10,7 @@ const ProductForm = () => {
     const [desc, setDesc] = useState("");
     const [price, setPrice] = useState(null);
     const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [serviceType, setServiceType] = useState("");
     const [size, setSize] = useState("");
@@ -64,6 +65,10 @@ const ProductForm = () => {
 
     const handleTitle = (event) => {
         setTitle(event.target.value);
+    }
+
+    const handleName = (event) => {
+        setName(event.target.value);
     }
 
     const handlePrice = (event) => {
@@ -131,6 +136,7 @@ const ProductForm = () => {
 
         const payload = {
             title,
+            name,
             category,
             serviceType,
             size,
@@ -168,6 +174,7 @@ const ProductForm = () => {
 
 
     return (
+        <>
         <div className="formContainer">
             <div className="wrapper">
                 <form onSubmit={handleSubmit}>
@@ -177,6 +184,11 @@ const ProductForm = () => {
                     <div className="item">
                         <label htmlFor="title">Title</label>
                         <input id="title" name="title" type="text" onChange={handleTitle} required placeholder="Enter product title" />
+                    </div>
+
+                    <div>
+                    <label htmlFor="name">Industry Name</label>
+                        <input id="name" name="name" type="text" onChange={handleName} required placeholder="Enter Industry Name" />
                     </div>
 
                     {/* Price Field */}
@@ -421,9 +433,10 @@ const ProductForm = () => {
                         Submit
                     </button>
                 </form>
-            </div>
         </div>
+        </div>
+        </>
     );
-};
+}
 
 export default ProductForm;

@@ -5,7 +5,6 @@ function PaymentButton() {
   
   const handlePayment = async () => {
     try {
-      // Call the backend to create a Razorpay order
       const response = await fetch('http://localhost:4000/api/payment/create-order', {
         method: 'POST',
         headers: {
@@ -27,7 +26,6 @@ function PaymentButton() {
         description: 'Payment for your product',
         order_id: order.id,
         handler: function (response) {
-          // Handle success here
           alert('Payment Successful');
           console.log(response);
         },

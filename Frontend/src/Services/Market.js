@@ -1,306 +1,194 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import "../ServicesCSS/Market.css";
 
-// const MarketInsight = () => {
-//   const [data, setData] = useState([]);
-//   const [filteredData, setFilteredData] = useState([]);
-//   const [filters, setFilters] = useState({
-//     state: '',
-//     district: '',
-//     commodity: '',
-//   });
-//   const [loading, setLoading] = useState(true); // Add loading state
-
-//   useEffect(() => {
-//     // Fetching data from API
-//     axios.get('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000')
-//       .then(response => {
-//         setData(response.data.records);
-//         setFilteredData(response.data.records);
-//         setLoading(false); // Data is loaded
-//       })
-//       .catch(error => {
-//         console.error('Error fetching data:', error);
-//         setLoading(false);
-//       });
-//   }, []);
-
-//   const handleFilterChange = (e) => {
-//     const { name, value } = e.target;
-//     setFilters(prevState => {
-//       const newFilters = { ...prevState, [name]: value };
-//       filterData(newFilters);
-//       return newFilters;
-//     });
-//   };
-
-//  const filterData = (filters) => {
-//   setFilteredData(
-//     data.filter(item => {
-//       return (
-//         (filters.state ? item.state.toLowerCase().includes(filters.state.toLowerCase()) : true) &&
-//         (filters.district ? item.district.toLowerCase().includes(filters.district.toLowerCase()) : true) &&
-//         (filters.commodity ? item.commodity.toLowerCase().includes(filters.commodity.toLowerCase()) : true)
-//       );
-//     })
-//   );
-// };
-
-
-//   return (
-//     <div>
-//       <h1>Market Insight</h1>
-//       <div>
-//         <label>State: </label>
-//         <input type="text" name="state" value={filters.state} onChange={handleFilterChange} />
-//         <label>District: </label>
-//         <input type="text" name="district" value={filters.district} onChange={handleFilterChange} />
-//         <label>Commodity: </label>
-//         <input type="text" name="commodity" value={filters.commodity} onChange={handleFilterChange} />
-//       </div>
-
-//       {loading ? (
-//         <p>Loading data...</p>
-//       ) : (
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>State</th>
-//               <th>District</th>
-//               <th>Market</th>
-//               <th>Commodity</th>
-//               <th>Variety</th>
-//               <th>Price (Min/Max/Modal)</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {filteredData.map((item, index) => (
-//               <tr key={index}>
-//                 <td>{item.state}</td>
-//                 <td>{item.district}</td>
-//                 <td>{item.market}</td>
-//                 <td>{item.commodity}</td>
-//                 <td>{item.variety}</td>
-//                 <td>{item.min_price} / {item.max_price} / {item.modal_price}</td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MarketInsight;
-
-
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import "../ServicesCSS/Market.css";
-
-// const Market = () => {
-//   const [data, setData] = useState([]);
-//   const [filteredData, setFilteredData] = useState([]);
-//   const [filters, setFilters] = useState({
-//     state: '',
-//     district: '',
-//     commodity: '',
-//   });
-//   const [selectedRow, setSelectedRow] = useState(null);
-
-//   useEffect(() => {
-//     axios.get('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000')
-//       .then(response => {
-//         setData(response.data.records);
-//         setFilteredData(response.data.records);
-//       })
-//       .catch(error => console.error('Error fetching data:', error));
-//   }, []);
-
-//   const handleFilterChange = (e) => {
-//     const { name, value } = e.target;
-//     setFilters(prevState => {
-//       const newFilters = { ...prevState, [name]: value };
-//       filterData(newFilters);
-//       return newFilters;
-//     });
-//   };
-
-//   const filterData = (filters) => {
-//     setFilteredData(
-//       data.filter(item => {
-//         return (
-//           (filters.state ? item.state.toLowerCase().includes(filters.state.toLowerCase()) : true) &&
-//           (filters.district ? item.district.toLowerCase().includes(filters.district.toLowerCase()) : true) &&
-//           (filters.commodity ? item.commodity.toLowerCase().includes(filters.commodity.toLowerCase()) : true)
-//         );
-//       })
-//     );
-//   };
-
-//   const handleRowClick = (item) => {
-//     setSelectedRow(item);
-//   };
-
-//   return (
-//     <div>
-//       <h1>Market Insight</h1>
-//       <div>
-//         <label>State: </label>
-//         <input type="text" name="state" value={filters.state} onChange={handleFilterChange} />
-//         <label>District: </label>
-//         <input type="text" name="district" value={filters.district} onChange={handleFilterChange} />
-//         <label>Commodity: </label>
-//         <input type="text" name="commodity" value={filters.commodity} onChange={handleFilterChange} />
-//       </div>
-
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>State</th>
-//             <th>District</th>
-//             <th>Market</th>
-//             <th>Commodity</th>
-//             <th>Variety</th>
-//             <th>Price (Min/Max/Modal)</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {filteredData.map((item, index) => (
-//             <tr key={index} onClick={() => handleRowClick(item)}>
-//               <td>{item.state}</td>
-//               <td>{item.district}</td>
-//               <td>{item.market}</td>
-//               <td>{item.commodity}</td>
-//               <td>{item.variety}</td>
-//               <td>{item.min_price} / {item.max_price} / {item.modal_price}</td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-
-//       {selectedRow && (
-//         <div className="card">
-//           <h3>Market Details</h3>
-//           <p><strong>State:</strong> {selectedRow.state}</p>
-//           <p><strong>District:</strong> {selectedRow.district}</p>
-//           <p><strong>Market:</strong> {selectedRow.market}</p>
-//           <p><strong>Commodity:</strong> {selectedRow.commodity}</p>
-//           <p><strong>Variety:</strong> {selectedRow.variety}</p>
-//           <p><strong>Price (Min):</strong> {selectedRow.min_price}</p>
-//           <p><strong>Price (Max):</strong> {selectedRow.max_price}</p>
-//           <p><strong>Price (Modal):</strong> {selectedRow.modal_price}</p>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Market;
-
-
-
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../ServicesCSS/Market.css";
+import Footer from "../Components/Footer";
+import NavBar from "../Components/NavBar";
 
-const Market = () => {
+const App = () => {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [filters, setFilters] = useState({
-    state: '',
-    district: '',
-    commodity: '',
+    commodity: "",
+    state: "",
+    district: "",
+    market: "",
+    dateFrom: "",
   });
-  const [selectedRow, setSelectedRow] = useState(null);
+  const [states, setStates] = useState([]);
+  const [filteredDistricts, setFilteredDistricts] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [filteredMarkets, setFilteredMarkets] = useState([]);
+  const [markets, setMarkets] = useState([]);
+  const [commodities, setCommodities] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   useEffect(() => {
-    axios.get('https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000')
-      .then(response => {
-        setData(response.data.records);
-        setFilteredData(response.data.records);
+    axios
+      .get(
+        "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000"
+      )
+      .then((response) => {
+        const records = response.data.records;
+        setData(records);
+        setFilteredData(records);
+        setStates([...new Set(records.map((item) => item.state))]);
+        setDistricts(records);
+        setCommodities([...new Set(records.map((item) => item.commodity))]);
+        setMarkets(records);
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    setFilters(prevState => {
-      const newFilters = { ...prevState, [name]: value };
-      filterData(newFilters);
-      return newFilters;
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+
+    if (name === "state") {
+      const filtered = districts
+        .filter((item) => item.state === value)
+        .map((item) => item.district);
+      setFilteredDistricts([...new Set(filtered)]);
+      setFilteredMarkets([]);
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        district: "",
+        market: "",
+      }));
+    }
+
+    if (name === "district") {
+      const filtered = markets
+        .filter((item) => item.district === value)
+        .map((item) => item.market);
+      setFilteredMarkets([...new Set(filtered)]);
+      setFilters((prevFilters) => ({ ...prevFilters, market: "" }));
+    }
+  };
+
+  const handleSearch = () => {
+    const { commodity, state, district, market, dateFrom } = filters;
+    const filtered = data.filter((item) => {
+      let isValid = true;
+      if (commodity && item.commodity !== commodity) isValid = false;
+      if (state && item.state !== state) isValid = false;
+      if (district && item.district !== district) isValid = false;
+      if (market && item.market !== market) isValid = false;
+      if (dateFrom && new Date(item.arrival_date) < new Date(dateFrom))
+        isValid = false;
+      return isValid;
     });
-  };
 
-  const filterData = (filters) => {
-    setFilteredData(
-      data.filter(item => {
-        return (
-          (filters.state ? item.state.toLowerCase().includes(filters.state.toLowerCase()) : true) &&
-          (filters.district ? item.district.toLowerCase().includes(filters.district.toLowerCase()) : true) &&
-          (filters.commodity ? item.commodity.toLowerCase().includes(filters.commodity.toLowerCase()) : true)
-        );
-      })
-    );
-  };
-
-  const handleRowClick = (item) => {
-    setSelectedRow(item);
+    setFilteredData(filtered);
+    setHasSearched(true);
   };
 
   return (
-    <div>
-      <h1>Market Insight</h1>
-      <div>
-        <label>State: </label>
-        <input type="text" name="state" value={filters.state} onChange={handleFilterChange} />
-        <label>District: </label>
-        <input type="text" name="district" value={filters.district} onChange={handleFilterChange} />
-        <label>Commodity: </label>
-        <input type="text" name="commodity" value={filters.commodity} onChange={handleFilterChange} />
-      </div>
+    <><NavBar />
+    <div className="container">
+      {/* Header */}
+         <div className="fil">
 
-      <table>
-        <thead>
-          <tr>
-            <th>State</th>
-            <th>District</th>
-            <th>Market</th>
-            <th>Commodity</th>
-            <th>Variety</th>
-            <th>Price (Min/Max/Modal)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item, index) => (
-            <tr key={index} onClick={() => handleRowClick(item)}>
-              <td>{item.state}</td>
-              <td>{item.district}</td>
-              <td>{item.market}</td>
-              <td>{item.commodity}</td>
-              <td>{item.variety}</td>
-              <td>{item.min_price} / {item.max_price} / {item.modal_price}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {selectedRow && (
-        <div className="card">
-          <h3>Market Details</h3>
-          <p><strong>State:</strong> {selectedRow.state}</p>
-          <p><strong>District:</strong> {selectedRow.district}</p>
-          <p><strong>Market:</strong> {selectedRow.market}</p>
-          <p><strong>Commodity:</strong> {selectedRow.commodity}</p>
-          <p><strong>Variety:</strong> {selectedRow.variety}</p>
-          <p><strong>Price (Min):</strong> {selectedRow.min_price}</p>
-          <p><strong>Price (Max):</strong> {selectedRow.max_price}</p>
-          <p><strong>Price (Modal):</strong> {selectedRow.modal_price}</p>
+      {/* Filter Section */}
+      <div className="filter-bar">
+        <div>
+          <label>Commodity</label>
+          <select
+            name="commodity"
+            onChange={handleFilterChange}
+            value={filters.commodity}
+          >
+            <option value="">--Select Commodity--</option>
+            {commodities.map((commodity, index) => (
+              <option key={index} value={commodity}>
+                {commodity}
+              </option>
+            ))}
+          </select>
         </div>
-      )}
+
+        <div>
+          <label>State</label>
+          <select name="state" onChange={handleFilterChange} value={filters.state}>
+            <option value="">--Select State--</option>
+            {states.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label>District</label>
+          <select
+            name="district"
+            onChange={handleFilterChange}
+            value={filters.district}
+            disabled={!filters.state}
+          >
+            <option value="">--Select District--</option>
+            {filteredDistricts.map((district, index) => (
+              <option key={index} value={district}>
+                {district}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label>Market</label>
+          <select
+            name="market"
+            onChange={handleFilterChange}
+            value={filters.market}
+            disabled={!filters.district}
+          >
+            <option value="">--Select Market--</option>
+            {filteredMarkets.map((market, index) => (
+              <option key={index} value={market}>
+                {market}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label>Date From</label>
+          <input
+            type="date"
+            name="dateFrom"
+            value={filters.dateFrom}
+            onChange={handleFilterChange}
+          />
+        </div>
+
+        <button onClick={handleSearch}>Go</button>
+      </div>
+      </div>
+      {/* Data Display */}
+      <section className="data-display">
+        <h3>Filtered Market Data</h3>
+        {hasSearched && filteredData.length > 0 ? (
+          filteredData.map((item, index) => (
+            <div className="data-item" key={index}>
+              <p><strong>Commodity:</strong> {item.commodity}</p>
+              <p><strong>Market:</strong> {item.market}</p>
+              <p><strong>State:</strong> {item.state}</p>
+              <p><strong>District:</strong> {item.district}</p>
+              <p><strong>Max Price:</strong> {item.max_price}</p>
+              <p><strong>Min Price:</strong> {item.min_price}</p>
+              <p><strong>Arrival Date:</strong> {item.arrival_date}</p>
+            </div>
+          ))
+        ) : (
+          <p>No data available for the selected filters.</p>
+        )}
+      </section>
     </div>
+          <Footer />
+          </>
   );
 };
 
-export default Market;
+export default App;
