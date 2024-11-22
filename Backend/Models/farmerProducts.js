@@ -1,41 +1,21 @@
 import mongoose from "mongoose";
-
+import { User } from "./User";
 const farmerProductSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-    enum: [
-      "Fruits",
-      "Vegetables",
-      "Grains & Cereals",
-      "Dairy Products",
-      "Pulses",
-      "Spices & Herbs",
-      "Honey & Beverages",
-      "Other Products",
-    ],
-  },
-  pricePerUnit: {
-    type: Number,
-    required: true,
-  },
-  quantityAvailable: {
-    type: Number,
-    required: true, // Weight (kg) or Units
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  owner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the User model (Farmer)
-    required: true,
-  },
+  productName: { type: String, required: true },
+  category: { type: String, required: true },
+  subCategory: { type: String, required: true },
+  quantity: { type: String, required: true },
+  pricePerUnit: { type: String, required: true },
+  description: { type: String, required: true },
+  images: [{ type: String, required: true }], // Stores image URLs or filenames
+  qualityGrade: { type: String, required: true },
+  unit: { type: String, required: true },
+  farmAddress: { type: String, required: true },
+  pincode: { type: String, required: true },
+  districtState: { type: String, required: true },
+  availableFrom: { type: Date, required: true },
+  availableUntil: { type: Date, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User collection
 }, { timestamps: true });
 
 const FarmerProduct = mongoose.model("FarmerProduct", farmerProductSchema);

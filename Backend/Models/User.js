@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+import dealerProduct from './dealerProducts.js';
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -35,10 +35,16 @@ const userSchema = new mongoose.Schema({
       ref: 'Order',
     }
   ],
+  carts: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'dealerProduct',
+    }
+  ],
   dealerProducts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'DealerProduct', // Reference to DealerProduct model
+      ref: 'DealerProduct',
     },
   ],
   farmerProducts: [
@@ -54,13 +60,11 @@ const userSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-export const User = mongoose.model('User', userSchema);
-
 const VerificationSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   mobileno: { type: String, required: true },
-  location:{type:String,required:true},
+  location: { type: String, required: true },
   licenseImage: { type: String, required: true },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -69,4 +73,34 @@ const VerificationSchema = new mongoose.Schema({
   status: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' }
 });
 
+const TicketSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  mobileno: { type: String, required: true },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+  query: { type: String, required: true },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  status: {
+    type: String,
+    enum: ['pending', 'responded'],
+    default: 'pending'
+  },
+  response: {
+    type: String,
+    default: ''
+  },
+  responseDate: {
+    type: Date,
+    default: null
+  }
+});
+
+export const User = mongoose.model('User', userSchema);
 export const Verification = mongoose.model('Verification', VerificationSchema);
+export const Ticket = mongoose.model('Ticket', TicketSchema);

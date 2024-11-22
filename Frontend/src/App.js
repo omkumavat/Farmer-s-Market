@@ -22,6 +22,8 @@ import { AuthProvider, useAuth } from './Context/AuthContext';
 import ProductPage from './Pages/ProductPage'
 import ProductCategoryPage from './Pages/ProductCategoryPage';
 import PaymentButton from './cards/payment'
+import Loader from './Components/Loader';
+import TicketPage from './Pages/TicketPage';
 
 function App() {
   const { currentUser } = useAuth();
@@ -35,7 +37,7 @@ function App() {
   }, [currentUser]);
 
   if (!isAuthReady) {
-    return <div>Loading...</div>; // Optional loading state while checking auth
+    return <Loader/>;
   }
   // localStorage.clear();
   const isAdmin = currentUser && currentUser?.role === "admin";
@@ -77,6 +79,7 @@ function App() {
               <Route path="/dashboard" element={<Sidebar />} />
               <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/payment" element={<PaymentButton  />} />
+              <Route path="/ticket" element={<TicketPage  />} />
             </>
           )}
         </Routes>

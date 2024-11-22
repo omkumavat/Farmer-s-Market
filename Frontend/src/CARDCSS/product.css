@@ -6,11 +6,9 @@
     position: relative;
     top: 200px;
     margin-bottom: 200px;
-    /* border: 1px solid #ddd; */
     border-radius: 8px;
     overflow: hidden;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    padding-bottom: 300px;
+    padding-bottom: 200px;
   }
   
   .product-image img {
@@ -193,6 +191,11 @@
     margin-right: 10px;
     position: relative;
   }
+
+  .checkbox-item img{
+    height: 40px;
+    width: 40px;
+  }
   
   .checkbox-item input[type="checkbox"]:checked {
     background-color: #28a745;
@@ -342,7 +345,8 @@
 
   .product-image-container {
     width: 100%;  /* Full width of the container */
-    margin-top: 20px;  /* Space between description and image */
+    margin-top: 20px;  
+    margin-bottom: -300px;
   }
   
   .product-image-container img {
@@ -350,4 +354,5 @@
     height: auto;  /* Maintain aspect ratio */
     object-fit: cover;  /* Ensure the image covers the container area */
     border-radius: 8px;  
+    /* height: 10px; */
   }

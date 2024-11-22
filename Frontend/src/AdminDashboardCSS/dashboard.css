@@ -14,7 +14,7 @@
   width: 240px; /* Fixed width for the sidebar */
   position: sticky; /* Sticky positioning */
   overflow-y: auto; /* Allow vertical scrolling for sidebar content */
-  padding-top: 50px; /* Add padding for spacing */
+  padding-top: 150px; /* Add padding for spacing */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
   z-index: 500; /* Ensure it stays on top */
   transition: transform 0.3s ease;

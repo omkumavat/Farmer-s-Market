@@ -3,29 +3,22 @@ import '../CSS/navbar.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext'; // Ensure this context provides authentication state
-
+import Loader from './Loader';
 const NavBar = () => {
 
   const navigate = useNavigate();
-
+  const[isAuthReady,setIsAuthReady]=useState(true);
   const { currentUser,logout } = useAuth();
-  // const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (currentUser !== null) {
-  //     setLoading(false);
-  //     console.log("Current User:", currentUser?.role);
-  //   }
-  // }, [currentUser]);
-
-  // if (loading) {
-  //   return <div>Loading...</div>; // Show a loader until currentUser is available
-  // }
-
+  if (!isAuthReady) {
+    return <Loader/>;
+  }
   const handleLogout = async () => {
+    setIsAuthReady(false);
     try {
       await logout();
       localStorage.removeItem("Users");
+      setIsAuthReady(true);
       navigate('/', { replace: true });
       window.location.reload();
     } catch (error) {

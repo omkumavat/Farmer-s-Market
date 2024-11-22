@@ -3,6 +3,7 @@ import ProductForm from "./ProductForm";
 import { useAuth } from "../Context/AuthContext";
 import VerificationForm from "./VerificationForm";
 import axios from "axios"; // Or your preferred HTTP library
+import FarmerProductForm from "./FarmerProductForm";
 
 const AddProduct = () => {
     const { currentUser } = useAuth();
@@ -31,8 +32,9 @@ const AddProduct = () => {
             {isLoading && <div>Loading...</div>}
             {!isLoading && (
                 <>
-                    {currentUser.role !== "other" && currentUser.verified && <ProductForm />}
-                    {!currentUser.verified && currentUser.role !== "other" && !isVerificationSubmitted && (
+                    {currentUser.role !== "other" && currentUser.role==="dealer" && currentUser.verified && <ProductForm />}
+                    {currentUser.role !== "other" && currentUser.role==="farmer" && <FarmerProductForm />}
+                    {!currentUser.verified && currentUser.role !== "other" &&currentUser.role==="dealer" && !isVerificationSubmitted && (
                         <VerificationForm  />
                     )}
                     {isVerificationSubmitted && isStatus === "Pending" &&  <div>Status: Pending</div>}

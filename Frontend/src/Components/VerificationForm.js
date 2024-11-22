@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/verificationform.css";
 import { useAuth } from "../Context/AuthContext";
+import Loader from "./Loader";
 
 const VerificationForm = ({ onVerificationSuccess }) => {
     const { currentUser } = useAuth();
@@ -25,7 +26,7 @@ const VerificationForm = ({ onVerificationSuccess }) => {
     }, [currentUser]);
 
     if (!isAuthReady) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
 
     const validate = () => {

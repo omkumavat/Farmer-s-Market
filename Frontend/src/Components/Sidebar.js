@@ -4,7 +4,7 @@ import EditProfile from './EditProfile';
 import Sales from './Sales';
 import Products from './Products';
 import Orderes from './Orderes';
-import WishList from './WishList';
+import MyCart from './MyCart';
 import AddProduct from './AddProduct';
 import { useAuth } from '../Context/AuthContext';
 import NavBar from './NavBar';
@@ -47,7 +47,7 @@ function Sidebar() {
           <ul className="sidebar-menu">
             <li onClick={() => handlePageChange('ep')}>Edit Profile</li>
             <li onClick={() => handlePageChange('order')}>My Orders</li>
-            <li onClick={() => handlePageChange('wish')}>WishList</li>
+            <li onClick={() => handlePageChange('wish')}>My Cart</li>
             {currentUser.role !== "other" && (
               <>
                 <li onClick={() => handlePageChange('sales')}>My Sales</li>
@@ -62,7 +62,7 @@ function Sidebar() {
           {selectedPage === 'sales' && <Sales />}
           {selectedPage === 'order' && <Orderes />}
           {selectedPage === 'product' && <Products />}
-          {selectedPage === 'wish' && <WishList />}
+          {selectedPage === 'wish' && <MyCart />}
           {selectedPage === 'ep' && <EditProfile />}
           {selectedPage === 'addp' && <AddProduct />}
         </div>

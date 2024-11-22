@@ -21,6 +21,19 @@
     margin-top: 100px;
   }
   
+  .productlist{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    margin-top: 100px;
+    margin-left: -1250px;
+  
+  }
+
+  .hh{
+    margin-left: -600px;
+    margin-top: 100px;
+    margin-bottom: -100px;
+  }
   .sidebar.closed {
     transform: translateX(-85%);
   }

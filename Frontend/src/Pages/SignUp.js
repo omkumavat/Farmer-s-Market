@@ -5,9 +5,10 @@ import NavBar from "../Components/NavBar";
 import Footer from '../Components/Footer';
 import axios from 'axios'; // Import axios
 import { useNavigate } from "react-router-dom";
+import Loader from "../Components/Loader";
 
 const Signup = () => {
-  const navi=useNavigate();
+  const navi = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobileno, setMobileNumber] = useState("");
@@ -17,9 +18,12 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(""); // For storing error messages
-
-  // Handle form submission
+  const [isAuthReady, setIsAuthReady] = useState(false);
+  if (isAuthReady) {
+    return <Loader />;
+  }
   const handleSubmit = async (e) => {
+    setIsAuthReady(true);
     e.preventDefault();
 
     // Validation (you can add more checks here)
@@ -28,7 +32,6 @@ const Signup = () => {
       return;
     }
 
-    // Prepare the data to be sent to the backend
     const userData = {
       name,
       email,
@@ -38,12 +41,20 @@ const Signup = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:4000/server/signup", {userData});
+      const data = {
+        subject: "Thank You for Joining with US !!",
+        caseType: 1,
+        email: userData.email,
+        name:userData.name
+      }
+      const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+      const response = await axios.post("http://localhost:4000/server/signup", { userData });
 
-      // Handle successful response
       if (response) {
+
         alert("Signup successful!");
         localStorage.setItem("Users", JSON.stringify(response.data.users));
+        // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
         navi('/');
         window.location.reload();
       } else {
@@ -53,6 +64,7 @@ const Signup = () => {
       // Handle error
       setError(error.response?.data?.message || "Error during signup. Please try again.");
     }
+    setIsAuthReady(false);
   };
 
   return (
@@ -73,32 +85,32 @@ const Signup = () => {
           {error && <div className="error-message">{error}</div>}
 
           <form onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              placeholder="Name" 
+            <input
+              type="text"
+              placeholder="Name"
               required
-              value={name} 
-              onChange={(e) => setName(e.target.value)} 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-            <input 
-              type="email" 
-              placeholder="Email" 
+            <input
+              type="email"
+              placeholder="Email"
               required
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <input 
-              type="number" 
-              placeholder="Mobile Number" 
+            <input
+              type="number"
+              placeholder="Mobile Number"
               required
-              value={mobileno} 
-              onChange={(e) => setMobileNumber(e.target.value)} 
+              value={mobileno}
+              onChange={(e) => setMobileNumber(e.target.value)}
             />
             <label htmlFor="role">Choose a role:</label>
-            <select 
-              name="role" 
-              id="role" 
-              value={role} 
+            <select
+              name="role"
+              id="role"
+              value={role}
               onChange={(e) => setRole(e.target.value)}
             >
               <option value="other">Other</option>
