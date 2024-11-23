@@ -75,6 +75,8 @@ const NavBar = () => {
               <a href="/farmer">Farm Produce</a>
               <div className="style-line"></div>
               <a href="/dealer">Agricultural Products</a>
+              <div className="style-line"></div>
+              <a href="/soil">Soil Information</a>
             </div>
           </div>
         </li>

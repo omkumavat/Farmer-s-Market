@@ -14,3 +14,4 @@ export const getSoilData = async (req, res) => {
     res.status(500).json({ message: 'Error fetching soil data' });
   }
 };
+

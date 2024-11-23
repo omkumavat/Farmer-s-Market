@@ -10,7 +10,6 @@ import payment from "./Routes/payment.js"
 import { engine } from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
-import geocodeRoutes from './Routes/geocodeRoutes.js';
 import soilDataRoutes from './Routes/soilDataRoutes.js';
 const app=express();
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as needed
@@ -81,8 +80,8 @@ app.get("/s", (req, res) => {
   res.render("Signup", { name: "OM" });
 });
 
-app.use('/api', geocodeRoutes);
-app.use('/api', soilDataRoutes);
+
+
 
 app.listen(4000, () => {
   console.log("app is listening on port 4000");

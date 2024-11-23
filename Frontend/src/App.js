@@ -24,7 +24,9 @@ import ProductCategoryPage from './Pages/ProductCategoryPage';
 import PaymentButton from './cards/payment'
 import Loader from './Components/Loader';
 import TicketPage from './Pages/TicketPage';
-import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage'
+import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage';
+import Soil from "./Services/Soil";
+
 
 function App() {
   const { currentUser } = useAuth();
@@ -55,6 +57,7 @@ function App() {
               <Route path="*" element={<Navigate to="/dash" />} />
             </>
           )}
+
 
           {/* Non-Admin Routes */}
           {!isAdmin && (

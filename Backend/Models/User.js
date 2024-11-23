@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
   dealerProducts: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'DealerProduct',
+      ref: 'dealerProduct',
     },
   ],
   farmerProducts: [
