@@ -8,10 +8,9 @@ import axios from "axios";
 const Dealer = () => {
   const [displayProducts, setDisplayProducts] = useState([]);
 
-  // Function to fetch limited products (6 in this case)
   const fetchLimitedProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/server/dealer/getallproducts/all?limit=6");
+      const response = await axios.get("http://localhost:4000/server/dealer/getallproducts/all?limit=5");
       if (!response) {
         throw new Error("Failed to fetch products");
       }
@@ -46,14 +45,14 @@ const Dealer = () => {
   ];
 
   const brandLogos = [
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
-    "/Images/dealer11.jpg",
+    "/Images/b1.png",
+    "/Images/b2.jpg",
+    "/Images/b3.png",
+    "/Images/b4.png",
+    "/Images/b5.jpg",
+    "/Images/b6.jpg",
+    "/Images/b7.jpg",
+    "/Images/b8.jpg",
   ];
 
   const services = [
@@ -97,6 +96,50 @@ const Dealer = () => {
           <div className="cs">
             <h2 className="head1">Our Services</h2>
             <p className="head2">PROVIDE BY VERDICA</p>
+          </div>
+        </div>
+        <div className="categories-container">
+          <h2 className="categories-heading">Categories</h2>
+          <div className="styleline"></div>
+          <div className="categories-grid">
+            {categories.map((category, index) => (
+              <div key={index} className="category-item">
+                <a href={`/dealer/category/${category.url}`}>
+                  <div className="category-image">
+                    <img src={category.img} alt={category.name} />
+                  </div>
+                </a>
+                <p className="category-name">{category.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="pp">
+        <h2>Popular Products</h2>
+        </div>
+        <div className="stylelines"></div>
+        <div className="appsd">
+          {displayProducts.map((product, index) => (
+            <div>
+              <DealerPCard key={index} {...product} />
+              </div>
+          ))}
+        </div>
+        
+        <div className="ppp">
+        <h2>Popular Brands</h2>
+        </div>
+        <div className="stylelines"></div>
+        <div className="brandc">
+          
+          <div className="brands">
+            <div className="sliderb">
+              {brandLogos.map((logo, index) => (
+                <div className="imgg" key={index}>
+                  <img src={logo} alt={`Brand ${index + 1}`} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="services-container">
@@ -146,43 +189,6 @@ const Dealer = () => {
               alt="Sustainable Agriculture"
               className="farming-image"
             />
-          </div>
-        </div>
-        <div className="categories-container">
-          <h2 className="categories-heading">Categories</h2>
-          <div className="styleline"></div>
-          <div className="categories-grid">
-            {categories.map((category, index) => (
-              <div key={index} className="category-item">
-                <a href={`/dealer/category/${category.url}`}>
-                  <div className="category-image">
-                    <img src={category.img} alt={category.name} />
-                  </div>
-                </a>
-                <p className="category-name">{category.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="appsd">
-          <h1>Popular Products</h1>
-          {displayProducts.map((product, index) => (
-            <div>
-              <DealerPCard key={index} {...product} />
-              </div>
-          ))}
-        </div>
-
-        <div className="brandc">
-          <div className="brands">
-            <div className="sliderb">
-              {brandLogos.map((logo, index) => (
-                <div className="imgg" key={index}>
-                  <img src={logo} alt={`Brand ${index + 1}`} />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

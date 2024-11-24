@@ -72,7 +72,7 @@ const ProductPage = () => {
 
     return (
         <>
-            <NavBar />
+           {!isAuthReady &&  <NavBar />}
             <div>
                    {  Object.keys(FarmerProducts).length !== 0 && <FarmerProduct id={id}/>}
                    { Object.keys(Products).length !== 0 && <Product id={id}/>}
@@ -86,7 +86,7 @@ const ProductPage = () => {
                     ))}
                 </div>
             </div>
-            <Footer />
+            {!isAuthReady && <Footer />}
         </>
     );
 };

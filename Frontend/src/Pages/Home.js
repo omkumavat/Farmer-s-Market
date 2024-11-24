@@ -3,8 +3,26 @@ import React, { useState, useEffect } from "react";
 import "../CSS/home.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
-
+import axios from "axios";
 const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
+    const [quote, setQuote] = useState('');
+    const [author, setAuthor] = useState('');
+
+    const fetchQuote = async () => {
+        try {
+            const response = await axios.get('https://api.api-ninjas.com/v1/quotes?category=happiness', {
+                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' }, // Replace with your API key
+            });
+            const data = response.data[0];
+            setQuote(data.quote);
+            setAuthor(data.author);
+        } catch (error) {
+            console.error('Error fetching the quote:', error);
+            setQuote('Unable to fetch quote at this time. Please try again later.');
+            setAuthor('');
+        }
+    };
+
     const slides = [
         {
             image: "/Images/slider1.jpeg",
@@ -135,6 +153,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             }, slideInterval); // Slide interval (e.g., 3 seconds)
             return () => clearInterval(interval);
         }
+        fetchQuote();
     }, [slides.length, autoSlide, slideInterval]);
 
     const goToNextSlide = () => {
@@ -153,7 +172,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         setActiveIndex(index);
     };
 
-    
+
 
     return (
         <>
@@ -179,7 +198,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                     {/* Dots Navigation */}
                 </div>
                 <div>
-                <div className="dots-container">
+                    <div className="dots-container">
                         {slides.map((_, index) => (
                             <div
                                 key={index}
@@ -302,9 +321,9 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                 <div className="qm">
                     <div className="sm">
                         <h2 >We Are Always Ready to Help You</h2>
-                        <p >Helping farmers to emerging markets maximize their profits. We use agronomic machine learning, remote sensing, and mobile phones to deliver
-                            financing, farm products.</p>
-                        <button className="get-quote-button">GET A QUOTE</button>
+                        <p className="quote">{quote}</p>
+                        <p className="author">{author && `- ${author}`}</p>
+                        <button className="get-quote-button" onClick={fetchQuote}>GET A QUOTE</button>
                     </div>
                 </div>
                 <div className="mains">

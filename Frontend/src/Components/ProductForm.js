@@ -175,266 +175,275 @@ const ProductForm = () => {
 
     return (
         <>
-        <div className="formContainer">
-            <div className="wrapper">
-                <form onSubmit={handleSubmit}>
-                    <h2 className="formTitle">Add New Product</h2>
+            <div className="formContainer">
+                <div className="wrapper">
+                    <form onSubmit={handleSubmit}>
+                        <h2 className="formTitle">Add New Product</h2>
 
-                    {/* Title Field */}
-                    <div className="item">
-                        <label htmlFor="title">Title</label>
-                        <input id="title" name="title" type="text" onChange={handleTitle} required placeholder="Enter product title" />
-                    </div>
-
-                    <div>
-                    <label htmlFor="name">Industry Name</label>
-                        <input id="name" name="name" type="text" onChange={handleName} required placeholder="Enter Industry Name" />
-                    </div>
-
-                    {/* Price Field */}
-                    <div className="item">
-                        <label htmlFor="price">Price</label>
-                        <input id="price" name="price" type="number" onChange={handlePrice} required placeholder="Enter product price" />
-                    </div>
-
-                    {/* Category Selection */}
-                    <div className="item">
-                        <label htmlFor="category">Category</label>
-                        <select id="category" value={category} onChange={handleCategoryChange} required>
-                            <option value="">Select a Category</option>
-                            {Object.keys(categoryData).map((categoryKey) => (
-                                <option key={categoryKey} value={categoryKey}>
-                                    {categoryKey}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Service Type Selection */}
-                    {category && (
+                        {/* Title Field */}
                         <div className="item">
-                            <label htmlFor="service">Service Type</label>
-                            <select
-                                id="service"
-                                value={serviceType}
-                                onChange={handleServiceType}
-                                required
-                            >
-                                <option value="">Select a Service Type</option>
-                                {categoryData[category]?.map((service, index) => (
-                                    <option key={index} value={service}>
-                                        {service}
+                            <label htmlFor="title">Title</label>
+                            <input id="title" name="title" type="text" onChange={handleTitle} required placeholder="Enter product title" />
+                        </div>
+
+                        <div>
+                            <label htmlFor="name">Industry Name</label>
+                            <input id="name" name="name" type="text" onChange={handleName} required placeholder="Enter Industry Name" />
+                        </div>
+
+                        {/* Price Field */}
+                        <div className="item">
+                            <label htmlFor="price">Price</label>
+                            <input id="price" name="price" type="number" onChange={handlePrice} required placeholder="Enter product price" />
+                        </div>
+
+                        {/* Category Selection */}
+                        <div className="item">
+                            <label htmlFor="category">Category</label>
+                            <select id="category" value={category} onChange={handleCategoryChange} required>
+                                <option value="">Select a Category</option>
+                                {Object.keys(categoryData).map((categoryKey) => (
+                                    <option key={categoryKey} value={categoryKey}>
+                                        {categoryKey}
                                     </option>
                                 ))}
                             </select>
                         </div>
-                    )}
 
-                    <div className="item">
-                        <label htmlFor="images">Images</label>
-                        <input type="file" id="images" name="images" multiple onChange={handleImages} accept="image/*" />
-                        <div className="imagePreviews">
-                            {images.map((img, index) => (
-                                <img key={index} src={img} alt={`Uploaded preview ${index + 1}`} className="imagePreview" />
-                            ))}
+                        {/* Service Type Selection */}
+                        {category && (
+                            <div className="item">
+                                <label htmlFor="service">Service Type</label>
+                                <select
+                                    id="service"
+                                    value={serviceType}
+                                    onChange={handleServiceType}
+                                    required
+                                >
+                                    <option value="">Select a Service Type</option>
+                                    {categoryData[category]?.map((service, index) => (
+                                        <option key={index} value={service}>
+                                            {service}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+
+                        <div className="item">
+                            <label htmlFor="images">Images</label>
+                            <input type="file" id="images" name="images" multiple onChange={handleImages} accept="image/*" />
+                            <div className="imagePreviews">
+                                {images.map((img, index) => (
+                                    <img key={index} src={img} alt={`Uploaded preview ${index + 1}`} className="imagePreview" />
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Size Field */}
-                    <div className="item">
-                        <label htmlFor="size">Size</label>
-                        <input
-                            id="size"
-                            name="size"
-                            type="number"
-                            value={size}
-                            onChange={handleSizeChange}
-                            required
-                            placeholder="Enter product size"
-                        />
-                        <select id="sizeUnit" value={sizeUnit} onChange={handleSizeUnitChange} required>
-                            <option value="">Select Unit</option>
-                            <option value="kg">kg</option>
-                            <option value="g">g</option>
-                            <option value="ml">ml</option>
-                            <option value="l">l</option>
-                        </select>
-                        <label htmlFor="quantity">Quantity</label>
-                        <input
-                            id="quantity"
-                            name="quantity"
-                            type="number"
-                            // value={}
-                            onChange={handleQuantityChange}
-                            required
-                            placeholder="Enter product size"
-                        />
-                    </div>
+                        {/* Size Field */}
+                        <div className="item">
+                            <label htmlFor="size">Size</label>
+                            <input
+                                id="size"
+                                name="size"
+                                type="number"
+                                value={size}
+                                onChange={handleSizeChange}
+                                required
+                                placeholder="Enter product size"
+                            />
+                            <select id="sizeUnit" value={sizeUnit} onChange={handleSizeUnitChange} required>
+                                <option value="">Select Unit</option>
+                                <option value="kgs">kg</option>
+                                <option value="gms">g</option>
+                                <option value="mls">ml</option>
+                                <option value="Ltrs">l</option>
+                                <option value="mm">mm</option>
+                                <option value="cm">cm</option>
+                                <option value="m">m</option>
+                            </select>
+                            <label htmlFor="quantity">Quantity</label>
+                            <input
+                                id="quantity"
+                                name="quantity"
+                                type="number"
+                                // value={}
+                                onChange={handleQuantityChange}
+                                required
+                                placeholder="Enter product size"
+                            />
+                        </div>
 
-                    {/* Larger Sizes */}
-                    <div className="item">
-                        <label>Larger Sizes Available?</label>
-                        <input
-                            type="radio"
-                            id="largerYes"
-                            name="largerSize"
-                            value="yes"
-                            onChange={handleLargerSizeChange}
-                        />
-                        <label htmlFor="largerYes">Yes</label>
-                        <input
-                            type="radio"
-                            id="largerNo"
-                            name="largerSize"
-                            value="no"
-                            onChange={handleLargerSizeChange}
-                        />
-                        <label htmlFor="largerNo">No</label>
-                    </div>
+                        {/* Larger Sizes */}
+                        <div className="item">
+                            <label>Larger Sizes Available?</label>
+                            <input
+                                type="radio"
+                                id="largerYes"
+                                name="largerSize"
+                                value="yes"
+                                onChange={handleLargerSizeChange}
+                            />
+                            <label htmlFor="largerYes">Yes</label>
+                            <input
+                                type="radio"
+                                id="largerNo"
+                                name="largerSize"
+                                value="no"
+                                onChange={handleLargerSizeChange}
+                            />
+                            <label htmlFor="largerNo">No</label>
+                        </div>
 
-                    {largerSizeAvailable &&
-                        largerSizes.map((size, index) => (
-                            <div key={index} className="item">
-                                <input
-                                    type="number"
-                                    value={size.quantity}
-                                    onChange={(e) =>
-                                        handleLargerSizeQuantityChange(index, "quantity", e.target.value)
-                                    }
-                                    placeholder="Quantity"
-                                    required
-                                />
-                                <input
-                                    type="number"
-                                    value={size.price}
-                                    onChange={(e) =>
-                                        handleLargerSizeQuantityChange(index, "price", e.target.value)
-                                    }
-                                    placeholder="Price"
-                                    required
-                                />
-                                <input
-                                    type="number"
-                                    value={size.size}
-                                    onChange={(e) =>
-                                        handleLargerSizeQuantityChange(index, "size", e.target.value)
-                                    }
-                                    placeholder="Size"
-                                    required
-                                />
-                                <select
-                                    value={size.unit}
-                                    onChange={(e) =>
-                                        handleLargerSizeQuantityChange(index, "unit", e.target.value)
-                                    }
-                                    required
-                                >
-                                    <option value="kg">kg</option>
-                                    <option value="g">g</option>
-                                    <option value="ml">ml</option>
-                                    <option value="l">l</option>
-                                </select>
-                                <button type="button" onClick={() => removeLargerSize(index)}>
-                                    Cancel
-                                </button>
-                            </div>
-                        ))
-                    }
-                    {largerSizeAvailable && (
-                        <button type="button" onClick={addLargerSize}>
-                            Add More Larger Sizes
+                        {largerSizeAvailable &&
+                            largerSizes.map((size, index) => (
+                                <div key={index} className="item">
+                                    <input
+                                        type="number"
+                                        value={size.quantity}
+                                        onChange={(e) =>
+                                            handleLargerSizeQuantityChange(index, "quantity", e.target.value)
+                                        }
+                                        placeholder="Quantity"
+                                        required
+                                    />
+                                    <input
+                                        type="number"
+                                        value={size.price}
+                                        onChange={(e) =>
+                                            handleLargerSizeQuantityChange(index, "price", e.target.value)
+                                        }
+                                        placeholder="Price"
+                                        required
+                                    />
+                                    <input
+                                        type="number"
+                                        value={size.size}
+                                        onChange={(e) =>
+                                            handleLargerSizeQuantityChange(index, "size", e.target.value)
+                                        }
+                                        placeholder="Size"
+                                        required
+                                    />
+                                    <select
+                                        value={size.unit}
+                                        onChange={(e) =>
+                                            handleLargerSizeQuantityChange(index, "unit", e.target.value)
+                                        }
+                                        required
+                                    >
+                                        <option value="Kgs">kg</option>
+                                        <option value="Gms">g</option>
+                                        <option value="Mls">ml</option>
+                                        <option value="Ltrs">l</option>
+                                        <option value="mm">mm</option>
+                                        <option value="cm">cm</option>
+                                        <option value="m">m</option>
+                                    </select>
+                                    <button type="button" onClick={() => removeLargerSize(index)}>
+                                        Cancel
+                                    </button>
+                                </div>
+                            ))
+                        }
+                        {largerSizeAvailable && (
+                            <button type="button" onClick={addLargerSize}>
+                                Add More Larger Sizes
+                            </button>
+                        )}
+
+                        {/* Larger Sizes */}
+                        <div className="item">
+                            <label>Smaller Sizes Available?</label>
+                            <input
+                                type="radio"
+                                id="smallerNo"
+                                name="smallerSize"
+                                value="yes"
+                                onChange={handleSmallerSizeChange}
+                            />
+                            <label htmlFor="largerYes">Yes</label>
+                            <input
+                                type="radio"
+                                id="smallerNo"
+                                name="smallerSize"
+                                value="no"
+                                onChange={handleSmallerSizeChange}
+                            />
+                            <label htmlFor="largerNo">No</label>
+                        </div>
+
+                        {smallerSizeAvailable &&
+                            smallerSizes.map((size, index) => (
+                                <div key={index} className="item">
+                                    <input
+                                        type="number"
+                                        value={size.quantity}
+                                        onChange={(e) =>
+                                            handleSmallerSizeQuantityChange(index, "quantity", e.target.value)
+                                        }
+                                        placeholder="Quantity"
+                                        required
+                                    />
+                                    <input
+                                        type="number"
+                                        value={size.price}
+                                        onChange={(e) =>
+                                            handleSmallerSizeQuantityChange(index, "price", e.target.value)
+                                        }
+                                        placeholder="Price"
+                                        required
+                                    />
+                                    <input
+                                        type="number"
+                                        value={size.size}
+                                        onChange={(e) =>
+                                            handleSmallerSizeQuantityChange(index, "size", e.target.value)
+                                        }
+                                        placeholder="Size"
+                                        required
+                                    />
+                                    <select
+                                        value={size.unit}
+                                        onChange={(e) =>
+                                            handleSmallerSizeQuantityChange(index, "unit", e.target.value)
+                                        }
+                                        required
+                                    >
+                                        <option value="Kg">kg</option>
+                                        <option value="Gms">g</option>
+                                        <option value="Mls">ml</option>
+                                        <option value="Ltrs">l</option>
+                                        <option value="mm">mm</option>
+                                        <option value="cm">cm</option>
+                                        <option value="m">m</option>
+                                    </select>
+                                    <button type="button" onClick={() => removeSmallerSize(index)}>
+                                        Cancel
+                                    </button>
+                                </div>
+                            ))
+                        }
+
+                        {smallerSizeAvailable && (
+                            <button type="button" onClick={addSmallerSize}>
+                                Add More Smaller Sizes
+                            </button>
+                        )}
+
+                        {/* Description Field */}
+                        <div className="item description">
+                            <label htmlFor="desc">Description</label>
+                            <ReactQuill id="desc" value={desc} theme="snow" onChange={handleQuillChange} />
+                        </div>
+
+                        {/* Submit Button */}
+                        <button className="sendButton" type="submit" onClick={handleSubmit}>
+                            Submit
                         </button>
-                    )}
-
-                    {/* Larger Sizes */}
-                    <div className="item">
-                        <label>Smaller Sizes Available?</label>
-                        <input
-                            type="radio"
-                            id="smallerNo"
-                            name="smallerSize"
-                            value="yes"
-                            onChange={handleSmallerSizeChange}
-                        />
-                        <label htmlFor="largerYes">Yes</label>
-                        <input
-                            type="radio"
-                            id="smallerNo"
-                            name="smallerSize"
-                            value="no"
-                            onChange={handleSmallerSizeChange}
-                        />
-                        <label htmlFor="largerNo">No</label>
-                    </div>
-
-                    {smallerSizeAvailable &&
-                        smallerSizes.map((size, index) => (
-                            <div key={index} className="item">
-                                <input
-                                    type="number"
-                                    value={size.quantity}
-                                    onChange={(e) =>
-                                        handleSmallerSizeQuantityChange(index, "quantity", e.target.value)
-                                    }
-                                    placeholder="Quantity"
-                                    required
-                                />
-                                <input
-                                    type="number"
-                                    value={size.price}
-                                    onChange={(e) =>
-                                        handleSmallerSizeQuantityChange(index, "price", e.target.value)
-                                    }
-                                    placeholder="Price"
-                                    required
-                                />
-                                <input
-                                    type="number"
-                                    value={size.size}
-                                    onChange={(e) =>
-                                        handleSmallerSizeQuantityChange(index, "size", e.target.value)
-                                    }
-                                    placeholder="Size"
-                                    required
-                                />
-                                <select
-                                    value={size.unit}
-                                    onChange={(e) =>
-                                        handleSmallerSizeQuantityChange(index, "unit", e.target.value)
-                                    }
-                                    required
-                                >
-                                    <option value="kg">kg</option>
-                                    <option value="g">g</option>
-                                    <option value="ml">ml</option>
-                                    <option value="l">l</option>
-                                </select>
-                                <button type="button" onClick={() => removeSmallerSize(index)}>
-                                    Cancel
-                                </button>
-                            </div>
-                        ))
-                    }
-
-                    {smallerSizeAvailable && (
-                        <button type="button" onClick={addSmallerSize}>
-                            Add More Smaller Sizes
-                        </button>
-                    )}
-
-                    {/* Description Field */}
-                    <div className="item description">
-                        <label htmlFor="desc">Description</label>
-                        <ReactQuill id="desc" value={desc} theme="snow" onChange={handleQuillChange} />
-                    </div>
-
-                    {/* Submit Button */}
-                    <button className="sendButton" type="submit" onClick={handleSubmit}>
-                        Submit
-                    </button>
-                </form>
-        </div>
-        </div>
+                    </form>
+                </div>
+            </div>
         </>
     );
 }

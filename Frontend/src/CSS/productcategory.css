@@ -1,0 +1,89 @@
+/* Common slider styles */
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+    /* width: 1200px; */
+    /* margin-left: 140px; */
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-row {
+    display: flex;
+    width: 100%;
+}
+
+.slider-item {
+    width: 20%; /* Show 5 images, so each item takes up 20% of the width */
+    flex-shrink: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Category Products Slider Styles */
+.category-slider .slider-item {
+    /* Add specific styles for the category slider items */
+}
+
+.category-slider .prev-btn,
+.category-slider .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.category-slider .prev-btn {
+    left: 10px;
+}
+
+.category-slider .next-btn {
+    right: 10px;
+}
+
+/* Similar Products Slider Styles */
+.similar-slider .slider-item {
+    /* Add specific styles for the similar slider items */
+}
+
+.similar-slider .prev-btn,
+.similar-slider .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+    z-index: 1;
+    /* left: -10px; */
+}
+
+.similar-slider .prev-btn {
+    left: 10px;
+}
+
+.similar-slider .next-btn {
+    right: 10px;
+}
+
+/* Hover effect for arrows */
+button:hover {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Styling for cursor on the buttons */
+button {
+    cursor: pointer;
+}

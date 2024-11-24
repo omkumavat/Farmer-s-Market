@@ -160,7 +160,6 @@ export const getProductById = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
   try {
-    // Get the limit from the query parameter (default to 6 if not provided)
     const limit = parseInt(req.query.limit) || 1000;
     console.log(limit)
 

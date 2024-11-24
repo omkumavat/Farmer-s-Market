@@ -41,7 +41,7 @@ function Sidebar() {
       <NavBar />
       <div className="app-container">
         <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-          <button className="toggle-btn" onClick={toggleSidebar}>
+          <button className="togglebtn" onClick={toggleSidebar}>
             {isSidebarOpen ? '←' : '→'}
           </button>
           <ul className="sidebar-menu">

@@ -15,24 +15,23 @@ const Product = ({ id }) => {
   const [mainImage, setMainImage] = useState("");
   const [Desc, setDesc] = useState("");
 
-  const handleAddToCart = async () => {
+  const handleAddToCart = async() => {
     console.log(currentUser);
-    // console.log(product);
-    // try {
-    //   if(currentUser){
-    //     const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
-    //       userId:currentUser._id,
-    //       productId:product._id,
-    //     });
-    //     alert(response.data.message);
-    //   }else{
-    //     alert("Login First");
-    //   }
-    // } catch (error) {
-    //   alert(error.response ? error.response.data.message : 'Error adding to cart');
-    // }
+    console.log(product);
+    try {
+      if(currentUser){
+        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
+          userId:currentUser._id,
+          productId:product._id,
+        });
+        alert(response.data.message);
+      }else{
+        alert("Login First");
+      }
+    } catch (error) {
+      alert(error.response ? error.response.data.message : 'Error adding to cart');
+    }
   }
-
   function handleDates(dateStr) {
     const date = new Date(dateStr);
 
