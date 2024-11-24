@@ -49,6 +49,7 @@ function App() {
   return (
     <div>
       <AuthProvider>
+      
         <Routes>
           {/* Admin-Only Routes */}
           {isAdmin && (

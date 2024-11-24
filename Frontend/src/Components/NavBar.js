@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext'; // Ensure this context provides authentication state
 import Loader from './Loader';
+import GoogleTranslateWidget from "../Pages/GoogleTranslateWidget";
 const NavBar = () => {
 
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const NavBar = () => {
         <img src="/Images/logo.jpg" alt="Verdica Logo" className="logo-image" />
         <span className="website-name">Verdica</span>
       </div>
+      <GoogleTranslateWidget />
       <ul className="nav-links">
         <li className="nav-item"><a href="/">Home</a></li>
         <li className="nav-item">
