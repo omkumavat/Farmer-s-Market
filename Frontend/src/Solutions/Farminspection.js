@@ -9,7 +9,7 @@ import agricultureImage from "../Images/agriculture-2.png";
 import shieldImage from "../Images/secure-shield.png";
 
 function Solutions1() {
-  const [activeLink, setActiveLink] = useState("Land Preservation");
+  const [activeLink, setActiveLink] = useState("Farm Inspection");
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -21,30 +21,28 @@ function Solutions1() {
       <div className="maincont">
         {/* Hero Section */}
         <div className="hero">
-          <h1>Land Preservation</h1>
+          <h1>Farm Inspection</h1>
           <p>AGROS SOLUTION</p>
         </div>
 
         {/* Content Section */}
-        <div className="cont">
+        <div className="contss">
           {/* Sidebar and Image Container */}
-          <div className="sidebarcont">
+          <div className="sidebarconts">
             {/* Sidebar */}
-            <div className="sides">
+            <div className="sidess">
               <ul>
                 {[
-                  "Land Preservation",
-                  "Farm Plans",
-                  "Farm Inspection",
-                  "Soil Analysis",
-                  "Equipment Installation",
-                  "Water Management",
+                 { name: "Land Preservation", path: "/land-preservation" },
+                 { name: "Farm Plans", path: "/farm-plans" },
+                 { name: "Farm Inspection", path: "/farm-inspection" },
+                 { name: "Soil Analysis", path: "/soil-analysis" },
+                 { name: "Equipment Installation", path: "/equipment-installation" },
+                 { name: "Water Management", path: "/water-management" },
                 ].map((item) => (
                   <li
                     key={item}
-                    className={`sidebar-item ${
-                      activeLink === item ? "active" : ""
-                    }`}
+                    className={`itemsides ${activeLink === item ? "active" : ""}`}
                     onClick={() => handleLinkClick(item)}
                   >
                     {item}
@@ -54,26 +52,24 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebar-image"></div>
+            <div className="sidebarimgs"></div>
           </div>
 
           {/* Main Content */}
-          <div className="main-section">
+          <div className="mainsections">
             <h2>The Agricultural Engineering Provided by Agros</h2>
-            <p>
-              The vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate non
-              provident.
-            </p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
-            </p>
+            <div className="equip">
+              <p>
+              Farm plans are detailed strategies designed to guide the growth, development, and management of a farm over a specified period. These plans typically focus on optimizing land use, enhancing crop yield, ensuring sustainable farming practices, and meeting market demand. A well-structured farm plan is essential for improving operational efficiency, increasing profitability, and maintaining environmental sustainability. 
+              </p>
+              <p>
+                At Verdica, we simplify farm planning by connecting farmers with expert advisors and providing advanced tools for efficient farm management. Our platform ensures farmers receive personalized plans, comprehensive strategies, and actionable insights, helping them optimize resources, enhance productivity, and maintain sustainable practices. With Verdica, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm.
+              </p>
+            </div>
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose Agros</h3>
+              <h3>Why Choose VERDICA</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">
@@ -82,10 +78,9 @@ function Solutions1() {
                     alt="Innovation Technology Icon"
                     className="feature-icon"
                   />
-                  <h4>Innovation Technology</h4>
+                  <h4>Comprehensive Inspections</h4>
                   <p>
-                    The Industrial is responsible for minor and the codes
-                    security in hotel Ecosystem for Food and Cleaner through.
+                    At VERDICA, we connect farmers with experienced and certified farm inspectors who provide detailed, thorough evaluations of crops, soil, equipment, and infrastructure, ensuring no issue goes unnoticed.
                   </p>
                 </div>
 
@@ -96,10 +91,9 @@ function Solutions1() {
                     alt="Qualified Farmers Icon"
                     className="feature-icon"
                   />
-                  <h4>Qualified Farmers</h4>
+                  <h4>Actionable Insights</h4>
                   <p>
-                    Our aim is to keep the house clean – your aim will help!
-                    Through Digital Innovation World Summit.
+                    We offer detailed inspection reports with clear recommendations, helping farmers take proactive steps to improve their operations, increase productivity, and prevent costly problems.
                   </p>
                 </div>
 
@@ -110,10 +104,9 @@ function Solutions1() {
                     alt="Extended Warranty Icon"
                     className="feature-icon"
                   />
-                  <h4>Extended Warranty</h4>
+                  <h4>Easy Access to Experts</h4>
                   <p>
-                    Both of us take a lot of time in getting cleaned and
-                    beautified Clean Home. Professional Service.
+                    Verdica makes it simple to connect with qualified farm inspectors, ensuring you get expert advice and solutions tailored to your farm's unique needs.
                   </p>
                 </div>
 
@@ -124,10 +117,9 @@ function Solutions1() {
                     alt="Awarded Company Icon"
                     className="feature-icon"
                   />
-                  <h4>Awarded Company</h4>
+                  <h4>Data-Driven Solutions</h4>
                   <p>
-                    We are a company dedicated to giving our customers back
-                    the time they deserve to enjoy the things they love.
+                    Using advanced technology, we collect and analyze data from inspections to provide farmers with data-driven insights for continuous improvement and sustainable growth.
                   </p>
                 </div>
               </div>

@@ -70,33 +70,33 @@ const Weather = () => {
   const services = [
     {
       icon: "🧑‍🌾",
-      title: "Fertilizers",
-      description: "Homes and thoroughly launder them between usage. We give our teams.",
+      title: "Weather Forecasting",
+      description: "Weather forecasting provides accurate predictions of atmospheric conditions, helping people prepare for upcoming weather events. It uses data from satellites, radar, and weather models to ensure timely and reliable forecasts.",
     },
     {
       icon: "🍎",
-      title: "Seeds",
-      description: "We are closely monitoring national, state and local health developments.",
+      title: "Rainfall Measurement",
+      description: "Rainfall measurement tracks the amount of rain that falls over a specific period, helping to assess water availability and weather patterns. It uses instruments like rain gauges to collect and analyze precipitation data.",
     },
     {
       icon: "🐄",
-      title: "Agricultural Machinery and Tools",
-      description: "Follow these tips from the CDC to help prevent the spread of the seasonal.",
+      title: "Storm Tracking Tools",
+      description: "Storm tracking tools monitor and predict the movement and intensity of storms, such as hurricanes and tornadoes. They use real-time data from satellites, radar, and weather stations to provide accurate warnings and ensure public safety.",
     },
     {
       icon: "🌾",
-      title: "Post-Harvest Equipment",
-      description: "Industra plays a large role in the comfort of your home, but many.",
+      title: "Solar Energy Equipment",
+      description: "Solar energy equipment includes tools like solar panels, inverters, and batteries that capture, convert, and store sunlight for energy use. It helps reduce reliance on traditional power sources and promotes sustainable energy solutions.",
     },
     {
       icon: "🚜",
-      title: "Farm Infrastructure",
-      description: "We realize that every family has their own preferences, so we accommodate.",
+      title: "Climate Data & Analysis",
+      description: "Climate data and analysis involve the collection and study of long-term weather patterns to understand climate trends. This data helps predict future climate changes and supports decision-making in agriculture, energy, and environmental conservation.",
     },
     {
       icon: "📋",
-      title: "Irrigation Equipment",
-      description: "While some cleaning companies use rotating cleaning plans, we’re equipped.",
+      title: "Wind Speed Monitoring",
+      description: "Wind speed monitoring tracks the velocity of wind using instruments like anemometers. It is essential for weather forecasting, renewable energy generation, and ensuring safety during storms or extreme weather events..",
     },
   ];
 
@@ -106,7 +106,7 @@ const Weather = () => {
       <div>
         <div className="mc">
           <div className="cs">
-            <h2 className="head1">Weather Services</h2>
+            <h2 className="head1">Our Services</h2>
             <p className="head2">PROVIDED BY VERDICA</p>
           </div>
         </div>
@@ -136,15 +136,18 @@ const Weather = () => {
           ) : !error && <p className="loading-message">Loading weather data...</p>}
 
           {/* Rain Alerts Section */}
-          {rainAlerts.length > 0 && (
-            <div className="rain-alerts">
+          <div className='rac'>
               <h2>Rain Alerts</h2>
+              </div>
+          {rainAlerts.length > 0 && (
+            
+            <div className="rain-alerts">
               {rainAlerts.map((alert, index) => (
                 <div key={index} className="rain-alert">
-                  <p>Date: {alert.date}</p>
-                  <p>Chance of Rain: {alert.chance}%</p>
-                  <p>Condition: {alert.condition}</p>
-                  <p>Action: Prepare irrigation systems and protect crops.</p>
+                  <p>Date : {alert.date}</p>
+                  <p>Chance of Rain : {alert.chance}%</p>
+                  <p>Condition : {alert.condition}</p>
+                  <p>Action : Prepare irrigation systems and protect crops.</p>
                 </div>
               ))}
             </div>
@@ -152,8 +155,8 @@ const Weather = () => {
 
           {/* Seasonal Crops Section */}
           <div className="seasonal-crops">
-            <h2>Season: {currentSeason}</h2>
-            <h3>Recommended Crops for {currentSeason}:</h3>
+            <h2>Season : {currentSeason}</h2>
+            <h3>Recommended Crops for {currentSeason} :</h3>
             <ul>
               {seasonalCrops.map((crop, index) => (
                 <li key={index}>{crop}</li>
@@ -164,10 +167,9 @@ const Weather = () => {
 
         <div className="services-container">
           <div className="serv">
-            <h2 className="services-title">Agricultural Products</h2>
+            <h2 className="services-title">Weather Updates</h2>
             <p className="services-subtitle">
-              Industra is a global community of practice that facilitates dialogue,
-              information exchange, and the use of information.
+            VERDICA empowers users to access real-time weather updates and forecasts, ensuring accurate and timely information through a global, community-driven platform.
             </p>
           </div>
           <div className="services-grid">
@@ -176,32 +178,41 @@ const Weather = () => {
                 <div className="service-icon">{service.icon}</div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>
-                <a href="#" className="service-link">
-                  Learn More
-                </a>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="container">
+        <div className="container-weather">
           {/* Top Section */}
-          <div className="content">
-            <p className="sub-heading">AT VERDICA</p>
-            <h1 className="main-heading">
+          <div className="content-weather">
+            <p className="sub-heading-weather">AT VERDICA</p>
+            <h1 className="main-heading-weather">
               For Accurate Weather Insights<br /> <span>Every Day</span>
             </h1>
-            <p className="description">
-              At Verdica, we are dedicated to providing reliable and up-to-date weather information to help you plan your day effectively.
+            <div className='desccc-weather'>
+            <p className="description-weather">
+            At VERDICA, we are dedicated to bridging the gap between meteorologists and the public, providing seamless access to accurate and timely weather information.
             </p>
+            <p className='description-weather'> Our platform empowers users to stay informed with reliable forecasts, ensuring safety and preparedness in any weather condition.</p>
+            <p className="description-weather">
+            With a focus on innovation and accuracy, VERDICA offers real-time data, advanced tracking tools, and weather insights. From rainfall measurements to storm predictions,
+            </p>
+            <p className="description-weather">
+            we aim to deliver comprehensive weather updates that keep you ahead of the forecast.
+            </p>
+            <p className="description-weather">
+            VERDICA is your trusted partner, helping individuals and communities navigate the weather with confidence while promoting preparedness and resilience.
+            </p>
+            </div>
           </div>
         </div>
 
-        <div className="image-container">
+        <div className="image-containerss-weather">
           <img
             src="/Images/slider1.jpeg"
             alt="Sustainable Agriculture"
-            className="farming-image"
+            className="farming-imagess-weather"
           />
         </div>
       </div>

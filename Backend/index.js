@@ -10,6 +10,7 @@ import payment from "./Routes/payment.js"
 import { engine } from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
+import soilDataRoutes from './Routes/soilDataRoutes.js';
 const app=express();
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as needed
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
@@ -78,6 +79,8 @@ app.set('view engine', 'hbs');
 app.get("/s", (req, res) => {
   res.render("Signup", { name: "OM" });
 });
+
+
 
 
 app.listen(4000, () => {

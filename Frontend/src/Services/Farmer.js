@@ -9,7 +9,7 @@ const Farmer = () => {
     const [displayProducts, setDisplayProducts] = useState([]);
     const fetchLimitedProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/server/farmer/getallproducts/all?limit=6");
+            const response = await axios.get("http://localhost:4000/server/farmer/getallproducts/all?limit=5");
             if (!response) {
                 throw new Error("Failed to fetch products");
             }
@@ -58,21 +58,29 @@ const Farmer = () => {
 
 
 
+
+
+
+
+
+
+
+
     const services = [
         {
             icon: "🌾", // Replace with your SVG or image
             title: "Crop Production",
-            description: "Farmers provide high-quality crops, from grains to vegetables, grown with care and expertise.",
+            description: "Crop production involves cultivating plants for food, fiber, and other resources. It includes activities like soil preparation, planting, irrigation, pest control, and harvesting to ensure healthy and high-yield crops.",
         },
         {
             icon: "🐄", // Replace with your SVG or image
             title: "Animal Husbandry",
-            description: "Farmers raise livestock for meat, milk, and other by-products, ensuring quality and sustainability.",
+            description: "Animal husbandry involves breeding, raising, and managing livestock like cattle, sheep, and poultry. It supports food production, raw materials, and agricultural sustainability.",
         },
         {
             icon: "🌱", // Replace with your SVG or image
             title: "Organic Farming",
-            description: "Farmers offer organic produce, grown without harmful chemicals, ensuring a healthier option for consumers.",
+            description: "Organic farming is an agricultural method that avoids synthetic chemicals, fertilizers, and genetically modified organisms (GMOs).",
         },
         {
             icon: "🚜", // Replace with your SVG or image
@@ -82,12 +90,12 @@ const Farmer = () => {
         {
             icon: "🌻", // Replace with your SVG or image
             title: "Flower Farming",
-            description: "Farmers grow flowers for sale to nurseries, markets, or for decoration in events and homes.",
+            description: "Land preparation involves tasks like clearing, tilling, and leveling the soil to create optimal conditions for planting crops.",
         },
         {
             icon: "🍯", // Replace with your SVG or image
             title: "Honey Production",
-            description: "Farmers harvest honey from beehives, offering fresh, natural honey directly from the farm.",
+            description: "Honey production is the process where bees collect nectar from flowers and convert it into honey through enzymatic activity.",
         },
     ];
 
@@ -101,6 +109,51 @@ const Farmer = () => {
                         <p className="head2">PROVIDE BY VERDICA</p>
                     </div>
                 </div>
+                <div className="categories-container">
+                    <h2 className="categories-heading">Categories</h2>
+                    <div className="styleline"></div>
+                    <div className="categories-grid">
+                        {categories.map((category, index) => (
+
+                            <div key={index} className="category-item">
+                                <a href={`/farmer/category/${category.url}`}>
+                                    <div className="category-image">
+                                        <img src={category.img} alt={category.name} />
+                                    </div>
+                                </a>
+                                <p className="category-name">{category.name}</p>
+                            </div>
+
+                        ))}
+                    </div>
+                </div>
+                <div className="pp">
+                    <h2>Popular Products</h2>
+                </div>
+                <div className="stylelines"></div>
+                <div className="appsd">
+                    {displayProducts.map((product, index) => (
+                        <div>
+                            <FarmerProduct key={index} {...product} />
+                        </div>
+                    ))}
+                </div>
+                {/* <div className="ppp">
+        <h2>Popular Brands</h2>
+        </div>
+        <div className="stylelines"></div>
+        <div className="brandc">
+          
+          <div className="brands">
+            <div className="sliderb">
+              {brandLogos.map((logo, index) => (
+                <div className="imgg" key={index}>
+                  <img src={logo} alt={`Brand ${index + 1}`} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div> */}
                 <div className="services-container">
                     <div className="serv">
                         <h2 className="services-title">Farm Produce</h2>
@@ -112,11 +165,8 @@ const Farmer = () => {
                         {services.map((service, index) => (
                             <div className="service-card" key={index}>
                                 <div className="service-icon">{service.icon}</div>
-                                <h3 className="service-title">{service.title}</h3>
+                                <h3 className="servicetitle">{service.title}</h3>
                                 <p className="service-description">{service.description}</p>
-                                <a href="#" className="service-link">
-                                    Learn More
-                                </a>
                             </div>
                         ))}
                     </div>
@@ -128,13 +178,15 @@ const Farmer = () => {
                         <h1 className="main-heading">
                             For a Thriving Agricultural Community<br /> <span>Tomorrow</span>
                         </h1>
-                        <p className="description">
+                       <div className="descc">
+                       <p className="description">
                             Verdica provides a platform where farmers can offer essential services like land preparation, crop cultivation, and organic farming to others in the agricultural community. This enables farmers to showcase their skills and expertise.
                         </p>
                         <p className="description">
                             Farmers can list, manage, and sell their services, helping them reach a broader audience. Verdica makes it easier for farmers to connect with those who need their services, ensuring mutual growth.
                         </p>
                         <p className="description">Verdica is dedicated to creating a trusted environment where farmers can succeed by offering their valuable services. We aim to build a vibrant community that drives success and mutual benefit.</p>
+                       </div>
                     </div>
 
                     {/* Image Section */}
@@ -144,43 +196,6 @@ const Farmer = () => {
                             alt="Sustainable Agriculture"
                             className="farming-image"
                         />
-                    </div>
-                </div>
-                <div className="categories-container">
-                    <h2 className="categories-heading">Categories</h2>
-                    <div className="styleline"></div>
-                    <div className="categories-grid">
-                        {categories.map((category, index) => (
-
-                            <div key={index} className="category-item">
-                                 <a href={`/farmer/category/${category.url}`}>
-                                    <div className="category-image">
-                                        <img src={category.img} alt={category.name} />
-                                    </div>
-                                </a>
-                                <p className="category-name">{category.name}</p>
-                            </div>
-
-                        ))}
-                    </div>
-                </div>
-                <div className="appsd">
-                    <h1>Popular Products</h1>
-                    {displayProducts.map((product, index) => (
-                        <div>
-                            <FarmerProduct key={index} {...product} />
-                        </div>
-                    ))}
-                </div>
-                <div className="brandc">
-                    <div className="brands">
-                        <div className="sliderb">
-                            {brandLogos.map((logo, index) => (
-                                <div className="imgg" key={index}>
-                                    <img src={logo} alt={`Brand ${index + 1}`} />
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
             </div>

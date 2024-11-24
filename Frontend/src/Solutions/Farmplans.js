@@ -9,7 +9,7 @@ import agricultureImage from "../Images/agriculture-2.png";
 import shieldImage from "../Images/secure-shield.png";
 
 function Solutions1() {
-  const [activeLink, setActiveLink] = useState("Land Preservation");
+  const [activeLink, setActiveLink] = useState("Farm Plans");
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
@@ -21,28 +21,28 @@ function Solutions1() {
       <div className="maincont">
         {/* Hero Section */}
         <div className="hero">
-          <h1>Land Preservation</h1>
-          <p>AGROS SOLUTION</p>
+          <h1>Farm Plans</h1>
+          <p>VERDICA SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
-        <div className="cont">
+        <div className="contss">
           {/* Sidebar and Image Container */}
-          <div className="sidebarcont">
+          <div className="sidebarconts">
             {/* Sidebar */}
-            <div className="sides">
+            <div className="sidess">
               <ul>
                 {[
-                  "Land Preservation",
-                  "Farm Plans",
-                  "Farm Inspection",
-                  "Soil Analysis",
-                  "Equipment Installation",
-                  "Water Management",
+                  { name: "Land Preservation", path: "/land-preservation" },
+                  { name: "Farm Plans", path: "/farm-plans" },
+                  { name: "Farm Inspection", path: "/farm-inspection" },
+                  { name: "Soil Analysis", path: "/soil-analysis" },
+                  { name: "Equipment Installation", path: "/equipment-installation" },
+                  { name: "Water Management", path: "/water-management" },
                 ].map((item) => (
                   <li
                     key={item}
-                    className={`sidebar-item ${
+                    className={`itemsides ${
                       activeLink === item ? "active" : ""
                     }`}
                     onClick={() => handleLinkClick(item)}
@@ -54,22 +54,20 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebar-image"></div>
+            <div className="sidebarimgs"></div>
           </div>
 
           {/* Main Content */}
-          <div className="main-section">
+          <div className="mainsections">
             <h2>The Agricultural Engineering Provided by Agros</h2>
+            <div className="equip">
             <p>
-              The vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate non
-              provident.
+            Farm plans are detailed strategies designed to guide the growth, development, and management of a farm over a specified period. These plans typically focus on optimizing land use, enhancing crop yield, ensuring sustainable farming practices, and meeting market demand. A well-structured farm plan is essential for improving operational efficiency, increasing profitability, and maintaining environmental sustainability. 
             </p>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+              At  Verdica, we simplify farm planning by connecting farmers with expert advisors and providing advanced tools for efficient farm management. Our platform ensures farmers receive personalized plans, comprehensive strategies, and actionable insights, helping them optimize resources, enhance productivity, and maintain sustainable practices. With Verdica, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm.
             </p>
+            </div>
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">

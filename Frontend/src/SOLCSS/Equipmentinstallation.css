@@ -12,7 +12,8 @@
   .hero {
     width: 100%;
     height: 300px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../bgimage.jpg");
+    margin-top: 100px;
+    background-image:  url("../../public/Images/hd2.jpg");
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -26,6 +27,7 @@
   .hero h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
+    color: rgb(228, 250, 250);
   }
   
   .hero p {
@@ -33,7 +35,7 @@
   }
   
   /* Content Section */
-  .cont {
+  .conts {
     flex: 1;
     width: 90%;
     max-width: 1200px;
@@ -44,14 +46,17 @@
   }
   
   /* Sidebar Container */
-  .sidebarcont {
+  .sidebarconts {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    width: 1200px;
+    margin-left: 200px;
+    margin-top: 50px;
   }
   
   /* Sidebar */
-  .sides {
+  .sidess {
     flex: 1 1 250px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -60,28 +65,37 @@
     overflow: hidden; /* Prevent content overflow */
   }
   
-  .sides ul {
+  .sidess ul {
+    padding: 20px;
     list-style: none;
   }
+
+  .sidess ul li{
+    padding: 10px;
+  }
+
+  .sidess ul li:hover{
+    border: 1px solid black;  
+  }
   
-  .sides {
+  .sidess {
     padding: 15px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     border-bottom: 1px solid #eee;
   }
   
-  .itemside.active,
-  .itemside:hover {
+  .itemsides.active,
+  .itemsides:hover {
     background-color: #ffa726;
     color: #fff;
   }
   
   /* Sidebar Image */
-  .sidebarimg {
+  .sidebarimgs {
     flex: 2 1 300px;
     height: 300px;
-    background-image: url("../bgimage.jpg");
+    background-image: url("../../public/Images/solution1.jpg");
     background-size: cover;
     background-position: center;
     border-radius: 5px;
@@ -90,10 +104,12 @@
   }
   
   /* Main Section */
-  .mainsection {
+  .mainsections {
     background: #fff;
     padding: 20px;
+    margin-top: 60px;
     border-radius: 5px;
+    margin-bottom: 100px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
@@ -104,18 +120,28 @@
   
   .mainsection p {
     margin-bottom: 10px;
-    line-height: 1.5;
+    line-height: 3.5;
+    padding: 5px;
+    font-size: 1.5rem;
+  }
+
+  .equip{
+    margin-left: 200px;
+    margin-right: 200px;
   }
   
   /* Why Choose Agros Section */
   .why-choose-agros {
     text-align: center;
+    /* margin-left: 200px; */
   }
   
   .why-choose-agros h3 {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     color: #333;
+    margin-top: 40px;
+    margin-left: 560px;
   }
   
   .features {

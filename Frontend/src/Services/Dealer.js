@@ -57,37 +57,37 @@ const Dealer = () => {
 
   const services = [
     {
-      icon: "🧑‍🌾",
+      icon: "🌾", // General icon for agricultural products and services
       title: "Fertilizers",
-      description: "Homes and thoroughly launder them between usage. We give our teams.",
+      description: "Fertilizers are substances added to soil or plants to provide essential nutrients that enhance growth and crop yield.",
     },
     {
-      icon: "🍎",
+      icon: "🌱", // General icon for seeds and planting
       title: "Seeds",
-      description: "We are closely monitoring national, state and local health developments.",
+      description: "Seeds are plant embryos enclosed in protective coats, essential for reproduction and growth. They store nutrients to support germination and development.",
     },
     {
-      icon: "🐄",
+      icon: "🚜", // General icon for machinery and tools
       title: "Agricultural Machinery and Tools",
-      description: "Follow these tips from the CDC to help prevent the spread of the seasonal.",
+      description: "Includes equipment like tractors, plows, harvesters, and sprayers, used to streamline farming tasks.",
     },
     {
-      icon: "🌾",
+      icon: "🏭", // General icon for post-harvest equipment and processing
       title: "Post-Harvest Equipment",
-      description: "Industra plays a large role in the comfort of your home, but many.",
+      description: "Includes tools and machines like threshers, dryers, graders, and storage systems.",
     },
     {
-      icon: "🚜",
+      icon: "🏡", // General icon for farm infrastructure and facilities
       title: "Farm Infrastructure",
-      description: "We realize that every family has their own preferences, so we accommodate.",
+      description: "Includes essential facilities like irrigation systems, storage barns, greenhouses, and fencing.",
     },
     {
-      icon: "📋",
+      icon: "💧", // General icon for irrigation and water systems
       title: "Irrigation Equipment",
-      description: "While some cleaning companies use rotating cleaning plans, we’re equipped.",
+      description: "Includes tools like sprinklers, drip systems, and pumps, designed to deliver water to crops efficiently.",
     },
   ];
-
+  
   return (
     <>
       <NavBar />
@@ -146,19 +146,19 @@ const Dealer = () => {
           <div className="serv">
             <h2 className="services-title">Agricultural Products</h2>
             <p className="services-subtitle">
-              Industra is a global community of practice that facilitates dialogue,
-              information exchange and use of information.
+            Verdica empowers dealers to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
             </p>
           </div>
           <div className="services-grid">
             {services.map((service, index) => (
               <div className="service-card" key={index}>
                 <div className="service-icon">{service.icon}</div>
-                <h3 className="service-title">{service.title}</h3>
+                <div className="hp">
+                <h3 className="servicess-title">{service.title}</h3>
+                {service.title2 && <h3 className="servicess-title">{service.title2}</h3>}
+                {service.title3 && <h3 className="servicess-title">{service.title3}</h3>}
+                </div>
                 <p className="service-description">{service.description}</p>
-                <a href="#" className="service-link">
-                  Learn More
-                </a>
               </div>
             ))}
           </div>
@@ -171,6 +171,7 @@ const Dealer = () => {
               For a Thriving Agricultural Community
               <br /> <span>Tomorrow</span>
             </h1>
+            <div className="descc">
             <p className="description">
               At Verdica, we are committed to building bridges between dealers and farmers, enabling seamless access to essential agricultural products and services. Our platform empowers dealers to showcase their offerings while ensuring quality and trust for farmers.
             </p>
@@ -180,6 +181,7 @@ const Dealer = () => {
             <p className="description">
               Verdica is your trusted partner, connecting dealers with farmers to achieve mutual success while promoting sustainable agricultural practices.
             </p>
+            </div>
           </div>
 
           {/* Image Section */}

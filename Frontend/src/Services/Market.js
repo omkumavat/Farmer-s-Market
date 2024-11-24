@@ -113,34 +113,34 @@ const brandLogos = [
 
 const services = [
     {
-        icon: "🌾", // Replace with your SVG or image
-        title: "Crop Production",
-        description: "Farmers provide high-quality crops, from grains to vegetables, grown with care and expertise.",
+        icon: "📊", // Replace with your SVG or image
+        title: "Market Trends",
+        description: "Market Trends provide insights into current patterns and shifts in consumer behavior, helping businesses adapt and stay competitive. Stay informed to seize emerging opportunities.",
     },
     {
-        icon: "🐄", // Replace with your SVG or image
-        title: "Animal Husbandry",
-        description: "Farmers raise livestock for meat, milk, and other by-products, ensuring quality and sustainability.",
+        icon: "📈", // Replace with your SVG or image
+        title: "Sales Performance",
+        description: "Sales Performance tracks the efficiency and success of sales activities, offering insights to optimize strategies and achieve revenue goals.",
     },
     {
-        icon: "🌱", // Replace with your SVG or image
-        title: "Organic Farming",
-        description: "Farmers offer organic produce, grown without harmful chemicals, ensuring a healthier option for consumers.",
+        icon: "🌍", // Replace with your SVG or image
+        title: "Regional Insights",
+        description: "Regional Insights analyze local market conditions, consumer preferences, and economic factors to help businesses tailor their strategies for specific areas.",
     },
     {
-        icon: "🚜", // Replace with your SVG or image
-        title: "Land Preparation",
+        icon: "🛠️", // Replace with your SVG or image
+        title: "Competitive Analysis",
         description: "Farmers provide land preparation services such as tilling, plowing, and soil fertilization for crop planting.",
     },
     {
-        icon: "🌻", // Replace with your SVG or image
-        title: "Flower Farming",
-        description: "Farmers grow flowers for sale to nurseries, markets, or for decoration in events and homes.",
+        icon: "📢", // Replace with your SVG or image
+        title: "Consumer Preferences",
+        description: "Competitive Analysis evaluates the strengths and weaknesses of current and potential competitors, providing valuable insights to refine strategies and maintain a competitive edge.",
     },
     {
-        icon: "🍯", // Replace with your SVG or image
-        title: "Honey Production",
-        description: "Farmers harvest honey from beehives, offering fresh, natural honey directly from the farm.",
+        icon: "💡", // Replace with your SVG or image
+        title: "Custom Reports",
+        description: "Custom Reports allow businesses to generate tailored data insights based on specific metrics and needs, enabling informed decision-making.",
     },
 ];
 
@@ -148,7 +148,7 @@ const services = [
     <><NavBar />
     <div className="mc">
           <div className="cs">
-            <h2 className="head1">Market Services</h2>
+            <h2 className="head1">Our Services</h2>
             <p className="head2">PROVIDE BY VERDICA</p>
           </div>
           </div>
@@ -234,19 +234,20 @@ const services = [
         <button onClick={handleSearch}>Go</button>
       </div>
       </div>
-      {/* Data Display */}
+      <div className="mar">
+      <h3>Filtered Market Data</h3>
+      </div>
       <section className="data-display">
-        <h3>Filtered Market Data</h3>
         {hasSearched && filteredData.length > 0 ? (
           filteredData.map((item, index) => (
             <div className="data-item" key={index}>
-              <p><strong>Commodity:</strong> {item.commodity}</p>
-              <p><strong>Market:</strong> {item.market}</p>
-              <p><strong>State:</strong> {item.state}</p>
-              <p><strong>District:</strong> {item.district}</p>
-              <p><strong>Max Price:</strong> {item.max_price}</p>
-              <p><strong>Min Price:</strong> {item.min_price}</p>
-              <p><strong>Arrival Date:</strong> {item.arrival_date}</p>
+              <p><strong>Commodity :</strong> {item.commodity}</p>
+              <p><strong>Market :</strong> {item.market}</p>
+              <p><strong>State :</strong> {item.state}</p>
+              <p><strong>District :</strong> {item.district}</p>
+              <p><strong>Max Price : </strong>₹ {item.max_price}</p>
+              <p><strong>Min Price : </strong>₹ {item.min_price}</p>
+              <p><strong>Arrival Date :</strong> {item.arrival_date}</p>
             </div>
           ))
         ) : (
@@ -257,9 +258,9 @@ const services = [
 
     <div className="services-container">
                     <div className="serv">
-                        <h2 className="services-title">Farm Produce</h2>
+                        <h2 className="services-title">Market Analysis</h2>
                         <p className="services-subtitle">
-                        Verdica empowers farmers to connect and sell their produce directly, ensuring fair prices through a global community-driven platform.
+                        VERDICA empowers businesses and individuals with data-driven insights, ensuring informed decisions through comprehensive market analysis.
                         </p>
                     </div>
                     <div className="services-grid">
@@ -268,65 +269,35 @@ const services = [
                                 <div className="service-icon">{service.icon}</div>
                                 <h3 className="service-title">{service.title}</h3>
                                 <p className="service-description">{service.description}</p>
-                                <a href="#" className="service-link">
-                                    Learn More
-                                </a>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className="container">
+                <div className="container-market">
                     {/* Top Section */}
-                    <div className="content">
-                        <p className="sub-heading">AT VERDICA</p>
-                        <h1 className="main-heading">
-                            For a Thriving Agricultural Community<br /> <span>Tomorrow</span>
+                    <div className="content-market">
+                        <p className="sub-heading-market">AT VERDICA</p>
+                        <h1 className="main-heading-market">
+                          For a Data-Driven Market Future<br /> <span>Tomorrow</span>
                         </h1>
-                        <p className="description">
-                        Verdica provides a platform where farmers can offer essential services like land preparation, crop cultivation, and organic farming to others in the agricultural community. This enables farmers to showcase their skills and expertise.
+                        <div className="descc-market">
+                        <p className="description-market">
+                        Verdica offers a platform for businesses to access detailed market insights, helping them stay ahead of trends, track sales performance, and analyze regional dynamics. This enables companies to make data-driven decisions and refine their strategies.
                         </p>
-                        <p className="description">
-                        Farmers can list, manage, and sell their services, helping them reach a broader audience. Verdica makes it easier for farmers to connect with those who need their services, ensuring mutual growth.
+                        <p className="description-market">
+                        Businesses can generate custom reports, perform competitive analysis, and gain a comprehensive understanding of market conditions. Verdica makes it easier for organizations to connect with the right opportunities and optimize their operations for success.
                         </p>
-                        <p className="description">Verdica is dedicated to creating a trusted environment where farmers can succeed by offering their valuable services. We aim to build a vibrant community that drives success and mutual benefit.</p>
+                        <p className="description-market">Verdica is dedicated to fostering a trusted environment where businesses can thrive by leveraging data. We aim to build a forward-thinking marketplace that promotes growth and success for all stakeholders.</p>
+                        </div>
                     </div>
 
                     {/* Image Section */}
-                    <div className="image-container">
+                    <div className="image-container-market">
                         <img
                             src="/Images/slider1.jpeg" // Placeholder image URL
                             alt="Sustainable Agriculture"
-                            className="farming-image"
+                            className="farming-image-market"
                         />
-                    </div>
-                </div>
-                <div className="categories-container">
-                    <h2 className="categories-heading">Categories</h2>
-                    <div className="styleline"></div>
-                    <div className="categories-grid">
-                        {categories.map((category, index) => (
-
-                            <div key={index} className="category-item">
-                                <a href={category.url}>
-                                    <div className="category-image">
-                                        <img src={category.img} alt={category.name} />
-                                    </div>
-                                </a>
-                                <p className="category-name">{category.name}</p>
-                            </div>
-
-                        ))}
-                    </div>
-                </div>
-                <div className="brandc">
-                    <div className="brands">
-                        <div className="sliderb">
-                            {brandLogos.map((logo, index) => (
-                                <div className="imgg" key={index}>
-                                    <img src={logo} alt={`Brand ${index + 1}`} />
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 </div>
           <Footer />

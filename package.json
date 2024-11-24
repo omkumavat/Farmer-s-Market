@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "fs": "^0.0.1-security",
-    "nodemailer": "^6.9.16",
-    "path": "^0.12.7",
-    "url": "^0.11.4"
+    "nodemailer": "^6.9.16"
   }
 }

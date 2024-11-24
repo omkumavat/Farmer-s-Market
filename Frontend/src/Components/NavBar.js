@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext'; // Ensure this context provides authentication state
 import Loader from './Loader';
+import GoogleTranslateWidget from "../Pages/GoogleTranslateWidget";
 const NavBar = () => {
 
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ const NavBar = () => {
         <img src="/Images/logo.jpg" alt="Verdica Logo" className="logo-image" />
         <span className="website-name">Verdica</span>
       </div>
+      <GoogleTranslateWidget />
       <ul className="nav-links">
         <li className="nav-item"><a href="/">Home</a></li>
         <li className="nav-item">
@@ -50,17 +52,17 @@ const NavBar = () => {
           <div className="dropdown">
             <button className="dropbtn">Solutions</button>
             <div className="dropdown-content">
-              <a href="/Landpreservation">Land Preservation</a>
+              <a href="/land-preservation">Land Preservation</a>
               <div className="style-line"></div>
-              <a href="/WaterManagement">Water Management</a>
+              <a href="/water-Management">Water Management</a>
               <div className="style-line"></div>
-              <a href="/Equipmentinstallation">Equipment Installation</a>
+              <a href="/equipment-installation">Equipment Installation</a>
               <div className="style-line"></div>
-              <a href="/Farminspection">Farm Inspection</a>
+              <a href="/farm-inspection">Farm Inspection</a>
               <div className="style-line"></div>
-              <a href="/Soilanalysis">Soil Analysis</a>
+              <a href="/soil-analysis">Soil Analysis</a>
               <div className="style-line"></div>
-              <a href="/Farmplans">Farm Plans</a>
+              <a href="/farm-plans">Farm Plans</a>
             </div>
           </div>
         </li>
@@ -75,6 +77,8 @@ const NavBar = () => {
               <a href="/farmer">Farm Produce</a>
               <div className="style-line"></div>
               <a href="/dealer">Agricultural Products</a>
+              <div className="style-line"></div>
+              <a href="/soil">Soil Information</a>
             </div>
           </div>
         </li>

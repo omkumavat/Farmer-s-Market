@@ -28,7 +28,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    background-color: #4651c2;
+    background-color: #01886d;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -59,8 +59,8 @@
   
   /* Go button */
   .filter-bar button {
-    background-color: #3498db;
-    color: white;
+    background-color: #04deba;
+    color: black;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -69,16 +69,25 @@
   }
   
   .filter-bar button:hover {
-    background-color: #2980b9;
+    color: white;
+    background-color: #03967d;
+    border: 2px solid white;
   }
   
+  .mar{
+
+  }
   /* Data Display Section */
   .data-display {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
     margin-top: 30px;
     padding: 20px;
-    background-color: #a43981;
+    background-color: rgb(9, 225, 153);
     border-radius: 8px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 1400px;
+    gap: 50px;
   }
   
   .data-display h3 {
@@ -106,3 +115,79 @@
   }
   
   
+.container-market {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 0px;
+  background-color: #d5f6f8;
+  margin-left: 165px;
+  height: 1000px;
+}
+
+.content-market {
+  text-align: left;
+  margin-bottom: 20px;
+  margin-top: 180px;
+  margin-left: 200px;
+}
+
+.sub-heading-market {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a78560; 
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  margin-top: -150px;
+  margin-left: 80px;
+}
+
+.main-heading-market {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c2c2c; /* Dark Gray */
+  margin-bottom: 20px;
+  line-height: 1.2;
+  margin-left: -300px;
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+
+.main-heading-market span {
+  color: #d39f5c; 
+}
+
+.description-market {
+  font-size: 1rem;
+  color: #4a4a4a; /* Medium Gray */
+  line-height: 1.6;
+  margin-bottom: 8px;
+  margin-top: -2px;
+  margin-bottom: 10px;
+}
+
+.descc-market{
+  margin-top: 20px;
+  margin-left: -100px;
+}
+
+/* Image Styling */
+.image-container-market {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: -10px; /* Overlap effect */
+}
+
+.farming-image-market {
+  width: 80%;
+  height: 500px;
+  object-fit: cover;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

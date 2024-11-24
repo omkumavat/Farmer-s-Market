@@ -1,15 +1,15 @@
 
 
 .weather-container {
-  background: rgba(150, 145, 184, 0.9);
+  background: rgba(229, 227, 244, 0.9);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  /* color:#e6f7ff; */
   border-radius: 15px;
   padding: 25px;
-  max-width: 450px;
+  max-width: 1200px;
   width: 90%;
   text-align: center;
-  margin: 0 auto;
+  margin-top: 50px;
+  margin-left: 171px;
   flex-grow: 1; 
   display: flex;
   flex-direction: column;
@@ -28,7 +28,8 @@
 /* Weather Section */
 .weather-container h2 {
   font-size: 2em;
-  color: #005f99;
+  color: rgb(4, 117, 127);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   margin-bottom: 20px;
 }
 
@@ -41,11 +42,49 @@
 }
 
 .weather-container .weather-card {
-  padding: 15px;
-  margin: 10px 0;
-  background-color: #f0f8ff;
+  width: 300px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #c4ffee;
   border-radius: 8px;
+  padding-bottom: 40px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weather-card h3,p{
+  margin-bottom: -5px;
+}
+.rac{
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.rac h2{
+  color: rgb(6, 137, 148);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.rain-alerts{
+  display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+   margin-bottom: 40px;
+}
+
+.rain-alert p{
+    font-family:cursive;
+    color: rgb(17, 1, 55);
+}
+
+.seasonal-crops ul li{
+    padding: 5px;
+    color: #052796;
+}
+
+.seasonal-crops ul{
+  list-style-type: none;
 }
 
 .weather-container .error-message {
@@ -58,14 +97,16 @@
 
 /* Services Section */
 .services-container {
+  /* margin-top: 200p; */
   padding: 40px 20px;
 }
 
-.services-title {
+.service-title {
   text-align: center;
   font-size: 2em;
   color: #005f99;
   margin-bottom: 10px;
+  margin-left: 60px;
 }
 
 .services-grid {
@@ -80,7 +121,7 @@
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -110,37 +151,84 @@
   text-decoration: underline;
 }
 
-/* Top Section */
-.container {
+.container-weather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1240px;
   padding: 20px;
-  background-color: #e6f7ff;
-  text-align: center;
-  border-radius: 8px;
-  margin: 20px;
+  position: relative;
+  margin-bottom: 180px;
+  margin-top: 50px;
+  margin-left: 140px;
+  background-color: rgb(201, 244, 255);
+  background-position: center;
+  height: 100vh;
+  height: 1000px;
+  
 }
 
-.main-heading {
-  font-size: 2em;
+.content-weather {
+  text-align: left;
   margin-bottom: 20px;
-  color: #005f99;
+  margin-top: 170px;
+  margin-left: 200px;
 }
 
-.description {
-  color: #333;
-  margin-bottom: 15px;
+.sub-heading-weather {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #a78560; 
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  margin-top: -150px;
+  margin-left: 70px;
 }
 
-/* Image Section */
-.image-container {
-  margin: 20px auto;
-  text-align: center;
+.main-heading-weather {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c2c2c; /* Dark Gray */
+  margin-bottom: 20px;
+  line-height: 1.2;
+  margin-left: -300px;
+  margin-top: -20px;
 }
 
-.farming-image {
+.main-heading-weather span {
+  color: #d39f5c; 
+}
+
+.description-weather {
+  font-size: 1rem;
+  color: #4a4a4a; /* Medium Gray */
+  line-height: 1.6;
+  margin-bottom: 8px;
+  margin-top: -2px;
+}
+
+.desccc-weather{
+  margin-top: -20px;
+  margin-left: -170px;
+}
+
+/* Image Styling */
+.image-containerss-weather {
   width: 100%;
-  max-width: 800px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: -320px; /* Overlap effect */
+}
+
+.farming-imagess-weather {
+  width: 1000px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: -440px;
+  margin-bottom: 80px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 

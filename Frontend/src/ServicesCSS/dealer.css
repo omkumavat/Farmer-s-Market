@@ -2,7 +2,7 @@
     display: flex;
     height: 450px;
     width: 1580px;
-    background-image: url('../Images/forlogin.jpg');
+    background-image: url('../../public/Images/hd1.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,20 +34,29 @@
       margin-left: -950px;
       margin-top: 180px;
       font-size: 60px;
+      color: rgb(47, 241, 47);
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   }
   
   .head2{
     margin-left: -1000px;
     font-size: 20px;
+    margin-top: -5px;
     font-family: cursive;
   }
-
+.servicetitle{
+  font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: -20px;
+    color: #333;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
 /* Container styling */
 .services-container {
     text-align: center;
     padding: 50px 20px;
-    background-color: #fff;
+    background-color:white;
     margin-left: 150px;
     margin-right: 150px;
     margin-top: 40px;
@@ -57,10 +66,7 @@
   .services-title {
     font-size: 2rem;
     font-weight: bold;
-    color: green;
-    /* margin-bottom: 10px; */
-    /* margin-right: -850px;
-    margin-left: 200px; */
+    color: rgb(8, 59, 33);
   }
 
   .serv{
@@ -84,8 +90,8 @@
   
   /* Individual cards */
   .service-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: white;
+    border: 1px solid white;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -106,12 +112,16 @@
   }
   
   /* Card title */
-  .service-title {
+  .servicess-title {
     font-size: 1.25rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: -20px;
     color: #333;
+    margin-left: 70px;
+  }
 
+  .hp{
+    margin-bottom: 30px;
   }
   
   /* Description */
@@ -121,18 +131,6 @@
     margin-bottom: 15px;
   }
   
-  /* Link button */
-  .service-link {
-    color: #e67e22;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 0.9rem;
-  }
-  
-  .service-link:hover {
-    text-decoration: underline;
-  }
-  
   /* Global styles */
 
 .container {
@@ -140,12 +138,11 @@
   flex-direction: column;
   align-items: center;
   max-width: 1200px;
-  margin: 0 auto;
   padding: 20px;
   position: relative;
+  margin-bottom: -100px;
 }
 
-/* Text Content Styling */
 .content {
   text-align: left;
   margin-bottom: 20px;
@@ -154,9 +151,11 @@
 .sub-heading {
   font-size: 1rem;
   font-weight: 500;
-  color: #a78560; /* Gold color */
+  color: #a78560; 
   text-transform: uppercase;
   margin-bottom: 10px;
+  margin-top: -150px;
+  margin-left: -100px;
 }
 
 .main-heading {
@@ -165,17 +164,25 @@
   color: #2c2c2c; /* Dark Gray */
   margin-bottom: 20px;
   line-height: 1.2;
+  margin-left: -460px;
+  margin-top: -20px;
 }
 
 .main-heading span {
-  color: #d39f5c; /* Orange for 'Tomorrow' */
+  color: #d39f5c; 
 }
 
 .description {
   font-size: 1rem;
   color: #4a4a4a; /* Medium Gray */
   line-height: 1.6;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  margin-top: -2px;
+}
+
+.descc{
+  margin-top: -20px;
+  margin-left: -300px;
 }
 
 /* Image Styling */
@@ -200,6 +207,7 @@
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  background-color: white;
 }
 
 .categories-heading {

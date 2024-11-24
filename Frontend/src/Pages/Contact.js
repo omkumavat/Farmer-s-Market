@@ -151,9 +151,12 @@ const ContactUs = () => {
         <div className="map-container">
           <h3>Our Office Location</h3>
           {/* Embed Google Map */}
-          <LoadScript googleMapsApiKey={"AIzaSyD0w1lvfJkEcNqp-3gJ-9s8GSLr8GrhzoQ"}>
+
+
+
+            <LoadScript googleMapsApiKey={"AIzaSyD0w1lvfJkEcNqp-3gJ-9s8GSLr8GrhzoQ"}>
             <GoogleMap mapContainerStyle={mapStyles} center={defaultCenter} zoom={13} />
-          </LoadScript>
+            </LoadScript>
         </div>
       </div>
       <Footer />

@@ -24,7 +24,9 @@ import ProductCategoryPage from './Pages/ProductCategoryPage';
 import PaymentButton from './cards/payment'
 import Loader from './Components/Loader';
 import TicketPage from './Pages/TicketPage';
-import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage'
+import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage';
+import Soil from "./Services/Soil";
+
 
 function App() {
   const { currentUser } = useAuth();
@@ -47,6 +49,7 @@ function App() {
   return (
     <div>
       <AuthProvider>
+      
         <Routes>
           {/* Admin-Only Routes */}
           {isAdmin && (
@@ -55,6 +58,7 @@ function App() {
               <Route path="*" element={<Navigate to="/dash" />} />
             </>
           )}
+
 
           {/* Non-Admin Routes */}
           {!isAdmin && (
@@ -65,12 +69,12 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/about" element={<About />} />
               <Route path="/team" element={<Team />} />
-              <Route path="/landpreservation" element={<Landpreservation />} />
-              <Route path="/watermanagement" element={<WaterManagement />} />
-              <Route path="/equipmentinstallation" element={<Equipmentinstallation />} />
-              <Route path="/farminspection" element={<Farminspection />} />
-              <Route path="/soilanalysis" element={<Soilanalysis />} />
-              <Route path="/farmplans" element={<Farmplans />} />
+              <Route path="/land-preservation" element={<Landpreservation />} />
+              <Route path="/water-management" element={<WaterManagement />} />
+              <Route path="/equipment-installation" element={<Equipmentinstallation />} />
+              <Route path="/farm-inspection" element={<Farminspection />} />
+              <Route path="/soil-analysis" element={<Soilanalysis />} />
+              <Route path="/farm-plans" element={<Farmplans />} />
               <Route path="/weather" element={<WeatherUpdates />} />
               <Route path="/dealer" element={<Dealer />} />
               <Route path="/dealer/category/:category" element={<ProductCategoryPage />} />
@@ -82,6 +86,7 @@ function App() {
               <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/payment" element={<PaymentButton  />} />
               <Route path="/ticket" element={<TicketPage  />} />
+              <Route path="/soil" element={<Soil  />} />
             </>
           )}
         </Routes>
