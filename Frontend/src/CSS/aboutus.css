@@ -1,22 +1,23 @@
-.about-us-container {
+.aboutuscontainer {
+  margin-top: 100px;
     font-family: Arial, sans-serif;
   }
   
   /* Header Section */
-  .about-us-header {
+  .aboutusheader {
     position: relative;
     text-align: center;
     color: white;
   }
   
-  .header-image {
+  .headerimage {
     background-image: url('../bgimage.jpg'); /* Path to your background image */
     background-size: cover;
     background-position: center;
     height: 300px;
   }
   
-  .header-text {
+  .headertext {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,7 +25,7 @@
   }
   
   /* Content Section */
-  .content-section {
+  .contentsection {
     display: flex;
     align-items: center;
     padding: 20px;
@@ -35,31 +36,31 @@
     flex-direction: row-reverse;
   }
   
-  .content-image {
+  .contentimage {
     width: 50%; /* Half the width for image */
     height: 100%;
     background-size: cover;
     background-position: center;
   }
   
-  .about-image-left {
+  .aboutimageleft {
     background-image: url('../bgimage.jpg'); /* Left image for content */
   }
   
-  .about-image-right {
+  .aboutimage-right {
     background-image: url('../bgimage.jpg'); /* Right image for content */
   }
   
-  .content-right {
+  .contentright {
     width: 50%; /* Half the width for content */
     margin-left: 20px;
   }
   
-  .content-right h3 {
+  .contentright h3 {
     margin-bottom: 10px;
   }
   
-  .content-right p {
+  .contentright p {
     margin: 10px 0;
   }
   
@@ -70,6 +71,7 @@
   
   .team-section h3 {
     margin-bottom: 20px;
+    margin-left: 650px;
   }
   
   .team-members {
@@ -106,7 +108,7 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 10px;
+    gap: -10  0px;
   }
   
   .contact-icons i {
@@ -126,7 +128,7 @@
   }
   
   /* Services Section */
-  .services-section {
+  .servicessection {
     text-align: center;
     padding: 50px 20px;
     background-image: url('../bgimage.jpg'); /* Replace with your main background image */
@@ -135,25 +137,25 @@
     color: white;
   }
   
-  .services-section h3 {
+  .servicessection h3 {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
   }
   
-  .services-section p {
+  .servicessection p {
     font-size: 18px;
     margin-bottom: 40px;
   }
   
-  .services-container {
+  .servicescontainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px; /* Space between the items */
   }
   
-  .service-item {
+  .serviceitem {
     width: 250px;
     padding: 20px;
     background: rgba(0, 0, 0, 0.7);
@@ -162,30 +164,30 @@
     transition: transform 0.3s, background-color 0.3s;
   }
   
-  .service-item:hover {
+  .serviceitem:hover {
     transform: translateY(-10px);
     background: rgba(255, 255, 255, 0.1);
   }
   
-  .service-item h4 {
+  .serviceitem h4 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
     color: #ffa500;
   }
   
-  .service-item p {
+  .serviceitem p {
     font-size: 14px;
     margin-bottom: 15px;
   }
   
-  .service-item .icon {
+  .serviceitem .icon {
     font-size: 40px;
     color: #ffa500;
     margin-bottom: 10px;
   }
   
-  .service-item button {
+  .serviceitem button {
     padding: 10px 20px;
     background-color: #ffa500;
     color: white;
@@ -196,7 +198,7 @@
     transition: background-color 0.3s;
   }
   
-  .service-item button:hover {
+  .serviceitem button:hover {
     background-color: #cc8400;
   }
   
