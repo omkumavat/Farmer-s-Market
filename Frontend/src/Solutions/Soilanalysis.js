@@ -7,12 +7,14 @@ import Footer from "../Components/Footer";
 import farmingImage from "../Images/farming-2.png";
 import agricultureImage from "../Images/agriculture-2.png";
 import shieldImage from "../Images/secure-shield.png";
+import { useNavigate } from "react-router-dom";
 
 function Solutions1() {
-  const [activeLink, setActiveLink] = useState("Land Preservation");
-
-  const handleLinkClick = (link) => {
+  const [activeLink, setActiveLink] = useState("Soil Analysis");
+  const navigate=useNavigate();
+  const handleLinkClick = (link,path) => {
     setActiveLink(link);
+    navigate(path);
   };
 
   return (
@@ -21,59 +23,56 @@ function Solutions1() {
       <div className="maincont">
         {/* Hero Section */}
         <div className="hero">
-          <h1>Land Preservation</h1>
-          <p>AGROS SOLUTION</p>
+          <h1>Soil Analysis</h1>
+          <p>VERDICA SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
-        <div className="cont">
+        <div className="contss">
           {/* Sidebar and Image Container */}
-          <div className="sidebarcont">
+          <div className="sidebarconts">
             {/* Sidebar */}
-            <div className="sides">
+            <div className="sidess">
               <ul>
                 {[
-                  "Land Preservation",
-                  "Farm Plans",
-                  "Farm Inspection",
-                  "Soil Analysis",
-                  "Equipment Installation",
-                  "Water Management",
-                ].map((item) => (
+                  { name: "Land Preservation", path: "/land-preservation" },
+                  { name: "Farm Plans", path: "/farm-plans" },
+                  { name: "Farm Inspection", path: "/farm-inspection" },
+                  { name: "Soil Analysis", path: "/soil-analysis" },
+                  { name: "Equipment Installation", path: "/equipment-installation" },
+                  { name: "Water Management", path: "/water-management" },                 ].map((item) => (
                   <li
                     key={item}
-                    className={`sidebar-item ${
-                      activeLink === item ? "active" : ""
+                    className={`itemsides ${
+                      activeLink === item.name ? "active" : ""
                     }`}
-                    onClick={() => handleLinkClick(item)}
+                    onClick={() => handleLinkClick(item.name,item.path)}
                   >
-                    {item}
+                    {item.name}
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebar-image"></div>
+            <div className="sidebarimgs"></div>
           </div>
 
           {/* Main Content */}
-          <div className="main-section">
-            <h2>The Agricultural Engineering Provided by Agros</h2>
-            <p>
-              The vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate non
-              provident.
+          <div className="mainsections">
+            <h2>The Agricultural Engineering Provided by VERDICA</h2>
+           <div className="equip">
+           <p>
+           Soil analysis is the process of evaluating the physical, chemical, and biological properties of soil to determine its health and suitability for agricultural activities. It involves testing for key nutrients, pH levels, moisture content, and organic matter to identify the soil’s strengths and deficiencies. This information helps farmers optimize crop selection, improve soil fertility, and implement sustainable farming practices. Regular soil analysis is essential for maximizing productivity, reducing input costs, and maintaining long-term soil health.
             </p>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+            At Verdica, we empower farmers to make informed decisions through accurate and comprehensive soil analysis. Our platform connects you with advanced testing tools and expert guidance to evaluate your soil’s health, optimize crop selection, and enhance fertility sustainably.
             </p>
+           </div>
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose Agros</h3>
+              <h3>Why Choose VERDICA</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">
@@ -82,10 +81,11 @@ function Solutions1() {
                     alt="Innovation Technology Icon"
                     className="feature-icon"
                   />
-                  <h4>Innovation Technology</h4>
+                  <h4>Accurate and Comprehensive Testing
+                  </h4>
                   <p>
-                    The Industrial is responsible for minor and the codes
-                    security in hotel Ecosystem for Food and Cleaner through.
+                  Evaluate critical soil parameters, including nutrient content, pH levels, moisture, and organic matter.
+                  Identify deficiencies and imbalances to create tailored improvement plans.
                   </p>
                 </div>
 
@@ -96,10 +96,10 @@ function Solutions1() {
                     alt="Qualified Farmers Icon"
                     className="feature-icon"
                   />
-                  <h4>Qualified Farmers</h4>
+                  <h4>Expert Recommendations</h4>
                   <p>
-                    Our aim is to keep the house clean – your aim will help!
-                    Through Digital Innovation World Summit.
+                  Receive actionable insights from agricultural specialists to address soil challenges effectively.
+                  Optimize crop selection, fertilizer application, and resource management.
                   </p>
                 </div>
 
@@ -110,10 +110,10 @@ function Solutions1() {
                     alt="Extended Warranty Icon"
                     className="feature-icon"
                   />
-                  <h4>Extended Warranty</h4>
+                  <h4>Advanced Technology</h4>
                   <p>
-                    Both of us take a lot of time in getting cleaned and
-                    beautified Clean Home. Professional Service.
+                  Leverage cutting-edge tools like GIS mapping and remote sensing for detailed soil analysis.
+                  Access easy-to-understand visualizations and real-time updates on soil health.
                   </p>
                 </div>
 
@@ -124,10 +124,10 @@ function Solutions1() {
                     alt="Awarded Company Icon"
                     className="feature-icon"
                   />
-                  <h4>Awarded Company</h4>
+                  <h4>Cost-Effective Farming</h4>
                   <p>
-                    We are a company dedicated to giving our customers back
-                    the time they deserve to enjoy the things they love.
+                    Reduce input costs by applying precise amounts of fertilizers and water based on soil requirements.
+Avoid overuse of resources while maximizing yields and profitability.
                   </p>
                 </div>
               </div>

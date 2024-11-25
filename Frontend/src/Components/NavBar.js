@@ -45,6 +45,8 @@ const NavBar = () => {
               <a href="/contact">Contact Us</a>
               <div className="style-line"></div>
               <a href="/team">Our Team</a>
+              <div className="style-line"></div>
+              <a href="/ticket">FAQs & Query</a>
             </div>
           </div>
         </li>

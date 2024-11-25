@@ -4,6 +4,7 @@ import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
 import "../ServicesCSS/dealer.css";
 import axios from "axios";
+import Loader from "../Components/Loader";
 
 const Dealer = () => {
   const [displayProducts, setDisplayProducts] = useState([]);
@@ -27,7 +28,7 @@ const Dealer = () => {
   // UseEffect to fetch the products when the component mounts
   useEffect(() => {
     fetchLimitedProducts(); // Only call this once on component mount
-  }, [setDisplayProducts]); // Empty dependency array to ensure it runs once on mount
+  }, [displayProducts]); // Empty dependency array to ensure it runs once on mount
 
   const categories = [
     { name: "Offers", img: "/Images/dealer11.jpg", url: "offers" },
@@ -90,7 +91,10 @@ const Dealer = () => {
   
   return (
     <>
-      <NavBar />
+      {
+        displayProducts.length>0 ? (
+          <>
+          <NavBar />
       <div>
         <div className="mc">
           <div className="cs">
@@ -195,6 +199,11 @@ const Dealer = () => {
         </div>
       </div>
       <Footer />
+          </>
+        ) : (
+          <Loader/>
+        )
+      }
     </>
   );
 };

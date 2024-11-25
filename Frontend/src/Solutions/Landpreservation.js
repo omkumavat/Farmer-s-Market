@@ -7,12 +7,14 @@ import Footer from "../Components/Footer";
 import farmingImage from "../Images/farming-2.png";
 import agricultureImage from "../Images/agriculture-2.png";
 import shieldImage from "../Images/secure-shield.png";
+import { useNavigate } from "react-router-dom";
 
 function Solutions1() {
   const [activeLink, setActiveLink] = useState("Land Preservation");
-
-  const handleLinkClick = (link) => {
+  const navigate=useNavigate();
+  const handleLinkClick = (link,path) => {
     setActiveLink(link);
+    navigate(path);
   };
 
   return (
@@ -22,58 +24,55 @@ function Solutions1() {
         {/* Hero Section */}
         <div className="hero">
           <h1>Land Preservation</h1>
-          <p>AGROS SOLUTION</p>
+          <p>VERDICA SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
-        <div className="cont">
+        <div className="contss">
           {/* Sidebar and Image Container */}
-          <div className="sidebarcont">
+          <div className="sidebarconts">
             {/* Sidebar */}
-            <div className="sides">
+            <div className="sidess">
               <ul>
                 {[
-                  "Land Preservation",
-                  "Farm Plans",
-                  "Farm Inspection",
-                  "Soil Analysis",
-                  "Equipment Installation",
-                  "Water Management",
-                ].map((item) => (
+                  { name: "Land Preservation", path: "/land-preservation" },
+                  { name: "Farm Plans", path: "/farm-plans" },
+                  { name: "Farm Inspection", path: "/farm-inspection" },
+                  { name: "Soil Analysis", path: "/soil-analysis" },
+                  { name: "Equipment Installation", path: "/equipment-installation" },
+                  { name: "Water Management", path: "/water-management" },                ].map((item) => (
                   <li
                     key={item}
-                    className={`sidebar-item ${
-                      activeLink === item ? "active" : ""
+                    className={`itemsides ${
+                      activeLink === item.name ? "active" : ""
                     }`}
-                    onClick={() => handleLinkClick(item)}
+                    onClick={() => handleLinkClick(item.name,item.path)}
                   >
-                    {item}
+                    {item.name}
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebar-image"></div>
+            <div className="sidebarimgs"></div>
           </div>
 
           {/* Main Content */}
-          <div className="main-section">
-            <h2>The Agricultural Engineering Provided by Agros</h2>
-            <p>
-              The vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas molestias excepturi sint occaecati cupiditate non
-              provident.
+          <div className="mainsections">
+            <h2>The Agricultural Engineering Provided by VERDICA</h2>
+          <div className="equip">
+          <p>
+            Land preservation focuses on protecting and maintaining natural landscapes, agricultural lands, and ecosystems for future generations. It involves sustainable practices to prevent soil erosion, combat deforestation, conserve water resources, and promote biodiversity. By implementing strategies like controlled land use, reforestation, and soil management, land preservation helps maintain the ecological balance, support agriculture, and mitigate environmental degradation. It ensures that land remains fertile, productive, and resilient against the impacts of urbanization and climate change.
             </p>
             <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+            At VERDICA, we prioritize sustainable farming practices by empowering farmers with tools and strategies to preserve their land for future generations. Our platform helps farmers implement eco-friendly methods to protect soil health, conserve water, and maintain biodiversity, ensuring long-term productivity and environmental balance.
             </p>
+          </div>
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose Agros</h3>
+              <h3>Why Choose VERDICA</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">
@@ -82,10 +81,9 @@ function Solutions1() {
                     alt="Innovation Technology Icon"
                     className="feature-icon"
                   />
-                  <h4>Innovation Technology</h4>
+                  <h4>Expert Guidance</h4>
                   <p>
-                    The Industrial is responsible for minor and the codes
-                    security in hotel Ecosystem for Food and Cleaner through.
+                  Work with agricultural and environmental experts who provide insights on preserving soil health and natural resources.
                   </p>
                 </div>
 
@@ -96,10 +94,10 @@ function Solutions1() {
                     alt="Qualified Farmers Icon"
                     className="feature-icon"
                   />
-                  <h4>Qualified Farmers</h4>
+                  <h4>Advanced Monitoring Tools</h4>
                   <p>
-                    Our aim is to keep the house clean – your aim will help!
-                    Through Digital Innovation World Summit.
+                  Leverage cutting-edge technology to track soil quality, moisture levels, and biodiversity.
+                  Make data-driven decisions to prevent overuse of resources and maintain ecological balance.
                   </p>
                 </div>
 
@@ -124,10 +122,10 @@ function Solutions1() {
                     alt="Awarded Company Icon"
                     className="feature-icon"
                   />
-                  <h4>Awarded Company</h4>
+                  <h4>Sustainability Focus</h4>
                   <p>
-                    We are a company dedicated to giving our customers back
-                    the time they deserve to enjoy the things they love.
+                  Adopt eco-friendly practices that reduce environmental impact while boosting productivity.
+                  Preserve your land’s value and health for future farming endeavors.
                   </p>
                 </div>
               </div>

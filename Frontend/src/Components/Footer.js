@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
           <div>
             <i className="fa fa-envelope"></i>
-            <p>info@agros.com</p>
+            <p>info@verdica.com</p>
             <span>Drop us an email</span>
           </div>
           <div>
@@ -25,7 +25,7 @@ const Footer = () => {
       </div>
       <div className="footer-middle">
       <div className="about-sections">
-  <h3>Agros</h3>
+  <h3>VERDICA</h3>
   <p>
     We are dedicated to the production and marketing of mass consumer
     products. Its business units are the manufacture of chemicals for
@@ -61,7 +61,7 @@ const Footer = () => {
           <h3>Recent News</h3>
           <ul>
             <li>
-              <span>Improvements in Agro Techniques</span>
+              <span>Improvements in Verdica Techniques</span>
               <small>24 July 2020</small>
             </li>
             <li>
@@ -73,7 +73,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p>
-          © 2020 Agros Agriculture & Organic Food HTML Template | About |
+          © 2024 VERDICA Agriculture | About |
           Solutions | Projects
         </p>
       </div>

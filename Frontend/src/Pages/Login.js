@@ -7,17 +7,22 @@ import Footer from "../Components/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
-
+import Loader from "../Components/Loader";
 const Login = () => {
+  
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(""); // State for handling errors
-
+  const [isAuthReady,setisAuthReady]=useState(false);
   const navigate = useNavigate();
   const { login } = useAuth(); // Destructure login function from context
 
+  if (isAuthReady) {
+    return <Loader />;
+  }
   const handleSubmit = async (e) => {
+    setisAuthReady(true);
     e.preventDefault();
 
     if (!email || !password) {
@@ -53,6 +58,7 @@ const Login = () => {
       setError("Login failed. Please try again."); // Catch general errors
       console.error(error);
     }
+    setisAuthReady(false);
   };
 
   return (

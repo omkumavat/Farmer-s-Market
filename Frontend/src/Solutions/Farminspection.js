@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "../SOLCSS/Farminspection.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
-
-// Importing images from the `src` folder
+import { useNavigate } from "react-router-dom";// Importing images from the `src` folder
 import farmingImage from "../Images/farming-2.png";
 import agricultureImage from "../Images/agriculture-2.png";
 import shieldImage from "../Images/secure-shield.png";
 
 function Solutions1() {
   const [activeLink, setActiveLink] = useState("Farm Inspection");
-
-  const handleLinkClick = (link) => {
+  const navigate = useNavigate();
+  const handleLinkClick = (link,path) => {
     setActiveLink(link);
+    navigate(path);
   };
 
   return (
@@ -22,7 +22,7 @@ function Solutions1() {
         {/* Hero Section */}
         <div className="hero">
           <h1>Farm Inspection</h1>
-          <p>AGROS SOLUTION</p>
+          <p>VERDICA SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
@@ -41,11 +41,11 @@ function Solutions1() {
                  { name: "Water Management", path: "/water-management" },
                 ].map((item) => (
                   <li
-                    key={item}
-                    className={`itemsides ${activeLink === item ? "active" : ""}`}
-                    onClick={() => handleLinkClick(item)}
+                    key={item.name}
+                    className={`itemsides ${activeLink === item.name ? "active" : ""}`}
+                    onClick={() => handleLinkClick(item.name,item.path)}
                   >
-                    {item}
+                    {item.name}
                   </li>
                 ))}
               </ul>
@@ -57,13 +57,13 @@ function Solutions1() {
 
           {/* Main Content */}
           <div className="mainsections">
-            <h2>The Agricultural Engineering Provided by Agros</h2>
+            <h2>The Agricultural Engineering Provided by VERDICA</h2>
             <div className="equip">
               <p>
-              Farm plans are detailed strategies designed to guide the growth, development, and management of a farm over a specified period. These plans typically focus on optimizing land use, enhancing crop yield, ensuring sustainable farming practices, and meeting market demand. A well-structured farm plan is essential for improving operational efficiency, increasing profitability, and maintaining environmental sustainability. 
+              Farm inspection is a critical process that ensures agricultural practices meet established standards for quality, safety, and sustainability. It involves a detailed evaluation of farm operations, equipment, and outputs to identify areas of improvement, assess compliance with regulations, and promote best practices. Farm inspections are essential for maintaining high performance, enhancing productivity, and ensuring the health of both crops and livestock.
               </p>
               <p>
-                At Verdica, we simplify farm planning by connecting farmers with expert advisors and providing advanced tools for efficient farm management. Our platform ensures farmers receive personalized plans, comprehensive strategies, and actionable insights, helping them optimize resources, enhance productivity, and maintain sustainable practices. With Verdica, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm.
+              At VERDICA, we revolutionize farm inspections by providing a seamless and efficient platform designed to meet the unique needs of farmers. Our technology-driven approach connects farmers with experienced inspectors and equips them with cutting-edge tools to ensure thorough evaluations and actionable insights.
               </p>
             </div>
 

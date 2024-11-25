@@ -8,30 +8,26 @@ const AboutUs = () => {
   return (
     <>
       <NavBar />
-      <div className="about-us-container">
+      <div className="aboutuscontainer">
         {/* Header Section */}
-        <div className="about-us-header">
-          <div className="header-image"></div>
-          <div className="header-text">
+        <div className="aboutusheader">
+          <div className="headerimage"></div>
+          <div className="headertext">
             <h1>About Us</h1>
-            <h2>About Agrosin</h2>
+            <h2>About VERDICA</h2>
           </div>
         </div>
 
         {/* First Content Section */}
-        <div className="content-section">
-          <div className="content-left">
-            <div className="content-image about-image-left"></div>
+        <div className="contentsection">
+          <div className="contentleft">
+            <div className="contentimage about-image-left"></div>
           </div>
-          <div className="content-right">
-            <h3>About Agrosin</h3>
+          <div className="contentright">
+            <h3>About VERDICA</h3>
             <p>
               Cultivating Ideas for Growth <br />
-              We offer reasonable pricing health care plans, insurance packages
-              to clients. Helping farmers to emerging markets maximize their
-              profits. We use agronomic machine learning, remote sensing, and
-              mobile phones to deliver financing, farm products. Has 26 affiliated
-              state soybean associations representing 30 soybean-producing states.
+              Verdica is a cutting-edge agricultural platform dedicated to empowering farmers with innovative solutions for sustainable and efficient farming. We bridge the gap between traditional practices and modern technology, providing tools, insights, and expert guidance to help farmers enhance productivity, preserve resources, and achieve long-term success.
             </p>
             <div className="stats">
               <p>
@@ -45,22 +41,18 @@ const AboutUs = () => {
         </div>
          
         {/* Second Content Section */}
-        <div className="content-section reverse">
-          <div className="content-left">
-            <div className="content-image about-image-right"></div>
+        <div className="contentsection reverse">
+          <div className="contentleft">
+            <div className="contentimage aboutimageright"></div>
           </div>
-          <div className="content-right">
+          <div className="contentright">
             <h3>WHY CHOOSE US?</h3>
             <p>
               A Bright Nature of Decision <br />
-              We serve with best superiority and service. Your toolkit for
-              business originality brings cheers to put your solid hat on.
+              Verdica offers personalized farm plans, soil analysis, and land preservation strategies based on real-time data and expert insights, ensuring optimized productivity and sustainable farming practices.
             </p>
             <p>
-              Before agriculture became widespread, people spent most of their
-              lives searching for food—hunting wild animals and gathering wild
-              plants. About 11,500 years ago, people gradually learned how to grow
-              cereal and root crops and settled down to a life based on farming.
+            With access to advanced tools, cutting-edge technology, and ongoing support from agricultural professionals, Verdica helps you make informed decisions that improve efficiency, reduce costs, and promote long-term success.
             </p>
             <ul>
               <li><strong>Natural Care:</strong> First domesticated</li>
@@ -90,56 +82,48 @@ const AboutUs = () => {
       </div>
       <div className="name">Jane Smith</div>
     </div>
-    <div className="team-member member-right">
-      <div className="contact-icons">
-        <i className="icon fab fa-facebook"></i>
-        <i className="icon fab fa-twitter"></i>
-        <i className="icon fab fa-instagram"></i>
-      </div>
-      <div className="name">Mark Lee</div>
-    </div>
   </div>
 </div>
 
 
         {/* Our Services Section */}
-        <div className="services-section">
+        <div className="servicessection">
           <h3>Our Services</h3>
           <p>
             Industra is a global community of practice that facilitates dialogue, information exchange, and use of information.
           </p>
-          <div className="services-container">
-            <div className="service-item">
+          <div className="servicescontainer">
+            <div className="serviceitem">
               <div className="icon">🥦</div>
               <h4>Vegetables</h4>
               <p>Accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</p>
               <button>Learn More</button>
             </div>
-            <div className="service-item">
+            <div className="serviceitem">
               <div className="icon">🌾</div>
               <h4>Natural Wheats</h4>
               <p>We are closely monitoring national, state, and local health agencies.</p>
               <button>Learn More</button>
             </div>
-            <div className="service-item">
+            <div className="serviceitem">
               <div className="icon">🍎</div>
               <h4>Fresh Fruits</h4>
               <p>Follow these tips from the CDC to help prevent the spread of the seasonal.</p>
               <button>Learn More</button>
             </div>
-            <div className="service-item">
+            <div className="serviceitem">
               <div className="icon">🐄</div>
               <h4>Healthy Cattle</h4>
               <p>Industra plays a large role in the comfort of your home, but many.</p>
               <button>Learn More</button>
             </div>
-            <div className="service-item">
+            <div className="serviceitem">
               <div className="icon">🚛</div>
               <h4>Modern Truck</h4>
               <p>We realize that every family has their own preferences, so we accommodate.</p>
               <button>Learn More</button>
             </div>
-            <div className="service-item">
+            <div className="serviceitem">
               <div className="icon">💼</div>
               <h4>Professional Consultation</h4>
               <p>Our consultants ensure your company's needs are met with the best products.</p>

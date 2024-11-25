@@ -7,12 +7,14 @@ import Footer from "../Components/Footer";
 import farmingImage from "../Images/farming-2.png";
 import agricultureImage from "../Images/agriculture-2.png";
 import shieldImage from "../Images/secure-shield.png";
+import { useNavigate } from "react-router-dom";
 
 function Solutions1() {
   const [activeLink, setActiveLink] = useState("Farm Plans");
-
-  const handleLinkClick = (link) => {
+  const navigate=useNavigate();
+  const handleLinkClick = (link,path) => {
     setActiveLink(link);
+    navigate(path);
   };
 
   return (
@@ -41,13 +43,13 @@ function Solutions1() {
                   { name: "Water Management", path: "/water-management" },
                 ].map((item) => (
                   <li
-                    key={item}
+                    key={item.name}
                     className={`itemsides ${
-                      activeLink === item ? "active" : ""
+                      activeLink === item.name ? "active" : ""
                     }`}
-                    onClick={() => handleLinkClick(item)}
+                    onClick={() => handleLinkClick(item.name,item.path)}
                   >
-                    {item}
+                    {item.name}
                   </li>
                 ))}
               </ul>
@@ -59,7 +61,7 @@ function Solutions1() {
 
           {/* Main Content */}
           <div className="mainsections">
-            <h2>The Agricultural Engineering Provided by Agros</h2>
+            <h2>The Agricultural Engineering Provided by VERDICA</h2>
             <div className="equip">
             <p>
             Farm plans are detailed strategies designed to guide the growth, development, and management of a farm over a specified period. These plans typically focus on optimizing land use, enhancing crop yield, ensuring sustainable farming practices, and meeting market demand. A well-structured farm plan is essential for improving operational efficiency, increasing profitability, and maintaining environmental sustainability. 
@@ -71,7 +73,7 @@ function Solutions1() {
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose Agros</h3>
+              <h3>Why Choose VERDICA</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">
@@ -80,10 +82,9 @@ function Solutions1() {
                     alt="Innovation Technology Icon"
                     className="feature-icon"
                   />
-                  <h4>Innovation Technology</h4>
+                  <h4>Personalized Farm Plans</h4>
                   <p>
-                    The Industrial is responsible for minor and the codes
-                    security in hotel Ecosystem for Food and Cleaner through.
+                  We craft plans based on your farm’s specific needs, including soil type, climate, and crop preferences. Tailored strategies ensure maximum yield and resource optimization.
                   </p>
                 </div>
 
@@ -94,10 +95,10 @@ function Solutions1() {
                     alt="Qualified Farmers Icon"
                     className="feature-icon"
                   />
-                  <h4>Qualified Farmers</h4>
+                  <h4>Sustainability Focus</h4>
                   <p>
-                    Our aim is to keep the house clean – your aim will help!
-                    Through Digital Innovation World Summit.
+                  Promote eco-friendly practices to enhance soil health, conserve water, and reduce environmental impact.
+                  Achieve compliance with sustainable farming standards and certifications.
                   </p>
                 </div>
 
@@ -108,10 +109,9 @@ function Solutions1() {
                     alt="Extended Warranty Icon"
                     className="feature-icon"
                   />
-                  <h4>Extended Warranty</h4>
+                  <h4>Scalable Solutions</h4>
                   <p>
-                    Both of us take a lot of time in getting cleaned and
-                    beautified Clean Home. Professional Service.
+                  Whether you're managing a small family farm or a large-scale agribusiness, our solutions scale to meet your needs.
                   </p>
                 </div>
 
@@ -122,10 +122,10 @@ function Solutions1() {
                     alt="Awarded Company Icon"
                     className="feature-icon"
                   />
-                  <h4>Awarded Company</h4>
+                  <h4>Cost-Effective Approach</h4>
                   <p>
-                    We are a company dedicated to giving our customers back
-                    the time they deserve to enjoy the things they love.
+                  Save resources by optimizing inputs like water, fertilizers, and labor.
+                  Increase profitability by focusing on high-yield crops and efficient management practices.
                   </p>
                 </div>
               </div>
