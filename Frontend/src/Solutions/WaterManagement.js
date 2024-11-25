@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import for navigation
-import "../SOLCSS/WaterManagement.css";
+import "../SOLCSS/Equipmentinstallation.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
@@ -57,20 +57,43 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebarimgs"></div>
+            <div className="sidebarimgs">
+              <img
+                src={`${process.env.PUBLIC_URL}/Images/homeimages/water.jpg`}
+                alt="Equipment Installation"
+                className="sidebar-image"
+              />
+            </div>
           </div>
 
           {/* Main Content */}
           <div className="mainsections">
-            <h2>The Agricultural Engineering Provided by VERDICA</h2>
-            <div className="equip">
-              <p>
-                Water management in agriculture focuses on the effective use, conservation, and distribution of water resources to optimize crop production while ensuring sustainability. This involves techniques like drip irrigation, rainwater harvesting, soil moisture monitoring, and canal systems to deliver water efficiently. Proper water management enhances crop yield, prevents water wastage, and mitigates issues like waterlogging and soil erosion, contributing to long-term agricultural productivity and environmental balance.
-              </p>
-              <p>
-                At Verdica, we simplify water management for farmers by connecting them with trusted dealers offering advanced irrigation systems and tools. Our platform ensures that farmers receive expert guidance, high-quality products, and tailored solutions to address specific water challenges on their farms. By facilitating seamless access to resources, we help farmers achieve water efficiency and improved crop growth.
-              </p>
-            </div>
+  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <div className="equip">
+    <p>
+      **Water Management** in agriculture focuses on the effective use, conservation, and distribution of water resources to optimize crop production while ensuring sustainability. It is essential for maintaining healthy crops and increasing agricultural productivity. Water management techniques include:
+    </p>
+    <ul>
+      <li><strong>Drip Irrigation</strong>: A highly efficient method that delivers water directly to the plant roots, reducing evaporation and runoff while conserving water.</li>
+      <li><strong>Rainwater Harvesting</strong>: The practice of collecting and storing rainwater for irrigation purposes, minimizing reliance on groundwater or external water sources.</li>
+      <li><strong>Soil Moisture Monitoring</strong>: Using sensors and technologies to measure soil moisture levels in real time, helping farmers irrigate crops only when necessary, thus conserving water and reducing waste.</li>
+      <li><strong>Canal Systems</strong>: Designed to carry water from water sources to agricultural lands, canal systems help deliver water efficiently, especially in large-scale farming operations.</li>
+    </ul>
+    <p>
+      Proper water management not only enhances crop yield but also helps in mitigating issues like waterlogging, soil erosion, and salinization. Water efficiency directly contributes to improved soil quality and promotes sustainable farming practices. By minimizing water wastage, farmers can reduce costs and maintain long-term crop productivity. Furthermore, sustainable water practices help in conserving water resources, ensuring their availability for future generations.
+    </p>
+    <p>
+      At Verdica, we understand the importance of efficient water management for farming success. We simplify this process by connecting farmers with trusted dealers offering advanced irrigation systems and water management tools. From low-cost, high-efficiency drip systems to smart water-saving technologies, our platform ensures farmers have access to innovative solutions tailored to their specific water challenges.
+    </p>
+    <p>
+      In addition to providing top-quality equipment, Verdica’s platform also offers expert guidance to help farmers optimize their irrigation practices. Whether it's adjusting irrigation schedules based on seasonal rainfall or selecting the right irrigation method for various crop types, we provide the resources needed to enhance water efficiency and crop health.
+    </p>
+    <p>
+      With access to real-time data and analysis, farmers can make better-informed decisions regarding water usage, ensuring that their farms are productive, profitable, and sustainable. Verdica is committed to facilitating seamless access to these essential resources, helping farmers achieve optimal water management and improved crop growth, while contributing to the long-term health of the environment.
+    </p>
+  </div>
+
+
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">

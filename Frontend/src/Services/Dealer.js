@@ -98,7 +98,7 @@ const Dealer = () => {
       <div>
         <div className="mc">
           <div className="cs">
-            <h2 className="head1">Our Services</h2>
+            <h2 className="head1">Dealer Product</h2>
             <p className="head2">PROVIDE BY VERDICA</p>
           </div>
         </div>
@@ -148,9 +148,9 @@ const Dealer = () => {
         </div>
         <div className="services-container">
           <div className="serv">
-            <h2 className="services-title">Agricultural Products</h2>
+            <h2 className="services-title">Dealer Products</h2>
             <p className="services-subtitle">
-            Verdica empowers dealers to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
+            Verdica empowers farmer to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
             </p>
           </div>
           <div className="services-grid">
@@ -167,37 +167,33 @@ const Dealer = () => {
             ))}
           </div>
         </div>
-        <div className="container">
-          {/* Top Section */}
-          <div className="content">
-            <p className="sub-heading">AT VERDICA</p>
-            <h1 className="main-heading">
-              For a Thriving Agricultural Community
-              <br /> <span>Tomorrow</span>
-            </h1>
-            <div className="descc">
-            <p className="description">
-              At Verdica, we are committed to building bridges between dealers and farmers, enabling seamless access to essential agricultural products and services. Our platform empowers dealers to showcase their offerings while ensuring quality and trust for farmers.
-            </p>
-            <p className="description">
-              With a focus on innovation and sustainability, Verdica provides verified dealers with a comprehensive platform to list, manage, and sell their products, from seeds and tools to advanced farming equipment. Together, we aim to create a thriving agricultural marketplace that benefits all stakeholders.
-            </p>
-            <p className="description">
-              Verdica is your trusted partner, connecting dealers with farmers to achieve mutual success while promoting sustainable agricultural practices.
-            </p>
-            </div>
-          </div>
+        <div className="content-market">
+    <p className="sub-heading-market">AT VERDICA</p>
+    <h1 className="main-heading-market">
+      Connecting Dealers and Farmers<br /> <span>For Agricultural Excellence</span>
+    </h1>
+    <div className="descc-market">
+        <p className="description-market">
+        Verdica bridges the gap between agricultural dealers and farmers, providing a platform where dealers can showcase fertilizers, equipment, seeds, and other essential farming products. This ensures farmers have access to high-quality supplies for their agricultural needs.
+        </p>
+        <p className="description-market">
+        Through Verdica, dealers can reach a vast network of farmers, promote their products, and gain insights into farmers' specific requirements. Farmers, in turn, can explore a diverse range of trusted products, compare prices, and make informed purchasing decisions.
+        </p>
+        <p className="description-market">
+        Our mission is to build a transparent and efficient marketplace that empowers farmers with reliable resources while enabling dealers to expand their reach and grow their businesses sustainably.
+        </p>
+    </div>
+</div>
 
-          {/* Image Section */}
-          <div className="image-container">
-            <img
-              src="/Images/slider1.jpeg"
-              alt="Sustainable Agriculture"
-              className="farming-image"
-            />
-          </div>
-        </div>
-      </div>
+{/* Image Section */}
+<div className="image-container-market">
+    <img
+        src="/Images/product.jpeg" // Placeholder image URL
+        alt="Agricultural Products"
+        className="farming-image-market"
+    />
+</div>
+</div>
       <Footer />
           </>
         ) : (

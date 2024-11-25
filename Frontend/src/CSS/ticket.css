@@ -126,3 +126,53 @@
     padding: 0.5rem 1rem;
   }
   
+
+  /* Center-align the entire content section */
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 ;
+  padding: 2rem 1rem;
+}
+
+/* Adjust sub-heading and main-heading styles */
+.sub-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.main-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.4;
+  margin-top: 0; /* Ensure no gap above the heading */
+  margin-bottom: 1.5rem; /* Adjust this to control gap between the two texts */
+  
+}
+
+/* Adjust gap between text and FAQs */
+.categories-container {
+  text-align: center;
+  margin-top: 0rem; /* Adjust this value for desired spacing */
+}
+
+.categories-heading {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.styleline {
+  width: 60px;
+  height: 4px;
+  background-color: #3a36db;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+}

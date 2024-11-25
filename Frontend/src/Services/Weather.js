@@ -106,7 +106,7 @@ const Weather = () => {
       <div>
         <div className="mc">
           <div className="cs">
-            <h2 className="head1">Our Services</h2>
+            <h2 className="head1">Weather Analysis</h2>
             <p className="head2">PROVIDED BY VERDICA</p>
           </div>
         </div>
@@ -210,7 +210,7 @@ const Weather = () => {
 
         <div className="image-containerss-weather">
           <img
-            src="/Images/slider1.jpeg"
+            src="/Images/rain1.jpg"
             alt="Sustainable Agriculture"
             className="farming-imagess-weather"
           />

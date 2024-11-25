@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../SOLCSS/Farmplans.css";
+import "../SOLCSS/Equipmentinstallation.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
@@ -56,20 +56,45 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebarimgs"></div>
+            <div className="sidebarimgs">
+              <img
+                src={`${process.env.PUBLIC_URL}/Images/homeimages/farm.png`}
+                alt="Equipment Installation"
+                className="sidebar-image"
+              />
+            </div>
           </div>
 
           {/* Main Content */}
           <div className="mainsections">
-            <h2>The Agricultural Engineering Provided by VERDICA</h2>
-            <div className="equip">
-            <p>
-            Farm plans are detailed strategies designed to guide the growth, development, and management of a farm over a specified period. These plans typically focus on optimizing land use, enhancing crop yield, ensuring sustainable farming practices, and meeting market demand. A well-structured farm plan is essential for improving operational efficiency, increasing profitability, and maintaining environmental sustainability. 
-            </p>
-            <p>
-              At  Verdica, we simplify farm planning by connecting farmers with expert advisors and providing advanced tools for efficient farm management. Our platform ensures farmers receive personalized plans, comprehensive strategies, and actionable insights, helping them optimize resources, enhance productivity, and maintain sustainable practices. With Verdica, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm.
-            </p>
-            </div>
+  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <div className="equip">
+    <p>
+      **Farm Plans** are comprehensive strategies that help farmers manage the growth and development of their farm operations over time. A well-thought-out farm plan serves as a roadmap to guide farm activities, ensuring that all resources—land, labor, and capital—are used efficiently to meet both production and sustainability goals. These plans typically focus on:
+    </p>
+    <ul>
+      <li><strong>Optimizing Land Use</strong>: A critical part of farm planning involves determining the most effective way to utilize available land. This includes crop rotation, intercropping, and zoning to make the best use of every hectare of land.</li>
+      <li><strong>Enhancing Crop Yield</strong>: By analyzing soil health, water availability, climate patterns, and crop varieties, farm plans help identify the best strategies to maximize yields and minimize losses.</li>
+      <li><strong>Ensuring Sustainable Practices</strong>: A farm plan incorporates eco-friendly methods such as organic farming, reduced pesticide use, and soil conservation techniques, promoting long-term environmental health.</li>
+      <li><strong>Meeting Market Demand</strong>: A good farm plan helps farmers align their production with market needs, improving profitability by focusing on high-demand crops and ensuring timely harvesting and delivery.</li>
+    </ul>
+    <p>
+      By planning strategically, farmers can address challenges proactively, reduce operational costs, and enhance farm sustainability. A well-structured farm plan also helps ensure that farming practices align with industry best practices and environmental regulations.
+    </p>
+    <p>
+      At **Verdica**, we simplify the farm planning process by connecting farmers with expert advisors and providing advanced tools that enable efficient farm management. Our platform ensures farmers receive personalized plans and strategies that are based on data-driven insights, helping them achieve:
+    </p>
+    <ul>
+      <li><strong>Resource Optimization</strong>: Using the right mix of fertilizers, water, and crop protection to maximize efficiency and reduce waste.</li>
+      <li><strong>Improved Productivity</strong>: Streamlining farm operations, from planting to harvesting, with tailored advice on optimizing crop cycles and managing labor.</li>
+      <li><strong>Sustainable Practices</strong>: Implementing practices that conserve resources, maintain soil health, and reduce the environmental footprint of farming.</li>
+    </ul>
+    <p>
+      With **Verdica**, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm. Whether you are managing a small plot or a large-scale operation, our platform equips you with the right tools and expertise to transform your farm into a productive and sustainable business. Our goal is to help farmers make informed decisions, enhance their profitability, and contribute to a sustainable agricultural future.
+    </p>
+  </div>
+
+
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
