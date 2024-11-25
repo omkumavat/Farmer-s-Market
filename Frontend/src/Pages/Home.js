@@ -4,6 +4,7 @@ import "../CSS/home.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import axios from "axios";
+
 const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     const [quote, setQuote] = useState('');
     const [author, setAuthor] = useState('');
@@ -11,7 +12,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     const fetchQuote = async () => {
         try {
             const response = await axios.get('https://api.api-ninjas.com/v1/quotes?category=happiness', {
-                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' }, // Replace with your API key
+                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' }, 
             });
             const data = response.data[0];
             setQuote(data.quote);
@@ -23,36 +24,78 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         }
     };
 
+    // const slides = [
+    //     {
+    //         image: "/Images/homeimages/4.jpg",
+    //         text: "Good Health Conscious Living",
+    //         button1: "About Us",
+    //         button2: "Contact",
+    //     },
+    //     {
+    //         image: "/Images/homeimages/1.jpg",
+    //         text: "Green Agriculture Practices",
+    //         button1: "Learn More",
+    //         button2: "Join Us",
+    //     },
+    //     {
+    //         image: "/Images/homeimages/2.jpg",
+    //         text: "Empowering Farmers",
+    //         button1: "Get Started",
+    //         button2: "Explore",
+    //     },
+    //     {
+    //         image: "/Images/homeimages/3.jpg",
+    //         text: "Empowering Farmers",
+    //         button1: "Get Started",
+    //         button2: "Explore",
+    //     },
+    //     {
+    //         image: "/Images/homeimages/6.jpg",
+    //         text: "Empowering Farmers",
+    //         button1: "Get Started",
+    //         button2: "Explore",
+    //     }
+    // ];
     const slides = [
         {
-            image: "/Images/slider1.jpeg",
+            image: "/Images/homeimages/4.jpg",
             text: "Good Health Conscious Living",
             button1: "About Us",
             button2: "Contact",
+            link1: "/about",  // Add link for button1
+            link2: "/contact",  // Add link for button2
         },
         {
-            image: "/Images/slider2.jpeg",
+            image: "/Images/homeimages/1.jpg",
             text: "Green Agriculture Practices",
             button1: "Learn More",
             button2: "Join Us",
+            link1: "/learn-more",  // Add link for button1
+            link2: "/join-us",  // Add link for button2
         },
         {
-            image: "/Images/slider3.jpeg",
+            image: "/Images/homeimages/2.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
+            link1: "/get-started",  // Add link for button1
+            link2: "/explore",  // Add link for button2
         },
         {
-            image: "/Images/slider4.jpeg",
+            image: "/Images/homeimages/3.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
+            link1: "/get-started",  // Add link for button1
+            link2: "/explore",  // Add link for button2
         },
         {
-            image: "/Images/slider5.jpeg",
+            image: "/Images/homeimages/6.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
+            link1: "/get-started",  // Add link for button1
+            link2: "/explore",  // Add link for button2
         }
     ];
 
@@ -79,14 +122,14 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         },
     ];
 
-    const projects = [
-        { id: 1, title: "Project 1", image: "/Images/agri1.jpeg" },
-        { id: 2, title: "Project 2", image: "/Images/agri1.jpeg" },
-        { id: 3, title: "Project 3", image: "/Images/agri1.jpeg" },
-        { id: 4, title: "Project 4", image: "/Images/agri1.jpeg" },
-        { id: 5, title: "Project 5", image: "/Images/agri1.jpeg" },
-        { id: 6, title: "Project 6", image: "/Images/agri1.jpeg" },
-    ];
+    // const projects = [
+    //     { id: 1, title: "Project 1", image: "/Images/agri1.jpeg" },
+    //     { id: 2, title: "Project 2", image: "/Images/agri1.jpeg" },
+    //     { id: 3, title: "Project 3", image: "/Images/agri1.jpeg" },
+    //     { id: 4, title: "Project 4", image: "/Images/agri1.jpeg" },
+    //     { id: 5, title: "Project 5", image: "/Images/agri1.jpeg" },
+    //     { id: 6, title: "Project 6", image: "/Images/agri1.jpeg" },
+    // ];
 
     const cards2 = [
         { icon: "🌱", title: "Vegetables", text: "Homes and thoroughly launder them between usage. We give our teams." },
@@ -178,7 +221,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         <>
             <NavBar />
             <div className="homepage">
-                <div className="homepage-slider">
+                {/* <div className="homepage-slider">
                     {slides.map((slide, index) => (
                         <div
                             key={index}
@@ -193,10 +236,32 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    ))} */}
+
+                <div className="homepage-slider">
+    {slides.map((slide, index) => (
+        <div
+            key={index}
+            className={`slide ${index === currentSlide ? "active" : ""}`}
+            style={{ backgroundImage: `url(${slide.image})` }}
+        >
+            <div className="slide-content">
+                <h1 className="texti">{slide.text}</h1>
+                <div className="buttons">
+                    <a href={slide.link1} className="btn-primary">
+                        {slide.button1}
+                    </a>
+                    <a href={slide.link2} className="btn-secondary">
+                        {slide.button2}
+                    </a>
+                </div>
+            </div>
+        </div>
+    ))}
+</div>
 
                     {/* Dots Navigation */}
-                </div>
+                    {/* </div> */}
                 <div>
                     <div className="dots-container">
                         {slides.map((_, index) => (
@@ -300,7 +365,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         ))}
                     </div>
                 </div>
-                <div className="pr-text">
+                {/* <div className="pr-text">
                     <h2 className="section-title">Latest Projects</h2>
                     <p className="section-subtitle">
                         We have a wide range of projects in all areas of agriculture.
@@ -317,7 +382,17 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
+                <div className="ddd">
+    <div className="video-section">
+    <h2 className="video-title">See How We're Transforming Agriculture</h2>
+    <p className="video-description">Watch our video to learn about our mission, vision, and the impact we’re making in the agricultural community.</p>
+    <video controls className="homepage-video">
+        <source src="/Images/homeimages/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+</div>
+</div>
                 <div className="qm">
                     <div className="sm">
                         <h2 >We Are Always Ready to Help You</h2>
@@ -331,7 +406,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         {testimonials.map((testimonial, index) => (
                             <div className={`testimonialcard ${index === activeIndex ? 'active' : ''}`} key={index}>
                                 <div className="quote-icon">
-                                    <img src="/Images/q.png" alt="Quote Icon" className="q" />
+                                <img src="/Images/homeimages/11.jpg" alt="Quote Icon" className="q" />
                                 </div>
                                 <p className="tquote">{testimonial.quote}</p>
                                 <div className="styles-line"></div>

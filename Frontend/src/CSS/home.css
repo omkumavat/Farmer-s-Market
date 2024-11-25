@@ -111,11 +111,13 @@
   .buttons .btn-primary {
     background-color: #007bff;
     color: white;
+    text-decoration: none;
   }
   
   .buttons .btn-secondary {
     background-color: #6c757d;
     color: white;
+    text-decoration: none;
   }
 
   /* Card Section Container */
@@ -557,10 +559,14 @@
   background-color: #ff6600; /* Orange color */
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 20px; /* Adjust padding for size */
   border-radius: 5px;
   cursor: pointer;
+  text-align: center; /* Ensures proper alignment of text */
+  display: inline-block; /* Allows the button to adapt to its content */
+  width: auto; /* Makes the width dynamic */
 }
+
 .get-quote-button:hover{
   background-color: #febc36;
   color: black;
@@ -762,3 +768,65 @@
 
 
 
+.slide-content .buttons {
+  display: flex;
+  flex-direction: row; /* Stack buttons vertically */
+  align-items: flex-start; /* Align buttons to the left */
+  gap: 10px; /* Add spacing between buttons */
+  margin-top: 20px; /* Add margin to separate buttons from text */
+}
+
+.slide-content .buttons .btn-primary,
+.slide-content .buttons .btn-secondary {
+  font-size: 20px; /* Smaller text */
+  padding: 5px 20px; /* Adjust padding */
+  width: auto; /* Ensure buttons are not full width */
+  max-width: 150px; /* Restrict maximum width */
+  border-radius: 5px; /* Optional rounded corners */
+  background-color: #3498db; /* Button color */
+  color: #fff; /* Text color */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer on hover */
+  transition: all 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.slide-content .buttons .btn-primary:hover,
+.slide-content .buttons .btn-secondary:hover {
+  background-color: #2980b9; /* Darken on hover */
+}
+.ddd {
+  background-image: url('../Images/9.jpg');
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents image tiling */
+  width: 220%; /* Full width */
+  height: 80vh; /* Adjust height as needed */
+  display: flex; /* Enables centering of child elements */
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
+}
+
+.video-section {
+  text-align: center;
+  max-width: 600px; /* Restricts the width of the content */
+  color: #fff; /* Text color for better contrast against the background */
+}
+
+.video-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.video-description {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #ddd; /* Adjusted color for better visibility */
+}
+
+.homepage-video {
+  max-width: 100%; /* Adjust the size as needed */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
