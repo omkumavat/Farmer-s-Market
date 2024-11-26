@@ -1,0 +1,57 @@
+/* General container for the Products component */
+.productsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 60px); /* Adjust height minus navbar */
+    margin-left: calc(200px + 20px); /* Adjust left margin to account for sidebar */
+    padding-top: 200px;
+    box-sizing: border-box;
+}
+
+/* Product list container */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding-top: 200px;
+    box-sizing: border-box;
+}
+
+/* Individual farm/product card container */
+.farm {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Loader styles (if needed) */
+.loader {
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* Make the layout responsive for smaller screens */
+@media (max-width: 768px) {
+    .productsContainer {
+        margin-left: 20px; /* Adjust margin for smaller screens */
+        padding: 10px;
+    }
+
+    .product-list {
+        padding: 10px;
+    }
+
+    .farm {
+        width: 100%; /* Full width for smaller screens */
+    }
+}

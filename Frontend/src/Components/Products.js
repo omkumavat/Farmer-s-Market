@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import axios from "axios";
 import DealerPCard from "./DealerPCard";
 import FarmerProduct from "./FarmerProduct";
+import "../CSS/product.css"
 
 const Products = () => {
     const { currentUser } = useAuth();

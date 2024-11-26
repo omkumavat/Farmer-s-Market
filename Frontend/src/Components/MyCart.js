@@ -3,6 +3,7 @@ import DealerPCard from "./DealerPCard";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import FarmerProduct from "./FarmerProduct";
+import "../CSS/mycart.css"
 const MyCart = () => {
     const [cart, setCart] = useState([]);
     const { currentUser } = useAuth();

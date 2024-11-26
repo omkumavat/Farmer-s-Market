@@ -113,3 +113,101 @@
     }
   }
   
+
+  /* Center the form and adjust for sidebar and navbar */
+.formContainer {
+ 
+  position: relative; /* To contain the wrapper */
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px); /* Adjust height minus navbar */
+  padding: 20px;
+  padding-left: calc(200px + 20px); /* Adjust padding to account for sidebar width */
+  box-sizing: border-box;
+  padding-top: 900px;
+}
+
+/* Adjust wrapper for responsiveness */
+.wrapper {
+  max-width: 800px;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+/* Form title styling */
+.formTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Input field styles */
+.item {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, select, .ql-editor {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Button styles */
+button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.imagePreviews {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.imagePreview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+  .formContainer {
+      padding-left: 20px; /* Reduce padding for smaller screens */
+  }
+
+  .wrapper {
+      padding: 20px;
+  }
+}

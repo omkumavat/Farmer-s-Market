@@ -1,0 +1,66 @@
+/* Container for the entire MyCart component */
+.myCartContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligns items at the top */
+    min-height: calc(100vh - 60px); /* Adjust height minus navbar */
+    margin-left: calc(200px + 20px); /* Adjust left margin to account for sidebar */
+    padding-top: 200px;
+    box-sizing: border-box;
+}
+
+/* Product list container */
+.productlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers product cards */
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Individual product card styles (assuming these are components like DealerPCard or FarmerProduct) */
+.productCard {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Error message styles */
+.errorMessage {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Cart heading */
+.hh {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Make the layout responsive */
+@media (max-width: 768px) {
+    .myCartContainer {
+        margin-left: 20px; /* Reduce margin for smaller screens */
+        padding: 10px;
+    }
+
+    .productlist {
+        padding: 10px;
+    }
+
+    .productCard {
+        width: 100%;
+    }
+}
