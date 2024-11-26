@@ -5,26 +5,27 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext'; // Ensure this context provides authentication state
 import Loader from './Loader';
 import GoogleTranslateWidget from "../Pages/GoogleTranslateWidget";
-const NavBar = () => {
 
+const NavBar = () => {
   const navigate = useNavigate();
-  const[isAuthReady,setIsAuthReady]=useState(true);
-  const { currentUser,logout } = useAuth();
+  const [isAuthReady, setIsAuthReady] = useState(true);
+  const { currentUser, logout } = useAuth();
 
   if (!isAuthReady) {
-    return <Loader/>;
+    return <Loader />;
   }
+
   const handleLogout = async () => {
     setIsAuthReady(false);
     try {
       await logout();
       localStorage.removeItem("Users");
-      setIsAuthReady(true);
       navigate('/', { replace: true });
       window.location.reload();
     } catch (error) {
       console.error("Error during logout:", error);
     }
+    setIsAuthReady(true);
   };
 
   return (
@@ -84,11 +85,27 @@ const NavBar = () => {
             </div>
           </div>
         </li>
-        {
-          currentUser && <li className="nav-item"><a href="/dashboard">Dashboard</a></li>
-        }
         {currentUser ? (
-          <li className="navitem logout" onClick={handleLogout}>Logout</li>
+          <>
+            <li className="nav-item">
+              <div className="dropdown">
+                <div className="profile-dropdown">
+                  <img 
+                    src={currentUser.profilePicture || "/Images/logo.png"} 
+                    alt="User Profile" 
+                    className="profile-pic" 
+                  />
+                  <div className="dropdowncontent">
+                    <p className="user-role">Role: {currentUser.role || "User"}</p>
+                    <div className='editpp'>
+                    <a href="/dashboard" className='editp'>Edit Profile</a>
+                    </div>
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </>
         ) : (
           <li className="nav-item"><a href="/login">Login</a></li>
         )}

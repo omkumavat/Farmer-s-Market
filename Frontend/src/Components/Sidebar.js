@@ -89,6 +89,7 @@ import Footer from './Footer';
 function Sidebar() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedPage, setSelectedPage] = useState('Home');
   console.log(currentUser);
   

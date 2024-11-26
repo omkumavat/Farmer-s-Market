@@ -47,11 +47,6 @@ const EditProfile = () => {
     setUserData({ ...userData, [name]: value });
   };
 
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setUserData({ ...userData, [name]: value });
-// };
-
   const handleProfilePictureChange = (e) => {
     setUserData({
       ...userData,
@@ -63,10 +58,6 @@ const EditProfile = () => {
     e.preventDefault();
     setIsModalOpen(true);
   };
-
-//   const handleFileChange = (e) => {
-//     setFormData({ ...formData, licenseImage: e.target.files[0] });
-// };
 
   const handlePasswordVerified = async () => {
     // Perform update after password verification
