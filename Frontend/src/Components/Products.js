@@ -5,6 +5,7 @@ import axios from "axios";
 import DealerPCard from "./DealerPCard";
 import FarmerProduct from "./FarmerProduct";
 import "../CSS/product.css"
+import MyProductDealer from "../cards/MyProductDealer";
 
 const Products = () => {
     const { currentUser } = useAuth();
@@ -34,6 +35,10 @@ const Products = () => {
         };
         fetchProducts();
     }, [currentUser, setMyProducts]);
+    const handleRemoveProduct = (id) => {
+        window.location.reload();
+        setMyProducts((prevProducts) => prevProducts.filter((product) => product._id !== id));
+      };
 
     // Show a loader until `currentUser` is ready
     if (!isAuthReady) {
@@ -49,7 +54,8 @@ const Products = () => {
                         {
                             myProducts.map((product, index) => (
                                 <div className="farm" key={index}>
-                                    <DealerPCard {...product} />
+                                    <MyProductDealer {...product}
+                                    onDelete={handleRemoveProduct} />
                                 </div>
                             ))
                         }

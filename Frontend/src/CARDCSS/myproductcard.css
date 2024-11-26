@@ -1,0 +1,16 @@
+.btnd{
+    display: flex;
+    gap: 10px;
+    /* flex-direction: column; */
+}
+
+.btns{
+    margin: 10px;
+    width: 100px;
+    /* height: 10; */
+}
+
+.btns button{
+    height: 30px;
+}
+

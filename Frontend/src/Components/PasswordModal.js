@@ -44,12 +44,12 @@ const PasswordModal = ({ isOpen, closeModal, userId, onPasswordVerified }) => {
               type="password"
               id="oldPassword"
               name="oldPassword"
-              value={oldPassword}
+              // value={oldPassword}
               onChange={handleChange}
               required
             />
           </div>
-          {error && <p className="error">{error}</p>}
+          {error && <p className="error">Password does not match. Try again later</p>}
           <button type="submit" disabled={loading}>
             {loading ? "Verifying..." : "Submit"}
           </button>
