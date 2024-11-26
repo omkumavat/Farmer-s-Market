@@ -24,7 +24,7 @@ const MyCart = () => {
     }, [currentUser]);
     return (
         <>
-            <div>
+            <div className="mycart">
                 {error && <p>{error}</p>}
                 <ul>
                     {cart.length === 0 ? (

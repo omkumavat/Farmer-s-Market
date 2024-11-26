@@ -1,22 +1,18 @@
-/* Container for the entire MyCart component */
-.myCartContainer {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Aligns items at the top */
-    min-height: calc(100vh - 60px); /* Adjust height minus navbar */
-    margin-left: calc(200px + 20px); /* Adjust left margin to account for sidebar */
-    padding-top: 200px;
-    box-sizing: border-box;
-}
 
+.mycart
+{
+    margin-top: -200px;
+    margin-right: -1700px;
+}
 /* Product list container */
 .productlist {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
     flex-wrap: wrap;
     justify-content: center; /* Centers product cards */
     gap: 20px;
-    width: 100%;
-    max-width: 1200px;
+    /* width: 100%; */
+    width: 800px;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -46,7 +42,9 @@
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: -100px;
+    margin-left: -1500px;
+    margin-top: 300px;
 }
 
 /* Make the layout responsive */

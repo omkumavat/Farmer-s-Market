@@ -90,7 +90,7 @@ function Sidebar() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [selectedPage, setSelectedPage] = useState('Home');
+  const [selectedPage, setSelectedPage] = useState('ep');
   console.log(currentUser);
   
   // Check if currentUser is loaded and not null
