@@ -85,6 +85,9 @@ const NavBar = () => {
             </div>
           </div>
         </li>
+        {
+          currentUser && <li className="nav-item"><a href="/dashboard">Dashboard</a></li>
+        }
         {currentUser ? (
           <>
             <li className="nav-item">
