@@ -26,6 +26,7 @@ import Loader from './Components/Loader';
 import TicketPage from './Pages/TicketPage';
 import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage';
 import Soil from "./Services/Soil";
+import EditProfile from './Components/EditProfile';
 
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
               <Route path="/payment" element={<PaymentButton  />} />
               <Route path="/ticket" element={<TicketPage  />} />
               <Route path="/soil" element={<Soil  />} />
+              {/* <Route path="/edit-profile" element={< />} /> */}
             </>
           )}
         </Routes>
