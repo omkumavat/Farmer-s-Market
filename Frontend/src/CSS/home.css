@@ -830,3 +830,21 @@
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+
+
+
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers horizontally */
+  justify-content: center; /* Centers vertically */
+  text-align: center; /* Centers text alignment */
+  padding: 1rem; /* Optional: Add padding for spacing */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for styling */
+  border: 1px solid #ddd; /* Optional: Adds a border for styling */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+}
+
