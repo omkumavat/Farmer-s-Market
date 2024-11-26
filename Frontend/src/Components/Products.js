@@ -25,7 +25,7 @@ const Products = () => {
                 if (currentUser) {
                     const id = currentUser._id
                     const response = await axios.get(`http://localhost:4000/server/fetchmyproducts/${id}`);
-                    console.log(response);
+                    console.log(response.data.data);
                     setMyProducts(response.data.data);
                 }
             } catch (error) {
@@ -42,7 +42,7 @@ const Products = () => {
 
     return (
         <>
-            <div>
+            <div className="mypro"> 
                 {/* <h2>My Products</h2> */}
                 {currentUser && currentUser.role === "dealer" && (
                     <div className="product-list">

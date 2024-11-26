@@ -143,7 +143,9 @@ const FarmerProductForm = () => {
     };
     return (
         <div className="form-container">
+            <div className="farmtitle">
             <h2>List Your Product</h2>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Product Name</label>

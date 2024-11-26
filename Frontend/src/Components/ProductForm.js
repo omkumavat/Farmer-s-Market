@@ -197,6 +197,39 @@ const ProductForm = () => {
                             <input id="price" name="price" type="number" onChange={handlePrice} required placeholder="Enter product price" />
                         </div>
 
+                        <div className="item">
+                            <label htmlFor="size">Size</label>
+                            <input
+                                id="size"
+                                name="size"
+                                type="number"
+                                value={size}
+                                onChange={handleSizeChange}
+                                required
+                                placeholder="Enter product size"
+                            />
+                            <select id="sizeUnit" value={sizeUnit} onChange={handleSizeUnitChange} required>
+                                <option value="">Select Unit</option>
+                                <option value="kgs">kg</option>
+                                <option value="gms">g</option>
+                                <option value="mls">ml</option>
+                                <option value="Ltrs">l</option>
+                                <option value="mm">mm</option>
+                                <option value="cm">cm</option>
+                                <option value="m">m</option>
+                            </select>
+                            <label htmlFor="quantity">Quantity</label>
+                            <input
+                                id="quantity"
+                                name="quantity"
+                                type="number"
+                                // value={}
+                                onChange={handleQuantityChange}
+                                required
+                                placeholder="Enter product Quantity"
+                            />
+                        </div>
+
                         {/* Category Selection */}
                         <div className="item">
                             <label htmlFor="category">Category</label>
@@ -241,38 +274,6 @@ const ProductForm = () => {
                         </div>
 
                         {/* Size Field */}
-                        <div className="item">
-                            <label htmlFor="size">Size</label>
-                            <input
-                                id="size"
-                                name="size"
-                                type="number"
-                                value={size}
-                                onChange={handleSizeChange}
-                                required
-                                placeholder="Enter product size"
-                            />
-                            <select id="sizeUnit" value={sizeUnit} onChange={handleSizeUnitChange} required>
-                                <option value="">Select Unit</option>
-                                <option value="kgs">kg</option>
-                                <option value="gms">g</option>
-                                <option value="mls">ml</option>
-                                <option value="Ltrs">l</option>
-                                <option value="mm">mm</option>
-                                <option value="cm">cm</option>
-                                <option value="m">m</option>
-                            </select>
-                            <label htmlFor="quantity">Quantity</label>
-                            <input
-                                id="quantity"
-                                name="quantity"
-                                type="number"
-                                // value={}
-                                onChange={handleQuantityChange}
-                                required
-                                placeholder="Enter product size"
-                            />
-                        </div>
 
                         {/* Larger Sizes */}
                         <div className="item">

@@ -1,16 +1,28 @@
 .form-container {
     max-width: 600px;
-    background: #f4f4f4;
+    /* background: #f4f4f4; */
     border-radius: 8px;
-    margin-left: -1000px;
-    margin-top: 100px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 200px;
+    margin-top: -300px;
+    height: 100px;
+    width: 500px;
+    /* margin-bottom: 100px; */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  }
+
+  .farmtitle{
+    border: 1px solid rgba(0, 0, 0, 0.421);
+    margin-bottom: 40px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    /* margin-top: 40px; */
   }
   
-  h2 {
+  .farmtitle h2 {
     text-align: center;
     color: #333;
-    margin-bottom: 20px;
+    /* margin-bottom: 60px; */
   }
   
   .form-group {
@@ -65,6 +77,7 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom: 50px;
   }
   
   .submit-button:hover {

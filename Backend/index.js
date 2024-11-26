@@ -11,7 +11,7 @@ import { engine } from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
 import soilDataRoutes from './Routes/soilDataRoutes.js';
-import pestDiseaseRoutes from "./Routes/pestDiseaseRoutes.js";
+
 const app = express();
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as needed
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
@@ -44,7 +44,7 @@ app.use('/server', cart);
 import farmeroute from './Routes/farmeroute.js';
 app.use('/server', farmeroute);
 
-app.use('/api/pest-disease', pestDiseaseRoutes);
+
 app.use(fileuPload({
   useTempFiles: true,
   tempFileDir: '/tmp/',
