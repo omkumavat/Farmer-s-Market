@@ -19,12 +19,12 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = async (req, res) => {
   console.log(req.body);
-  const { email, subject, name, caseType } = req.body;
+  const { email, subject, name, response, que, caseType } = req.body;
 
   // Map caseType to template filenames
   const templateMap = {
     1: "Signup.hbs",
-    2: "productListing.hbs",
+    2: "Ticket.hbs",
   };
 
   if (!templateMap[caseType]) {
@@ -45,8 +45,11 @@ export const sendEmail = async (req, res) => {
     // Compile the Handlebars template
     const template = Handlebars.compile(templateSource);
 
-    // Pass dynamic data to the template
-    htmlContent = template({ name }); // Inject the 'name' variable
+    if (caseType === 1) {
+      htmlContent = template({ name, response });
+    } else if (caseType === 2) {
+      htmlContent = template({ name, que, response });
+    }
   } catch (error) {
     console.error("Error reading or compiling template file:", error);
     res.status(500).json({ error: "Template file not found or invalid" });

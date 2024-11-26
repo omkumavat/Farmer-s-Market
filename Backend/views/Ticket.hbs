@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #0056b3;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .content {
+      padding: 20px;
+      color: #333333;
+    }
+    .content h2 {
+      color: #0056b3;
+      font-size: 18px;
+    }
+    .content p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .footer {
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 15px;
+      font-size: 14px;
+      color: #666666;
+    }
+    .footer a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      Support Ticket Response
+    </div>
+    <div class="content">
+      <h2>Dear {{name}},</h2>
+      <p>Thank you for reaching out to our support team.</p>
+      <p>We wanted to inform you that we have reviewed your Query regarding <strong>{{que}} ?</strong>. Here's our response:</p>
+      <p><strong>Response:</strong> {{response}}</p>
+      <p>If you have any further questions or concerns, please don’t hesitate to reply to this email or contact us at <a href="mailto:support@example.com">support@example.com</a>.</p>
+      <p>Thank you for your patience and understanding.</p>
+    </div>
+    <div class="footer">
+      &copy; 2024 VERDICA. All Rights Reserved.
+    </div>
+  </div>
+</body>
+</html>

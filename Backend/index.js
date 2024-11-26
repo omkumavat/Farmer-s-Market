@@ -4,14 +4,14 @@ import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import fileuPload from 'express-fileupload';
 import connectDB from "./Database/database.js";
-import {User} from "./Models/User.js";
+import { User } from "./Models/User.js";
 import cors from 'cors';
 import payment from "./Routes/payment.js"
 import { engine } from "express-handlebars";
 import path from "path";
 import { fileURLToPath } from "url";
 import soilDataRoutes from './Routes/soilDataRoutes.js';
-const app=express();
+const app = express();
 app.use(bodyParser.json({ limit: '100mb' })); // Adjust the limit as needed
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(express.json());
@@ -24,30 +24,30 @@ app.use(cors({
   allowedHeaders: ['Content-Type'], // Allow these headers
 }));
 
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
 import user from './Routes/useroute.js';
-app.use('/server',user)
+app.use('/server', user)
 
 import dealeroute from './Routes/dealeroute.js';
-app.use('/server',dealeroute)
+app.use('/server', dealeroute)
 
 import verificationroute from './Routes/verificationroute.js';
-app.use('/server',verificationroute);
+app.use('/server', verificationroute);
 
 import cart from './Routes/cart.js';
-app.use('/server',cart);
+app.use('/server', cart);
 
 import farmeroute from './Routes/farmeroute.js';
-app.use('/server',farmeroute);
+app.use('/server', farmeroute);
 
 
 app.use(fileuPload({
-  useTempFiles : true,
-  tempFileDir : '/tmp/',
-  limits: { fileSize: 100 * 1024 * 1024 } 
+  useTempFiles: true,
+  tempFileDir: '/tmp/',
+  limits: { fileSize: 100 * 1024 * 1024 }
 }));
 
 import cloudinaryConnect from "./Database/Cloudinary.js";
@@ -77,10 +77,8 @@ app.set('view engine', 'hbs');
 // app.set("view engine", "hbs");
 // app.set("views", path.join(__dirname, "Templates"));
 app.get("/s", (req, res) => {
-  res.render("Signup", { name: "OM" });
+  res.render("Ticket", { name: "OM", que: "a", response: "a" });
 });
-
-
 
 
 app.listen(4000, () => {

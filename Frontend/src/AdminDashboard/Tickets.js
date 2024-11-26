@@ -29,10 +29,21 @@ const Tickets = () => {
 
     const handleSubmitResponse = async (ticketId) => {
         try {
-            await axios.post(`http://localhost:4000/server/respondtoticket/${ticketId}`, {
+            const res = await axios.post(`http://localhost:4000/server/respondtoticket/${ticketId}`, {
                 response: response,
             });
+            console.log(res.data.ticket);
             alert('Response submitted successfully');
+            const data = {
+                subject: "Update on Your Submited Query",
+                caseType: 2,
+                email: res.data.ticket.email,
+                name:res.data.ticket.name,
+                response:res.data.ticket.response,
+                que:res.data.ticket.query,
+              }
+              console.log(data);
+            const responses = await axios.post("http://localhost:4000/server/sendmail", data);
             setTickets(tickets.map(ticket => 
                 ticket._id === ticketId ? { ...ticket, status: 'responded', adminResponse: response } : ticket
             ));
