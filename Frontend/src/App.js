@@ -27,7 +27,7 @@ import TicketPage from './Pages/TicketPage';
 import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage';
 import Soil from "./Services/Soil";
 import EditProfile from './Components/EditProfile';
-
+import Pest from "./Services/pest"
 
 function App() {
   const { currentUser } = useAuth();
@@ -88,6 +88,7 @@ function App() {
               <Route path="/payment" element={<PaymentButton  />} />
               <Route path="/ticket" element={<TicketPage  />} />
               <Route path="/soil" element={<Soil  />} />
+              <Route path="/pest" element={<Pest  />} />
               {/* <Route path="/edit-profile" element={< />} /> */}
             </>
           )}
