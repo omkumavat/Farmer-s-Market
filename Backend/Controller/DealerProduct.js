@@ -130,7 +130,7 @@ export const createProduct = async (req, res) => {
 
 export const getProducts = async (req, res) => {
   try {
-    const filters = req.query; 
+    const filters = req.query;
     const products = await dealerProduct.find(filters).populate("dealerid", "name email"); // Populate dealer details (name, email)
     res.status(200).json(products);
   } catch (error) {
@@ -154,7 +154,20 @@ export const getProductById = async (req, res) => {
   }
 };
 
+export const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await dealerProduct.findByIdAndDelete(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
 
+    res.status(200).json({ message: "Product deleted successfully", success:true });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ message: "Internal server error",success:false });
+  }
+}
 
 
 
@@ -177,9 +190,9 @@ export const getAllProducts = async (req, res) => {
 
 export const getProductsByCategory = async (req, res) => {
   try {
-    const  category  = req.query.category; 
+    const category = req.query.category;
     console.log(category);
-    const products = await dealerProduct.find({ category }); 
+    const products = await dealerProduct.find({ category });
     console.log(products);
     res.status(200).json({ success: true, data: products });
   } catch (error) {

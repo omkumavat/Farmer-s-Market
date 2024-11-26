@@ -4,6 +4,7 @@ import { useAuth } from "../Context/AuthContext";
 import VerificationForm from "./VerificationForm";
 import axios from "axios"; // Or your preferred HTTP library
 import FarmerProductForm from "./FarmerProductForm";
+import Loader from "./Loader";
 
 const AddProduct = () => {
     const { currentUser } = useAuth();
@@ -29,7 +30,7 @@ const AddProduct = () => {
 
     return (
         <>
-            {isLoading && <div>Loading...</div>}
+            {isLoading && <div><Loader/></div>}
             {!isLoading && (
                 <>
                     {currentUser.role !== "other" && currentUser.role==="dealer" && currentUser.verified && <ProductForm />}
