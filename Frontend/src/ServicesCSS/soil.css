@@ -79,3 +79,80 @@ body {
     }
   }
   
+
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #2C3E50;
+}
+
+.map-container {
+    display: block; /* Changed to block for a single map */
+    margin: 50px auto; /* Adjusted margins */
+    padding: 0; /* Removed excessive padding */
+    width: 80%;
+    max-width: 800px;
+}
+
+.info-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #F9F9F9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.info-container p {
+    font-size: 16px;
+    color: #34495E;
+    margin: 5px 0;
+}
+
+.info-container h2 {
+    margin-bottom: 10px;
+    color: #2C3E50;
+}
+
+.info-container strong {
+    color: #F39C12;
+}
+
+.loading-message {
+    text-align: center;
+    color: #3498DB;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.error-message {
+    text-align: center;
+    color: #E74C3C;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+    .map-container {
+        width: 90%;
+    }
+
+    .info-container {
+        width: 90%;
+    }
+
+    p, h2 {
+        font-size: 14px;
+    }
+}
+
+
+  

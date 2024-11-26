@@ -10,7 +10,7 @@
     position: relative;
     width: 100%;
     height: 300px; /* Adjust the height of the image */
-    background-image: url('../bgimage.jpg'); /* Path to your image */
+    background-image: url('../Images/3.jpg'); /* Path to your image */
     background-size: cover;
     background-position: center;
     text-align: center;
@@ -106,35 +106,3 @@
   }
   
   /* Map Section */
-  .map-container {
-    width: 100%;
-    margin-top: 40px;
-    text-align: center;
-  }
-  
-  .map-container iframe {
-    border: 0;
-    width: 100%;
-    height: 450px;
-    border-radius: 8px;
-  }
-  
-  /* Adjust contact details paragraph with icon */
-  .contact-us-details p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  .contact-us-details p svg {
-    margin-right: 10px; /* Space between icon and text */
-    font-size: 20px; /* Adjust the icon size */
-    color: #4CAF50; /* Change the icon color */
-  }
-  
-
-  .contact-us-container {
-    margin-top: 100px; /* Adjust depending on navbar height */
-  }

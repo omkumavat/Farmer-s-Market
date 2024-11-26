@@ -105,7 +105,7 @@ const Farmer = () => {
             <div>
                 <div className="mc">
                     <div className="cs">
-                        <h2 className="head1">Our Services</h2>
+                        <h2 className="head1">Farmer Product</h2>
                         <p className="head2">PROVIDE BY VERDICA</p>
                     </div>
                 </div>
@@ -171,34 +171,36 @@ const Farmer = () => {
                         ))}
                     </div>
                 </div>
-                <div className="container">
-                    {/* Top Section */}
-                    <div className="content">
-                        <p className="sub-heading">AT VERDICA</p>
-                        <h1 className="main-heading">
-                            For a Thriving Agricultural Community<br /> <span>Tomorrow</span>
-                        </h1>
-                       <div className="descc">
-                       <p className="description">
-                            Verdica provides a platform where farmers can offer essential services like land preparation, crop cultivation, and organic farming to others in the agricultural community. This enables farmers to showcase their skills and expertise.
-                        </p>
-                        <p className="description">
-                            Farmers can list, manage, and sell their services, helping them reach a broader audience. Verdica makes it easier for farmers to connect with those who need their services, ensuring mutual growth.
-                        </p>
-                        <p className="description">Verdica is dedicated to creating a trusted environment where farmers can succeed by offering their valuable services. We aim to build a vibrant community that drives success and mutual benefit.</p>
-                       </div>
-                    </div>
+               
+    {/* Top Section */}
+    <div className="content-market">
+        <p className="sub-heading-market">AT VERDICA</p>
+        <h1 className="main-heading-market">
+          Empowering Farmers and Buyers<br /> <span>For a Better Tomorrow</span>
+        </h1>
+        <div className="descc-market">
+            <p className="description-market">
+            Verdica provides a seamless platform for farmers to sell their produce directly to buyers, fostering fair trade and eliminating middlemen. This ensures farmers get the best value for their efforts while buyers access fresh, quality products.
+            </p>
+            <p className="description-market">
+            With Verdica, farmers can list their products, connect with a wide range of buyers, and gain insights into market demands. Buyers can explore a variety of fresh produce and negotiate directly with farmers for bulk purchases or tailored orders.
+            </p>
+            <p className="description-market">
+            Our platform is committed to building a sustainable and efficient agricultural marketplace, where trust and transparency pave the way for mutual growth and success.
+            </p>
+        </div>
+    </div>
 
-                    {/* Image Section */}
-                    <div className="image-container">
-                        <img
-                            src="/Images/slider1.jpeg" // Placeholder image URL
-                            alt="Sustainable Agriculture"
-                            className="farming-image"
-                        />
-                    </div>
-                </div>
-            </div>
+    {/* Image Section */}
+    <div className="image-container-market">
+        <img
+            src="/Images/marketinsight.jpeg" // Placeholder image URL
+            alt="Farmers Market"
+            className="farming-image-market"
+        />
+    </div>
+</div>
+
             <Footer />
         </>
     );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../SOLCSS/Soilanalysis.css";
+import "../SOLCSS/Equipmentinstallation.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
@@ -55,20 +55,37 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebarimgs"></div>
+            <div className="sidebarimgs">
+              <img
+                src={`${process.env.PUBLIC_URL}/Images/homeimages/soil.jpg`}
+                alt="Equipment Installation"
+                className="sidebar-image"
+              />
+            </div>
           </div>
 
           {/* Main Content */}
           <div className="mainsections">
-            <h2>The Agricultural Engineering Provided by VERDICA</h2>
-           <div className="equip">
-           <p>
-           Soil analysis is the process of evaluating the physical, chemical, and biological properties of soil to determine its health and suitability for agricultural activities. It involves testing for key nutrients, pH levels, moisture content, and organic matter to identify the soil’s strengths and deficiencies. This information helps farmers optimize crop selection, improve soil fertility, and implement sustainable farming practices. Regular soil analysis is essential for maximizing productivity, reducing input costs, and maintaining long-term soil health.
-            </p>
-            <p>
-            At Verdica, we empower farmers to make informed decisions through accurate and comprehensive soil analysis. Our platform connects you with advanced testing tools and expert guidance to evaluate your soil’s health, optimize crop selection, and enhance fertility sustainably.
-            </p>
-           </div>
+  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <div className="equip">
+    <p>
+      **Soil Analysis** is the process of evaluating the physical, chemical, and biological properties of soil to determine its health and suitability for agricultural activities. It involves testing for essential nutrients such as nitrogen, phosphorus, and potassium, as well as analyzing pH levels, moisture content, texture, organic matter, and soil microbiota. By understanding these factors, farmers can gain valuable insights into soil fertility and overall condition, enabling them to make data-driven decisions that improve crop productivity and sustainability.
+    </p>
+    <p>
+      One of the key aspects of soil analysis is identifying deficiencies or imbalances in nutrients. For instance, if the soil is deficient in a particular nutrient, farmers can amend it with the right fertilizers or soil conditioners. Similarly, if the soil is too acidic or alkaline, adjustments can be made to create the ideal environment for specific crops.
+    </p>
+    <p>
+      In addition to improving productivity, soil analysis also helps in managing soil erosion, preventing nutrient runoff, and maintaining the overall health of the land. By understanding the soil's structure and its ability to retain moisture, farmers can optimize irrigation systems, avoid overwatering, and reduce the risk of waterlogging, ensuring healthier crops and better yields.
+    </p>
+    <p>
+      Regular soil testing is essential for sustainable farming practices. It not only helps to monitor soil health over time but also supports long-term environmental stewardship. By adjusting farming practices based on soil data, farmers can reduce the need for excessive chemical inputs, minimize environmental impact, and ensure that the land remains productive for future generations.
+    </p>
+    <p>
+      At Verdica, we empower farmers to make informed decisions through accurate and comprehensive soil analysis. Our platform connects you with advanced testing tools and expert guidance to evaluate your soil’s health, optimize crop selection, and enhance fertility sustainably. We provide tailored recommendations that allow you to improve soil quality, reduce costs, and boost productivity. Our mission is to help you make the most of your land and cultivate a sustainable future for your farm.
+    </p>
+  
+</div>
+
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">

@@ -74,7 +74,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             link2: "/join-us",  // Add link for button2
         },
         {
-            image: "/Images/homeimages/2.jpg",
+            image: "/Images/homeimages/10.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
@@ -406,7 +406,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         {testimonials.map((testimonial, index) => (
                             <div className={`testimonialcard ${index === activeIndex ? 'active' : ''}`} key={index}>
                                 <div className="quote-icon">
-                                <img src="/Images/homeimages/11.jpg" alt="Quote Icon" className="q" />
+                                <img src="/Images/q.png" alt="Quote Icon" className="q" />
                                 </div>
                                 <p className="tquote">{testimonial.quote}</p>
                                 <div className="styles-line"></div>

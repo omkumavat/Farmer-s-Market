@@ -11,7 +11,7 @@
   }
   
   .headerimage {
-    background-image: url('../bgimage.jpg'); /* Path to your background image */
+    background-image: url('../Images/3.jpg'); /* Path to your background image */
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -43,13 +43,13 @@
     background-position: center;
   }
   
-  .aboutimageleft {
+  /* .aboutimageleft {
     background-image: url('../bgimage.jpg'); /* Left image for content */
-  }
+  /* } */
   
-  .aboutimage-right {
-    background-image: url('../bgimage.jpg'); /* Right image for content */
-  }
+  /* .aboutimage-right { */
+    /* background-image: url('../Images/10.jpg'); Right image for content */
+  /* } */ */
   
   .contentright {
     width: 50%; /* Half the width for content */
@@ -91,16 +91,14 @@
   }
   
   .member-left {
-    background-image: url('../bgimage.jpg'); /* Replace with left member image */
+    background-image: url('../Images/virat.jpg'); /* Replace with left member image */
   }
   
   .member-middle {
-    background-image: url('../bgimage.jpg'); /* Replace with middle member image */
+    background-image: url('../Images/virat.jpg'); /* Replace with middle member image */
   }
   
-  .member-right {
-    background-image: url('../bgimage.jpg'); /* Replace with right member image */
-  }
+
   
   .contact-icons {
     position: absolute;
@@ -131,7 +129,7 @@
   .servicessection {
     text-align: center;
     padding: 50px 20px;
-    background-image: url('../bgimage.jpg'); /* Replace with your main background image */
+    background-image: url('../Images/10.jpg'); /* Replace with your main background image */
     background-size: cover;
     background-position: center;
     color: white;
@@ -372,3 +370,189 @@
   }
   
   
+
+  .contentsection {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    height: 400px;
+    flex-direction: row; /* Ensures the image is on the left */
+  }
+  
+  .contentleft {
+    width: 50%; /* Takes half of the space */
+    height: 100%;
+  }
+  
+  .contentimage {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .aboutimageleft {
+    background-image: url('../Images/13.jpg'); /* Replace with your actual image path */
+  }
+  
+  .contentright {
+    width: 50%;
+    padding: 20px;
+  }
+  
+  .contentright h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+  
+  .contentright p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .stats {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .stats p {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .stats p strong {
+    font-size: 24px;
+    color: #ffa500; /* Highlighted color */
+  }
+  
+  .stats p span {
+    display: block;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contentsection {
+      flex-direction: column; /* Stack content vertically */
+      height: auto;
+    }
+  
+    .contentleft,
+    .contentright {
+      width: 100%;
+    }
+  
+    .contentright {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .contentright h3 {
+      font-size: 20px;
+    }
+  
+    .contentright p {
+      font-size: 14px;
+    }
+  
+    .stats p {
+      font-size: 16px;
+    }
+  
+    .stats p strong {
+      font-size: 20px;
+    }
+  }
+  
+
+
+  /* Flip layout for reverse class */
+.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Styling for the WHY CHOOSE US? section */
+.contentsection {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  height: 400px; /* Ensures consistent height */
+}
+
+.contentleft {
+  width: 50%; /* Adjust width */
+  height: 100%; /* Match height */
+}
+
+.contentimage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.aboutimageright {
+  background-image: url('../Images/1.jpg'); /* Replace with actual image path */
+}
+
+.contentright {
+  width: 50%;
+  padding: 20px;
+}
+
+.contentright h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.contentright p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.contentright ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.contentright ul li {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.contentright ul li strong {
+  color: #ffa500; /* Highlighted text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contentsection {
+    flex-direction: column; /* Stack content vertically */
+    height: auto;
+  }
+
+  .contentleft,
+  .contentright {
+    width: 100%;
+  }
+
+  .contentright {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contentright h3 {
+    font-size: 20px;
+  }
+
+  .contentright p,
+  .contentright ul li {
+    font-size: 14px;
+  }
+}

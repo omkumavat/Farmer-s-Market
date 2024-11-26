@@ -356,7 +356,7 @@
   position: relative;
   width: 1580px;
   height: 100vh;
-  background-image: url("../Images/forlogin.jpg");
+  background-image: url("../Images/10.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -539,7 +539,7 @@
   display: flex;
   height: 350px;
   width: 1580px;
-  background-image: url('../Images/forlogin.jpg');
+  background-image: url('../Images/12.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -799,7 +799,7 @@
   background-size: cover; /* Ensures the image covers the entire container */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents image tiling */
-  width: 220%; /* Full width */
+  width: 214%; /* Full width */
   height: 80vh; /* Adjust height as needed */
   display: flex; /* Enables centering of child elements */
   align-items: center; /* Vertically centers the content */

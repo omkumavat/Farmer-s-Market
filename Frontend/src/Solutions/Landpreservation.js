@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../SOLCSS/Landpreservation.css";
+import "../SOLCSS/Equipmentinstallation.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 
@@ -55,20 +55,40 @@ function Solutions1() {
             </div>
 
             {/* Image to the right of Sidebar */}
-            <div className="sidebarimgs"></div>
+            <div className="sidebarimgs">
+              <img
+                src={`${process.env.PUBLIC_URL}/Images/homeimages/land.jpeg`}
+                alt="Equipment Installation"
+                className="sidebar-image"
+              />
+            </div>
           </div>
 
           {/* Main Content */}
           <div className="mainsections">
-            <h2>The Agricultural Engineering Provided by VERDICA</h2>
-          <div className="equip">
-          <p>
-            Land preservation focuses on protecting and maintaining natural landscapes, agricultural lands, and ecosystems for future generations. It involves sustainable practices to prevent soil erosion, combat deforestation, conserve water resources, and promote biodiversity. By implementing strategies like controlled land use, reforestation, and soil management, land preservation helps maintain the ecological balance, support agriculture, and mitigate environmental degradation. It ensures that land remains fertile, productive, and resilient against the impacts of urbanization and climate change.
-            </p>
-            <p>
-            At VERDICA, we prioritize sustainable farming practices by empowering farmers with tools and strategies to preserve their land for future generations. Our platform helps farmers implement eco-friendly methods to protect soil health, conserve water, and maintain biodiversity, ensuring long-term productivity and environmental balance.
-            </p>
-          </div>
+  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <div className="equip">
+    <p>
+      **Land Preservation** focuses on protecting and maintaining natural landscapes, agricultural lands, and ecosystems to ensure that they remain healthy and productive for future generations. This process is crucial for maintaining the balance between agriculture and the environment. Land preservation practices involve:
+    </p>
+    <ul>
+      <li><strong>Preventing Soil Erosion</strong>: Erosion can lead to the loss of fertile topsoil, which is essential for crop production. Techniques such as contour farming, terracing, and planting cover crops can help prevent soil erosion and protect the land.</li>
+      <li><strong>Combating Deforestation</strong>: Sustainable land management involves preventing deforestation and promoting afforestation and reforestation efforts to ensure adequate tree cover and reduce the effects of climate change.</li>
+      <li><strong>Conserving Water Resources</strong>: Efficient water use and conservation methods, including rainwater harvesting, irrigation systems, and water-efficient cropping systems, help preserve water resources for future use while enhancing crop yield.</li>
+      <li><strong>Promoting Biodiversity</strong>: Land preservation supports biodiversity by encouraging the planting of native vegetation, preserving natural habitats, and reducing monoculture farming, which can harm the local ecosystem.</li>
+    </ul>
+    <p>
+      By implementing these strategies, land preservation not only helps maintain the ecological balance but also supports sustainable agricultural practices that are vital for long-term food production and environmental health. Land that is preserved through sustainable practices can remain fertile, productive, and resilient against the impacts of urbanization and climate change.
+    </p>
+    <p>
+      At **VERDICA**, we are committed to supporting sustainable farming practices by providing farmers with the tools, knowledge, and resources necessary for land preservation. Our platform connects farmers with eco-friendly methods to protect soil health, manage water resources efficiently, and promote biodiversity. We empower farmers to adopt conservation strategies that enhance land productivity, ensuring that the land remains healthy and productive for future generations.
+    </p>
+    <p>
+      Whether it's through advanced soil management techniques, sustainable irrigation systems, or biodiversity-promoting farming practices, Verdica helps farmers integrate environmental stewardship into their farming operations. By focusing on long-term land health, we aim to help farmers achieve greater productivity while also contributing to the overall ecological well-being of the land.
+    </p>
+  </div>
+
+
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">

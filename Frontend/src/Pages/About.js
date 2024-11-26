@@ -19,7 +19,7 @@ const AboutUs = () => {
         </div>
 
         {/* First Content Section */}
-        <div className="contentsection">
+        {/* <div className="contentsection">
           <div className="contentleft">
             <div className="contentimage about-image-left"></div>
           </div>
@@ -38,10 +38,22 @@ const AboutUs = () => {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
+         <div className="contentsection">
+  <div className="contentleft">
+    <div className="contentimage aboutimageleft"></div>
+  </div>
+  <div className="contentright">
+    <h3>About VERDICA</h3>
+    <p>
+      Cultivating Ideas for Growth <br />
+      Verdica is a cutting-edge agricultural platform dedicated to empowering farmers with innovative solutions for sustainable and efficient farming. We bridge the gap between traditional practices and modern technology, providing tools, insights, and expert guidance to help farmers enhance productivity, preserve resources, and achieve long-term success.
+    </p>
+  </div>
+</div>
          
         {/* Second Content Section */}
-        <div className="contentsection reverse">
+        {/* <div className="contentsection reverse">
           <div className="contentleft">
             <div className="contentimage aboutimageright"></div>
           </div>
@@ -59,7 +71,26 @@ const AboutUs = () => {
               <li><strong>Expert Team:</strong> Began growing crops</li>
             </ul>
           </div>
-        </div>
+        </div> */}
+      <div className="contentsection reverse">
+  <div className="contentleft">
+    <div className="contentimage aboutimageright"></div>
+  </div>
+  <div className="contentright">
+    <h3>WHY CHOOSE US?</h3>
+    <p>
+      A Bright Nature of Decision <br />
+      Verdica offers personalized farm plans, soil analysis, and land preservation strategies based on real-time data and expert insights, ensuring optimized productivity and sustainable farming practices.
+    </p>
+    <p>
+      With access to advanced tools, cutting-edge technology, and ongoing support from agricultural professionals, Verdica helps you make informed decisions that improve efficiency, reduce costs, and promote long-term success.
+    </p>
+    <ul>
+      <li><strong>Natural Care:</strong> First domesticated</li>
+      <li><strong>Expert Team:</strong> Began growing crops</li>
+    </ul>
+  </div>
+</div>
 
 
         <div className="team-section">
@@ -88,7 +119,7 @@ const AboutUs = () => {
 
         {/* Our Services Section */}
         <div className="servicessection">
-          <h3>Our Services</h3>
+          {/* <h3>Our Services</h3> */}
           <p>
             Industra is a global community of practice that facilitates dialogue, information exchange, and use of information.
           </p>

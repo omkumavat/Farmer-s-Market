@@ -84,27 +84,18 @@ const TicketPage = () => {
             <NavBar />
             <div>
                 <div>
-                    <div className="mc">
-                        <div className="cs">
-                            <h2 className="head1">Our Services</h2>
-                            <p className="head2">PROVIDE BY VERDICA</p>
-                        </div>
-                    </div>
-                    <div className="services-container">
-                        <div className="serv">
-                            <h2 className="services-title">Welcome to the Support Center!</h2>
-                            <p className="services-subtitle">
-                                At VERDICA, we're here to assist you with all your queries. Below, you'll find answers to common questions.
-                            </p>
-                        </div>
-                    </div>
+                    <div className="team-header">
+                  <h2>FAQ
+                 </h2>
+                  <p> FREQUENTLY ASKED QUESTIONS</p>
+                  </div>
                     <div className="container">
                         {/* Top Section */}
                         <div className="content">
                             <p className="sub-heading">AT VERDICA</p>
                             <h1 className="main-heading">
                                 Empowering Users with Easy Access to Help
-                                <br /> <span>Tomorrow</span>
+                                <br /> 
                             </h1>
                             <p className="description">
                                 We strive to maintain transparency and efficiency in every interaction. By submitting a ticket, you allow us to understand your needs better, and we will work on resolving them as quickly as possible.
@@ -116,17 +107,32 @@ const TicketPage = () => {
                                 We believe in providing excellent customer service to help you resolve any issues. Feel free to reach out if you have any questions or concerns.
                             </p>
                         </div>
-
-                        {/* Image Section */}
-                        <div className="image-container">
-                            <img
-                                src="/Images/slider1.jpeg"
-                                alt="Sustainable Agriculture"
-                                className="farming-image"
-                            />
-                        </div>
                     </div>
-                    <div className="ticket-form-container">
+                  
+                    <div className="categories-container">
+                        <h2 className="categories-heading">FAQs (Frequently Asked Questions)</h2>
+                        <div className="styleline"></div>
+                    </div>
+                </div>
+                <div className="accordion">
+                    {questions.map((item, index) => (
+                        <div key={index} className="accordion-item">
+                            <div
+                                className={`accordion-header ${activeIndex === index ? "active" : ""}`}
+                                onClick={() => toggleQuestion(index)}
+                            >
+                                <h3>{item.question}</h3>
+                                <span>{activeIndex === index ? "−" : "+"}</span>
+                            </div>
+                            <div
+                                className={`accordion-body ${activeIndex === index ? "open" : ""}`}
+                            >
+                                {activeIndex === index && <p>{item.answer}</p>}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="ticket-form-container">
                         <h2 className="form-title">Submit Your Query</h2>
                         <form onSubmit={handleSubmit(onSubmit)} className="ticket-form">
                             <div className="form-group">
@@ -183,29 +189,6 @@ const TicketPage = () => {
                             {submitted && <p className="success-message">Your query has been submitted!</p>}
                         </form>
                     </div>
-                    <div className="categories-container">
-                        <h2 className="categories-heading">FAQs (Frequently Asked Questions)</h2>
-                        <div className="styleline"></div>
-                    </div>
-                </div>
-                <div className="accordion">
-                    {questions.map((item, index) => (
-                        <div key={index} className="accordion-item">
-                            <div
-                                className={`accordion-header ${activeIndex === index ? "active" : ""}`}
-                                onClick={() => toggleQuestion(index)}
-                            >
-                                <h3>{item.question}</h3>
-                                <span>{activeIndex === index ? "−" : "+"}</span>
-                            </div>
-                            <div
-                                className={`accordion-body ${activeIndex === index ? "open" : ""}`}
-                            >
-                                {activeIndex === index && <p>{item.answer}</p>}
-                            </div>
-                        </div>
-                    ))}
-                </div>
             </div>
             <Footer />
         </>

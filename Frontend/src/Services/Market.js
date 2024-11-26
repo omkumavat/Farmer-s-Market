@@ -148,7 +148,7 @@ const services = [
     <><NavBar />
     <div className="mc">
           <div className="cs">
-            <h2 className="head1">Our Services</h2>
+            <h2 className="head1">Market Insight</h2>
             <p className="head2">PROVIDE BY VERDICA</p>
           </div>
           </div>
@@ -294,7 +294,7 @@ const services = [
                     {/* Image Section */}
                     <div className="image-container-market">
                         <img
-                            src="/Images/slider1.jpeg" // Placeholder image URL
+                            src="/Images/marketinsight.jpeg" // Placeholder image URL
                             alt="Sustainable Agriculture"
                             className="farming-image-market"
                         />
