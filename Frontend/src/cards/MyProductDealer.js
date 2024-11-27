@@ -7,7 +7,7 @@ import { useAuth } from "../Context/AuthContext";
 import axios from "axios";
 import DealerEditForm from "../Components/DealerEditForm";
 
-const MyProductDealer = ({ _id, title, price, images, largerSizes, smallerSizes, size, sizeUnit }) => {
+const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeAvailable,serviceType,category,price, images,name, largerSizes, smallerSizes, desc,size, sizeUnit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const { currentUser } = useAuth();
@@ -15,9 +15,6 @@ const MyProductDealer = ({ _id, title, price, images, largerSizes, smallerSizes,
   const handleDelete = () => {
     setIsModalOpen(true);
   };
-
-
-
 
   const handleDeleteProducts = async () => {
     const response = await axios.delete(`http://localhost:4000/server/dealer/deleteproduct/${_id}`);
@@ -79,7 +76,7 @@ const MyProductDealer = ({ _id, title, price, images, largerSizes, smallerSizes,
       <DealerEditForm
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        product={{ _id, title, price, size }}
+        product={{ _id, title,quantity, price,name,sizeUnit, largerSizeAvailable,smallerSizeAvailable,serviceType,category,images, largerSizes, smallerSizes,desc, size }}
         onSubmit={handleEditSubmit}
       />
       <div className="wishlist-icon">❤️</div>

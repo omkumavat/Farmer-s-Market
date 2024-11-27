@@ -4,9 +4,11 @@ import "../CSS/pcard.css";
 import PasswordModal from "../Components/PasswordModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
-const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity  , unit }) => {
+import FarmerEditForm from '../Components/FarmerEditForm'
+const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity ,availableFrom,availableUntil,category,subCategory,qualityGrade,pincode,districtState,description,farmAddress , unit }) => {
 //   console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
 const [isModalOpen, setIsModalOpen] = useState(false);
+const [isEditOpen, setIsEditOpen] = useState(false);
 const {currentUser}=useAuth();
   const handleDelete = () => {
     setIsModalOpen(true);
@@ -14,6 +16,7 @@ const {currentUser}=useAuth();
 
   const handleDeleteProducts = async() => {
     const response = await axios.delete(`http://localhost:4000/server/farmer/deleteproduct/${_id}`);
+    console.log("rr",response.data.success)
     if(response.data.success){
         alert("Product Deleted Successfuly");
         setIsModalOpen(false);
@@ -21,6 +24,13 @@ const {currentUser}=useAuth();
         alert("Failed to Delete Product");
     }
   }
+
+  const handleEditSubmit = (updatedProduct) => {
+    console.log("Updated Product:", updatedProduct);
+    setIsEditOpen(false);
+    // You can also send a PUT request to update the product on the server here
+  };
+
   return (
     <div className="product-card">
       {/* Wrap the entire card in a Link for redirect */}
@@ -43,7 +53,7 @@ const {currentUser}=useAuth();
       </Link>
       <div className="btnd">
        <div className="btns">
-       <button>Edit</button>
+       <button onClick={() => setIsEditOpen(true)}>Edit</button>
        </div>
         <div className="btns">
         <button onClick={handleDelete}>Delete</button>
@@ -55,6 +65,12 @@ const {currentUser}=useAuth();
         userId={currentUser._id}
         oldPassword={currentUser.password} 
         onPasswordVerified={handleDeleteProducts}
+      />
+       <FarmerEditForm
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        product={{ _id, productName, pricePerUnit, images,quantity ,availableFrom,availableUntil,category,subCategory,qualityGrade,pincode,districtState,description,farmAddress , unit}}
+        onSubmit={handleEditSubmit}
       />
       <div className="wishlist-icon">❤️</div>
     </div>

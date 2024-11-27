@@ -169,6 +169,86 @@ export const deleteProduct = async (req, res) => {
   }
 }
 
+export const updateProduct = async (req, res) => {
+  try {
+    const productId = req.params.id; // Get product ID from request params
+    const {
+      title,
+      name,
+      price,
+      size,
+      sizeUnit,
+      quantity,
+      category,
+      serviceType,
+      images,
+      desc,
+      largerSizeAvailable,
+      smallerSizeAvailable,
+      largerSizes,
+      smallerSizes,
+    } = req.body; 
+    console.log(req.body);
+    const imageUrls = [];
+
+    for (let image of images) {
+        let base64Image; // Change `const` to `let` to allow reassignment
+
+        if (image.startsWith('data:image')) {
+          const base64Image = image.split(';base64,').pop();
+          try {
+            // Upload the image to Cloudinary
+            const uploadResponse = await cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`, {
+                folder: 'DealerProduct_images', // Optional: Cloudinary folder name
+                use_filename: true, // Optional: Use original file name
+                unique_filename: true, // Optional: Ensure a unique file name
+            });
+
+            imageUrls.push(uploadResponse.secure_url);
+        } catch (error) {
+            console.error('Error uploading image to Cloudinary:', error);
+            // Handle any errors you encounter during the upload
+        }
+        } else {
+            imageUrls.push(image);
+        }
+    }
+
+
+    // Find the product by ID and update it with new values
+    const updatedProduct = await dealerProduct.findByIdAndUpdate(
+      productId,
+      {
+        title,
+        name,
+        price,
+        size,
+        sizeUnit,
+        quantity,
+        category,
+        serviceType,
+        images:imageUrls,
+        desc,
+        largerSizeAvailable,
+        smallerSizeAvailable,
+        largerSizes,
+        smallerSizes,
+        dealerid:productId
+      },
+      { new: true, runValidators: true } // Return the updated document and validate data
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+    console.log(updatedProduct)
+    res.status(200).json({ message: 'Product updated successfully', updatedProduct });
+  } catch (error) {
+    console.error('Error updating product:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
 
 
 export const getAllProducts = async (req, res) => {

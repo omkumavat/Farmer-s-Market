@@ -6,6 +6,7 @@ import DealerPCard from "./DealerPCard";
 import FarmerProduct from "./FarmerProduct";
 import "../CSS/product.css"
 import MyProductDealer from "../cards/MyProductDealer";
+import MyProductFarmer from '../cards/MyProductFarmer'
 
 const Products = () => {
     const { currentUser } = useAuth();
@@ -66,7 +67,7 @@ const Products = () => {
                         {
                             myProducts.map((product, index) => (
                                 <div className="farm" key={index}>
-                                    <FarmerProduct {...product} />
+                                    <MyProductFarmer {...product} />
                                 </div>
                             ))
                         }
