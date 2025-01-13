@@ -9,11 +9,11 @@ const orderSchema = new mongoose.Schema({
   productId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    refPath: "productType", // Dynamically reference DealerProduct or FarmerProduct
+    ref: "dealerProduct", 
   },
   buyer: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the buyer (could be dealer or farmer)
+    ref: "User",
     required: true,
   },
   seller: {

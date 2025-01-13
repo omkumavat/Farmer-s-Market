@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,4 +19,88 @@
     <div>The cow jumped over the moon.</div>
     <div>Please Like, Comment, and Subscribe.</div>
 </body>
+</html> -->
+
+<html lang="en">
+  <head>
+    <title>React Example - Donut Series - Simple Donut</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <style media="only screen">
+      :root {
+        --button-background-color: transparent;
+        --button-text-color: #212529;
+        --button-color-border-primary: #d0d5dd;
+        --button-hover-background-color: rgba(0, 0, 0, 0.1);
+        --select-chevron: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23182230" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 9L12 15L18 9"/></svg>');
+
+        overflow: hidden;
+        font-family: -apple-system, "system-ui", "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
+      }
+
+      :root[data-dark-mode="false"] {
+        background: white;
+      }
+
+      :root[data-dark-mode="true"] {
+        --button-text-color: #f8f9fa;
+        --button-color-border-primary: rgba(255, 255, 255, 0.2);
+        --button-hover-background-color: #2a343e;
+        --select-chevron: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%23667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 9L12 15L18 9"/></svg>');
+
+        background: #192232;
+        color: white;
+      }
+
+      :root,
+      body,
+      #root {
+        height: 1000px;
+        width: 1000px;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      #root {
+        display: grid;
+        grid-auto-rows: minmax(0, 1fr);
+        grid-auto-columns: minmax(0, 1fr);
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/charts/reactFunctional/donut-series/examples/simple-donut/data.js"></script>
+    <script>
+      var appLocation =
+        "/charts/reactFunctional/donut-series/examples/simple-donut";
+      var boilerplatePath = "/charts/example-runner/charts-react-boilerplate";
+      var systemJsMap = {
+        "ag-charts-community":
+          "https://cdn.jsdelivr.net/npm/ag-charts-community@11.0.3/dist/package/main.cjs.js",
+        "ag-charts-enterprise":
+          "https://cdn.jsdelivr.net/npm/ag-charts-enterprise@11.0.3/dist/package/main.cjs.js",
+        "ag-charts-locale":
+          "https://cdn.jsdelivr.net/npm/ag-charts-locale@11.0.3/dist/package/main.cjs.js",
+        "ag-charts-react":
+          "https://cdn.jsdelivr.net/npm/ag-charts-react@11.0.3/",
+        "ag-charts-types":
+          "https://cdn.jsdelivr.net/npm/ag-charts-types@11.0.3/dist/package/main.cjs.js",
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@0.19.47/dist/system.js"></script>
+    <script src="/charts/example-runner/charts-react-boilerplate/systemjs.config.js"></script>
+    <script>
+      System.import(
+        "/charts/reactFunctional/donut-series/examples/simple-donut/index.jsx",
+      ).catch(function (err) {
+        console.error(err);
+      });
+    </script>
+  </body>
 </html>

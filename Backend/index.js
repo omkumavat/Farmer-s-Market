@@ -44,6 +44,12 @@ app.use('/server', cart);
 import farmeroute from './Routes/farmeroute.js';
 app.use('/server', farmeroute);
 
+import orders from './Routes/orderes.js';
+app.use('/server', orders);
+
+import seller from './Routes/seller.js';
+app.use('/server', seller);
+
 
 app.use(fileuPload({
   useTempFiles: true,

@@ -4,6 +4,9 @@ import pmethodImage from "../Images/pmethod.jpg";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"; // Import Google Maps components
+import { color } from "framer-motion";
+
 
 const Product = ({ id }) => {
   const { currentUser } = useAuth();
@@ -13,6 +16,12 @@ const Product = ({ id }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [mainImage, setMainImage] = useState("");
   const [Desc, setDesc] = useState("");
+  const [amount,setAmount]=useState(0);
+  const [quant,setQuant]=useState(1);
+  const [shippingAddress, setShippingAddress] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState({ lat: null, lng: null });
+  const [originalAmount,setOriginalAmount]=useState(0);
 
   const handleAddToCart = async() => {
     console.log(currentUser);
@@ -70,6 +79,8 @@ const Product = ({ id }) => {
         setDesc(cleanText);
         if (combinedVariants.length > 0) {
           setSelectedVariant(combinedVariants[0]);
+          setAmount(combinedVariants[0].price);
+          setOriginalAmount(combinedVariants[0].price);
         }
       } catch (error) {
         console.error("Error fetching product details:", error);
@@ -84,7 +95,11 @@ const Product = ({ id }) => {
   }
 
   const handleVariantClick = (variant) => {
+    console.log(variant);
+    setAmount(variant.price)
+    setOriginalAmount(variant.price);
     setSelectedVariant(variant);
+    setQuant(1);
   };
 
   const handleThumbnailClick = (image) => {
@@ -94,6 +109,134 @@ const Product = ({ id }) => {
   const handleRatingClick = (newRating) => {
     setRating(newRating);
   };
+
+  const handlePayment = async () => {
+    try {
+      const currentDate=new Date();
+      const data = {
+        pname:product.name,
+        pprice:product.price,
+        pdate:currentDate,
+        pquantity:product.quantity,
+        subject: "Your Order Was Successfuly Placed",
+        caseType: 3,
+        email: 'omkumavat2004@gmail.com',
+        name:currentUser.name,
+      }
+      if (currentUser) {
+        // amount=amount*quant;
+        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ amount }),
+        });
+
+        const order = await response.json();
+
+        const options = {
+          key: 'rzp_test_nwUngHToxCY8p6',
+          amount: order.amount * 100,
+          currency: order.currency,
+          name: 'VERDICA',
+          description: 'Payment for your product',
+          order_id: order.id,
+          handler: async function (response) {
+            try {
+              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  userId: currentUser._id,
+                  productId: product._id,
+                  amount,
+                }),
+              });
+
+              const result = await verificationResponse.json();
+
+              if (verificationResponse.ok) {
+                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    // productType: 'DealerProduct',
+                    productId: product._id,
+                    buyer: currentUser._id,
+                    sellerId:product.dealerid.sellerId,
+                    quantity: quant,
+                    price: amount,
+                    shippingAddress: shippingAddress,
+                  }),
+                });
+                
+                const orderData = await createOrderResponse.json();
+                const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+
+                if (createOrderResponse.ok && responses.ok) {
+                  alert('Payment successful and order created!');
+                } else {
+                  alert('Error creating order: ' + orderData.message);
+                }
+              } else {
+                alert(result.message || 'Error saving payment');
+              }
+            } catch (error) {
+              console.error('Error during payment verification:', error);
+              alert('Error during payment verification');
+            }
+          },
+          prefill: {
+            name: 'Customer Name',
+            email: 'customer@example.com',
+            contact: '9876543210',
+          },
+          theme: {
+            color: '#F37254',
+          },
+        };
+
+        const razorpay = new window.Razorpay(options);
+        razorpay.open();
+      } else {
+        alert('Please login first');
+      }
+    } catch (error) {
+      console.error('Error during payment:', error);
+      alert('Error while initiating payment');
+    }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const incrementQuantity = () => {
+    const newQuantity = quant + 1;
+    setQuant(newQuantity);
+    setAmount(newQuantity * originalAmount);
+  };
+
+  const decrementQuantity = () => {
+    if (quant > 1) {
+      const newQuantity = quant - 1;
+      setQuant(newQuantity);
+      setAmount(newQuantity * originalAmount);
+    }
+  };
+  
 
   return (
     <div className="product-container">
@@ -115,6 +258,35 @@ const Product = ({ id }) => {
           ))}
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Select Shipping Address</h2>
+            <button onClick={openModal}>Use Current Location</button>
+            <input
+              type="text"
+              placeholder="Enter Shipping Address"
+              value={shippingAddress}
+              onChange={(e) => setShippingAddress(e.target.value)}
+            />
+            <LoadScript googleMapsApiKey="AIzaSyD0w1lvfJkEcNqp-3gJ-9s8GSLr8GrhzoQ">
+              <GoogleMap
+                center={currentLocation}
+                zoom={14}
+                mapContainerStyle={{ width: "100%", height: "400px" }}
+              >
+                {currentLocation.lat && currentLocation.lng && (
+                  <Marker position={currentLocation} />
+                )}
+              </GoogleMap>
+            </LoadScript>
+            <button onClick={handlePayment}>Pay Now</button>
+            <button onClick={closeModal}>Close</button>
+          </div>
+        </div>
+      )}
+
 
       <div className="product-details">
         <h2>{product.name}</h2>
@@ -180,6 +352,21 @@ const Product = ({ id }) => {
           </div>
         </div>
 
+        <div style={styles.container}>
+      <div style={styles.quantityWrapper}>
+        <button onClick={decrementQuantity} style={styles.button}>
+          -
+        </button>
+        <span style={styles.quantity}>{quant}</span>
+        <button onClick={incrementQuantity} style={styles.button}>
+          +
+        </button>
+      </div>
+      <p style={styles.price}>
+        Total Price: ₹{amount}
+      </p>
+    </div>
+
         {/* Extra Information */}
         <div className="extra-info">
           <div className="checkbox-item">
@@ -196,7 +383,7 @@ const Product = ({ id }) => {
         {/* Buttons */}
         <div className="button-section">
           <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
-          <button className="buy-now">Buy Now</button>
+          <button className="buy-now" onClick={openModal}>Buy Now</button>
         </div>
       </div>
 
@@ -210,6 +397,41 @@ const Product = ({ id }) => {
       </div>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "10px",
+    fontFamily: "Arial, sans-serif",
+  },
+  quantityWrapper: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    color:"black"
+  },
+  button: {
+    fontSize: "18px",
+    padding: "5px 10px",
+    border: "1px solid black",
+    borderRadius: "5px",
+    backgroundColor: "#f0f0f0",
+    cursor: "pointer",
+    color:"black"
+  },
+  quantity: {
+    fontSize: "16px",
+    fontWeight: "bold",
+    padding: "0 10px",
+  },
+  price: {
+    fontSize: "18px",
+    fontWeight: "bold",
+    color: "#333",
+  },
 };
 
 export default Product;

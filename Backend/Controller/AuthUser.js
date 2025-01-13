@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import { User } from '../Models/User.js';
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
+import Seller from '../Models/Seller.js';
 dotenv.config();
 import { uploadToCloudinary } from '../Database/Cloudinary.js';
 // Sign up route handler
@@ -33,10 +34,22 @@ export const signup = async (req, res) => {
             })
         }
 
-        // Create Entry for User
+        
         let user = await User.create({
             name, email, mobileno, password: hashedPassword, confirmpassword: hashedPassword, role
         });
+
+        const newSeller = new Seller({
+            name: name,
+            email: email,
+            userId: user._id 
+        });
+
+        await newSeller.save();
+        console.log(newSeller._id);
+
+        user.sellerId=newSeller._id;
+        await user.save();
 
         return res.status(200).json({
             success: true,

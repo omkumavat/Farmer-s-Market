@@ -6,6 +6,7 @@ import Footer from '../Components/Footer';
 import axios from 'axios'; // Import axios
 import { useNavigate } from "react-router-dom";
 import Loader from "../Components/Loader";
+import { toast, ToastContainer } from "react-toastify";
 
 const Signup = () => {
   const navi = useNavigate();
@@ -51,11 +52,9 @@ const Signup = () => {
       const response = await axios.post("http://localhost:4000/server/signup", { userData });
 
       if (response) {
-
-        alert("Signup successful!");
+        toast.success("SignUp Successful");
         localStorage.setItem("Users", JSON.stringify(response.data.users));
-        // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
-        navi('/');
+        navi('/login');
         window.location.reload();
       } else {
         setError(response.data.message || "Signup failed. Please try again.");
@@ -70,6 +69,7 @@ const Signup = () => {
   return (
     <>
       <NavBar />
+      <ToastContainer/>
       <div className="signup-container">
         <div className="left-side">
           <div className="text-overlay">

@@ -7,7 +7,6 @@ const DealerPCard = ({ _id, title, price, images, largerSizes, smallerSizes, siz
 
   return (
     <div className="product-card">
-      {/* Wrap the entire card in a Link for redirect */}
       <Link
         to={`/dealer/${_id}/product`}
         style={{ textDecoration: "none", color: "inherit" }}
@@ -24,7 +23,6 @@ const DealerPCard = ({ _id, title, price, images, largerSizes, smallerSizes, siz
           <p className="product-save">Save ₹{(price * 0.1).toFixed(2)}</p>
         </div>
       </Link>
-      {/* Size Dropdown */}
       <label htmlFor="size" className="size-label">
         Size
       </label>

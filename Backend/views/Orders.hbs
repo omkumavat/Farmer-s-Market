@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f8fb;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #4caf50;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px 10px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .greeting {
+      padding: 20px;
+      background-color: #f1f9f1;
+      text-align: center;
+      color: #333333;
+    }
+    .greeting p {
+      margin: 0;
+      font-size: 18px;
+    }
+    .order-details {
+      padding: 20px;
+      color: #555555;
+    }
+    .order-details table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .order-details th, .order-details td {
+      text-align: left;
+      padding: 10px;
+      border: 1px solid #dddddd;
+    }
+    .order-details th {
+      background-color: #4caf50;
+      color: #ffffff;
+    }
+    .footer {
+      background-color: #f4f8fb;
+      text-align: center;
+      padding: 10px;
+      color: #888888;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Order Confirmation</h1>
+    </div>
+
+    <!-- Greeting Message -->
+    <div class="greeting">
+      <p>Dear {{name}},</p>
+      <p>Thank you for your order! We’re thrilled to have you as a valued customer.</p>
+    </div>
+
+    <!-- Order Details -->
+    <div class="order-details">
+      <h2>Order Details</h2>
+      <table>
+        <tr>
+          <th>Product Name</th>
+          <td>{{pname}}</td>
+        </tr>
+        <tr>
+          <th>Order Date</th>
+          <td>{{pdate}}</td>
+        </tr>
+        <tr>
+          <th>Total Price</th>
+          <td>${{pprice}}</td>
+        </tr>
+        <tr>
+          <th>Product Quantity</th>
+          <td>{{pquantity}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>If you have any questions about your order, please <a href="mailto:support@example.com">contact us</a>.</p>
+      <p>Thank you for shopping with us!</p>
+    </div>
+  </div>
+</body>
+</html>

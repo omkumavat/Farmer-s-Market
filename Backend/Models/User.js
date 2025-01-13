@@ -8,12 +8,12 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   mobileno: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   password: {
     type: String,
@@ -58,6 +58,11 @@ const userSchema = new mongoose.Schema({
     enum: ['dealer', 'farmer', 'other'], // User roles
     default: 'other',
   },
+  sellerId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Seller", // Reference to the User model (Farmer)
+          // required: true,
+        },
 }, { timestamps: true });
 
 const VerificationSchema = new mongoose.Schema({

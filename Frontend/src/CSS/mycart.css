@@ -13,22 +13,24 @@
     gap: 20px;
     /* width: 100%; */
     width: 800px;
+    /* height: 1000px; */
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Individual product card styles (assuming these are components like DealerPCard or FarmerProduct) */
 .productCard {
     width: 250px;
-    height: auto;
+    height: 1000px;
     margin-bottom: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
+
     box-sizing: border-box;
 }
+
 
 /* Error message styles */
 .errorMessage {
@@ -61,4 +63,10 @@
     .productCard {
         width: 100%;
     }
+}
+
+.orders{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin-left: 240px;
 }

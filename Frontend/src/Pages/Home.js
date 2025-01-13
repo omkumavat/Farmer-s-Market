@@ -4,6 +4,8 @@ import "../CSS/home.css";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';  // Import styles
 
 const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     const [quote, setQuote] = useState('');
@@ -11,12 +13,14 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
     const fetchQuote = async () => {
         try {
-            const response = await axios.get('https://api.api-ninjas.com/v1/quotes?category=happiness', {
+            //https://api.api-ninjas.com/v1/quotes?category=happiness
+            const response = await axios.get('https://api.api-ninjas.com/v1/quotes', {
                 headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' }, 
             });
             const data = response.data[0];
             setQuote(data.quote);
             setAuthor(data.author);
+            // toast.success("HI");
         } catch (error) {
             console.error('Error fetching the quote:', error);
             setQuote('Unable to fetch quote at this time. Please try again later.');
@@ -220,6 +224,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     return (
         <>
             <NavBar />
+            <ToastContainer />
             <div className="homepage">
                 {/* <div className="homepage-slider">
                     {slides.map((slide, index) => (

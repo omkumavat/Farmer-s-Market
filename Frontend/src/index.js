@@ -1,16 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client"; // Use the client module
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import {AuthProvider} from './Context/AuthContext.js';
-import { Provider } from 'react-redux';
-import store from './Context/Store'; // Import your store
+import { AuthProvider } from "./Context/AuthContext.js";
+import { Provider } from "react-redux";
+import store from "./Context/Store"; // Import your Redux store
+import Sales from "./Components/Sales.js";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// ReactDOM.render(<Sales />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root")); 
 root.render(
-  // <Provider store={store}>  {/* Wrap your app in Provider with store */}
+  <Provider store={store}> {/* Wrap your app in Provider with store */}
     <AuthProvider>
       <BrowserRouter>
         <React.StrictMode>
@@ -18,7 +20,7 @@ root.render(
         </React.StrictMode>
       </BrowserRouter>
     </AuthProvider>
-  /* </Provider>  */
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

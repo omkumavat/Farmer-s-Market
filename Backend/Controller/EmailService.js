@@ -19,12 +19,13 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = async (req, res) => {
   console.log(req.body);
-  const { email, subject, name, response, que, caseType } = req.body;
+  const { email, subject, name,pname,pdate,pquantity,pprice, response, que, caseType } = req.body;
 
   // Map caseType to template filenames
   const templateMap = {
     1: "Signup.hbs",
     2: "Ticket.hbs",
+    3: "Orders.hbs"
   };
 
   if (!templateMap[caseType]) {
@@ -49,6 +50,8 @@ export const sendEmail = async (req, res) => {
       htmlContent = template({ name, response });
     } else if (caseType === 2) {
       htmlContent = template({ name, que, response });
+    }else if(caseType===3){
+      htmlContent=template({name,pname,pprice,pdate,pquantity});
     }
   } catch (error) {
     console.error("Error reading or compiling template file:", error);
@@ -58,7 +61,7 @@ export const sendEmail = async (req, res) => {
 
   // Mail options
   const mailOptions = {
-    from: `From VERDICA <${process.env.MAIL_USER}>`,
+    from: `VERDICA <${process.env.MAIL_USER}>`,
     to: email,
     subject,
     html: htmlContent,

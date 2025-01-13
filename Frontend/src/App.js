@@ -28,6 +28,7 @@ import FarmerProductCategoryPage from './Pages/FarmerProductCategoryPage';
 import Soil from "./Services/Soil";
 import EditProfile from './Components/EditProfile';
 import Pest from "./Services/pest"
+import Sales from './Components/Sales'
 
 function App() {
   const { currentUser } = useAuth();
@@ -64,6 +65,7 @@ function App() {
           {/* Non-Admin Routes */}
           {!isAdmin && (
             <>
+            <Route path="/sales" element={<Sales />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
               <Route path="/" element={<Home />} />
