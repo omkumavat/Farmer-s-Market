@@ -44,7 +44,7 @@
     position: absolute;
     top: 0;
     left: 0%; 
-    width: 1579px;
+    width: 1263px;
     height: 100%;
     background-size: cover;
     background-position: center;
@@ -130,7 +130,8 @@
   background-color: #f9fafc;
   margin-top: 150px;
   margin-bottom: -40px;
-  width: 1500px;
+  width: 1100px;
+  margin-left: 45px;
 }
 
 /* Individual Card */
@@ -181,8 +182,8 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 1300px;
-  margin-left: 150px;
+  width: 1000px;
+  margin-left: 90px;
   margin-right: 100px;
   margin-top: 80px;
   gap: 30px;
@@ -267,21 +268,20 @@
 
 .maincon {
   display: flex;
-  height: 900px;
-  width: 1580px;
+  height: 700px;
+  width: 1263px;
   margin-top: 100px;
   background-image: url('../Images/forlogin.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  /* margin-bottom: 100px; */
 }
 
 .image-section, .content-section {
   flex: 1;
   padding: 20px;
-  height: 1000px;
+  height: 10px;
 }
 
 .image-section img {
@@ -354,7 +354,7 @@
 /* CardLayout.css*/
 .card-layout {
   position: relative;
-  width: 1580px;
+  width: 1263px;
   height: 100vh;
   background-image: url("../Images/10.jpg");
   background-size: cover;
@@ -429,93 +429,6 @@
   line-height: 1.5;
   color: white;
 }
-
-/* General Section Styling */
-.projects-section {
-  text-align: center;
-  padding: 50px 20px;
-  background-color: #fff;
-}
-
-.section-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.section-subtitle {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 40px;
-}
-
-/* Grid Layout for Projects */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-  justify-items: center;
-  width: 1200px;
-  margin-left: 180px;
-  margin-right: 90px;
-}
-
-
-
-.project-card {
-  position: relative;
-  overflow: hidden;
-  width: 350px;
-  /* max-width: 300px; */
-  height: 350px;
-  border-radius: 1px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  margin-bottom: 35px;
-}
-
-.project-card:hover {
-  transform: scale(1.05);
-}
-
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 1px;
-}
-
-/* Overlay Styling */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 165, 0, 0.7); /* Transparent orange */
-  opacity: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  transform: translate(-100%, -100%); /* Start from top-left corner */
-}
-
-.project-card:hover .overlay {
-  opacity: 1;
-  transform: translate(0, 0); /* Fill the entire image */
-}
-
-.project-title {
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
 .pr-text{
   margin-top: 80px;
   height: 100px;
@@ -538,7 +451,7 @@
 .qm {
   display: flex;
   height: 350px;
-  width: 1580px;
+  width: 1263px;
   background-image: url('../Images/12.jpg');
   background-size: cover;
   background-position: center;
@@ -552,7 +465,7 @@
   color: white;
   padding: 40px;
   text-align: center;
-  width: 1580px;
+  width: 1263px;
 }
 
 .get-quote-button {
@@ -572,6 +485,7 @@
   color: black;
 }
 .sm h2{
+  color: white;
     margin-top: 70px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
@@ -584,7 +498,7 @@
 .mains {
   display: flex;
   flex-direction: column;
-  width: 1500px;
+  width: 1000px;
   min-height: 100%; /* Fills viewport height */
   background-color: white; 
   padding: 40px; /* Padding around the edges */
@@ -592,13 +506,14 @@
 
 /* Testimonial section */
 .testimonials {
+  width: 1150px;
   margin-top: 70px;
-  margin-left: 120px;
+  margin-left: 25px;
   margin-right: 120px;
-  gap: 10px;
+  gap: 20px;
   height: 1px;
   flex: 1; /* Takes up remaining space after stats section */
-  overflow: hidden; /* Ensures content doesn't overflow */
+  overflow: hidden; 
   margin-bottom: -30px; /* Spacing between sections */
   display: flex; /* Arranges cards horizontally */
 }
@@ -606,7 +521,7 @@
 /* Individual testimonial card */
 .testimonialcard {
   height: 300px;
-  width: 70px;
+  width: 20px;
   flex: 1; /* Makes cards equally sized */
   padding: 20px;
   background-color: black; /* White background */
@@ -679,8 +594,11 @@
 
 /* Stats section */
 .stats-section {
+  width: 1000px;
+  margin-left: 100px;
+  gap: 20px;
   display: flex;
-  flex-wrap: wrap; /* Allows stats to wrap on smaller screens */
+  /* flex-wrap: wrap; Allows stats to wrap on smaller screens */
   justify-content: space-between; /* Evenly distributes stats */
 }
 
@@ -707,6 +625,7 @@
   justify-content: center;
   margin-top: 70px;
   margin-bottom: 50px;
+  margin-left: 200px;
 }
 
 .dot {
@@ -799,8 +718,8 @@
   background-size: cover; /* Ensures the image covers the entire container */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents image tiling */
-  width: 214%; /* Full width */
-  height: 80vh; /* Adjust height as needed */
+  width: 1263px; /* Full width */
+  height: 100vh; /* Adjust height as needed */
   display: flex; /* Enables centering of child elements */
   align-items: center; /* Vertically centers the content */
   justify-content: center; /* Horizontally centers the content */
@@ -816,6 +735,7 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 15px;
+  margin-top: -10px;
 }
 
 .video-description {
@@ -846,5 +766,43 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for styling */
   border: 1px solid #ddd; /* Optional: Adds a border for styling */
   border-radius: 8px; /* Optional: Adds rounded corners */
+}
+
+@media (min-width: 1500px) {
+  .card-section {
+    width: 1330px;
+  }
+
+  .slide {
+    width: 1513px;
+  }
+  .about-section{
+    width: 1230px;
+    margin-left: 100px;
+  }
+  .card-layout{
+    width: 1513px;
+  }
+  .maincon{
+    width: 1513px;
+  }
+  .ddd{
+    width: 1513px;
+  }
+  .qm{
+    width: 1513px;
+  }
+  .sm{
+    width: 1513px;
+  }
+  .testimonials{
+    margin-left: 150px;
+  }
+  .dots{
+    margin-left: 450px;
+  }
+  .stats-section{
+    margin-left: 200px;
+  }
 }
 

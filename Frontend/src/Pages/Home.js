@@ -358,24 +358,6 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         ))}
                     </div>
                 </div>
-                {/* <div className="pr-text">
-                    <h2 className="section-title">Latest Projects</h2>
-                    <p className="section-subtitle">
-                        We have a wide range of projects in all areas of agriculture.
-                    </p>
-                </div>
-                <div className="projects-section">
-                    <div className="projects-grid">
-                        {projects.map((project) => (
-                            <div className="project-card" key={project.id}>
-                                <img src={project.image} alt={project.title} className="project-image" />
-                                <div className="overlay">
-                                    <h3 className="project-title">{project.title}</h3>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
                 <div className="ddd">
     <div className="video-section">
     <h2 className="video-title">See How We're Transforming Agriculture</h2>
