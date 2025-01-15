@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const productSchema = new mongoose.Schema({
   title: { type: String, required: true },
   name: { type: String, required: true },
@@ -86,3 +87,4 @@ productSchema.pre('findOneAndDelete', async function (next) {
 const dealerProduct = mongoose.model("dealerProduct", productSchema);
 
 export default dealerProduct;
+

@@ -28,7 +28,7 @@ const Dealer = () => {
   // UseEffect to fetch the products when the component mounts
   useEffect(() => {
     fetchLimitedProducts(); // Only call this once on component mount
-  }, [displayProducts]); // Empty dependency array to ensure it runs once on mount
+  }, []); // Empty dependency array to ensure it runs once on mount
 
   const categories = [
     { name: "Offers", img: "/Images/dealer11.jpg", url: "offers" },

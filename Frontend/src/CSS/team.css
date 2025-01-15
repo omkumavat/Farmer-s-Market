@@ -45,20 +45,13 @@
   }
   
   .team-member:nth-child(1) .team-image-container {
-    background-image: url('../Images/virat.jpg');
+    background-image: url('../Images/shivajiphoto.jpg');
   }
   
   .team-member:nth-child(2) .team-image-container {
-    background-image: url('../Images/virat.jpg');
+    background-image: url('../Images/omphoto.jpg');
   }
-  
-  .team-member:nth-child(3) .team-image-container {
-    background-image: url('../Images/virat.jpg');
-  }
-  
-  .team-member:nth-child(4) .team-image-container {
-    background-image: url('../Images/virat.jpg');
-  }
+
   
   .team-name {
     font-size: 24px;

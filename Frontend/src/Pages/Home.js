@@ -42,32 +42,32 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             text: "Green Agriculture Practices",
             button1: "Learn More",
             button2: "Join Us",
-            link1: "/learn-more",  // Add link for button1
-            link2: "/join-us",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         },
         {
             image: "/Images/homeimages/10.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
-            link1: "/get-started",  // Add link for button1
-            link2: "/explore",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         },
         {
             image: "/Images/homeimages/3.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
-            link1: "/get-started",  // Add link for button1
-            link2: "/explore",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         },
         {
             image: "/Images/homeimages/6.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
-            link1: "/get-started",  // Add link for button1
-            link2: "/explore",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         }
     ];
 
@@ -94,14 +94,6 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         },
     ];
 
-    // const projects = [
-    //     { id: 1, title: "Project 1", image: "/Images/agri1.jpeg" },
-    //     { id: 2, title: "Project 2", image: "/Images/agri1.jpeg" },
-    //     { id: 3, title: "Project 3", image: "/Images/agri1.jpeg" },
-    //     { id: 4, title: "Project 4", image: "/Images/agri1.jpeg" },
-    //     { id: 5, title: "Project 5", image: "/Images/agri1.jpeg" },
-    //     { id: 6, title: "Project 6", image: "/Images/agri1.jpeg" },
-    // ];
 
     const cards2 = [
         { icon: "🌱", title: "Vegetables", text: "Homes and thoroughly launder them between usage. We give our teams." },
@@ -214,22 +206,6 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             <NavBar />
             <ToastContainer />
             <div className="homepage">
-                {/* <div className="homepage-slider">
-                    {slides.map((slide, index) => (
-                        <div
-                            key={index}
-                            className={`slide ${index === currentSlide ? "active" : ""}`}
-                            style={{ backgroundImage: `url(${slide.image})` }}
-                        >
-                            <div className="slide-content">
-                                <h1 className="texti">{slide.text}</h1>
-                                <div className="buttons">
-                                    <button className="btn-primary">{slide.button1}</button>
-                                    <button className="btn-secondary">{slide.button2}</button>
-                                </div>
-                            </div>
-                        </div>
-                    ))} */}
 
                 <div className="homepage-slider">
     {slides.map((slide, index) => (
