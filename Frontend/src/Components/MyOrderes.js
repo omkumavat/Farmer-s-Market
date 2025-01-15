@@ -25,7 +25,7 @@ const MyOrderes = () => {
 
     return (
         <div className="orders">
-            {orders.map((product, index) => {
+            {orders && orders.map((product, index) => {
                 const idd = product.productId._id;
                 return (
                     <div key={index}>

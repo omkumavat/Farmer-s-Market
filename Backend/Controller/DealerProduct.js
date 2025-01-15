@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cloudinary from 'cloudinary';
 import { upload, uploadToCloudinary } from '../Database/Cloudinary.js';
 import multer from 'multer';
+import Seller from '../Models/Seller.js';
 dotenv.config();
 
 export const validateProduct = (req, res, next) => {
@@ -251,12 +252,64 @@ export const updateProduct = async (req, res) => {
 
 
 
+// export const getAllProducts = async (req, res) => {
+//   try {
+//     const limit = parseInt(req.query.limit) || 1000;
+//     console.log(limit)
+
+//     const products = await dealerProduct.find().limit(limit);
+
+//     return res.status(201).json({
+//       success: true,
+//       message: 'Product fetched successfully',
+//       data: products,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error fetching products", error: error.message });
+//   }
+// };
+
 export const getAllProducts = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 1000;
-    console.log(limit)
 
-    const products = await dealerProduct.find().limit(limit);
+    const products = await Seller.aggregate([
+      {
+        $unwind: '$productsSold', // Unwind the productsSold array
+      },
+      {
+        $match: {
+          'productsSold.productId': { $exists: true },
+        },
+      },
+      {
+        $group: {
+          _id: '$productsSold.productId', // Group by productId
+          totalQuantitySold: { $sum: '$productsSold.quantity' }, // Sum the quantity sold
+        },
+      },
+      {
+        $sort: { totalQuantitySold: -1 }, // Sort by quantity in descending order
+      },
+      {
+        $limit: 5, // Limit to the top 5 products
+      },
+      {
+        $lookup: {
+          from: 'dealerproducts', // Collection name in MongoDB
+          localField: '_id',
+          foreignField: '_id',
+          as: 'productDetails', // Join with dealerProduct to fetch details
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          totalQuantitySold: 1,
+          productDetails: { $arrayElemAt: ['$productDetails', 0] }, // Include only the first match
+        },
+      },
+    ]);
+
 
     return res.status(201).json({
       success: true,
@@ -267,6 +320,8 @@ export const getAllProducts = async (req, res) => {
     res.status(500).json({ message: "Error fetching products", error: error.message });
   }
 };
+
+
 
 export const getProductsByCategory = async (req, res) => {
   try {
