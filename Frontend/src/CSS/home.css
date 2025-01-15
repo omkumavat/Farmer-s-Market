@@ -112,12 +112,16 @@
     background-color: #007bff;
     color: white;
     text-decoration: none;
+    margin-left:580px;
+    margin-top:10px;
   }
   
   .buttons .btn-secondary {
     background-color: #6c757d;
     color: white;
     text-decoration: none;
+    margin-top:10px;
+    margin-left:30px;
   }
 
   /* Card Section Container */

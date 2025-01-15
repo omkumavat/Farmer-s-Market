@@ -31,6 +31,8 @@ import Pest from "./Services/pest"
 import Sales from './Components/Sales'
 import Disease from './Services/disease'
 import Notfound from './Pages/Notfound'
+
+
 function App() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);

@@ -1,7 +1,7 @@
 .mc {
     display: flex;
     height: 450px;
-    width: 1580px;
+    width: 1513px;
     background-image: url('../../public/Images/homeimages/3.jpg');
     background-size: cover;
     background-position: center;
@@ -13,6 +13,7 @@
   .cs {
     background-color:transparent;
     color: white;
+    margin-left:1000px;
     padding: 40px;
     text-align: center;
     width: 1580px;

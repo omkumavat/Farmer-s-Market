@@ -1,6 +1,6 @@
 /* MapComponent.css */
 
-body {
+/* body {
     margin: 0;
     font-family: Arial, sans-serif;
   }
@@ -9,7 +9,7 @@ body {
     text-align: center;
     margin-top: 20px;
     color: #2C3E50;
-  }
+  } */
   
   .map-container {
     display: flex;
