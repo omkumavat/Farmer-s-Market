@@ -31,7 +31,7 @@ import Pest from "./Services/pest"
 import Sales from './Components/Sales'
 import Disease from './Services/disease'
 import Notfound from './Pages/Notfound'
-
+import Dealersearch from './Components/DealerSearch'
 
 function App() {
   const { currentUser } = useAuth();
@@ -95,6 +95,7 @@ function App() {
               <Route path="/pest" element={<Pest  />} />
               <Route path="/disease" element={<Disease  />} />
               <Route path="*" element={<Notfound />} />
+              <Route path="/dealersearch" element={<Dealersearch  />} />
             </>
           )}
         </Routes>

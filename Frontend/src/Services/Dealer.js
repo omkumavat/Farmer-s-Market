@@ -5,7 +5,7 @@ import NavBar from "../Components/NavBar";
 import "../ServicesCSS/dealer.css";
 import axios from "axios";
 import Loader from "../Components/Loader";
-
+import { useNavigate } from "react-router-dom";
 const Dealer = () => {
   const [displayProducts, setDisplayProducts] = useState([]);
 
@@ -93,6 +93,19 @@ const Dealer = () => {
       description: "Includes tools like sprinklers, drip systems, and pumps, designed to deliver water to crops efficiently.",
     },
   ];
+ 
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      alert("Please enter a search term!");
+      return;
+    }
+    // Navigate to the Search Results page with the query as a parameter
+    navigate(`/dealersearch?q=${encodeURIComponent(searchTerm)}`);
+  };
+
   
   return (
     <>
@@ -108,6 +121,34 @@ const Dealer = () => {
           </div>
         </div>
         <div className="categories-container">
+          
+        <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>Search Products</h1>
+      <input
+        type="text"
+        placeholder="Search by title, name, category, or description"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        style={{
+          width: "300px",
+          padding: "10px",
+          fontSize: "16px",
+          marginBottom: "20px",
+        }}
+      />
+      <button
+        onClick={handleSearch}
+        style={{
+          padding: "10px 20px",
+          fontSize: "16px",
+          marginLeft: "10px",
+          cursor: "pointer",
+        }}
+      >
+        Search
+      </button>
+    </div>
+
           <h2 className="categories-heading">Categories</h2>
           <div className="styleline"></div>
           <div className="categories-grid">
