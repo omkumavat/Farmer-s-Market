@@ -27,9 +27,7 @@ const Footer = () => {
         <div className="about-sections">
           <h3>VERDICA</h3>
           <p>
-            We are dedicated to the production and marketing of mass consumer
-            products. Its business units are the manufacture of chemicals for
-            household hygiene and personal care.
+          "At Verdica, we understand the challenges farmers face. Our platform offers personalized weather forecasts, crop suggestions based on climate conditions, and expert advice to help farmers make informed decisions. Join us in revolutionizing agriculture for a better tomorrow."
           </p>
           <div className="social-icons">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
@@ -48,25 +46,25 @@ const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/blogs">Blogs</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/farmer">Services</a></li>
+            <li><a href="/land-preservation">Solutions</a></li>
+            <li><a href="/market">Market Insight</a></li>
           </ul>
         </div>
         <div className="about-links">
           <h3>About</h3>
           <ul>
-            <li><a href="/history">History</a></li>
+            <li><a href="/about">About</a></li>
             <li><a href="/team">Team</a></li>
-            <li><a href="/clients">Clients</a></li>
-            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/ticket">FAQ</a></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
         <p>
           © 2024 VERDICA Agriculture | <a href="/about">About</a> | 
-          <a href="/solutions">Solutions</a> | <a href="/projects">Projects</a>
+          <a href="/land-preservation">Solutions</a> | <a href="/contact">Contact</a>
         </p>
       </div>
     </footer>

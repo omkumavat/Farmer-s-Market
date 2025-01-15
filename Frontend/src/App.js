@@ -30,7 +30,7 @@ import EditProfile from './Components/EditProfile';
 import Pest from "./Services/pest"
 import Sales from './Components/Sales'
 import Disease from './Services/disease'
-
+import Notfound from './Pages/Notfound'
 function App() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
@@ -58,7 +58,7 @@ function App() {
           {isAdmin && (
             <>
               <Route path="/dash" element={<Dashboard />} />
-              <Route path="*" element={<Navigate to="/dash" />} />
+              <Route path="" element={<Navigate to="/dash" />} />
             </>
           )}
 
@@ -87,13 +87,12 @@ function App() {
               <Route path="/farmer" element={<Farmer />} />
               <Route path="/market" element={<Market />} />
               <Route path="/dashboard" element={<Sidebar />} />
-              <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/payment" element={<PaymentButton  />} />
               <Route path="/ticket" element={<TicketPage  />} />
               <Route path="/soil" element={<Soil  />} />
               <Route path="/pest" element={<Pest  />} />
               <Route path="/disease" element={<Disease  />} />
-              {/* <Route path="/edit-profile" element={< />} /> */}
+              <Route path="*" element={<Notfound />} />
             </>
           )}
         </Routes>
