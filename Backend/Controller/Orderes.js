@@ -14,8 +14,8 @@ export const createOrder = async (req, res) => {
              return res.status(404).json({ message: 'User not found' });
          }
 
-        const product = await dealerProduct.findById(productId);
-        const productType = "DealerProduct";
+        let product = await dealerProduct.findById(productId);
+        let productType = "DealerProduct";
         if (!product) {
             productType = "FarmerProduct";
             product = await FarmerProduct.findById(productId);
@@ -79,11 +79,12 @@ export const getOrders = async (req, res) => {
         const user = await User.findById(userId).populate({
             path: 'orders',
             populate: [
-                { path: 'buyer', select: 'name email' },
                 { path: 'seller', select: 'name email' },
+                { path: 'buyer', select: 'name email' },
                 { path: 'productId' },
             ],
         });
+        console.log(user);
         const orders = user.orders;
 
         // Send the orders to the front-end or render the dashboard

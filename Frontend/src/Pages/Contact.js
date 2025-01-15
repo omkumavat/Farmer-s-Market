@@ -5,7 +5,76 @@ import NavBar from '../Components/NavBar'
 import Footer from "../Components/Footer";
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
+
+// import React, { useState } from "react";
+// import "../CSS/ticket.css";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+// import NavBar from "../Components/NavBar";
+// import Footer from "../Components/Footer";
+import { useEffect } from "react";
+import Loader from "../Components/Loader";
+import { useAuth } from "../Context/AuthContext";
+import axios from "axios";
+
+const schema = yup.object().shape({
+    name: yup.string().required('Name is required'),
+    email: yup.string().email('Enter a valid email').required('Email is required'),
+    mobileno: yup
+        .string()
+        .matches(/^[0-9]{10}$/, 'Mobile number must be 10 digits')
+        .required('Mobile number is required'),
+    query: yup.string().required('Query is required'),
+});
 const ContactUs = () => {
+
+  const [activeIndex, setActiveIndex] = useState(null);
+    const { currentUser } = useAuth();
+    const [submitted, setSubmitted] = useState(false);
+    const [isAuthReady, setIsAuthReady] = useState(false);
+    const toggleQuestion = (index) => {
+        setActiveIndex(activeIndex === index ? null : index);
+    };
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(schema),
+    });
+
+    useEffect(() => {
+        if (currentUser !== undefined) {
+            setIsAuthReady(true); // Mark as ready once currentUser is loaded
+        }
+    }, [currentUser]);
+
+    if (!isAuthReady) {
+        return <Loader />;
+    }
+
+    const onSubmit = async (data) => {
+        if (!currentUser) {
+            console.log(currentUser);
+            alert("Login First");
+        }
+        else {
+            const userId = currentUser._id;
+            const response = await axios.post(`http://localhost:4000/server/submiticket`, {
+                data,
+                userId
+            });
+            console.log(response.data);
+            setSubmitted(true);
+
+            // Reset the form after submission
+            reset();
+
+            // Optional: Hide success message after 3 seconds
+            setTimeout(() => {
+                setSubmitted(false);
+            }, 3000);
+        }
+    };
+
+
   const mapStyles = {
     height: "400px",
     width: "100%",
@@ -16,44 +85,10 @@ const ContactUs = () => {
     lng: 73.8508, // Example longitude (New York)
   };
   
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+  
 
 
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Simple form validation
-    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-      setError('All fields are required.');
-      return;
-    }
-
-    // Here, you can send the form data to a server via an API request
-    setSuccess('Your message has been sent successfully!');
-    setError('');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    });
-  };
 
   return (
     <><NavBar />
@@ -73,11 +108,11 @@ const ContactUs = () => {
               World’s leading non-asset-based supply chain management companies, we design and implement industry-leading solutions. We specialize in intelligent logistics.
             </p>
             <p>
-              <FaPhoneAlt /> <strong>Phone:</strong> +456 127-566-7980 <br />
+              <FaPhoneAlt /> <strong>Phone:</strong> +918767729499 <br />
               Contact us if you have a question.
             </p>
             <p>
-              <FaEnvelope /> <strong>Email:</strong> Agro.com <br />
+              <FaEnvelope /> <strong>Email:</strong> info@verdica.com <br />
               Drop us an email and we will get back to you.
             </p>
             <p>
@@ -85,67 +120,64 @@ const ContactUs = () => {
             </p>
           </div>
 
-          {/* Contact Form Section (Right Side) */}
-          <div className="contact-form">
-            <form onSubmit={handleSubmit}>
-              {error && <div className="error-message">{error}</div>}
-              {success && <div className="success-message">{success}</div>}
+          <div className="ticket-form-container">
+                        <h2 className="form-title">Submit Your Query</h2>
+                        <form onSubmit={handleSubmit(onSubmit)} className="ticket-form">
+                            <div className="form-group">
+                                <label htmlFor="name">Name</label>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    placeholder="Enter your name"
+                                    {...register('name')}
+                                    className="form-input"
+                                />
+                                {errors.name && <p className="error">{errors.name.message}</p>}
+                            </div>
 
-              <div className="form-group">
-                <label htmlFor="name">*Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="Enter your email"
+                                    {...register('email')}
+                                    className="form-input"
+                                />
+                                {errors.email && <p className="error">{errors.email.message}</p>}
+                            </div>
 
-              <div className="form-group">
-                <label htmlFor="email">*Email Address</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
+                            <div className="form-group">
+                                <label htmlFor="mobileNo">Mobile Number</label>
+                                <input
+                                    type="text"
+                                    id="mobileno"
+                                    placeholder="Enter your mobile number"
+                                    {...register('mobileno')}
+                                    className="form-input"
+                                />
+                                {errors.mobileNo && <p className="error">{errors.mobileNo.message}</p>}
+                            </div>
 
-              <div className="form-group">
-                <label htmlFor="phone">*Please Enter Your Phone</label>
-                <input
-                  type="text"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Enter your phone number"
-                  required
-                />
-              </div>
+                            <div className="form-group">
+                                <label htmlFor="query">Query</label>
+                                <textarea
+                                    id="query"
+                                    placeholder="Enter your query here"
+                                    {...register('query')}
+                                    className="form-textarea"
+                                />
+                                {errors.query && <p className="error">{errors.query.message}</p>}
+                            </div>
 
-              <div className="form-group">
-                <label htmlFor="message">*Your Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Enter your message"
-                  required
-                ></textarea>
-              </div>
+                            <button type="submit" className="submit-button">
+                                Submit Ticket
+                            </button>
 
-              <button type="submit" className="submit-btn">Submit</button>
-            </form>
-          </div>
-        </div>
+                            {submitted && <p className="success-message">Your query has been submitted!</p>}
+                        </form>
+                    </div>
+            </div>
 
         {/* Google Map */}
         <div className="map-container">

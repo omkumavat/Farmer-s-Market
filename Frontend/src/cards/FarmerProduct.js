@@ -16,6 +16,7 @@ const Product = ({ id }) => {
   const [mainImage, setMainImage] = useState("");
   const [Desc, setDesc] = useState("");
   const [amount,setAmount]=useState(0);
+  // const [amount,setamount]=useState(0);
   const [quant,setQuant]=useState(0);
   const [shippingAddress,setShippingAddress]=useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,7 +61,8 @@ const Product = ({ id }) => {
         const data = response.data;
 
         setProduct(data);
-        setAmount(data.pricePerUnit*data.quantity);
+        setAmount(data.pricePerUnit);
+        // setamount(data.pricePerUnit*data.quantity);
         setQuant(data.quantity);
         console.log(data);
         setMainImage(data.images[0]);
@@ -125,6 +127,7 @@ const Product = ({ id }) => {
         email: 'omkumavat2004@gmail.com',
         name:currentUser.name,
       }
+      console.log(data);
       if (currentUser) {
         // amount=amount*quant;
         const response = await fetch('http://localhost:4000/api/payment/create-order', {
@@ -170,12 +173,11 @@ const Product = ({ id }) => {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
-                    // productType: 'DealerProduct',
                     productId: product._id,
                     buyer: currentUser._id,
                     sellerId:product.userId.sellerId,
                     quantity: quant,
-                    price: amount/quant,
+                    price: amount,
                     shippingAddress: shippingAddress,
                   }),
                 });

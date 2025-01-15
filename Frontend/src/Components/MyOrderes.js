@@ -26,7 +26,7 @@ const MyOrderes = () => {
     return (
         <div className="orders">
             {orders.map((product, index) => {
-                const idd = product.productId._id; // Extract the ID outside JSX
+                const idd = product.productId._id;
                 return (
                     <div key={index}>
                         <MyOrderCard {...product.productId} {...product} idd={idd} />
