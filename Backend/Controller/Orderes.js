@@ -8,6 +8,11 @@ export const createOrder = async (req, res) => {
     try {
         const { productId, quantity, price, shippingAddress, buyer,sellerId } = req.body;
 
+         // Check if the user exists
+         const user = await User.findById(buyer);
+         if (!user) {
+             return res.status(404).json({ message: 'User not found' });
+         }
 
         const product = await dealerProduct.findById(productId);
         const productType = "DealerProduct";
@@ -16,13 +21,6 @@ export const createOrder = async (req, res) => {
             product = await FarmerProduct.findById(productId);
         }
 
-        // Check if the user exists
-        const user = await User.findById(buyer);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Create a new order
         console.log(sellerId)
         const order = new Order({
             productType,
@@ -35,6 +33,7 @@ export const createOrder = async (req, res) => {
             paymentStatus: "Paid",
             shippingAddress,
         });
+        console.log(order);
 
         // Save the order
         await order.save();

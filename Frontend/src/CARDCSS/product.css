@@ -218,10 +218,10 @@
 
   .product-container {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     max-width: 1200px;
     margin: 20px auto;
-    /* border: 1px solid #ddd; */
+    /* margin-bottom: 1000px; */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -230,6 +230,7 @@
   /* Left side container for images */
   .left-content {
     flex: 1;
+    /* margin-bottom: 100px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -288,7 +289,7 @@
 
   .product-description {
     padding: 40px;
-    margin-top: -300px;
+    margin-top: 50px;
     background-color: white;
     border-radius: 8px;
     border: 1px solid #ddd;
