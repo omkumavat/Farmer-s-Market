@@ -232,3 +232,21 @@ export const updateProduct = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
+export const getSimilarProducts = async (req, res) => {
+  try {
+    // Get the limit from the query parameter (default to 6 if not provided)
+    const limit = parseInt(req.query.limit) || 1000;
+    console.log(limit)
+
+    const products = await FarmerProduct.find().limit(limit);
+
+    return res.status(201).json({
+      success: true,
+      message: 'Product fetched successfully',
+      data: products,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching products", error: error.message });
+  }
+};
