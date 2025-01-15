@@ -1,10 +1,10 @@
-import dealerProduct from "../Models/dealerProducts.js";
-import { User } from "../Models/User.js";
-import Seller  from '../Models/Seller.js'
-import dotenv from "dotenv";
-import cloudinary from "cloudinary";
-import { upload, uploadToCloudinary } from "../Database/Cloudinary.js";
-import multer from "multer";
+import dealerProduct from '../Models/dealerProducts.js';
+import { User } from '../Models/User.js';
+import Seller from '../Models/Seller.js';
+import dotenv from 'dotenv';
+import cloudinary from 'cloudinary';
+import { upload, uploadToCloudinary } from '../Database/Cloudinary.js';
+import multer from 'multer';
 dotenv.config();
 
 export const validateProduct = (req, res, next) => {
@@ -251,6 +251,23 @@ export const updateProduct = async (req, res) => {
 };
 
 
+// export const getAllProducts = async (req, res) => {
+//   try {
+//     const limit = parseInt(req.query.limit) || 1000;
+//     console.log(limit)
+
+//     const products = await dealerProduct.find().limit(limit);
+
+//     return res.status(201).json({
+//       success: true,
+//       message: 'Product fetched successfully',
+//       data: products,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error fetching products", error: error.message });
+//   }
+// };
+
 export const getAllProducts = async (req, res) => {
   try {
     // Aggregation pipeline
@@ -318,24 +335,6 @@ export const getAllProducts = async (req, res) => {
     });
   }
 };
-
-
-// export const getAllProducts = async (req, res) => {
-//   try {
-//     const limit = parseInt(req.query.limit) || 1000;
-//     console.log(limit)
-
-//     const products = await dealerProduct.find({}).limit(limit);
-
-//     return res.status(201).json({
-//       success: true,
-//       message: 'Product fetched successfully',
-//       data: products,
-//     });
-//   } catch (error) {
-//     res.status(500).json({ message: "Error fetching products", error: error.message });
-//   }
-// };
 
 export const getProductsByCategory = async (req, res) => {
   try {
