@@ -25,6 +25,11 @@ const Dealer = () => {
     }
   };
 
+
+  
+
+
+
   // UseEffect to fetch the products when the component mounts
   useEffect(() => {
     fetchLimitedProducts(); // Only call this once on component mount
