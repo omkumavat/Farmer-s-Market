@@ -1,7 +1,4 @@
-/* Container for the app */
-body{
-    background-color: aqua;
-}
+
 .app-container {
     display: flex;
     flex-direction: column;
