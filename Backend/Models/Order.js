@@ -10,6 +10,7 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "dealerProduct", 
+    ref: "FarmerProduct"
   },
   buyer: {
     type: mongoose.Schema.Types.ObjectId,

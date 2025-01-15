@@ -1,9 +1,10 @@
-import dealerProduct from '../Models/dealerProducts.js';
-import { User } from '../Models/User.js';
-import dotenv from 'dotenv';
-import cloudinary from 'cloudinary';
-import { upload, uploadToCloudinary } from '../Database/Cloudinary.js';
-import multer from 'multer';
+import dealerProduct from "../Models/dealerProducts.js";
+import { User } from "../Models/User.js";
+import Seller  from '../Models/Seller.js'
+import dotenv from "dotenv";
+import cloudinary from "cloudinary";
+import { upload, uploadToCloudinary } from "../Database/Cloudinary.js";
+import multer from "multer";
 dotenv.config();
 
 export const validateProduct = (req, res, next) => {
@@ -21,30 +22,13 @@ export const validateProduct = (req, res, next) => {
     largerSizeAvailable,
     smallerSizeAvailable,
     largerSizes,
-    smallerSizes
+    smallerSizes,
   } = req.body;
 
   const errors = [];
 
-  // if (!dealerid || !title || typeof title !== "string") errors.push("Title is required and must be a string.");
-  // if (!price || typeof price !== "number" || !quantity) errors.push("Price is required and must be a number.");
-  // if (!category || typeof category !== "string") errors.push("Category is required and must be a string.");
-  // if (!serviceType || typeof serviceType !== "string") errors.push("Service Type is required and must be a string.");
-  // if (!desc || typeof desc !== "string") errors.push("Description is required and must be a string.");
-  // if (!Array.isArray(images) || images.length === 0) errors.push("Images must be an array with at least one image.");
-  // if (!size || typeof size.value !== "number" || !size.unit) {
-  //     errors.push("Size must be an object with a numeric value and a valid unit.");
-  // }
-  // if (typeof largerSizeAvailable !== "boolean") errors.push("Larger Size Available must be a boolean.");
-  // if (typeof smallerSizeAvailable !== "boolean") errors.push("Smaller Size Available must be a boolean.");
-  // if (largerSizeAvailable && !Array.isArray(largerSizes)) {
-  //     errors.push("Larger Sizes must be an array if larger sizes are available.");
-  // }
-  // if (smallerSizeAvailable && !Array.isArray(smallerSizes)) {
-  //     errors.push("Smaller Sizes must be an array if smaller sizes are available.");
-  // }
-
-  if (errors.length > 0) return res.status(400).json({ success: false, errors });
+  if (errors.length > 0)
+    return res.status(400).json({ success: false, errors });
 
   next();
 };
@@ -66,20 +50,23 @@ export const createProduct = async (req, res) => {
       smallerSizeAvailable,
       largerSizes,
       smallerSizes,
-      images
+      images,
     } = req.body;
 
     const imageUrls = [];
 
     for (let image of images) {
-      const base64Image = image.split(';base64,').pop(); // Extract base64 string
+      const base64Image = image.split(";base64,").pop(); // Extract base64 string
 
       // Upload the image to Cloudinary
-      const uploadResponse = await cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`, {
-        folder: 'DealerProduct_images', // Optional: Cloudinary folder name
-        use_filename: true, // Optional: Use original file name
-        unique_filename: true, // Optional: Ensure a unique file name
-      });
+      const uploadResponse = await cloudinary.uploader.upload(
+        `data:image/png;base64,${base64Image}`,
+        {
+          folder: "DealerProduct_images", // Optional: Cloudinary folder name
+          use_filename: true, // Optional: Use original file name
+          unique_filename: true, // Optional: Ensure a unique file name
+        }
+      );
 
       // Save the image URL for reference
       imageUrls.push(uploadResponse.secure_url);
@@ -107,7 +94,9 @@ export const createProduct = async (req, res) => {
     // Update dealer's product list
     const dealer = await User.findById(dealerid);
     if (!dealer) {
-      return res.status(404).json({ success: false, message: 'Dealer not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "Dealer not found" });
     }
 
     dealer.dealerProducts.push(savedProduct._id);
@@ -115,14 +104,14 @@ export const createProduct = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: 'Product saved successfully',
+      message: "Product saved successfully",
       data: savedProduct,
     });
   } catch (error) {
-    console.error('Error saving product:', error);
+    console.error("Error saving product:", error);
     res.status(500).json({
       success: false,
-      message: 'An error occurred while saving the product',
+      message: "An error occurred while saving the product",
       error: error.message,
     });
   }
@@ -131,11 +120,15 @@ export const createProduct = async (req, res) => {
 export const getProducts = async (req, res) => {
   try {
     const filters = req.query;
-    const products = await dealerProduct.find(filters).populate("dealerid", "name email"); // Populate dealer details (name, email)
+    const products = await dealerProduct
+      .find(filters)
+      .populate("dealerid", "name email"); // Populate dealer details (name, email)
     res.status(200).json(products);
   } catch (error) {
     console.error("Error fetching products:", error);
-    res.status(500).json({ message: "Failed to fetch products. Please try again." });
+    res
+      .status(500)
+      .json({ message: "Failed to fetch products. Please try again." });
   }
 };
 
@@ -150,7 +143,9 @@ export const getProductById = async (req, res) => {
     res.status(200).json(product);
   } catch (error) {
     console.error("Error fetching product by ID:", error);
-    res.status(500).json({ message: "Failed to fetch product. Please try again." });
+    res
+      .status(500)
+      .json({ message: "Failed to fetch product. Please try again." });
   }
 };
 
@@ -162,12 +157,14 @@ export const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    res.status(200).json({ message: "Product deleted successfully", success:true });
+    res
+      .status(200)
+      .json({ message: "Product deleted successfully", success: true });
   } catch (error) {
     console.error("Error deleting product:", error);
-    res.status(500).json({ message: "Internal server error",success:false });
+    res.status(500).json({ message: "Internal server error", success: false });
   }
-}
+};
 
 export const updateProduct = async (req, res) => {
   try {
@@ -187,33 +184,35 @@ export const updateProduct = async (req, res) => {
       smallerSizeAvailable,
       largerSizes,
       smallerSizes,
-    } = req.body; 
+    } = req.body;
     console.log(req.body);
     const imageUrls = [];
 
     for (let image of images) {
-        let base64Image; // Change `const` to `let` to allow reassignment
+      let base64Image; // Change `const` to `let` to allow reassignment
 
-        if (image.startsWith('data:image')) {
-          const base64Image = image.split(';base64,').pop();
-          try {
-            // Upload the image to Cloudinary
-            const uploadResponse = await cloudinary.uploader.upload(`data:image/png;base64,${base64Image}`, {
-                folder: 'DealerProduct_images', // Optional: Cloudinary folder name
-                use_filename: true, // Optional: Use original file name
-                unique_filename: true, // Optional: Ensure a unique file name
-            });
+      if (image.startsWith("data:image")) {
+        const base64Image = image.split(";base64,").pop();
+        try {
+          // Upload the image to Cloudinary
+          const uploadResponse = await cloudinary.uploader.upload(
+            `data:image/png;base64,${base64Image}`,
+            {
+              folder: "DealerProduct_images", // Optional: Cloudinary folder name
+              use_filename: true, // Optional: Use original file name
+              unique_filename: true, // Optional: Ensure a unique file name
+            }
+          );
 
-            imageUrls.push(uploadResponse.secure_url);
+          imageUrls.push(uploadResponse.secure_url);
         } catch (error) {
-            console.error('Error uploading image to Cloudinary:', error);
-            // Handle any errors you encounter during the upload
+          console.error("Error uploading image to Cloudinary:", error);
+          // Handle any errors you encounter during the upload
         }
-        } else {
-            imageUrls.push(image);
-        }
+      } else {
+        imageUrls.push(image);
+      }
     }
-
 
     // Find the product by ID and update it with new values
     const updatedProduct = await dealerProduct.findByIdAndUpdate(
@@ -227,46 +226,116 @@ export const updateProduct = async (req, res) => {
         quantity,
         category,
         serviceType,
-        images:imageUrls,
+        images: imageUrls,
         desc,
         largerSizeAvailable,
         smallerSizeAvailable,
         largerSizes,
         smallerSizes,
-        dealerid:productId
+        dealerid: productId,
       },
       { new: true, runValidators: true } // Return the updated document and validate data
     );
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
-    console.log(updatedProduct)
-    res.status(200).json({ message: 'Product updated successfully', updatedProduct });
+    console.log(updatedProduct);
+    res
+      .status(200)
+      .json({ message: "Product updated successfully", updatedProduct });
   } catch (error) {
-    console.error('Error updating product:', error);
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error("Error updating product:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
 
 
 export const getAllProducts = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 1000;
-    console.log(limit)
+    // Aggregation pipeline
+    const products = await Seller.aggregate([
+      // Unwind the productsSold array to process each product
+      { $unwind: "$productsSold" },
 
-    const products = await dealerProduct.find().limit(limit);
+      // Group by productId and calculate the total quantity sold
+      {
+        $group: {
+          _id: "$productsSold.productId", // Group by productId
+          totalQuantitySold: { $sum: "$productsSold.quantity" }, // Sum the quantity sold
+        },
+      },
 
-    return res.status(201).json({
+      // Perform a lookup to join with the dealerProduct collection to get product details
+      {
+        $lookup: {
+          from: "dealerproducts", // The name of the products collection
+          localField: "_id", // Match the productId in Seller to _id in dealerProduct
+          foreignField: "_id", // The field in the dealerProduct collection
+          as: "productDetails", // Alias for the joined data
+        },
+      },
+
+      // Unwind the productDetails array to flatten the data
+      { $unwind: "$productDetails" },
+
+      // Project the necessary fields to include in the final result
+      {
+        $project: {
+          _id: 0, // Exclude the default _id field
+          productId: "$_id", // Include productId
+          title: "$productDetails.title", // Product title
+          price: "$productDetails.price", // Product price
+          totalQuantitySold: 1, // Total quantity sold
+          category: "$productDetails.category", // Product category
+          serviceType: "$productDetails.serviceType", // Service type
+          images: "$productDetails.images", // Product images
+          largerSizes: "$productDetails.largerSizes", // Larger sizes
+          smallerSizes: "$productDetails.smallerSizes", // Smaller sizes
+          size: "$productDetails.size", // Size
+          sizeUnit: "$productDetails.sizeUnit", // Size unit
+        },
+      },
+
+      // Sort by totalQuantitySold in descending order (highest sales first)
+      { $sort: { totalQuantitySold: -1 } },
+
+      // Limit to the top 5 products
+      { $limit: 5 },
+    ]);
+
+    console.log(products);
+
+    return res.status(200).json({
       success: true,
-      message: 'Product fetched successfully',
+      message: "Top popular products fetched successfully",
       data: products,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error fetching products", error: error.message });
+    return res.status(500).json({
+      message: "Error fetching popular products",
+      error: error.message,
+    });
   }
 };
+
+
+// export const getAllProducts = async (req, res) => {
+//   try {
+//     const limit = parseInt(req.query.limit) || 1000;
+//     console.log(limit)
+
+//     const products = await dealerProduct.find({}).limit(limit);
+
+//     return res.status(201).json({
+//       success: true,
+//       message: 'Product fetched successfully',
+//       data: products,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error fetching products", error: error.message });
+//   }
+// };
 
 export const getProductsByCategory = async (req, res) => {
   try {
@@ -277,6 +346,11 @@ export const getProductsByCategory = async (req, res) => {
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.error("Error fetching products by category:", error);
-    res.status(500).json({ success: false, message: "Failed to fetch products by category" });
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Failed to fetch products by category",
+      });
   }
 };

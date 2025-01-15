@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const productSchema = new mongoose.Schema({
   title: { type: String, required: true },
   name: { type: String, required: true },
@@ -46,3 +47,4 @@ function arrayLimit(val) {
 const dealerProduct = mongoose.model("dealerProduct", productSchema);
 
 export default dealerProduct;
+

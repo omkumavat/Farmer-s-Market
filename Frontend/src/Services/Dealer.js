@@ -11,7 +11,7 @@ const Dealer = () => {
 
   const fetchLimitedProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/server/dealer/getallproducts/all?limit=5");
+      const response = await axios.get("http://localhost:4000/server/dealer/getallproducts");
       if (!response) {
         throw new Error("Failed to fetch products");
       }
@@ -28,7 +28,7 @@ const Dealer = () => {
   // UseEffect to fetch the products when the component mounts
   useEffect(() => {
     fetchLimitedProducts(); // Only call this once on component mount
-  }, [displayProducts]); // Empty dependency array to ensure it runs once on mount
+  }, []); // Empty dependency array to ensure it runs once on mount
 
   const categories = [
     { name: "Offers", img: "/Images/dealer11.jpg", url: "offers" },

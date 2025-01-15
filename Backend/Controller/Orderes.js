@@ -8,21 +8,19 @@ export const createOrder = async (req, res) => {
     try {
         const { productId, quantity, price, shippingAddress, buyer,sellerId } = req.body;
 
+         // Check if the user exists
+         const user = await User.findById(buyer);
+         if (!user) {
+             return res.status(404).json({ message: 'User not found' });
+         }
 
-        const product = await dealerProduct.findById(productId);
-        const productType = "DealerProduct";
+        let product = await dealerProduct.findById(productId);
+        let productType = "DealerProduct";
         if (!product) {
             productType = "FarmerProduct";
             product = await FarmerProduct.findById(productId);
         }
 
-        // Check if the user exists
-        const user = await User.findById(buyer);
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Create a new order
         console.log(sellerId)
         const order = new Order({
             productType,
@@ -35,6 +33,7 @@ export const createOrder = async (req, res) => {
             paymentStatus: "Paid",
             shippingAddress,
         });
+        console.log(order);
 
         // Save the order
         await order.save();
@@ -80,11 +79,12 @@ export const getOrders = async (req, res) => {
         const user = await User.findById(userId).populate({
             path: 'orders',
             populate: [
-                { path: 'buyer', select: 'name email' },
                 { path: 'seller', select: 'name email' },
+                { path: 'buyer', select: 'name email' },
                 { path: 'productId' },
             ],
         });
+        console.log(user);
         const orders = user.orders;
 
         // Send the orders to the front-end or render the dashboard

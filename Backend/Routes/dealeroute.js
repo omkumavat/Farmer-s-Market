@@ -8,7 +8,7 @@ import { createProduct, validateProduct,getProductById,getAllProducts,
  } from '../Controller/DealerProduct.js';
 
 router.post("/dealer/addproduct", validateProduct, createProduct);
-router.get('/dealer/getallproducts/:query',getAllProducts);
+router.get('/dealer/getallproducts',getAllProducts);
 router.get('/dealer/getproductbyid/:id',getProductById);
 router.get('/dealer/getproductbyquery',getProducts);
 router.get('/dealer/getproductbycategory/:query',getProductsByCategory);
