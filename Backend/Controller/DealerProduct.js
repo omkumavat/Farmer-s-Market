@@ -299,8 +299,7 @@ export const getAllProducts = async (req, res) => {
       // Project the necessary fields to include in the final result
       {
         $project: {
-          _id: 0, // Exclude the default _id field
-          productId: "$_id", // Include productId
+          _id: "$productDetails._id",
           title: "$productDetails.title", // Product title
           price: "$productDetails.price", // Product price
           totalQuantitySold: 1, // Total quantity sold

@@ -5,6 +5,7 @@ import FarmerProduct from "../Components/FarmerProduct";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
+import {SearchBar1} from '../Components/SearchBar'
 const Farmer = () => {
     const [displayProducts, setDisplayProducts] = useState([]);
     const fetchLimitedProducts = async () => {
@@ -109,6 +110,9 @@ const Farmer = () => {
                         <p className="head2">PROVIDE BY VERDICA</p>
                     </div>
                 </div>
+                <div className="mbar">
+        <SearchBar1/>
+        </div>
                 <div className="categories-container">
                     <h2 className="categories-heading">Categories</h2>
                     <div className="styleline"></div>
