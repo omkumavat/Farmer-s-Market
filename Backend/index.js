@@ -50,6 +50,8 @@ app.use('/server', orders);
 import seller from './Routes/seller.js';
 app.use('/server', seller);
 
+import Happy from './Routes/Happy.js'
+app.use('/server',Happy);
 
 app.use(fileuPload({
   useTempFiles: true,

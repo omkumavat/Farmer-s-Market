@@ -29,6 +29,7 @@ import Soil from "./Services/Soil";
 import EditProfile from './Components/EditProfile';
 import Pest from "./Services/pest"
 import Sales from './Components/Sales'
+import Disease from './Services/disease'
 
 function App() {
   const { currentUser } = useAuth();
@@ -91,6 +92,7 @@ function App() {
               <Route path="/ticket" element={<TicketPage  />} />
               <Route path="/soil" element={<Soil  />} />
               <Route path="/pest" element={<Pest  />} />
+              <Route path="/disease" element={<Disease  />} />
               {/* <Route path="/edit-profile" element={< />} /> */}
             </>
           )}

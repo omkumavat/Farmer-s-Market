@@ -8,12 +8,12 @@ const Footer = () => {
         <div className="contact-info">
           <div>
             <i className="fa fa-phone"></i>
-            <p>+053 123-456-7890</p>
+            <p><a href="tel:+918767729499">+918767729499</a></p>
             <span>Contact us if you have a question</span>
           </div>
           <div>
             <i className="fa fa-envelope"></i>
-            <p>info@verdica.com</p>
+            <p><a href="mailto:info@verdica.com">info@verdica.com</a></p>
             <span>Drop us an email</span>
           </div>
           <div>
@@ -24,57 +24,49 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-middle">
-      <div className="about-sections">
-  <h3>VERDICA</h3>
-  <p>
-    We are dedicated to the production and marketing of mass consumer
-    products. Its business units are the manufacture of chemicals for
-    household hygiene and personal care.
-  </p>
-  <div className="social-icons">
-    <i className="fab fa-facebook"></i>
-    <i className="fab fa-twitter"></i>
-    <i className="fab fa-instagram"></i>
-  </div>
-</div>
-
+        <div className="about-sections">
+          <h3>VERDICA</h3>
+          <p>
+            We are dedicated to the production and marketing of mass consumer
+            products. Its business units are the manufacture of chemicals for
+            household hygiene and personal care.
+          </p>
+          <div className="social-icons">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-facebook"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-twitter"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
 
         <div className="quick-links">
           <h3>Quick Links</h3>
           <ul>
-            <li>Home</li>
-            <li>Services</li>
-            <li>Blogs</li>
-            <li>Contact</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/blogs">Blogs</a></li>
+            <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div className="about-links">
           <h3>About</h3>
           <ul>
-            <li>History</li>
-            <li>Team</li>
-            <li>Clients</li>
-            <li>FAQ</li>
-          </ul>
-        </div>
-        <div className="recent-news">
-          <h3>Recent News</h3>
-          <ul>
-            <li>
-              <span>Improvements in Verdica Techniques</span>
-              <small>24 July 2020</small>
-            </li>
-            <li>
-              <span>The Roth strategy we wish retirement</span>
-              <small>22 July 2020</small>
-            </li>
+            <li><a href="/history">History</a></li>
+            <li><a href="/team">Team</a></li>
+            <li><a href="/clients">Clients</a></li>
+            <li><a href="/faq">FAQ</a></li>
           </ul>
         </div>
       </div>
       <div className="footer-bottom">
         <p>
-          © 2024 VERDICA Agriculture | About |
-          Solutions | Projects
+          © 2024 VERDICA Agriculture | <a href="/about">About</a> | 
+          <a href="/solutions">Solutions</a> | <a href="/projects">Projects</a>
         </p>
       </div>
     </footer>

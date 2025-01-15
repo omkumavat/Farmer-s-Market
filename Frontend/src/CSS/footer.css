@@ -177,3 +177,90 @@
 .social-icons i:hover {
   color: #ffa500; /* Change color on hover */
 }
+
+
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-info div {
+  margin-bottom: 10px;
+}
+
+.contact-info i {
+  margin-right: 10px;
+}
+
+.contact-info a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-middle {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.quick-links ul,
+.about-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-links li,
+.about-links li {
+  margin-bottom: 10px;
+}
+
+.quick-links a,
+.about-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Align icons towards the center */
+  width: 100%;
+  justify-content: flex-end; /* Align icons towards the right */
+}
+
+.social-icons a {
+  color: white;
+  text-decoration: none; /* Remove underline from social links */
+  font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+  color: #ddd;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-bottom a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  text-decoration: none;
+}
+
+/* Remove the "Recent News" section */
+.recent-news {
+  display: none;
+}
+

@@ -82,6 +82,8 @@ const NavBar = () => {
               <a href="/dealer">Agricultural Products</a>
               <div className="style-line"></div>
               <a href="/soil">Soil Information</a>
+              <div className="style-line"></div>
+              <a href="/disease">Disease Detection</a>
             </div>
           </div>
         </li>

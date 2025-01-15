@@ -28,38 +28,6 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         }
     };
 
-    // const slides = [
-    //     {
-    //         image: "/Images/homeimages/4.jpg",
-    //         text: "Good Health Conscious Living",
-    //         button1: "About Us",
-    //         button2: "Contact",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/1.jpg",
-    //         text: "Green Agriculture Practices",
-    //         button1: "Learn More",
-    //         button2: "Join Us",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/2.jpg",
-    //         text: "Empowering Farmers",
-    //         button1: "Get Started",
-    //         button2: "Explore",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/3.jpg",
-    //         text: "Empowering Farmers",
-    //         button1: "Get Started",
-    //         button2: "Explore",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/6.jpg",
-    //         text: "Empowering Farmers",
-    //         button1: "Get Started",
-    //         button2: "Explore",
-    //     }
-    // ];
     const slides = [
         {
             image: "/Images/homeimages/4.jpg",
@@ -163,29 +131,49 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
             image: '/Images/test3.jpeg'
         },
-        // ... other testimonials
     ];
+
+    const [userCount, setUserCount] = useState(0);
+    const [orderCount, setOrderCount] = useState(0);
+    const [farmer, setFarmer] = useState(0);
+    const [dealer, setDealer] = useState(0);
+
+    useEffect(() => {
+        const fetchCounts = async () => {
+            const response = await fetch('http://localhost:4000/server/count'); 
+            const data = await response.json();
+            console.log(data);
+            setUserCount(data.userCount);
+            setOrderCount(data.orderCount);
+            setFarmer(data.farmer);
+            setDealer(data.Dealer);
+        };
+
+        fetchCounts();
+    }, []); 
+
+
 
     const stats = [
         {
             icon: '/Images/stats1.png',
-            number: '1120',
+            number: userCount,
             label: 'HAPPY CUSTOMERS'
         },
         {
             icon: '/Images/stats2.png',
-            number: '1120',
-            label: 'COMPLETE GOALS'
+            number: orderCount,
+            label: 'COMPLETE ORDERS'
         },
         {
             icon: '/Images/stats3.png',
-            number: '1120',
-            label: 'QUALIFY STAFF'
+            number: farmer,
+            label: 'HAPPY FARMER'
         },
         {
-            icon: '/Images/stats4.png',
-            number: '1120',
-            label: 'AWARD RECEIVED'
+            icon: '/Images/stats3.png',
+            number: dealer,
+            label: 'HAPPY DEALER'
         },
         // ... other stats
     ];

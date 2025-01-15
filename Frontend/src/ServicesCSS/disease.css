@@ -1,0 +1,130 @@
+/* Container for the app */
+body{
+    background-color: aqua;
+}
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    box-sizing: border-box;
+   
+  }
+  
+
+  .aboutusheader {
+    margin-top: 110px;
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  /* Heading */
+  .app-container h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* File input label */
+  .upload-label {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  /* File input field */
+  .app-container input[type="file"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  /* Upload button */
+  .app-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .app-container button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Success message */
+  .success-message {
+    margin-top: 20px;
+    color: green;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  /* Result container */
+  .result-container {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  .result-container h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .result-container p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .result-container strong {
+    font-weight: bold;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .app-container {
+      padding: 20px;
+      margin: 20px;
+    }
+  
+    .app-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .app-container button {
+      font-size: 1rem;
+      padding: 10px 15px;
+    }
+  
+    .result-container h3 {
+      font-size: 1.3rem;
+    }
+  
+    .result-container p {
+      font-size: 1rem;
+    }
+  }
+  
