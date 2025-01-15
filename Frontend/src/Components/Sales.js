@@ -37,12 +37,13 @@ const Sales = () => {
             try {
                 if (currentUser) {
                     const response = await axios.get(
-                        `http://localhost:4000/server/sales/get-sale/${currentUser.sellerId}`
+                        `http://localhost:4000/server/sales/get-sale-farmer/${currentUser.sellerId}`
                     );
                     const transformedData = response.data.data.map(item => ({
                         productName: item.productName,
                         totalRevenue: item.totalRevenue,
                     }));
+                    console.log(transformedData)
                     setSalesData(transformedData);
                 }
             } catch (err) {
@@ -73,6 +74,7 @@ const Sales = () => {
         <div className="chart-container">
             <AgCharts options={options} />
         </div>
+        
     );
 };
 
