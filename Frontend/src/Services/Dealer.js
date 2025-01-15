@@ -6,6 +6,7 @@ import "../ServicesCSS/dealer.css";
 import axios from "axios";
 import Loader from "../Components/Loader";
 import { useNavigate } from "react-router-dom";
+import {SearchBar} from "../Components/SearchBar";
 const Dealer = () => {
   const [displayProducts, setDisplayProducts] = useState([]);
 
@@ -122,32 +123,9 @@ const Dealer = () => {
         </div>
         <div className="categories-container">
           
-        <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h1>Search Products</h1>
-      <input
-        type="text"
-        placeholder="Search by title, name, category, or description"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        style={{
-          width: "300px",
-          padding: "10px",
-          fontSize: "16px",
-          marginBottom: "20px",
-        }}
-      />
-      <button
-        onClick={handleSearch}
-        style={{
-          padding: "10px 20px",
-          fontSize: "16px",
-          marginLeft: "10px",
-          cursor: "pointer",
-        }}
-      >
-        Search
-      </button>
-    </div>
+        <div className="sbar">
+        <SearchBar/>
+        </div>
 
           <h2 className="categories-heading">Categories</h2>
           <div className="styleline"></div>

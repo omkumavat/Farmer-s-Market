@@ -5,17 +5,13 @@ import DealerPCard from "../Components/DealerPCard";
 import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import "../CSS/productcategory.css";
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'; // Arrow icons for buttons
 
 const ProductCategoryPage = () => {
     const { category } = useParams();
     const [categoryProducts, setCategoryProducts] = useState([]);
     const [similarProducts, setSimilarProducts] = useState([]);
     const [error, setError] = useState(null);
-    const [activeCategorySlide, setActiveCategorySlide] = useState(0);
-    const [activeSimilarSlide, setActiveSimilarSlide] = useState(0);
-    const productsPerPage = 5; // Show 5 images per slide
-    
+
     // Fetch products based on the category
     useEffect(() => {
         if (category) {
@@ -32,11 +28,11 @@ const ProductCategoryPage = () => {
         }
     }, [category]);
 
+    // Fetch similar products
     useEffect(() => {
         axios
-            .get(`http://localhost:4000/server/dealer/getallproducts/all?limit=${1000}`)
+            .get(`http://localhost:4000/server/dealer/getsimilarproducts`)
             .then((response) => {
-                // Filter out products that belong to the current category
                 const filteredProducts = response.data.data.filter((product) => product.category !== category);
                 setSimilarProducts(filteredProducts);
             })
@@ -46,22 +42,6 @@ const ProductCategoryPage = () => {
             });
     }, [category]);
 
-    const handleCategoryPrev = () => {
-        setActiveCategorySlide((prev) => (prev === 0 ? Math.floor(categoryProducts.length / productsPerPage) : prev - 1));
-    };
-
-    const handleCategoryNext = () => {
-        setActiveCategorySlide((prev) => (prev === Math.floor(categoryProducts.length / productsPerPage) ? 0 : prev + 1));
-    };
-
-    const handleSimilarPrev = () => {
-        setActiveSimilarSlide((prev) => (prev === 0 ? Math.floor(similarProducts.length / productsPerPage) : prev - 1));
-    };
-
-    const handleSimilarNext = () => {
-        setActiveSimilarSlide((prev) => (prev === Math.floor(similarProducts.length / productsPerPage) ? 0 : prev + 1));
-    };
-
     return (
         <>
             <NavBar />
@@ -70,56 +50,28 @@ const ProductCategoryPage = () => {
 
                 {error && <p className="error-message">{error}</p>}
 
-                {/* Category Products Row */}
-                <div className="slider-container category-slider">
-                    <button className="prev-btn" onClick={handleCategoryPrev}>
-                        <FaArrowLeft />
-                    </button>
-                    <div className="slider">
-                        <div
-                            className="slider-row"
-                            style={{
-                                transform: `translateX(-${activeCategorySlide * (100 / productsPerPage)}%)`,
-                                width: `${(categoryProducts.length * 100) / productsPerPage}%`,
-                                transition: "transform 0.5s ease-in-out",
-                            }}
-                        >
-                            {categoryProducts.map((product, index) => (
-                                <div key={index} className="slider-item">
-                                    <DealerPCard {...product} />
-                                </div>
-                            ))}
-                        </div>
+                {/* Category Products Section */}
+                <div className="product-section">
+                    <h2>Category Products</h2>
+                    <div className="product-grid">
+                        {categoryProducts.map((product, index) => (
+                            <div key={index} className="product-card">
+                                <DealerPCard {...product} />
+                            </div>
+                        ))}
                     </div>
-                    <button className="next-btn" onClick={handleCategoryNext}>
-                        <FaArrowRight />
-                    </button>
                 </div>
 
-                {/* Similar Products Row */}
-                <div className="slider-container similar-slider">
-                    <button className="prev-btn" onClick={handleSimilarPrev}>
-                        <FaArrowLeft />
-                    </button>
-                    <div className="slider">
-                        <div
-                            className="slider-row"
-                            style={{
-                                transform: `translateX(-${activeSimilarSlide * (100 / productsPerPage)}%)`,
-                                width: `${(similarProducts.length * 100) / productsPerPage}%`,
-                                transition: "transform 0.5s ease-in-out",
-                            }}
-                        >
-                            {similarProducts.map((product, index) => (
-                                <div key={index} className="slider-item">
-                                    <DealerPCard {...product} />
-                                </div>
-                            ))}
-                        </div>
+                {/* Similar Products Section */}
+                <div className="product-section">
+                    <h2>Similar Products</h2>
+                    <div className="product-grid">
+                        {similarProducts.map((product, index) => (
+                            <div key={index} className="product-card">
+                                <DealerPCard {...product} />
+                            </div>
+                        ))}
                     </div>
-                    <button className="next-btn" onClick={handleSimilarNext}>
-                        <FaArrowRight />
-                    </button>
                 </div>
             </div>
             <Footer />

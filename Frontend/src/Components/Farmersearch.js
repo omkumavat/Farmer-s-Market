@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import {SearchBar} from "./SearchBar";
-import DealerPCard from "./DealerPCard";
+import {SearchBar1} from "./SearchBar";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import FarmerProduct from "./FarmerProduct";
 
-const DealerSearch = () => {
+const Farmersearch = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -26,7 +26,7 @@ const DealerSearch = () => {
       setLoading(true);
       // Adjust API call to include the backend server's port
       const response = await axios.get(
-        `http://localhost:4000/api/products/search?q=${encodeURIComponent(
+        `http://localhost:4000/server/farmersearch/?q=${encodeURIComponent(
           query
         )}`
       );
@@ -43,7 +43,7 @@ const DealerSearch = () => {
     <div>
         <NavBar/>
         <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <SearchBar initialSearchTerm={query || ""} />
+      <SearchBar1 initialSearchTerm={query || ""} />
       <h1>Search Results for "{query}"</h1>
       {loading ? (
         <p>Loading...</p>
@@ -52,7 +52,7 @@ const DealerSearch = () => {
         <div className="product-grid">
             {products.map((product, index) => (
                 <div key={index} className="product-card">
-                    <DealerPCard {...product} />
+                    <FarmerProduct {...product} />
                 </div>
             ))}
         </div>
@@ -66,4 +66,4 @@ const DealerSearch = () => {
   );
 };
 
-export default DealerSearch;
+export default Farmersearch;
