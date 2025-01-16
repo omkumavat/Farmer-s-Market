@@ -8,10 +8,6 @@
     margin: 10px;
   }
 
-  .deletewish button{
-    background-color: blue;
-  }
-
   .product-list{
     margin-top: 200px;
     margin-left: -1240px;
@@ -103,6 +99,7 @@
     color: red;
   }
   
-  .deletewish{
-    color: blue;
+  .deletewish {
+    background-color: red;
+    width: 10px;
   }

@@ -75,10 +75,31 @@ export const addToCart = async (req, res) => {
       ];
   
       // Send the merged result in the response
-      return res.status(200).json({ cart: mergedProducts });
+      return res.status(200).json({ dealercart: user[0].dealerProductDetails,farmercart:user[0].farmerProductDetails });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: 'Server error' });
     }
   };
   
+  export const removeCartItem = async (req, res) => {
+    try {
+      const { userId, cartId } = req.params;
+  
+      // Find and update the user by removing the cart ID from the carts array
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $pull: { carts: cartId } }, // Remove the cartId from the carts array
+        { new: true } // Return the updated user
+      );
+  
+      if (!updatedUser) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+  
+      res.status(200).json({ message: 'Cart item removed successfully', user: updatedUser });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };

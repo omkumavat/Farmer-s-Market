@@ -41,7 +41,7 @@ function Sidebar() {
           <ul className="sidebar-menu">
             <li onClick={() => handlePageChange('ep')}>Edit Profile</li>
             <li onClick={() => handlePageChange('order')}>My Orders</li>
-            <li onClick={() => handlePageChange('wish')}>My Cart</li>
+            <li onClick={() => handlePageChange('wish')}>My WishList</li>
             {currentUser.role !== "other" && (
               <>
                 <li onClick={() => handlePageChange('sales')}>My Sales</li>

@@ -4,8 +4,11 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import FarmerProduct from "./FarmerProduct";
 import "../DashboardCSS/mycart.css"
+import MyCartDealer from "../cards/MyCartDealer";
+import MyCartFarmer from "../cards/MyCartFarmer";
 const MyCart = () => {
-    const [cart, setCart] = useState([]);
+    const [farmercart, setFarmerCart] = useState([]);
+    const [dealercart, setDealerCart] = useState([]);
     const { currentUser } = useAuth();
     const [error, setError] = useState(null);
 
@@ -13,48 +16,41 @@ const MyCart = () => {
         if (currentUser && currentUser._id) {
             axios.get(`http://localhost:4000/server/dealer/getcart/${currentUser._id}`)
                 .then(response => {
-                    console.log(response.data.cart);
-                    setCart(response.data.cart);
+                    setFarmerCart(response.data.farmercart);
+                    setDealerCart(response.data.dealercart);
                 })
                 .catch(error => {
                     console.error('Error fetching cart:', error);
                     setError('Failed to load cart');
                 });
         }
-    }, [currentUser]);
+    }, []);
     return (
         <>
             <div className="mycart1">
                 {error && <p>{error}</p>}
                 <ul>
-                    {cart.length === 0 ? (
-                        <li>Your cart is empty</li>
-                    ) : (
-                        <><h2 className="hh1">Your Cart</h2>
-                            {
-                                currentUser.role === "dealer" && (
-                                    <div className="productlist1">
-                                        {cart.map((product, index) => (
-                                            <div key={index}>
-                                                {<DealerPCard {...product} />}
-                                            </div>
-                                        ))}
+                    <><h2 className="hh1">Your WishList</h2>
+                        {
+                            <div className="productlist1">
+                                {dealercart.map((product, index) => (
+                                    <div key={index}>
+                                        {<MyCartDealer {...product} setDealerCart={setDealerCart} />}
+                                        
                                     </div>
-                                )
-                            }
-                            {
-                                currentUser.role === "farmer" && (
-                                    <div className="productlist1">
-                                        {cart.map((product, index) => (
-                                            <div key={index}>
-                                                {<FarmerProduct {...product} />}
-                                            </div>
-                                        ))}
+                                ))}
+                            </div>
+                        }
+                        {
+                            <div className="productlist1">
+                                {farmercart.map((product, index) => (
+                                    <div key={index}>
+                                        {<MyCartFarmer {...product} setFarmerCart={setFarmerCart}/>}
                                     </div>
-                                )
-                            }
-                        </>
-                    )}
+                                ))}
+                            </div>
+                        }
+                    </>
                 </ul>
             </div>
         </>

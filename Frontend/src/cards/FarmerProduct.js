@@ -319,7 +319,7 @@ const Product = ({ id }) => {
 
         {/* Buttons */}
         <div className="button-section">
-          <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+          <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
           <button className="buy-now" onClick={openModal}>Buy Now</button>
         </div>
       </div>
