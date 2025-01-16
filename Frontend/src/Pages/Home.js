@@ -6,16 +6,18 @@ import Footer from "../Components/Footer";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  // Import styles
-
+import Spinner from "../Components/Spinner";
 const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     const [quote, setQuote] = useState('');
     const [author, setAuthor] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const fetchQuote = async () => {
         try {
+            setLoading(true);
             //https://api.api-ninjas.com/v1/quotes?category=happiness
             const response = await axios.get('https://api.api-ninjas.com/v1/quotes', {
-                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' }, 
+                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' },
             });
             const data = response.data[0];
             setQuote(data.quote);
@@ -26,6 +28,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             setQuote('Unable to fetch quote at this time. Please try again later.');
             setAuthor('');
         }
+        setLoading(false);
     };
 
     const slides = [
@@ -132,7 +135,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
     useEffect(() => {
         const fetchCounts = async () => {
-            const response = await fetch('http://localhost:4000/server/count'); 
+            const response = await fetch('http://localhost:4000/server/count');
             const data = await response.json();
             console.log(data);
             setUserCount(data.userCount);
@@ -142,7 +145,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         };
 
         fetchCounts();
-    }, []); 
+    }, []);
 
 
 
@@ -208,29 +211,29 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             <div className="homepage">
 
                 <div className="homepage-slider">
-    {slides.map((slide, index) => (
-        <div
-            key={index}
-            className={`slide ${index === currentSlide ? "active" : ""}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
-        >
-            <div className="slide-content">
-                <h1 className="texti">{slide.text}</h1>
-                <div className="buttons">
-                    <a href={slide.link1} className="btn-primary">
-                        {slide.button1}
-                    </a>
-                    <a href={slide.link2} className="btn-secondary">
-                        {slide.button2}
-                    </a>
+                    {slides.map((slide, index) => (
+                        <div
+                            key={index}
+                            className={`slide ${index === currentSlide ? "active" : ""}`}
+                            style={{ backgroundImage: `url(${slide.image})` }}
+                        >
+                            <div className="slide-content">
+                                <h1 className="texti">{slide.text}</h1>
+                                <div className="buttons">
+                                    <a href={slide.link1} className="btn-primary">
+                                        {slide.button1}
+                                    </a>
+                                    <a href={slide.link2} className="btn-secondary">
+                                        {slide.button2}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-            </div>
-        </div>
-    ))}
-</div>
 
-                    {/* Dots Navigation */}
-                    {/* </div> */}
+                {/* Dots Navigation */}
+                {/* </div> */}
                 <div>
                     <div className="dots-container">
                         {slides.map((_, index) => (
@@ -335,21 +338,27 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                     </div>
                 </div>
                 <div className="ddd">
-    <div className="video-section">
-    <h2 className="video-title">See How We're Transforming Agriculture</h2>
-    <p className="video-description">Watch our video to learn about our mission, vision, and the impact we’re making in the agricultural community.</p>
-    <video controls className="homepage-video">
-        <source src="/Images/homeimages/video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
-</div>
-</div>
+                    <div className="video-section">
+                        <h2 className="video-title">See How We're Transforming Agriculture</h2>
+                        <p className="video-description">Watch our video to learn about our mission, vision, and the impact we’re making in the agricultural community.</p>
+                        <video controls className="homepage-video">
+                            <source src="/Images/homeimages/video.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
                 <div className="qm">
                     <div className="sm">
                         <h2 >We Are Always Ready to Help You</h2>
-                        <p className="quote">{quote}</p>
-                        <p className="author">{author && `- ${author}`}</p>
-                        <button className="get-quote-button" onClick={fetchQuote}>GET A QUOTE</button>
+                        {loading ? (
+                            <Spinner/>
+                        ) : (
+                            <>
+                                <p className="quote">{quote}</p>
+                                <p className="author">{author && `- ${author}`}</p>
+                                <button className="get-quote-button" onClick={fetchQuote}>GET A QUOTE</button>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="mains">
@@ -357,7 +366,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         {testimonials.map((testimonial, index) => (
                             <div className={`testimonialcard ${index === activeIndex ? 'active' : ''}`} key={index}>
                                 <div className="quote-icon">
-                                <img src="/Images/q.png" alt="Quote Icon" className="q" />
+                                    <img src="/Images/q.png" alt="Quote Icon" className="q" />
                                 </div>
                                 <p className="tquote">{testimonial.quote}</p>
                                 <div className="styles-line"></div>

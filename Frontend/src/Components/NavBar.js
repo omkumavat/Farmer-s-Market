@@ -16,17 +16,19 @@ const NavBar = () => {
   }
 
   const handleLogout = async () => {
-    setIsAuthReady(false);
+    setIsAuthReady(false); // Show a loading state or disable interactions
     try {
-      await logout();
-      localStorage.removeItem("Users");
-      navigate('/', { replace: true });
-      window.location.reload();
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Add a delay of 2 seconds
+        await logout();
+        localStorage.removeItem("Users");
+        navigate('/', { replace: true });
+        window.location.reload();
     } catch (error) {
-      console.error("Error during logout:", error);
+        console.error("Error during logout:", error);
+    } finally {
+        setIsAuthReady(true); // Restore the ready state
     }
-    setIsAuthReady(true);
-  };
+};
 
   return (
     <nav className="navbar">
