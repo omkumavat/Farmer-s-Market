@@ -1,15 +1,18 @@
 .appcontainer {
   display: flex;
-  height: 100vh; /* Full viewport height */
+  height: 1000px; /* Full viewport height */
   overflow: hidden; /* Prevent scrollbars outside the layout */
 }
 
 .sidebars {
   background-color: #2d3e50;
   color: white;
-  height: 100vh; /* Match the height of the viewport */
+  top: 0;
+  left: 0;
+  margin-right: 20px; /* Add space from the content */
+  height: 1000px; /* Match the height of the viewport */
   width: 240px; /* Fixed width for the sidebar */
-  position: fixed; /* Make the sidebar static */
+  position: sticky; /* Sticky positioning */
   overflow-y: auto; /* Allow vertical scrolling for sidebar content */
   padding-top: 150px; /* Add padding for spacing */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
@@ -22,12 +25,13 @@
 }
 
 .sidebars .toggle-btn {
+  background-color: #2d3e50;
   color: red;
   border: none;
   font-size: 28px;
   cursor: pointer;
   position: absolute;
-  top: 25px;
+  top: 250px;
   right: -8px; /* Position the button outside the sidebar */
   padding: 10px 15px;
   border-radius: 50%;
@@ -36,7 +40,7 @@
 }
 
 .sidebars .toggle-btn:hover {
- 
+  background-color: #3b4c63;
 }
 
 .sidebarmenu {
@@ -56,7 +60,7 @@
 }
 
 .contents {
-  margin-left: 240px; /* Offset for sidebar width */
+  margin-left: 260px; /* Offset for sidebar width */
   padding: 20px;
   flex: 1;
   transition: margin-left 0.3s ease;
@@ -98,7 +102,7 @@
     width: 180px;
   }
 
-  .sidebarmenu li {
+  .sidebar-menu li {
     font-size: 16px;
   }
 }

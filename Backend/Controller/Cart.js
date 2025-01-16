@@ -1,10 +1,12 @@
 import { User } from "../Models/User.js";
+import mongoose from "mongoose";
 export const addToCart = async (req, res) => {
     const { userId, productId } = req.body; // Get userId and productId from request body
     console.log(req.body);
     try {
       // Find the user by userId
       const user = await User.findById(userId);
+      console.log(user);
   
       // If user is not found, return an error
       if (!user) {
@@ -21,25 +23,59 @@ export const addToCart = async (req, res) => {
   
       // Save the updated user document
       await user.save();
+      console.log(user);
   
-      return res.status(200).json({ message: 'Product added to cart', cart: user.cart });
+      return res.status(200).json({ message: 'Product added to cart', cart: user.carts });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: 'Server error' });
     }
   };
-  
+
   export const getCart = async (req, res) => {
-    const userId  = req.params.id; 
+    const userId = req.params.id;
     console.log(userId);
-    
+  
     try {
-      const user = await User.findById(userId).populate('carts');
-      if (!user) {
+      const user = await User.aggregate([
+        { $match: { _id: new mongoose.Types.ObjectId(userId) } }, // Match the user by ID
+        {
+          $lookup: {
+            from: 'dealerproducts', // Collection name in lowercase
+            localField: 'carts',
+            foreignField: '_id',
+            as: 'dealerProductDetails'
+          }
+        },
+        {
+          $lookup: {
+            from: 'farmerproducts', // Collection name in lowercase
+            localField: 'carts',
+            foreignField: '_id',
+            as: 'farmerProductDetails'
+          }
+        },
+        {
+          $project: {
+            carts: 1, // Keep original carts array
+            dealerProductDetails: 1, // Include populated dealerProduct details
+            farmerProductDetails: 1, // Include populated farmerProduct details
+          }
+        }
+      ]);
+  
+      if (user.length === 0) {
         return res.status(404).json({ message: 'User not found' });
       }
   
-      return res.status(200).json({ cart: user.carts });
+      // Merge both arrays (dealerProductDetails and farmerProductDetails)
+      const mergedProducts = [
+        ...user[0].dealerProductDetails,
+        ...user[0].farmerProductDetails
+      ];
+  
+      // Send the merged result in the response
+      return res.status(200).json({ cart: mergedProducts });
     } catch (error) {
       console.error(error);
       return res.status(500).json({ message: 'Server error' });
