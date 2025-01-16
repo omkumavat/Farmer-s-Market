@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { AgCharts } from "ag-charts-react";
-import "../CSS/sales.css";
+import "../DashboardCSS/sales.css";
 import { useAuth } from "../Context/AuthContext";
 
 const Sales = () => {

@@ -3,7 +3,7 @@ import DealerPCard from "./DealerPCard";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import FarmerProduct from "./FarmerProduct";
-import "../CSS/mycart.css"
+import "../DashboardCSS/mycart.css"
 const MyCart = () => {
     const [cart, setCart] = useState([]);
     const { currentUser } = useAuth();
@@ -24,16 +24,16 @@ const MyCart = () => {
     }, [currentUser]);
     return (
         <>
-            <div className="mycart">
+            <div className="mycart1">
                 {error && <p>{error}</p>}
                 <ul>
                     {cart.length === 0 ? (
                         <li>Your cart is empty</li>
                     ) : (
-                        <><h2 className="hh">Your Cart</h2>
+                        <><h2 className="hh1">Your Cart</h2>
                             {
                                 currentUser.role === "dealer" && (
-                                    <div className="productlist">
+                                    <div className="productlist1">
                                         {cart.map((product, index) => (
                                             <div key={index}>
                                                 {<DealerPCard {...product} />}
@@ -44,7 +44,7 @@ const MyCart = () => {
                             }
                             {
                                 currentUser.role === "farmer" && (
-                                    <div className="productlist">
+                                    <div className="productlist1">
                                         {cart.map((product, index) => (
                                             <div key={index}>
                                                 {<FarmerProduct {...product} />}
