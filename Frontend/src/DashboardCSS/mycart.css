@@ -1,13 +1,13 @@
 
-.mycart
+.mycart1
 {
-    margin-top: -200px;
-    margin-right: -1700px;
+    margin-top: 50px;
+    margin-right: -100px;
 }
 /* Product list container */
-.productlist {
+.productlist1 {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
     flex-wrap: wrap;
     justify-content: center; /* Centers product cards */
     gap: 20px;
@@ -18,7 +18,7 @@
     box-sizing: border-box;
 }
 
-.productCard {
+.productCard1 {
     width: 250px;
     height: 1000px;
     margin-bottom: 20px;
@@ -33,40 +33,42 @@
 
 
 /* Error message styles */
-.errorMessage {
+.errorMessage1 {
     color: red;
     text-align: center;
     margin-top: 20px;
 }
 
 /* Cart heading */
-.hh {
+.hh1 {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: -100px;
+    /* margin-bottom: -100px;
     margin-left: -1500px;
+    margin-top: 200px; */
     margin-top: 300px;
+    margin-right: -100px;
 }
 
 /* Make the layout responsive */
 @media (max-width: 768px) {
-    .myCartContainer {
+    .myCartContainer1 {
         margin-left: 20px; /* Reduce margin for smaller screens */
         padding: 10px;
     }
 
-    .productlist {
+    .productlist1 {
         padding: 10px;
     }
 
-    .productCard {
+    .productCard1 {
         width: 100%;
     }
 }
 
-.orders{
+.orders1{
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
     margin-left: 240px;
 }

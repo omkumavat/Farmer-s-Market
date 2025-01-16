@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../Context/AuthContext";
 import axios from 'axios';
 import MyOrderCard from "../cards/MyOrderCard";
-import '../CSS/mycart.css'
+import '../DashboardCSS/myorders.css'
 const MyOrderes = () => {
     const [orders, setOrders] = useState([]);
     const { currentUser } = useAuth();
@@ -24,7 +24,10 @@ const MyOrderes = () => {
     }, [currentUser]);
 
     return (
+        <>
+        <h2 className="hh1">Your Orders</h2>
         <div className="orders">
+            
             {orders && orders.map((product, index) => {
                 const idd = product.productId._id;
                 return (
@@ -35,6 +38,7 @@ const MyOrderes = () => {
             })}
 
         </div>
+        </>
     );
 }
 

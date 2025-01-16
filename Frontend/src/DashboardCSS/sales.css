@@ -1,0 +1,39 @@
+.chart-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.chart-header {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+  margin-bottom: 20px; /* Add space below buttons */
+}
+
+.action-button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.chart-container {
+
+  height: 500px; /* Adjust height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; /* Optional: Add a background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}

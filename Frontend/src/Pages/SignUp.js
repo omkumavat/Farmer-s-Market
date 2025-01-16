@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../Components/Loader";
 import { toast, ToastContainer } from "react-toastify";
 import { useAuth } from "../Context/AuthContext";
+// import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 
 const Signup = () => {
   const {login}=useAuth();
@@ -181,7 +183,14 @@ const Signup = () => {
             </div>
             <button type="submit">Sign Up</button>
           </form>
-
+          <div className="social-login">
+            <p>Or Sign up with</p>
+            <div className="social-icons">
+              <FaGoogle className="icon" />
+              <FaFacebook className="icon" />
+              <FaTwitter className="icon" />
+            </div>
+          </div>
           <p className="login-link">
             Already have an account? <a href="/login">Login</a>
           </p>
