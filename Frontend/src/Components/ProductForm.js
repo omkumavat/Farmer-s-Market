@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import "../CSS/productform.css";
+import "../DashboardCSS/productform.css";
 import { useAuth } from "../Context/AuthContext";
 import axios from 'axios';
 

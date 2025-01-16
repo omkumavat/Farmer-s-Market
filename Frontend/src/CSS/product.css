@@ -2,13 +2,13 @@
 .mypro{
     margin-top: -200px;
     /* margin-left: 2000px; */
-    margin-right: -2000px;
+    margin-right: -1500px;
 }
 
 /* Product list container */
 .product-list {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;

@@ -6,7 +6,7 @@
     background-color: white;
     height: 1000px;
     padding: 20px;
-    margin-left: -1200px;
+    margin-left: 1200px;
   }
   
   /* Form Wrapper */
@@ -118,22 +118,21 @@
   /* Center the form and adjust for sidebar and navbar */
 .formContainer {
  
-  position: relative; /* To contain the wrapper */
-  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 60px); /* Adjust height minus navbar */
+  background-color: white;
+  /* height: 1000px; */
+  width: 2000px;
   padding: 20px;
-  padding-left: calc(200px + 20px); /* Adjust padding to account for sidebar width */
-  box-sizing: border-box;
-  padding-top: 900px;
+  margin-left: 400px;
+  margin-top:800px;
 }
 
 /* Adjust wrapper for responsiveness */
 .wrapper {
   max-width: 800px;
-  width: 100%;
+  width: 200%;
   background-color: #fff;
   border-radius: 8px;
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
