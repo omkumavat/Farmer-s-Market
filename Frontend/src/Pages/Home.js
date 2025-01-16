@@ -106,24 +106,25 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
     const testimonials = [
         {
-            name: 'Mark Thomas',
-            title: 'Marketing Department',
-            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            name: 'Sophia Johnson',
+            title: 'Product Manager',
+            quote: "Innovation is the key to success. Always challenge the status quo and push boundaries.",
             image: '/Images/test1.jpeg'
         },
         {
-            name: 'Mark Thomas',
-            title: 'Marketing Department',
-            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            name: 'Liam Anderson',
+            title: 'Software Engineer',
+            quote: "Every problem is an opportunity to learn and grow. Embrace the journey.",
             image: '/Images/test2.jpeg'
         },
         {
-            name: 'Mark Thomas',
-            title: 'Marketing Department',
-            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            name: 'Olivia Martinez',
+            title: 'Creative Director',
+            quote: "Creativity is intelligence having fun. Let your imagination run wild.",
             image: '/Images/test3.jpeg'
         },
     ];
+    
 
     const [userCount, setUserCount] = useState(0);
     const [orderCount, setOrderCount] = useState(0);

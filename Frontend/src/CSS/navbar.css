@@ -22,6 +22,7 @@
   
   .logo-image {
     height: 60px;
+    width:90px;
     width: auto;
     margin-right: 13px;
     object-fit: contain; 
@@ -210,6 +211,7 @@
   
     .logo {
       margin-bottom: 10px;
+      /* width:1000px; */
     }
   
     .nav-links {
@@ -270,3 +272,19 @@
 
 
 
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligns the logo to the right */
+    padding-right: 40px; /* Add space on the right */
+  }
+  
+  .logo-image {
+    width: 100px; /* Increase the width of the logo */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  
+  .logo a {
+    text-decoration: none; /* Ensure no underline appears */
+  }
+  

@@ -31,8 +31,12 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="/Images/logo.jpg" alt="Verdica Logo" className="logo-image" />
-        <span className="website-name">Verdica</span>
+        <a href='/'>
+        <img src="/Images/verdicalogo.png" alt="Verdica Logo" className="logo-image" />
+        
+        </a>
+        <a href='/'>
+        <span className="website-name">Verdica</span> </a>
       </div>
       <GoogleTranslateWidget />
       <ul className="nav-links">
