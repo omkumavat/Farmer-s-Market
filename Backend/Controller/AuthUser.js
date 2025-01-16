@@ -35,26 +35,26 @@ export const signup = async (req, res) => {
         }
 
         
-        let user = await User.create({
+        let users = await User.create({
             name, email, mobileno, password: hashedPassword, confirmpassword: hashedPassword, role
         });
 
         const newSeller = new Seller({
             name: name,
             email: email,
-            userId: user._id 
+            userId: users._id 
         });
 
         await newSeller.save();
         console.log(newSeller._id);
 
-        user.sellerId=newSeller._id;
-        await user.save();
+        users.sellerId=newSeller._id;
+        await users.save();
 
         return res.status(200).json({
             success: true,
             message: "User Created Successfully",
-            data: user
+            data: users
         });
     }
     catch (err) {
@@ -244,3 +244,4 @@ export const updateProfile = async (req, res) => {
         });
     }
 };
+

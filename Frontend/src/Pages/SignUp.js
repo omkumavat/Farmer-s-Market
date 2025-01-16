@@ -7,8 +7,10 @@ import axios from 'axios'; // Import axios
 import { useNavigate } from "react-router-dom";
 import Loader from "../Components/Loader";
 import { toast, ToastContainer } from "react-toastify";
+import { useAuth } from "../Context/AuthContext";
 
 const Signup = () => {
+  const {login}=useAuth();
   const navi = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -48,17 +50,47 @@ const Signup = () => {
         email: userData.email,
         name:userData.name
       }
-      const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+      // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
       const response = await axios.post("http://localhost:4000/server/signup", { userData });
 
-      if (response) {
-        toast.success("SignUp Successful");
-        localStorage.setItem("Users", JSON.stringify(response.data.users));
-        navi('/login');
-        window.location.reload();
-      } else {
-        setError(response.data.message || "Signup failed. Please try again.");
+      if(response){
+        const res = await axios.post("http://localhost:4000/server/login", {
+          email,
+          password,
+        });
+  
+        const datas = res.data;
+  
+        if (datas.success === false) {
+          setError(datas.message);
+          toast.error(datas.message); // Error toast from backend
+          setIsAuthReady(false);
+          return;
+        }
+  
+        // Login is successful
+        login(datas.user);
+        localStorage.setItem("Users", JSON.stringify(datas.user));
+        toast.success("Login successful !"); 
+        if (datas.user.role === "admin") {
+          navi("/dash");
+        } else {
+          navi("/");
+          toast.success("Login successful !"); 
+        }
       }
+
+      // if (response) {
+      //   await new Promise((resolve) => setTimeout(resolve, 2000));
+      //   console.log(response.data.users); 
+      //   login(response.data.users);
+      //   localStorage.setItem("Users", JSON.stringify(response.data.users));
+      //   toast.success("SignUp Successful");
+      //   navi('/',{replace:true});
+      //   window.location.reload();
+      // } else {
+      //   setError(response.data.message || "Signup failed. Please try again.");
+      // }
     } catch (error) {
       // Handle error
       setError(error.response?.data?.message || "Error during signup. Please try again.");
