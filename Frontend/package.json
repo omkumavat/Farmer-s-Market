@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "main": "index.js",
-  "homepage": "./",
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@react-google-maps/api": "^2.20.3",
