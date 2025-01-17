@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
 app.use(cors({
-  origin: 'http://localhost:3000',  // You can replace this with the actual frontend URL
+  origin: '*',  // You can replace this with the actual frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing these methods
   allowedHeaders: ['Content-Type'], // Allow these headers
 }));
@@ -97,4 +97,4 @@ app.get("/s", (req, res) => {
 //   console.log("app is listening on port 4000");
 // });
 
-module.exports = app;
+export default app;
