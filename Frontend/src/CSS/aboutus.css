@@ -11,7 +11,7 @@
   }
   
   .headerimage {
-    background-image: url('../Images/3.jpg'); /* Path to your background image */
+    background-image: url('../Images/3.jpg'); 
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -49,7 +49,7 @@
   
   /* .aboutimage-right { */
     /* background-image: url('../Images/10.jpg'); Right image for content */
-  /* } */ */
+  /* } */ 
   
   .contentright {
     width: 50%; /* Half the width for content */

@@ -2,6 +2,8 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "main":"index.js",
+  "homepage": "./",
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@react-google-maps/api": "^2.20.3",
@@ -29,8 +31,8 @@
     "react-simple-image-slider": "^2.4.1",
     "react-toastify": "^10.0.6",
     "recharts": "^2.13.3",
-    "tailwindcss": "^3.4.15",
     "web-vitals": "^2.1.4",
+    "webpack": "^5.97.1",
     "yup": "^1.4.0"
   },
   "scripts": {

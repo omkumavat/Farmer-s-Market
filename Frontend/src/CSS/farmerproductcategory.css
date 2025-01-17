@@ -23,11 +23,6 @@
     box-sizing: border-box;
 }
 
-/* Category Products Slider Styles */
-.category-product-slider .product-slider-item {
-    /* Add specific styles for the category slider items */
-}
-
 .category-product-slider .prev-btn,
 .category-product-slider .next-btn {
     position: absolute;
@@ -49,10 +44,6 @@
     right: 10px;
 }
 
-/* Similar Products Slider Styles */
-.similar-product-slider .product-slider-item {
-    /* Add specific styles for the similar slider items */
-}
 
 .similar-product-slider .prev-btn,
 .similar-product-slider .next-btn {
