@@ -31,8 +31,8 @@ const EditProfile = () => {
           name: data.name || "",
           email: data.email || "",
           mobileno: data.mobileno || "",
-          password: "", // Don't populate for security
-          confirmpassword: "", // Don't populate for security
+          password: "", 
+          confirmpassword: "", 
           profilePicture: data.profilePicture || "",
         });
         setisAuthReady(false);
@@ -68,12 +68,16 @@ const EditProfile = () => {
       formData.append("name", userData.name);
       formData.append("email", userData.email);
       formData.append("mobileno", userData.mobileno);
-      formData.append("password", userData.password);
-
+  
+      // Add password if it is updated
+      if (userData.password) {
+        formData.append("password", userData.password);
+      }
+  
       if (userData.profilePicture) {
         formData.append("profilePicture", userData.profilePicture);
       }
-
+  
       const response = await axios.put(
         `http://localhost:4000/server/user/updateprofile/${currentUser._id}`,
         formData,
@@ -83,21 +87,21 @@ const EditProfile = () => {
           },
         }
       );
-
+  
       if (response.status === 200) {
+        const loginPassword = userData.password || verifiedPassword; // Use new password if updated, else old password
         await new Promise((resolve) => setTimeout(resolve, 4000));
         await logout();
+  
         const res = await axios.post("http://localhost:4000/server/login", {
           email: formData.get("email"),
-          password: verifiedPassword,
+          password: loginPassword,
         });
-
+  
         const data = res.data;
-
+  
         login(data.user);
-        // alert("Profile updated successfully!");
-
-        navigate('/dashboard', { replace: true });
+        navigate("/dashboard", { replace: true });
         window.location.reload();
       } else {
         alert(`Failed to update profile: ${response.data.message}`);
@@ -109,7 +113,7 @@ const EditProfile = () => {
       setIsModalOpen(false);
     }
   };
-
+  
   if (isAuthReady) {
     return <Loader />;
   }
