@@ -20,7 +20,7 @@ const NavBar = () => {
     try {
         await new Promise((resolve) => setTimeout(resolve, 2000)); // Add a delay of 2 seconds
         await logout();
-        localStorage.removeItem("Users");
+        // localStorage.removeItem("Users");
         navigate('/', { replace: true });
         window.location.reload();
     } catch (error) {
