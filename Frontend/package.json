@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "main":"index.js",
+  "main": "index.js",
   "homepage": "./",
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,11 +46,10 @@
       "react-app",
       "react-app/jest"
     ],
-  "rules": {
-    "jsx-a11y/alt-text": "off",
-    "no-unused-vars": "warn"
-  }
-
+    "rules": {
+      "jsx-a11y/alt-text": "warn",
+      "no-unused-vars": "warn"
+    }
   },
   "browserslist": {
     "production": [
@@ -63,5 +62,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cross-env": "^7.0.3"
   }
 }
