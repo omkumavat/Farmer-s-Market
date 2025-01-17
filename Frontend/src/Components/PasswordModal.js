@@ -17,7 +17,7 @@ const PasswordModal = ({ isOpen, closeModal, setOldPassword,oldPassword, userId,
     setError(""); // Reset error message
   
     try {
-      const response = await axios.post(`http://localhost:4000/server/user/verifypassword`, {
+      const response = await axios.post(`https://farmer-s-market-theta.vercel.app/server/user/verifypassword`, {
         userId,
         oldPassword,
       });

@@ -23,7 +23,7 @@ const ProductPage = () => {
         const fetchProduct = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/server/dealer/getproductbyid/${id}`
+                    `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbyid/${id}`
                 );
                 const data = response.data;
                 setProducts(data);
@@ -37,7 +37,7 @@ const ProductPage = () => {
         const fetchFarmerProduct = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/server/farmer/getproductbyid/${id}`
+                    `https://farmer-s-market-theta.vercel.app/server/farmer/getproductbyid/${id}`
                 );
                 const data = response.data;
                 console.log("aaa",data);
@@ -57,7 +57,7 @@ const ProductPage = () => {
         setisAuthReady(true);
         if (category) {
             axios
-                .get(`http://localhost:4000/server/dealer/getproductbycategory/all?category=${category}`)
+                .get(`https://farmer-s-market-theta.vercel.app/server/dealer/getproductbycategory/all?category=${category}`)
                 .then((response) => {
                     setCategoryProduct(response.data.data);
                 })

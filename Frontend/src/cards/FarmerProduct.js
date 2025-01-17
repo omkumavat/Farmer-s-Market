@@ -29,7 +29,7 @@ const Product = ({ id }) => {
     console.log(product);
     try {
       if(currentUser){
-        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
+        const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
           userId:currentUser._id,
           productId:product._id,
         });
@@ -62,7 +62,7 @@ const Product = ({ id }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/server/farmer/getproductbyid/${id}`
+          `https://farmer-s-market-theta.vercel.app/server/farmer/getproductbyid/${id}`
         );
         const data = response.data;
 
@@ -95,7 +95,7 @@ const Product = ({ id }) => {
       if (currentUser) {
         try {
           const response = await axios.get(
-            `http://localhost:4000/server/dealer/check-cart/${id}/${currentUser?._id}`
+            `https://farmer-s-market-theta.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
           );
           const data = response.data;
           console.log(data);
@@ -117,7 +117,7 @@ const Product = ({ id }) => {
         const userId = currentUser._id;
         const cartId = id;
         const response = await axios.delete(
-            `http://localhost:4000/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
+            `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
         );
         alert("Item removed from WishList successfuly");
         window.location.reload();
@@ -170,7 +170,7 @@ const Product = ({ id }) => {
       console.log(data);
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -189,7 +189,7 @@ const Product = ({ id }) => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -207,7 +207,7 @@ const Product = ({ id }) => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
+                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -223,7 +223,7 @@ const Product = ({ id }) => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+                // const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
 
                 if (createOrderResponse.ok ) {
                   alert('Payment successful and order created!');
