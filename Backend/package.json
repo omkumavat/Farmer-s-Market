@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Server for Vercel deployment",
-  "main": "index.js",
+  "main": "index",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node index",
+    "dev": "nodemon index",
     "vercel-build": "echo 'No build step required' && exit 0"
   },
   "keywords": [],
