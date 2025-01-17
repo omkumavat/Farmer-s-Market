@@ -72,7 +72,22 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
 
+// // Define the templates directory
+// const templatesDir = path.join(__dirname, "Templates");
+// app.engine(
+//   "hbs",
+//   exphbs({
+//     extname: ".hbs", // Set the file extension for Handlebars files
+//     defaultLayout: "layout", // Set the default layout file
+//     layoutsDir: path.join(__dirname, "Templates", "layouts"), // Path to layouts directory
+//     partialsDir: path.join(__dirname, "Templates", "partials"), // Path to partials directory (optional)
+//   })
+// );
+// app.set("view engine", "hbs");
+// app.set("views", path.join(__dirname, "Templates"));
 app.get("/s", (req, res) => {
   res.render("Ticket", { name: "OM", que: "a", response: "a" });
 });
@@ -82,4 +97,4 @@ app.get("/s", (req, res) => {
 //   console.log("app is listening on port 4000");
 // });
 
-export default app;
+module.exports = app;
