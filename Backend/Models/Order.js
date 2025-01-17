@@ -45,7 +45,7 @@ const orderSchema = new mongoose.Schema({
     default: Date.now,
   },
   deliveryDate: {
-    type: Date, // Optional delivery date
+    type: Date, 
   },
   shippingAddress: {
     type: String,
