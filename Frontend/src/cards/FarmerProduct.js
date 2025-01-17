@@ -16,13 +16,15 @@ const Product = ({ id }) => {
   const [mainImage, setMainImage] = useState("");
   const [Desc, setDesc] = useState("");
   const [amount,setAmount]=useState(0);
-  // const [amount,setamount]=useState(0);
+ const [isAuthReady,setIsAuthReady]=useState(false);
   const [quant,setQuant]=useState(0);
   const [shippingAddress,setShippingAddress]=useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPresent,setIsPresent]=useState(false);
    const [currentLocation, setCurrentLocation] = useState({ lat: null, lng: null });
 
   const handleAddToCart = async() => {
+    setIsAuthReady(true);
     console.log(currentUser);
     console.log(product);
     try {
@@ -31,14 +33,17 @@ const Product = ({ id }) => {
           userId:currentUser._id,
           productId:product._id,
         });
-        alert(response.data.message);
+        alert("Item added to WishList successfuly");
+        window.location.reload();
       }else{
         alert("Login First");
       }
     } catch (error) {
       alert(error.response ? error.response.data.message : 'Error adding to cart');
     }
+    setIsAuthReady(false);
   }
+
   function handleDates(dateStr) {
     const date = new Date(dateStr);
 
@@ -52,6 +57,7 @@ const Product = ({ id }) => {
   }
 
   useEffect(() => {
+    setIsAuthReady(true);
     const arr = [];
     const fetchProductDetails = async () => {
       try {
@@ -85,8 +91,42 @@ const Product = ({ id }) => {
       }
     };
 
+    const fetchWishStatus = async () => {
+      if (currentUser) {
+        try {
+          const response = await axios.get(
+            `http://localhost:4000/server/dealer/check-cart/${id}/${currentUser?._id}`
+          );
+          const data = response.data;
+          console.log(data);
+          setIsPresent(data.isPresent);
+        } catch (error) {
+          console.error("Error fetching wishlist status:", error);
+        }
+      }
+    };
+    
+    fetchWishStatus();
     fetchProductDetails();
-  }, [id, setMainImage, setProduct]);
+    setIsAuthReady(false);
+  }, []);
+
+  const handleDeleteWish = async () => {
+    setIsAuthReady(true);
+    try {
+        const userId = currentUser._id;
+        const cartId = id;
+        const response = await axios.delete(
+            `http://localhost:4000/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
+        );
+        alert("Item removed from WishList successfuly");
+        window.location.reload();
+    } catch (error) {
+        console.error('Error removing cart item:', error);
+    }
+    setIsAuthReady(true);
+}
+
 
   useEffect(() => {
     if (product) {
@@ -319,7 +359,13 @@ const Product = ({ id }) => {
 
         {/* Buttons */}
         <div className="button-section">
-          <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
+          {
+            currentUser && isPresent ? (
+              <button className="add-to-cart" onClick={handleDeleteWish}>Remove from WishList</button>
+            ) : (
+              <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
+            )
+          }
           <button className="buy-now" onClick={openModal}>Buy Now</button>
         </div>
       </div>

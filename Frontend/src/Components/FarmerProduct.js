@@ -9,7 +9,7 @@ const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity  , unit
     <div className="product-card">
       {/* Wrap the entire card in a Link for redirect */}
       <Link
-        to={`/dealer/${_id}/product`}
+        to={`/farmer/${_id}/product`}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <div className="discount-badge">10% OFF</div>
