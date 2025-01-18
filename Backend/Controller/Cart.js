@@ -103,3 +103,36 @@ export const addToCart = async (req, res) => {
       res.status(500).json({ message: 'Internal server error' });
     }
   };
+
+  export const checkCartPresence = async (req, res) => {
+    try {
+      const { cartId, userId } = req.params;
+  
+      // Validate input
+      if (!userId || !cartId) {
+        return res.status(400).json({ success: false, message: "User ID and Cart ID are required." });
+      }
+  
+      // Find user by ID and check cart presence
+      const user = await User.findById(userId);
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found." });
+      }
+  
+      // Check if cartId exists in the carts array
+      const isCartPresent = user.carts.includes(cartId);
+  
+      return res.status(200).json({ 
+        success: true, 
+        isPresent: isCartPresent 
+      });
+    } catch (error) {
+      console.error("Error checking cart presence:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "An error occurred while checking cart presence.", 
+        error: error.message 
+      });
+    }
+  };

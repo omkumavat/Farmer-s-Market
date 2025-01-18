@@ -57,7 +57,7 @@ const ContactUs = () => {
         }
         else {
             const userId = currentUser._id;
-            const response = await axios.post(`http://localhost:4000/server/submiticket`, {
+            const response = await axios.post(`https://farmer-s-market-theta.vercel.app/server/submiticket`, {
                 data,
                 userId
             });

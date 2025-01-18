@@ -16,7 +16,7 @@ const ProductCategoryPage = () => {
     useEffect(() => {
         if (category) {
             axios
-                .get(`http://localhost:4000/server/dealer/getproductbycategory/all?category=${category}`)
+                .get(`https://farmer-s-market-theta.vercel.app/server/dealer/getproductbycategory/all?category=${category}`)
                 .then((response) => {
                     console.log("Fetched Category Products:", response.data.data);
                     setCategoryProducts(response.data.data);
@@ -31,7 +31,7 @@ const ProductCategoryPage = () => {
     // Fetch similar products
     useEffect(() => {
         axios
-            .get(`http://localhost:4000/server/dealer/getsimilarproducts`)
+            .get(`https://farmer-s-market-theta.vercel.app/server/dealer/getsimilarproducts`)
             .then((response) => {
                 const filteredProducts = response.data.data.filter((product) => product.category !== category);
                 setSimilarProducts(filteredProducts);

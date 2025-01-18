@@ -15,7 +15,7 @@ const AddProduct = () => {
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/server/dealer/getverificationstatus/${currentUser._id}`);
+                const response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/dealer/getverificationstatus/${currentUser._id}`);
                 setIsVerificationSubmitted(response.data.isSubmitted);
                 setIsStatus(response.data.isSubmitted);
             } catch (error) {

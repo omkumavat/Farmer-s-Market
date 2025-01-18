@@ -15,7 +15,7 @@ const {currentUser}=useAuth();
   };
 
   const handleDeleteProducts = async() => {
-    const response = await axios.delete(`http://localhost:4000/server/farmer/deleteproduct/${_id}`);
+    const response = await axios.delete(`https://farmer-s-market-theta.vercel.app/server/farmer/deleteproduct/${_id}`);
     console.log("rr",response.data.success)
     if(response.data.success){
         alert("Product Deleted Successfuly");

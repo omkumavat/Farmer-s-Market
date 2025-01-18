@@ -26,7 +26,7 @@ const Farmersearch = () => {
       setLoading(true);
       // Adjust API call to include the backend server's port
       const response = await axios.get(
-        `http://localhost:4000/server/farmersearch/?q=${encodeURIComponent(
+        `https://farmer-s-market-theta.vercel.app/server/farmersearch/?q=${encodeURIComponent(
           query
         )}`
       );

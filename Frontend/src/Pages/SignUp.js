@@ -52,11 +52,16 @@ const Signup = () => {
         email: userData.email,
         name:userData.name
       }
+<<<<<<< HEAD
       const responses = await axios.post("http://localhost:4000/server/sendmail", data);
       const response = await axios.post("http://localhost:4000/server/signup", { userData });
+=======
+      // const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
+      const response = await axios.post("https://farmer-s-market-theta.vercel.app/server/signup", { userData });
+>>>>>>> 9a919e5ca634bf1bacb680347e1ea8d3950edfb5
 
       if(response){
-        const res = await axios.post("http://localhost:4000/server/login", {
+        const res = await axios.post("https://farmer-s-market-theta.vercel.app/server/login", {
           email,
           password,
         });

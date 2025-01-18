@@ -87,6 +87,7 @@ function App() {
               <Route path="/dealer/category/:category" element={<ProductCategoryPage />} />
               <Route path="/farmer/category/:category" element={<FarmerProductCategoryPage />} />
               <Route path="/dealer/:id/product" element={<ProductPage />} />
+              <Route path="/farmer/:id/product" element={<ProductPage />} />
               <Route path="/farmer" element={<Farmer />} />
               <Route path="/market" element={<Market />} />
               <Route path="/dashboard" element={<Sidebar />} />

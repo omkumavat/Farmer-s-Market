@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
 app.use(cors({
-  origin: 'http://localhost:3000',  // You can replace this with the actual frontend URL
+  origin: '*',  // You can replace this with the actual frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing these methods
   allowedHeaders: ['Content-Type'], // Allow these headers
 }));
@@ -72,13 +72,14 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-
 app.get("/s", (req, res) => {
   res.render("Ticket", { name: "OM", que: "a", response: "a" });
 });
 
 
-app.listen(4000, () => {
-  console.log("app is listening on port 4000");
-});
+// app.listen(4000, () => {
+//   console.log("app is listening on port 4000");
+// });
+
+// module.exports = app;
+export default app;

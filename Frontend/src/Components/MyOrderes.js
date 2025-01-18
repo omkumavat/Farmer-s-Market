@@ -11,7 +11,7 @@ const MyOrderes = () => {
 
     useEffect(() => {
         if (currentUser && currentUser._id) {
-            axios.get(`http://localhost:4000/server/orders/get-order/${currentUser._id}`)
+            axios.get(`https://farmer-s-market-theta.vercel.app/server/orders/get-order/${currentUser._id}`)
                 .then(response => {
                     console.log(response.data.orders);
                     setOrders(response.data.orders);

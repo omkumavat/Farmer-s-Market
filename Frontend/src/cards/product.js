@@ -6,6 +6,7 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"; // Import Google Maps components
 import { color } from "framer-motion";
+import Loader from "../Components/Loader";
 
 
 const Product = ({ id }) => {
@@ -22,48 +23,56 @@ const Product = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentLocation, setCurrentLocation] = useState({ lat: null, lng: null });
   const [originalAmount,setOriginalAmount]=useState(0);
+  const [isPresent,setIsPresent]=useState(false);
+  const [isAuthReady,setIsAuthReady]=useState(false);
+
 
   const handleAddToCart = async() => {
+    setIsAuthReady(true);
     console.log(currentUser);
     console.log(product);
     try {
       if(currentUser){
-        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
+        const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
           userId:currentUser._id,
           productId:product._id,
         });
-        alert(response.data.message);
+        alert("Item add to WishList successfuly");
       }else{
         alert("Login First");
       }
+      setIsAuthReady(false);
+      window.location.reload();
     } catch (error) {
-      alert(error.response ? error.response.data.message : 'Error adding to cart');
+      alert(error.response ? error.response.data.message : 'Error adding to WishList');
     }
   }
 
   useEffect(() => {
-    const arr = [];
+    setIsAuthReady(true);
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/server/dealer/getproductbyid/${id}`
+          `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbyid/${id}`
         );
         const data = response.data;
-
+  
         setProduct(data);
         console.log(data);
         setMainImage(data.images[0]);
-
+  
+        const arr = [];
         arr.push(data.size);
         arr.push(data.sizeUnit);
         arr.push(data.price);
+  
         const combinedVariants = [
           ...data.largerSizes.map((size) => ({ ...size, type: "Larger" })),
           ...data.smallerSizes.map((size) => ({ ...size, type: "Smaller" })),
-          // ...arr
         ];
         setVariants(combinedVariants);
-        console.log(variants);
+        console.log(combinedVariants);
+  
         const cleanText = data.desc
           .replace(/<strong>(.*?)<\/strong>/g, '$1') // Remove <strong> but keep text
           .replace(/<ul>/g, '') // Remove <ul> tags
@@ -77,6 +86,7 @@ const Product = ({ id }) => {
           .replace(/<br>/g, '\n')
           .replace(/<[^>]+>/g, ''); // Remove any remaining HTML tags
         setDesc(cleanText);
+  
         if (combinedVariants.length > 0) {
           setSelectedVariant(combinedVariants[0]);
           setAmount(combinedVariants[0].price);
@@ -86,9 +96,27 @@ const Product = ({ id }) => {
         console.error("Error fetching product details:", error);
       }
     };
-
+  
+    const fetchWishStatus = async () => {
+      if (currentUser) {
+        try {
+          const response = await axios.get(
+            `https://farmer-s-market-theta.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
+          );
+          const data = response.data;
+          console.log(data);
+          setIsPresent(data.isPresent);
+        } catch (error) {
+          console.error("Error fetching wishlist status:", error);
+        }
+      }
+    };
+    
+    fetchWishStatus();
     fetchProductDetails();
-  }, [id, setMainImage, setSelectedVariant, setMainImage]);
+    setIsAuthReady(false);
+  }, []);
+  
 
   if (!product) {
     return <div>Loading...</div>;
@@ -125,7 +153,7 @@ const Product = ({ id }) => {
       }
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -144,7 +172,7 @@ const Product = ({ id }) => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -162,7 +190,7 @@ const Product = ({ id }) => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
+                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -179,7 +207,7 @@ const Product = ({ id }) => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+                const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
 
                 if (createOrderResponse.ok && responses.ok) {
                   alert('Payment successful and order created!');
@@ -236,6 +264,28 @@ const Product = ({ id }) => {
       setAmount(newQuantity * originalAmount);
     }
   };
+
+  const handleDeleteWish = async () => {
+    setIsAuthReady(true);
+    try {
+        const userId = currentUser._id;
+        const cartId = id;
+        const response = await axios.delete(
+            `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
+        );
+        // console.log(response.data.message); 
+        // isPresent(false);
+        alert("Item removed successfuly from WishList")
+        window.location.reload();
+    } catch (error) {
+        console.error('Error removing cart item:', error);
+    }
+    setIsAuthReady(false);
+}
+
+if(isAuthReady){
+  <Loader/>
+}
   
 
   return (
@@ -382,7 +432,13 @@ const Product = ({ id }) => {
 
         {/* Buttons */}
         <div className="button-section">
-          <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
+          {
+            currentUser && isPresent ? (
+              <button className="add-to-cart" onClick={handleDeleteWish}>Remove from WishList</button>
+            ) : (
+              <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
+            )
+          }
           <button className="buy-now" onClick={openModal}>Buy Now</button>
         </div>
       </div>
