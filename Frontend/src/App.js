@@ -61,7 +61,7 @@ function App() {
           {isAdmin && (
             <>
               <Route path="/dash" element={<Dashboard />} />
-              <Route path="" element={<Navigate to="/dash" />} />
+              {/* <Route path="" element={<Navigate to="/dash" />} /> */}
             </>
           )}
 
