@@ -20,7 +20,7 @@ const Disease = () => {
     formData.append('image', file);
 
     try {
-      const response = await axios.post('https://192.168.222.73:5000/upload', formData, {
+      const response = await axios.post('http://192.168.222.237:5000/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setResult(response.data);

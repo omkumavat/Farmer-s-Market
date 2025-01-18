@@ -34,11 +34,9 @@ const NavBar = () => {
     <nav className="navbar">
       <div className="logo">
         <a href='/'>
-        <img src="/Images/verdicalogo.png" alt="Verdica Logo" className="logo-image" />
+        <img src="/Images/logoweb2.png" alt="Verdica Logo" className="logo-image" />
         
         </a>
-        <a href='/'>
-        <span className="website-name">Verdica</span> </a>
       </div>
       <GoogleTranslateWidget />
       <ul className="nav-links">
@@ -54,6 +52,7 @@ const NavBar = () => {
               <a href="/team">Our Team</a>
               <div className="style-line"></div>
               <a href="/ticket">FAQs & Query</a>
+              <div className="style-line"></div>
             </div>
           </div>
         </li>
@@ -72,6 +71,7 @@ const NavBar = () => {
               <a href="/soil-analysis">Soil Analysis</a>
               <div className="style-line"></div>
               <a href="/farm-plans">Farm Plans</a>
+              <div className="style-line"></div>
             </div>
           </div>
         </li>
@@ -90,6 +90,7 @@ const NavBar = () => {
               <a href="/soil">Soil Information</a>
               <div className="style-line"></div>
               <a href="/disease">Disease Detection</a>
+              <div className="style-line"></div>
             </div>
           </div>
         </li>
