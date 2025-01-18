@@ -18,7 +18,7 @@ const Weather = () => {
       try {
         const apiKey = '1652c40573d542a297f85139241811'; // Replace with your API key
         const response = await axios.get(
-          `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`
         );
 
         setWeather(response.data);
