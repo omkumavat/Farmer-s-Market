@@ -52,7 +52,7 @@ const Signup = () => {
         email: userData.email,
         name:userData.name
       }
-      // const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
+      const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
       const response = await axios.post("https://farmer-s-market-theta.vercel.app/server/signup", { userData });
 
       if(response){
