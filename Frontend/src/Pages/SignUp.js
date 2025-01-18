@@ -52,7 +52,7 @@ const Signup = () => {
         email: userData.email,
         name:userData.name
       }
-      // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+      const responses = await axios.post("http://localhost:4000/server/sendmail", data);
       const response = await axios.post("http://localhost:4000/server/signup", { userData });
 
       if(response){

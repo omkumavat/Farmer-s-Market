@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
   verified: { type: Boolean, default: false },
   profilePicture: { 
     type: String,
-    default: "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9zci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png"
+    default: "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
   },
   orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
   carts: [{
