@@ -1,0 +1,64 @@
+/* Container for the entire User Analytics component */
+.user-analytics-container {
+    margin-top: 300px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  /* Heading style */
+  .user-analytics-container h1 {
+    margin-top: 180px;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Wrapper for the dashboard cards */
+  .analytics-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Each card style */
+  .analytics-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .analytics-card h3 {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .analytics-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Chart container */
+  .analytics-chart {
+    margin-top: 30px;
+    width: 100%;
+    height: 400px;
+  }
+  
+  /* Loading text style */
+  .user-analytics-container p {
+    font-size: 1.2rem;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+  }
+  
