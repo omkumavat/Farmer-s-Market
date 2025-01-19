@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
 app.use(cors({
-  origin: '*',  // You can replace this with the actual frontend URL
+  origin: '*',  
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing these methods
   allowedHeaders: ['Content-Type'], // Allow these headers
 }));
