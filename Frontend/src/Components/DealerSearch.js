@@ -5,6 +5,8 @@ import {SearchBar} from "./SearchBar";
 import DealerPCard from "./DealerPCard";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 const DealerSearch = () => {
   const [products, setProducts] = useState([]);
@@ -33,13 +35,15 @@ const DealerSearch = () => {
       setProducts(response.data.data);
     } catch (error) {
       console.error("Error fetching products:", error);
-      alert("An error occurred while fetching products.");
+      toast.error("An error occurred while fetching products.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
+       <>
+        <ToastContainer />
     <div>
         <NavBar/>
         <div style={{ padding: "20px", fontFamily: "Arial" }}>
@@ -63,6 +67,7 @@ const DealerSearch = () => {
     </div>
     <Footer/>
     </div>
+    </>
   );
 };
 

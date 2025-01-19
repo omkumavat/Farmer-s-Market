@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
+
+
 export const SearchBar = ({ initialSearchTerm = "" }) => {
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const navigate = useNavigate();
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
-      alert("Please enter a search term!");
+      toast.error("Please enter a search term!");
       return;
     }
     navigate(`/dealersearch?q=${encodeURIComponent(searchTerm)}`);
@@ -52,13 +56,14 @@ export const SearchBar1 = ({ initialSearchTerm = "" }) => {
   
     const handleSearch = () => {
       if (!searchTerm.trim()) {
-        alert("Please enter a search term!");
+        toast.error("Please enter a search term!");
         return;
       }
       navigate(`/farmersearch?q=${encodeURIComponent(searchTerm)}`);
     };
   
     return (
+      <><ToastContainer />
       <div>
         <input
           type="text"
@@ -87,6 +92,7 @@ export const SearchBar1 = ({ initialSearchTerm = "" }) => {
           Search
         </button>
       </div>
+      </>
     );
   };
 

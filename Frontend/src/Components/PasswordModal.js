@@ -55,7 +55,7 @@ const PasswordModal = ({ isOpen, closeModal, setOldPassword,oldPassword, userId,
             />
           </div>
           {error && <p className="error">Password does not match. Try again later</p>}
-          <button type="submit" disabled={loading}>
+          <button className="close-button" type="submit" disabled={loading}>
             {loading ? "Verifying..." : "Submit"}
           </button>
         </form>

@@ -4,7 +4,8 @@ import '../CSS/contactus.css'; // Ensure CSS file is linked
 import NavBar from '../Components/NavBar'
 import Footer from "../Components/Footer";
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
-
+import { toast, ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS for toast
 
 // import React, { useState } from "react";
 // import "../CSS/ticket.css";
@@ -46,33 +47,42 @@ const ContactUs = () => {
         }
     }, [currentUser]);
 
+    useEffect(() => {
+            if (errors.mobileno) {
+                toast.error('Mobile number must be 10 digits');
+            }
+            if (errors.email) {
+                toast.error('Enter a valid email');
+            }
+        }, [errors]); // Triggered whenever there is a form error
+        
     if (!isAuthReady) {
         return <Loader />;
     }
 
     const onSubmit = async (data) => {
-        if (!currentUser) {
-            console.log(currentUser);
-            alert("Login First");
-        }
-        else {
-            const userId = currentUser._id;
-            const response = await axios.post(`https://farmer-s-market-theta.vercel.app/server/submiticket`, {
-                data,
-                userId
-            });
-            console.log(response.data);
-            setSubmitted(true);
-
-            // Reset the form after submission
-            reset();
-
-            // Optional: Hide success message after 3 seconds
-            setTimeout(() => {
-                setSubmitted(false);
-            }, 3000);
-        }
-    };
+      if (!currentUser) {
+          toast.error("Login First");
+      } else {
+          try {
+              const userId = currentUser._id;
+              const response = await axios.post(`https://farmer-s-market-theta.vercel.app/server/submiticket`, {
+                  data,
+                  userId
+              });
+              console.log(response.data);
+  
+              // Show success toast after successful submission
+              toast.success("Your query has been submitted!");
+  
+              // Reset the form after submission
+              reset();
+          } catch (error) {
+              // Show error toast if something goes wrong with the submission
+              toast.error("There was an error submitting your query. Please try again.");
+          }
+      }
+  };
 
 
   const mapStyles = {
@@ -174,7 +184,7 @@ const ContactUs = () => {
                                 Submit Ticket
                             </button>
 
-                            {submitted && <p className="success-message">Your query has been submitted!</p>}
+                            {/* {submitted && <p className="success-message">Your query has been submitted!</p>} */}
                         </form>
                     </div>
             </div>
@@ -189,6 +199,7 @@ const ContactUs = () => {
         </div>
       </div>
       <Footer />
+       <ToastContainer /> 
     </>
   );
 };

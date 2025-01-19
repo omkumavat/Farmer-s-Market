@@ -6,6 +6,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import {SearchBar1} from '../Components/SearchBar'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
+
+
 const Farmer = () => {
     const [displayProducts, setDisplayProducts] = useState([]);
     const fetchLimitedProducts = async () => {
@@ -102,7 +106,9 @@ const Farmer = () => {
 
 
     return (
-        <><NavBar />
+        <>
+        <ToastContainer />
+        <NavBar />
             <div>
                 <div className="mc">
                     <div className="cs">

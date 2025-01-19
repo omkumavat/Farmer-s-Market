@@ -7,6 +7,8 @@ import { useAuth } from "../Context/AuthContext";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"; // Import Google Maps components
 import { color } from "framer-motion";
 import Loader from "../Components/Loader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 
 const DProduct = ({ id }) => {
@@ -27,26 +29,24 @@ const DProduct = ({ id }) => {
   const [isAuthReady,setIsAuthReady]=useState(false);
 
 
-  const handleAddToCart = async() => {
+  const handleAddToCart = async () => {
     setIsAuthReady(true);
-    console.log(currentUser);
-    console.log(product);
     try {
-      if(currentUser){
+      if (currentUser) {
         const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
-          userId:currentUser._id,
-          productId:product._id,
+          userId: currentUser._id,
+          productId: product._id,
         });
-        alert("Item add to WishList successfuly");
-      }else{
-        alert("Login First");
+        toast.success("Item added to WishList successfully");
+        setIsPresent(true); // Update the state here
+      } else {
+        toast.error("Please login first");
       }
-      setIsAuthReady(false);
-      window.location.reload();
     } catch (error) {
-      alert(error.response ? error.response.data.message : 'Error adding to WishList');
+      toast.error(error.response ? error.response.data.message : 'Error adding to wishlist');
     }
-  }
+    setIsAuthReady(false);
+  };
 
   useEffect(() => {
     setIsAuthReady(true);
@@ -210,16 +210,16 @@ const DProduct = ({ id }) => {
                 const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
 
                 if (createOrderResponse.ok && responses.ok) {
-                  alert('Payment successful and order created!');
+                  toast.success('Payment successful and order created!');
                 } else {
-                  alert('Error creating order: ' + orderData.message);
+                  toast.error('Error creating order: ' + orderData.message);
                 }
               } else {
-                alert(result.message || 'Error saving payment');
+                toast.error(result.message || 'Error saving payment');
               }
             } catch (error) {
               console.error('Error during payment verification:', error);
-              alert('Error during payment verification');
+              toast.error('Error during payment verification');
             }
           },
           prefill: {
@@ -235,11 +235,11 @@ const DProduct = ({ id }) => {
         const razorpay = new window.Razorpay(options);
         razorpay.open();
       } else {
-        alert('Please login first');
+        toast.error('Please login first');
       }
     } catch (error) {
       console.error('Error during payment:', error);
-      alert('Error while initiating payment');
+      toast.error('Error while initiating payment');
     }
   };
 
@@ -268,20 +268,19 @@ const DProduct = ({ id }) => {
   const handleDeleteWish = async () => {
     setIsAuthReady(true);
     try {
-        const userId = currentUser._id;
-        const cartId = id;
-        const response = await axios.delete(
-            `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
-        );
-        // console.log(response.data.message); 
-        // isPresent(false);
-        alert("Item removed successfuly from WishList")
-        window.location.reload();
+      const userId = currentUser._id;
+      const cartId = id;
+      const response = await axios.delete(
+        `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
+      );
+      toast.success("Item removed from WishList successfully");
+      setIsPresent(false); // Update the state here
     } catch (error) {
-        console.error('Error removing cart item:', error);
+      console.error('Error removing item from wishlist:', error);
+      toast.error('Error removing item from wishlist');
     }
     setIsAuthReady(false);
-}
+  };
 
 if(isAuthReady){
   <Loader/>
@@ -289,6 +288,7 @@ if(isAuthReady){
   
 
   return (
+     <> <ToastContainer />
     <div className="product-container">
       {/* Image Section */}
       <div className="image-section">
@@ -452,6 +452,7 @@ if(isAuthReady){
         <img src={pmethodImage} alt="Payment Method" />
       </div>
     </div>
+    </>
   );
 };
 

@@ -6,6 +6,9 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import Loader from "../Components/Loader";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
+
 
 const Product = ({ id }) => {
   const { currentUser } = useAuth();
@@ -23,26 +26,26 @@ const Product = ({ id }) => {
   const [isPresent,setIsPresent]=useState(false);
    const [currentLocation, setCurrentLocation] = useState({ lat: null, lng: null });
 
-  const handleAddToCart = async() => {
+
+  const handleAddToCart = async () => {
     setIsAuthReady(true);
-    console.log(currentUser);
-    console.log(product);
     try {
-      if(currentUser){
+      if (currentUser) {
         const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
-          userId:currentUser._id,
-          productId:product._id,
+          userId: currentUser._id,
+          productId: product._id,
         });
-        alert("Item added to WishList successfuly");
-        window.location.reload();
-      }else{
-        alert("Login First");
+        toast.success("Item added to WishList successfully");
+        setIsPresent(true); // Update the state here
+      } else {
+        toast.error("Please login first");
       }
     } catch (error) {
-      alert(error.response ? error.response.data.message : 'Error adding to cart');
+      toast.error(error.response ? error.response.data.message : 'Error adding to wishlist');
     }
     setIsAuthReady(false);
-  }
+  };
+  
 
   function handleDates(dateStr) {
     const date = new Date(dateStr);
@@ -111,21 +114,24 @@ const Product = ({ id }) => {
     setIsAuthReady(false);
   }, []);
 
-  const handleDeleteWish = async () => {
-    setIsAuthReady(true);
-    try {
-        const userId = currentUser._id;
-        const cartId = id;
-        const response = await axios.delete(
-            `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
-        );
-        alert("Item removed from WishList successfuly");
-        window.location.reload();
-    } catch (error) {
-        console.error('Error removing cart item:', error);
-    }
-    setIsAuthReady(true);
-}
+
+const handleDeleteWish = async () => {
+  setIsAuthReady(true);
+  try {
+    const userId = currentUser._id;
+    const cartId = id;
+    const response = await axios.delete(
+      `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
+    );
+    toast.success("Item removed from WishList successfully");
+    setIsPresent(false); // Update the state here
+  } catch (error) {
+    console.error('Error removing item from wishlist:', error);
+    toast.error('Error removing item from wishlist');
+  }
+  setIsAuthReady(false);
+};
+
 
 
   useEffect(() => {
@@ -226,16 +232,16 @@ const Product = ({ id }) => {
                 // const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
 
                 if (createOrderResponse.ok ) {
-                  alert('Payment successful and order created!');
+                  toast.success('Payment successful and order created!');
                 } else {
-                  alert('Error creating order: ' + orderData.message);
+                  toast.error('Error creating order: ' + orderData.message);
                 }
               } else {
-                alert(result.message || 'Error saving payment');
+                toast.error(result.message || 'Error saving payment');
               }
             } catch (error) {
               console.error('Error during payment verification:', error);
-              alert('Error during payment verification');
+              toast.error('Error during payment verification');
             }
           },
           prefill: {
@@ -251,11 +257,11 @@ const Product = ({ id }) => {
         const razorpay = new window.Razorpay(options);
         razorpay.open();
       } else {
-        alert('Please login first');
+        toast.error('Please login first');
       }
     } catch (error) {
       console.error('Error during payment:', error);
-      alert('Error while initiating payment');
+      toast.error('Error while initiating payment');
     }
   };
 
@@ -268,6 +274,7 @@ const Product = ({ id }) => {
   };
 
   return (
+    <> <ToastContainer />
     <div className="product-container">
       <div className="image-section">
         <div className="main-image">
@@ -379,6 +386,7 @@ const Product = ({ id }) => {
         <img src={pmethodImage} alt="Payment Method" />
       </div>
     </div>
+    </>
   );
 };
 
