@@ -24,37 +24,46 @@ const MyCart = () => {
                     setError('Failed to load cart');
                 });
         }
-    }, []);
+    }, [currentUser]);
+
     return (
-        <>
-            <div className="mycart1">
-                {error && <p>{error}</p>}
-                <ul>
-                    <><h2 className="hh1">Your WishList</h2>
-                        {
-                            <div className="productlist1">
-                                {dealercart.map((product, index) => (
-                                    <div key={index}>
-                                        {<MyCartDealer {...product} setDealerCart={setDealerCart} />}
-                                        
-                                    </div>
-                                ))}
-                            </div>
-                        }
-                        {
-                            <div className="productlist1">
-                                {farmercart.map((product, index) => (
-                                    <div key={index}>
-                                        {<MyCartFarmer {...product} setFarmerCart={setFarmerCart}/>}
-                                    </div>
-                                ))}
-                            </div>
-                        }
+        <div className="mycart1">
+            {error && <p>{error}</p>}
+            <ul>
+                
+                    {dealercart.length==0&&farmercart.length==0&&(
+                        <h2>Your WishList Is Empty</h2>
+                    )}
+                
+                {dealercart.length > 0 && (
+                    <>
+                        <h2 className="hh1">Your WishList Containing Dealer Products</h2>
+                        <div className="productlist1">
+                            {dealercart.map((product, index) => (
+                                <div key={index}>
+                                    <MyCartDealer {...product} setDealerCart={setDealerCart} />
+                                </div>
+                            ))}
+                        </div>
                     </>
-                </ul>
-            </div>
-        </>
+                )}
+
+                {farmercart.length > 0 && (
+                    <>
+                        <h2 className="hh1">Your WishList Containing Farmer Products</h2>
+                        <div className="productlist1">
+                            {farmercart.map((product, index) => (
+                                <div key={index}>
+                                    <MyCartFarmer {...product} setFarmerCart={setFarmerCart} />
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </ul>
+        </div>
     );
 }
+
 
 export default MyCart;
