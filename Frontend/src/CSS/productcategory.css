@@ -7,6 +7,7 @@
 }
 
 .product-section {
+    margin-top: 100px;
     margin-bottom: 40px;
     margin-left: 45px;
 }
@@ -18,6 +19,7 @@
 }
 
 .product-section h2 {
+    margin-top: -70px;
     margin-bottom: -200px;
     font-size: 24px;
     text-align: center;
@@ -31,11 +33,11 @@
 
 
 .product-grid {
+    margin-top: 200px;
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 5 cards per row */
     gap: 20px;
     justify-content: center;
-    /* height: 800px; */
 }
 
 .productgri {

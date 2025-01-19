@@ -24,6 +24,7 @@ const DealerPCard = ({ _id, title, price, images, largerSizes, smallerSizes, siz
         </p>
         <p className="product-save">Save ₹{(price * 0.1).toFixed(2)}</p>
       </div>
+      <div className="wishlist-icon">❤️</div>
       <label htmlFor="size" className="size-label">
         Size
       </label>
@@ -40,8 +41,6 @@ const DealerPCard = ({ _id, title, price, images, largerSizes, smallerSizes, siz
         ))}
         {size && sizeUnit && <option>{`${size} ${sizeUnit}`}</option>}
       </select>
-      {/* Wishlist Icon */}
-      <div className="wishlist-icon">❤️</div>
     </div>
   );
 };

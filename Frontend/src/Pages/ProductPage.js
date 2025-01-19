@@ -14,6 +14,8 @@ const ProductPage = () => {
     const { id } = useParams();
     const { currentUser } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingDealer, setIsLoadingDealer] = useState(true);  // Loading state for dealer products
+    const [isLoadingFarmer, setIsLoadingFarmer] = useState(true);  // Loading state for farmer products
 
     const [category, setCategory] = useState("");
     const [Products, setProducts] = useState({});
@@ -22,7 +24,6 @@ const ProductPage = () => {
     const [sourceType, setSourceType] = useState(""); // "dealer" or "farmer"
 
     useEffect(() => {
-        // Check if the product exists for dealer or farmer
         const fetchProducts = async () => {
             try {
                 // Attempt to fetch dealer product
@@ -33,6 +34,7 @@ const ProductPage = () => {
                     setProducts(dealerResponse.data);
                     setCategory(dealerResponse.data.category);
                     setSourceType("dealer");
+                    setIsLoadingDealer(false);  // Set loading to false when dealer product is found
                     return;
                 }
             } catch (error) {
@@ -45,10 +47,10 @@ const ProductPage = () => {
                     `https://farmer-s-market-theta.vercel.app/server/farmer/getproductbyid/${id}`
                 );
                 if (farmerResponse.data) {
-                    console.log(farmerResponse.data.category)
                     setFarmerProducts(farmerResponse.data);
                     setCategory(farmerResponse.data.category);
                     setSourceType("farmer");
+                    setIsLoadingFarmer(false);  // Set loading to false when farmer product is found
                     return;
                 }
             } catch (error) {
@@ -56,7 +58,7 @@ const ProductPage = () => {
             }
         };
 
-        fetchProducts().finally(() => setIsLoading(false));
+        fetchProducts().finally(() => setIsLoading(false)); // Ensure overall loading state is off
     }, [id]);
 
     useEffect(() => {
@@ -92,13 +94,21 @@ const ProductPage = () => {
                         <DProduct id={id} />
                         <div className="productsec">
                             <h2>Similar Dealer Products</h2>
-                            <div className="productgri">
-                                {CategoryProducts.map((product, index) => (
-                                    <div key={index} className="productcar">
-                                        <DealerPCard {...product} />
-                                    </div>
-                                ))}
-                            </div>
+                            {isLoadingDealer ? (
+                                <Loader />
+                            ) : (
+                                <div className="productgri">
+                                    {CategoryProducts.length > 0 ? (
+                                        CategoryProducts.map((product, index) => (
+                                            <div key={index} className="productcar">
+                                                <DealerPCard {...product} />
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div>No similar dealer products found.</div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </>
                 ) : sourceType === "farmer" ? (
@@ -106,13 +116,21 @@ const ProductPage = () => {
                         <Product id={id} />
                         <div className="productsec">
                             <h2>Similar Farmer Products</h2>
-                            <div className="productgri">
-                                {CategoryProducts.map((product, index) => (
-                                    <div key={index} className="productcar">
-                                        <FarmerProduct {...product} />
-                                    </div>
-                                ))}
-                            </div>
+                            {isLoadingFarmer ? (
+                                <Loader />
+                            ) : (
+                                <div className="productgri">
+                                    {CategoryProducts.length > 0 ? (
+                                        CategoryProducts.map((product, index) => (
+                                            <div key={index} className="productcar">
+                                                <FarmerProduct {...product} />
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div>No similar farmer products found.</div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </>
                 ) : (

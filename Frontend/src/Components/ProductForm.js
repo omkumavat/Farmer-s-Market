@@ -4,8 +4,11 @@ import "react-quill/dist/quill.snow.css";
 import "../DashboardCSS/productform.css";
 import { useAuth } from "../Context/AuthContext";
 import axios from 'axios';
+import { LoadScript } from "@react-google-maps/api";
+import Loader from "./Loader";
 
 const ProductForm = () => {
+    const [isAuthReady,setisAuthReady]=useState(false);
     const { currentUser } = useAuth();
     const [desc, setDesc] = useState("");
     const [price, setPrice] = useState(null);
@@ -132,8 +135,9 @@ const ProductForm = () => {
     };
 
     const handleSubmit = async (event) => {
+        setisAuthReady(true);
         event.preventDefault();
-
+    
         const payload = {
             title,
             name,
@@ -152,7 +156,7 @@ const ProductForm = () => {
             dealerid: currentUser._id,
         };
         console.log(payload);
-
+    
         try {
             const response = await axios.post(
                 "https://farmer-s-market-theta.vercel.app/server/dealer/addproduct",
@@ -163,14 +167,35 @@ const ProductForm = () => {
                     },
                 }
             );
-
-            console.log("Response:", response.data);
+    
+            // console.log("Response:", response.data);
+            setisAuthReady(false);
             alert("Product added successfully!");
+    
+            // Reset form fields after successful submission
+            setTitle("");
+            setName("");
+            setCategory("");
+            setServiceType("");
+            setSize("");
+            setQuantity("");
+            setSizeUnit("");
+            setDesc("");
+            setPrice(null);
+            setImages([]);
+            setLargerSizeAvailable(false);
+            setSmallerSizeAvailable(false);
+            setLargerSizes([]);
+            setSmallerSizes([]);
         } catch (error) {
             console.error("Error submitting form:", error);
             alert("Failed to add the product. Please try again.");
         }
     };
+    
+    if(isAuthReady){
+        return <Loader/>;
+    }
 
 
     return (
