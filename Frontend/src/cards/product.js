@@ -9,7 +9,7 @@ import { color } from "framer-motion";
 import Loader from "../Components/Loader";
 
 
-const Product = ({ id }) => {
+const DProduct = ({ id }) => {
   const { currentUser } = useAuth();
   const [rating, setRating] = useState(5);
   const [product, setProduct] = useState(null);
@@ -490,4 +490,4 @@ const styles = {
   },
 };
 
-export default Product;
+export default DProduct;
