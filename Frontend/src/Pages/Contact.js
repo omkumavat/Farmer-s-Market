@@ -122,7 +122,7 @@ const ContactUs = () => {
               Contact us if you have a question.
             </p>
             <p>
-              <FaEnvelope /> <strong>Email:</strong> info@verdica.com <br />
+              <FaEnvelope /> <strong>Email:</strong> info@AgriHaven.com <br />
               Drop us an email and we will get back to you.
             </p>
             <p>

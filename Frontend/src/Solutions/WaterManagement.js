@@ -25,7 +25,7 @@ function Solutions1() {
         {/* Hero Section */}
         <div className="hero">
           <h1>Water Management</h1>
-          <p>VERDICA SOLUTIONS</p>
+          <p>AgriHaven SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
@@ -68,7 +68,7 @@ function Solutions1() {
 
           {/* Main Content */}
           <div className="mainsections">
-  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <h2>The Agricultural Engineering Provided by AgriHaven</h2>
   <div className="equip">
     <p>
       **Water Management** in agriculture focuses on the effective use, conservation, and distribution of water resources to optimize crop production while ensuring sustainability. It is essential for maintaining healthy crops and increasing agricultural productivity. Water management techniques include:
@@ -83,13 +83,13 @@ function Solutions1() {
       Proper water management not only enhances crop yield but also helps in mitigating issues like waterlogging, soil erosion, and salinization. Water efficiency directly contributes to improved soil quality and promotes sustainable farming practices. By minimizing water wastage, farmers can reduce costs and maintain long-term crop productivity. Furthermore, sustainable water practices help in conserving water resources, ensuring their availability for future generations.
     </p>
     <p>
-      At Verdica, we understand the importance of efficient water management for farming success. We simplify this process by connecting farmers with trusted dealers offering advanced irrigation systems and water management tools. From low-cost, high-efficiency drip systems to smart water-saving technologies, our platform ensures farmers have access to innovative solutions tailored to their specific water challenges.
+      At AgriHaven, we understand the importance of efficient water management for farming success. We simplify this process by connecting farmers with trusted dealers offering advanced irrigation systems and water management tools. From low-cost, high-efficiency drip systems to smart water-saving technologies, our platform ensures farmers have access to innovative solutions tailored to their specific water challenges.
     </p>
     <p>
-      In addition to providing top-quality equipment, Verdica’s platform also offers expert guidance to help farmers optimize their irrigation practices. Whether it's adjusting irrigation schedules based on seasonal rainfall or selecting the right irrigation method for various crop types, we provide the resources needed to enhance water efficiency and crop health.
+      In addition to providing top-quality equipment, AgriHaven’s platform also offers expert guidance to help farmers optimize their irrigation practices. Whether it's adjusting irrigation schedules based on seasonal rainfall or selecting the right irrigation method for various crop types, we provide the resources needed to enhance water efficiency and crop health.
     </p>
     <p>
-      With access to real-time data and analysis, farmers can make better-informed decisions regarding water usage, ensuring that their farms are productive, profitable, and sustainable. Verdica is committed to facilitating seamless access to these essential resources, helping farmers achieve optimal water management and improved crop growth, while contributing to the long-term health of the environment.
+      With access to real-time data and analysis, farmers can make better-informed decisions regarding water usage, ensuring that their farms are productive, profitable, and sustainable. AgriHaven is committed to facilitating seamless access to these essential resources, helping farmers achieve optimal water management and improved crop growth, while contributing to the long-term health of the environment.
     </p>
   </div>
 
@@ -97,7 +97,7 @@ function Solutions1() {
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose VERDICA</h3>
+              <h3>Why Choose AgriHaven</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">
@@ -121,7 +121,7 @@ function Solutions1() {
                   />
                   <h4>Sustainability-Focused Solutions</h4>
                   <p>
-                    VERDICA emphasizes eco-friendly practices, promoting techniques like drip irrigation and rainwater harvesting to conserve water and protect the environment.
+                    AgriHaven emphasizes eco-friendly practices, promoting techniques like drip irrigation and rainwater harvesting to conserve water and protect the environment.
                   </p>
                 </div>
 
@@ -134,7 +134,7 @@ function Solutions1() {
                   />
                   <h4>Trusted Dealer Network</h4>
                   <p>
-                    Verdica collaborates with reputable dealers, ensuring that farmers receive only high-quality, reliable irrigation equipment.
+                    AgriHaven collaborates with reputable dealers, ensuring that farmers receive only high-quality, reliable irrigation equipment.
                   </p>
                 </div>
 
@@ -147,7 +147,7 @@ function Solutions1() {
                   />
                   <h4>Affordable and Transparent Pricing</h4>
                   <p>
-                    Verdica ensures competitive pricing and transparent dealings, enabling farmers to maximize their investments without overspending.
+                    AgriHaven ensures competitive pricing and transparent dealings, enabling farmers to maximize their investments without overspending.
                   </p>
                 </div>
               </div>

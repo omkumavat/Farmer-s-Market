@@ -113,7 +113,7 @@ const Farmer = () => {
                 <div className="mc">
                     <div className="cs">
                         <h2 className="head1">Farmer Product</h2>
-                        <p className="head2">PROVIDE BY VERDICA</p>
+                        <p className="head2">PROVIDE BY AgriHaven</p>
                     </div>
                 </div>
                 <div className="mbar">
@@ -168,7 +168,7 @@ const Farmer = () => {
                     <div className="serv">
                         <h2 className="services-title">Farm Produce</h2>
                         <p className="services-subtitle">
-                            Verdica empowers farmers to connect and sell their produce directly, ensuring fair prices through a global community-driven platform.
+                            AgriHaven empowers farmers to connect and sell their produce directly, ensuring fair prices through a global community-driven platform.
                         </p>
                     </div>
                     <div className="services-grid">
@@ -184,16 +184,16 @@ const Farmer = () => {
                
     {/* Top Section */}
     <div className="content-market">
-        <p className="sub-heading-market">AT VERDICA</p>
+        <p className="sub-heading-market">AT AgriHaven</p>
         <h1 className="main-heading-market">
           Empowering Farmers and Buyers<br /> <span>For a Better Tomorrow</span>
         </h1>
         <div className="descc-market">
             <p className="description-market">
-            Verdica provides a seamless platform for farmers to sell their produce directly to buyers, fostering fair trade and eliminating middlemen. This ensures farmers get the best value for their efforts while buyers access fresh, quality products.
+            AgriHaven provides a seamless platform for farmers to sell their produce directly to buyers, fostering fair trade and eliminating middlemen. This ensures farmers get the best value for their efforts while buyers access fresh, quality products.
             </p>
             <p className="description-market">
-            With Verdica, farmers can list their products, connect with a wide range of buyers, and gain insights into market demands. Buyers can explore a variety of fresh produce and negotiate directly with farmers for bulk purchases or tailored orders.
+            With AgriHaven, farmers can list their products, connect with a wide range of buyers, and gain insights into market demands. Buyers can explore a variety of fresh produce and negotiate directly with farmers for bulk purchases or tailored orders.
             </p>
             <p className="description-market">
             Our platform is committed to building a sustainable and efficient agricultural marketplace, where trust and transparency pave the way for mutual growth and success.

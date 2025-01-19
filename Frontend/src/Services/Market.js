@@ -149,7 +149,7 @@ const services = [
     <div className="mc">
           <div className="cs">
             <h2 className="head1">Market Insight</h2>
-            <p className="head2">PROVIDE BY VERDICA</p>
+            <p className="head2">PROVIDE BY AgriHaven</p>
           </div>
           </div>
     <div className="container">
@@ -260,7 +260,7 @@ const services = [
                     <div className="serv">
                         <h2 className="services-title">Market Analysis</h2>
                         <p className="services-subtitle">
-                        VERDICA empowers businesses and individuals with data-driven insights, ensuring informed decisions through comprehensive market analysis.
+                        AgriHaven empowers businesses and individuals with data-driven insights, ensuring informed decisions through comprehensive market analysis.
                         </p>
                     </div>
                     <div className="services-grid">
@@ -276,18 +276,18 @@ const services = [
                 <div className="container-market">
                     {/* Top Section */}
                     <div className="content-market">
-                        <p className="sub-heading-market">AT VERDICA</p>
+                        <p className="sub-heading-market">AT AgriHaven</p>
                         <h1 className="main-heading-market">
                           For a Data-Driven Market Future<br /> <span>Tomorrow</span>
                         </h1>
                         <div className="descc-market">
                         <p className="description-market">
-                        Verdica offers a platform for businesses to access detailed market insights, helping them stay ahead of trends, track sales performance, and analyze regional dynamics. This enables companies to make data-driven decisions and refine their strategies.
+                        AgriHaven offers a platform for businesses to access detailed market insights, helping them stay ahead of trends, track sales performance, and analyze regional dynamics. This enables companies to make data-driven decisions and refine their strategies.
                         </p>
                         <p className="description-market">
-                        Businesses can generate custom reports, perform competitive analysis, and gain a comprehensive understanding of market conditions. Verdica makes it easier for organizations to connect with the right opportunities and optimize their operations for success.
+                        Businesses can generate custom reports, perform competitive analysis, and gain a comprehensive understanding of market conditions. AgriHaven makes it easier for organizations to connect with the right opportunities and optimize their operations for success.
                         </p>
-                        <p className="description-market">Verdica is dedicated to fostering a trusted environment where businesses can thrive by leveraging data. We aim to build a forward-thinking marketplace that promotes growth and success for all stakeholders.</p>
+                        <p className="description-market">AgriHaven is dedicated to fostering a trusted environment where businesses can thrive by leveraging data. We aim to build a forward-thinking marketplace that promotes growth and success for all stakeholders.</p>
                         </div>
                     </div>
 

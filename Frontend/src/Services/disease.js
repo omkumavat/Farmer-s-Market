@@ -38,7 +38,7 @@ const Disease = () => {
           <div className="headerimage"></div>
           <div className="headertext">
             <h1>Disease Detection and Pesticide Prediction</h1>
-            <h2>At VERDICA</h2>
+            <h2>At AgriHaven</h2>
           </div>
         </div>
     <div className="app-container">

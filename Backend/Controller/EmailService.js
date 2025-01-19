@@ -61,7 +61,7 @@ export const sendEmail = async (req, res) => {
 
   // Mail options
   const mailOptions = {
-    from: `VERDICA <${process.env.MAIL_USER}>`,
+    from: `AgriHaven <${process.env.MAIL_USER}>`,
     to: email,
     subject,
     html: htmlContent,

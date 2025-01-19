@@ -24,7 +24,7 @@ function Solutions1() {
         {/* Hero Section */}
         <div className="hero">
           <h1>Farm Plans</h1>
-          <p>VERDICA SOLUTIONS</p>
+          <p>AgriHaven SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
@@ -67,7 +67,7 @@ function Solutions1() {
 
           {/* Main Content */}
           <div className="mainsections">
-  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <h2>The Agricultural Engineering Provided by AgriHaven</h2>
   <div className="equip">
     <p>
       **Farm Plans** are comprehensive strategies that help farmers manage the growth and development of their farm operations over time. A well-thought-out farm plan serves as a roadmap to guide farm activities, ensuring that all resources—land, labor, and capital—are used efficiently to meet both production and sustainability goals. These plans typically focus on:
@@ -82,7 +82,7 @@ function Solutions1() {
       By planning strategically, farmers can address challenges proactively, reduce operational costs, and enhance farm sustainability. A well-structured farm plan also helps ensure that farming practices align with industry best practices and environmental regulations.
     </p>
     <p>
-      At **Verdica**, we simplify the farm planning process by connecting farmers with expert advisors and providing advanced tools that enable efficient farm management. Our platform ensures farmers receive personalized plans and strategies that are based on data-driven insights, helping them achieve:
+      At **AgriHaven**, we simplify the farm planning process by connecting farmers with expert advisors and providing advanced tools that enable efficient farm management. Our platform ensures farmers receive personalized plans and strategies that are based on data-driven insights, helping them achieve:
     </p>
     <ul>
       <li><strong>Resource Optimization</strong>: Using the right mix of fertilizers, water, and crop protection to maximize efficiency and reduce waste.</li>
@@ -90,7 +90,7 @@ function Solutions1() {
       <li><strong>Sustainable Practices</strong>: Implementing practices that conserve resources, maintain soil health, and reduce the environmental footprint of farming.</li>
     </ul>
     <p>
-      With **Verdica**, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm. Whether you are managing a small plot or a large-scale operation, our platform equips you with the right tools and expertise to transform your farm into a productive and sustainable business. Our goal is to help farmers make informed decisions, enhance their profitability, and contribute to a sustainable agricultural future.
+      With **AgriHaven**, farm plans become more accessible, reliable, and tailored to meet the unique needs of each farm. Whether you are managing a small plot or a large-scale operation, our platform equips you with the right tools and expertise to transform your farm into a productive and sustainable business. Our goal is to help farmers make informed decisions, enhance their profitability, and contribute to a sustainable agricultural future.
     </p>
   </div>
 
@@ -98,7 +98,7 @@ function Solutions1() {
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose VERDICA</h3>
+              <h3>Why Choose AgriHaven</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">

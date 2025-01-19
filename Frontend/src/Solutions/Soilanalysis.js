@@ -24,7 +24,7 @@ function Solutions1() {
         {/* Hero Section */}
         <div className="hero">
           <h1>Soil Analysis</h1>
-          <p>VERDICA SOLUTIONS</p>
+          <p>AgriHaven SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
@@ -66,7 +66,7 @@ function Solutions1() {
 
           {/* Main Content */}
           <div className="mainsections">
-  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <h2>The Agricultural Engineering Provided by AgriHaven</h2>
   <div className="equip">
     <p>
       **Soil Analysis** is the process of evaluating the physical, chemical, and biological properties of soil to determine its health and suitability for agricultural activities. It involves testing for essential nutrients such as nitrogen, phosphorus, and potassium, as well as analyzing pH levels, moisture content, texture, organic matter, and soil microbiota. By understanding these factors, farmers can gain valuable insights into soil fertility and overall condition, enabling them to make data-driven decisions that improve crop productivity and sustainability.
@@ -81,7 +81,7 @@ function Solutions1() {
       Regular soil testing is essential for sustainable farming practices. It not only helps to monitor soil health over time but also supports long-term environmental stewardship. By adjusting farming practices based on soil data, farmers can reduce the need for excessive chemical inputs, minimize environmental impact, and ensure that the land remains productive for future generations.
     </p>
     <p>
-      At Verdica, we empower farmers to make informed decisions through accurate and comprehensive soil analysis. Our platform connects you with advanced testing tools and expert guidance to evaluate your soil’s health, optimize crop selection, and enhance fertility sustainably. We provide tailored recommendations that allow you to improve soil quality, reduce costs, and boost productivity. Our mission is to help you make the most of your land and cultivate a sustainable future for your farm.
+      At AgriHaven, we empower farmers to make informed decisions through accurate and comprehensive soil analysis. Our platform connects you with advanced testing tools and expert guidance to evaluate your soil’s health, optimize crop selection, and enhance fertility sustainably. We provide tailored recommendations that allow you to improve soil quality, reduce costs, and boost productivity. Our mission is to help you make the most of your land and cultivate a sustainable future for your farm.
     </p>
   
 </div>
@@ -89,7 +89,7 @@ function Solutions1() {
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose VERDICA</h3>
+              <h3>Why Choose AgriHaven</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">

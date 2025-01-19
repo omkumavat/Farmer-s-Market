@@ -190,7 +190,7 @@ const handleDeleteWish = async () => {
           key: 'rzp_test_nwUngHToxCY8p6',
           amount: order.amount * 100,
           currency: order.currency,
-          name: 'VERDICA',
+          name: 'AgriHaven',
           description: 'Payment for your product',
           order_id: order.id,
           handler: async function (response) {

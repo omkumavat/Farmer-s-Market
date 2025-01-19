@@ -129,7 +129,7 @@ const TicketPage = () => {
                     <div className="container">
                         {/* Top Section */}
                         <div className="content">
-                            <p className="sub-heading">AT VERDICA</p>
+                            <p className="sub-heading">AT AgriHaven</p>
                             <h1 className="main-heading">
                                 Empowering Users with Easy Access to Help
                                 <br />

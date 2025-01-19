@@ -24,7 +24,7 @@ function Solutions1() {
         {/* Hero Section */}
         <div className="hero">
           <h1>Land Preservation</h1>
-          <p>VERDICA SOLUTIONS</p>
+          <p>AgriHaven SOLUTIONS</p>
         </div>
 
         {/* Content Section */}
@@ -66,7 +66,7 @@ function Solutions1() {
 
           {/* Main Content */}
           <div className="mainsections">
-  <h2>The Agricultural Engineering Provided by VERDICA</h2>
+  <h2>The Agricultural Engineering Provided by AgriHaven</h2>
   <div className="equip">
     <p>
       **Land Preservation** focuses on protecting and maintaining natural landscapes, agricultural lands, and ecosystems to ensure that they remain healthy and productive for future generations. This process is crucial for maintaining the balance between agriculture and the environment. Land preservation practices involve:
@@ -81,10 +81,10 @@ function Solutions1() {
       By implementing these strategies, land preservation not only helps maintain the ecological balance but also supports sustainable agricultural practices that are vital for long-term food production and environmental health. Land that is preserved through sustainable practices can remain fertile, productive, and resilient against the impacts of urbanization and climate change.
     </p>
     <p>
-      At **VERDICA**, we are committed to supporting sustainable farming practices by providing farmers with the tools, knowledge, and resources necessary for land preservation. Our platform connects farmers with eco-friendly methods to protect soil health, manage water resources efficiently, and promote biodiversity. We empower farmers to adopt conservation strategies that enhance land productivity, ensuring that the land remains healthy and productive for future generations.
+      At **AgriHaven**, we are committed to supporting sustainable farming practices by providing farmers with the tools, knowledge, and resources necessary for land preservation. Our platform connects farmers with eco-friendly methods to protect soil health, manage water resources efficiently, and promote biodiversity. We empower farmers to adopt conservation strategies that enhance land productivity, ensuring that the land remains healthy and productive for future generations.
     </p>
     <p>
-      Whether it's through advanced soil management techniques, sustainable irrigation systems, or biodiversity-promoting farming practices, Verdica helps farmers integrate environmental stewardship into their farming operations. By focusing on long-term land health, we aim to help farmers achieve greater productivity while also contributing to the overall ecological well-being of the land.
+      Whether it's through advanced soil management techniques, sustainable irrigation systems, or biodiversity-promoting farming practices, AgriHaven helps farmers integrate environmental stewardship into their farming operations. By focusing on long-term land health, we aim to help farmers achieve greater productivity while also contributing to the overall ecological well-being of the land.
     </p>
   </div>
 
@@ -92,7 +92,7 @@ function Solutions1() {
 
             {/* Why Choose Agros Section */}
             <div className="why-choose-agros">
-              <h3>Why Choose VERDICA</h3>
+              <h3>Why Choose AgriHaven</h3>
               <div className="features">
                 {/* Innovation Technology */}
                 <div className="feature">

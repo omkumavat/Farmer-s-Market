@@ -122,7 +122,7 @@ const Dealer = () => {
         <div className="mc">
           <div className="cs">
             <h2 className="head1">Dealer Product</h2>
-            <p className="head2">PROVIDE BY VERDICA</p>
+            <p className="head2">PROVIDE BY AgriHaven</p>
           </div>
         </div>
         <div className="categories-container">
@@ -178,7 +178,7 @@ const Dealer = () => {
           <div className="serv">
             <h2 className="services-title">Dealer Products</h2>
             <p className="services-subtitle">
-            Verdica empowers farmer to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
+            AgriHaven empowers farmer to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
             </p>
           </div>
           <div className="services-grid">
@@ -196,16 +196,16 @@ const Dealer = () => {
           </div>
         </div>
         <div className="content-market">
-    <p className="sub-heading-market">AT VERDICA</p>
+    <p className="sub-heading-market">AT AgriHaven</p>
     <h1 className="main-heading-market">
       Connecting Dealers and Farmers<br /> <span>For Agricultural Excellence</span>
     </h1>
     <div className="descc-market">
         <p className="description-market">
-        Verdica bridges the gap between agricultural dealers and farmers, providing a platform where dealers can showcase fertilizers, equipment, seeds, and other essential farming products. This ensures farmers have access to high-quality supplies for their agricultural needs.
+        AgriHaven bridges the gap between agricultural dealers and farmers, providing a platform where dealers can showcase fertilizers, equipment, seeds, and other essential farming products. This ensures farmers have access to high-quality supplies for their agricultural needs.
         </p>
         <p className="description-market">
-        Through Verdica, dealers can reach a vast network of farmers, promote their products, and gain insights into farmers' specific requirements. Farmers, in turn, can explore a diverse range of trusted products, compare prices, and make informed purchasing decisions.
+        Through AgriHaven, dealers can reach a vast network of farmers, promote their products, and gain insights into farmers' specific requirements. Farmers, in turn, can explore a diverse range of trusted products, compare prices, and make informed purchasing decisions.
         </p>
         <p className="description-market">
         Our mission is to build a transparent and efficient marketplace that empowers farmers with reliable resources while enabling dealers to expand their reach and grow their businesses sustainably.

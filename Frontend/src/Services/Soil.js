@@ -96,7 +96,7 @@ const Weather = () => {
         <div className="mc">
           <div className="cs">
             <h2 className="head1">Get Your Soil Detail</h2>
-            <p className="head2">PROVIDED BY VERDICA</p>
+            <p className="head2">PROVIDED BY AgriHaven</p>
           </div>
         </div>
         <div className="map-container">
@@ -135,25 +135,25 @@ const Weather = () => {
 <div className="container-weather">
   {/* Top Section */}
   <div className="content-weather">
-    <p className="sub-heading-weather">AT VERDICA</p>
+    <p className="sub-heading-weather">AT AgriHaven</p>
     <h1 className="main-heading-weather">
       For Accurate Soil Insights<br /> <span>Every Day</span>
     </h1>
     <div className="desccc-weather">
       <p className="description-weather">
-        At VERDICA, we bridge the gap between farmers and modern soil science, offering seamless access to soil analysis and recommendations.
+        At AgriHaven, we bridge the gap between farmers and modern soil science, offering seamless access to soil analysis and recommendations.
       </p>
       <p className="description-weather">
         Our platform empowers users to optimize crop production by providing real-time soil data and actionable insights.
       </p>
       <p className="description-weather">
-        With a focus on innovation and sustainability, VERDICA delivers advanced soil testing, moisture tracking, and nutrient analysis to ensure the best results.
+        With a focus on innovation and sustainability, AgriHaven delivers advanced soil testing, moisture tracking, and nutrient analysis to ensure the best results.
       </p>
       <p className="description-weather">
         We aim to help you understand your soil’s health, promoting effective agricultural practices and long-term soil conservation.
       </p>
       <p className="description-weather">
-        VERDICA is your trusted partner, enabling informed decisions for sustainable farming and resilient agricultural systems.
+        AgriHaven is your trusted partner, enabling informed decisions for sustainable farming and resilient agricultural systems.
       </p>
     </div>
   </div>

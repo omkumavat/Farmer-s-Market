@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
           <div>
             <i className="fa fa-envelope"></i>
-            <p><a href="mailto:info@verdica.com">info@verdica.com</a></p>
+            <p><a href="mailto:info@AgriHaven.com">info@agrihaven.com</a></p>
             <span>Drop us an email</span>
           </div>
           <div>
@@ -25,9 +25,9 @@ const Footer = () => {
       </div>
       <div className="footer-middle">
         <div className="about-sections">
-          <h3>VERDICA</h3>
+          <h3>AgriHaven</h3>
           <p>
-          "At Verdica, we understand the challenges farmers face. Our platform offers personalized weather forecasts, crop suggestions based on climate conditions, and expert advice to help farmers make informed decisions. Join us in revolutionizing agriculture for a better tomorrow."
+          "At AgriHaven, we understand the challenges farmers face. Our platform offers personalized weather forecasts, crop suggestions based on climate conditions, and expert advice to help farmers make informed decisions. Join us in revolutionizing agriculture for a better tomorrow."
           </p>
           <div className="social-icons">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
@@ -63,7 +63,7 @@ const Footer = () => {
       </div>
       <div className="footer-bottom">
         <p>
-          © 2024 VERDICA Agriculture | <a href="/about">About</a> | 
+          © 2024 AgriHaven Agriculture | <a href="/about">About</a> | 
           <a href="/land-preservation">Solutions</a> | <a href="/contact">Contact</a>
         </p>
       </div>

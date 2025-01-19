@@ -266,7 +266,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
                     {/* Right Side: Content */}
                     <div className="about-content">
-                        <h3 className="subheading">About Verdica</h3>
+                        <h3 className="subheading">About AgriHaven</h3>
                         <h1 className="heading">Bringing Growth To Agriculture</h1>
                         <p className="description">
                             Our goal at Agri Shop is to improve farmers' quality of life by giving them the resources, knowledge, and market access they require to succeed.
