@@ -170,6 +170,10 @@
     margin-top: -10px;
     margin-bottom: 20px;
   }
+
+   .editpp a{
+    color: black;
+  } 
   
   .logout-btn {
     background-color: #f44336;
@@ -233,6 +237,10 @@
     .dropdown-content a {
       padding: 10px 0;
     }
+  }
+
+  .editp p{
+    color: #f9a826;
   }
 
   .logo {
