@@ -7,6 +7,9 @@ import axios from "axios";
 import Loader from "../Components/Loader";
 import { useNavigate } from "react-router-dom";
 import {SearchBar} from "../Components/SearchBar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
+
 const Dealer = () => {
   const [displayProducts, setDisplayProducts] = useState([]);
 
@@ -100,7 +103,7 @@ const Dealer = () => {
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
-      alert("Please enter a search term!");
+      toast.error("Please enter a search term!");
       return;
     }
     // Navigate to the Search Results page with the query as a parameter
@@ -110,6 +113,7 @@ const Dealer = () => {
   
   return (
     <>
+    <ToastContainer />
       {
         displayProducts.length>0 ? (
           <>

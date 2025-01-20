@@ -5,6 +5,9 @@ import {SearchBar1} from "./SearchBar";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import FarmerProduct from "./FarmerProduct";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
+
 
 const Farmersearch = () => {
   const [products, setProducts] = useState([]);
@@ -33,13 +36,15 @@ const Farmersearch = () => {
       setProducts(response.data.data);
     } catch (error) {
       console.error("Error fetching products:", error);
-      alert("An error occurred while fetching products.");
+      toast.error("An error occurred while fetching products.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
+    <>
+    <ToastContainer />
     <div>
         <NavBar/>
         <div style={{ padding: "20px", fontFamily: "Arial" }}>
@@ -63,6 +68,7 @@ const Farmersearch = () => {
     </div>
     <Footer/>
     </div>
+    </>
   );
 };
 
