@@ -30,7 +30,7 @@ const MyCart = () => {
             <div className="mycart1">
                 {error && <p>{error}</p>}
                 <ul>
-                    <><h2 className="hh1">Your WishList</h2>
+                    <><h2 className="hh1">Your WishList Containing Dealer Products</h2>
                         {
                             <div className="productlist1">
                                 {dealercart.map((product, index) => (
@@ -41,6 +41,7 @@ const MyCart = () => {
                                 ))}
                             </div>
                         }
+                        <h2 className="hh1">Your WishList Containing Farmer Products</h2>
                         {
                             <div className="productlist1">
                                 {farmercart.map((product, index) => (
