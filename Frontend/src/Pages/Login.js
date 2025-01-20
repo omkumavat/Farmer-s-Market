@@ -58,7 +58,7 @@ const Login = () => {
         navigate("/dash");
       } else {
         navigate("/");
-        toast.success("Login successful !"); 
+        // toast.success("Login successful !"); 
       }
     } catch (error) {
       setError("Login failed. Please try again.");
@@ -133,7 +133,7 @@ const Login = () => {
       <Footer />
 
       {/* Toast Container */}
-      <ToastContainer autoClose={10000} /> {/* 10 seconds */}
+      <ToastContainer autoClose={90000} /> {/* 10 seconds */}
 
     </>
   );
