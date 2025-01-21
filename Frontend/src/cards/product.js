@@ -33,7 +33,7 @@ const DProduct = ({ id }) => {
     setIsAuthReady(true);
     try {
       if (currentUser) {
-        const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
+        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
           userId: currentUser._id,
           productId: product._id,
         });
@@ -53,7 +53,7 @@ const DProduct = ({ id }) => {
     const fetchProductDetails = async () => {
       try {
         const response = await axios.get(
-          `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbyid/${id}`
+          `http://localhost:4000/server/dealer/getproductbyid/${id}`
         );
         const data = response.data;
   
@@ -62,25 +62,33 @@ const DProduct = ({ id }) => {
         setMainImage(data.images[0]);
   
         const arr = [];
-        arr.push(data.size);
-        arr.push(data.sizeUnit);
-        arr.push(data.price);
+
+        const dt={
+          size:data.size,
+          unit:data.sizeUnit,
+          price:data.price
+        }
+        arr.push(dt);
+
   
         const combinedVariants = [
           ...data.largerSizes.map((size) => ({ ...size, type: "Larger" })),
           ...data.smallerSizes.map((size) => ({ ...size, type: "Smaller" })),
+          ...arr.map((size) => ({ ...size, type: "Smaller" })),
         ];
         setVariants(combinedVariants);
         console.log(combinedVariants);
   
         const cleanText = data.desc
+        .replace(/&nbsp;/g,' ')
+        .replace(/&amp;/g, '')
           .replace(/<strong>(.*?)<\/strong>/g, '$1') // Remove <strong> but keep text
           .replace(/<ul>/g, '') // Remove <ul> tags
           .replace(/<\/ul>/g, '\n') // Replace </ul> with a new line for list
           .replace(/<ol>/g, '') // Remove <ol> tags
           .replace(/<\/ol>/g, '\n') // Replace </ol> with a new line for ordered list
-          .replace(/<li>/g, '') // Remove <li> tags
-          .replace(/<\/li>/g, '\n- ') // Replace </li> with a new line and bullet point
+          .replace(/<li>/g, ' - ') // Remove <li> tags
+          .replace(/<\/li>/g, '\n') // Replace </li> with a new line and bullet point
           .replace(/<h3>/g, '\n\n') // Add line breaks before headers
           .replace(/<\/h3>/g, '\n') // Add line breaks after headers
           .replace(/<br>/g, '\n')
@@ -101,7 +109,7 @@ const DProduct = ({ id }) => {
       if (currentUser) {
         try {
           const response = await axios.get(
-            `https://farmer-s-market-theta.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
+            `http://localhost:4000/server/dealer/check-cart/${id}/${currentUser?._id}`
           );
           const data = response.data;
           console.log(data);
@@ -153,7 +161,7 @@ const DProduct = ({ id }) => {
       }
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
+        const response = await fetch('http://localhost:4000/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -172,7 +180,7 @@ const DProduct = ({ id }) => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
+              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -190,7 +198,7 @@ const DProduct = ({ id }) => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/server/orders/create-order', {
+                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -207,7 +215,7 @@ const DProduct = ({ id }) => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
+                const responses = await axios.post("http://localhost:4000/server/sendmail", data);
 
                 if (createOrderResponse.ok && responses.ok) {
                   toast.success('Payment successful and order created!');
@@ -271,7 +279,7 @@ const DProduct = ({ id }) => {
       const userId = currentUser._id;
       const cartId = id;
       const response = await axios.delete(
-        `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
+        `http://localhost:4000/server/dealer/delete-wish/${userId}/${cartId}`
       );
       toast.success("Item removed from WishList successfully");
       setIsPresent(false); // Update the state here
@@ -356,13 +364,6 @@ if(isAuthReady){
           </span>
         </div>
 
-        <div className="price-section">
-          <span className="current-price">₹{product.price}</span>
-          <span className="original-price">₹{product.price * 1.1}</span><br />
-          <span className="discount">Save : ₹{(product.price * 0.1).toFixed(2)}</span>
-          {/* <span className="discount">Extra ₹{(product.price * 0.1).toFixed(2)} off on Online payments</span> */}
-        </div>
-
         {/* Price Section */}
         <div className="price-section">
           {selectedVariant && (
@@ -371,17 +372,17 @@ if(isAuthReady){
               <span className="original-price">
                 ₹{(selectedVariant.price * 1.1).toFixed(2)}
               </span>
+              <br></br>
               <span className="discount">
-                ₹{(selectedVariant.price * 0.1).toFixed(2)}
+                Save : ₹{(selectedVariant.price * 0.1).toFixed(2)}
               </span>
+              <br></br>
+              <span>Size : {selectedVariant.size}{selectedVariant.unit}</span>
             </>
           )}
         </div>
-        <p className="extra-discount">
-          Extra ₹{selectedVariant && (selectedVariant.price * 0.1).toFixed(2)}{" "}
-          off on Online payments
-        </p>
-
+          
+        
         {/* Variants Section */}
         <div className="variant-section">
           <h4>Variants</h4>

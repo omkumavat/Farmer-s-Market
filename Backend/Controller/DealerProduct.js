@@ -62,11 +62,17 @@ export const createProduct = async (req, res) => {
       const uploadResponse = await cloudinary.uploader.upload(
         `data:image/png;base64,${base64Image}`,
         {
-          folder: "DealerProduct_images", // Optional: Cloudinary folder name
-          use_filename: true, // Optional: Use original file name
-          unique_filename: true, // Optional: Ensure a unique file name
+          folder: "DealerProduct_images",
+          use_filename: true,
+          unique_filename: true,
+          quality: "auto:best", // Dynamically adjust quality for best result
+          format: "auto", // Automatically select the best image format
+          width: 374,
+          height: 305,
+          crop: "fit", // Maintain original aspect ratio without cropping
         }
       );
+      
 
       // Save the image URL for reference
       imageUrls.push(uploadResponse.secure_url);

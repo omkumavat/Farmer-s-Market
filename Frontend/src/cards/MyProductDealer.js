@@ -17,7 +17,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   };
 
   const handleDeleteProducts = async () => {
-    const response = await axios.delete(`https://farmer-s-market-theta.vercel.app/server/dealer/deleteproduct/${_id}`);
+    const response = await axios.delete(`http://localhost:4000/server/dealer/deleteproduct/${_id}`);
     if (response.data.success) {
       alert("Product Deleted Successfully");
       setIsModalOpen(false);

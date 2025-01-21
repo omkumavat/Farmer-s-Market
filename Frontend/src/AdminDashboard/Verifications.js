@@ -15,7 +15,7 @@ const Verifications = () => {
 
   const fetchVerifications = async () => {
     try {
-      const response = await axios.get("https://farmer-s-market-theta.vercel.app/server/dealer/getallverification");
+      const response = await axios.get("http://localhost:4000/server/dealer/getallverification");
       setVerifications(response.data);
     } catch (error) {
       console.error("Error fetching verifications", error);
