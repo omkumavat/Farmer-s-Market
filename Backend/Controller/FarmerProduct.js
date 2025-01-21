@@ -430,3 +430,70 @@ export const getFarmerSearch = async (req, res) => {
     });
   }
 };
+
+export const postComment = async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const { comment, userId, rating,date } = req.body;
+
+    // Validate input
+    if (!comment || !userId || !rating) {
+      return res.status(400).json({ message: "Missing required fields." });
+    }
+
+    // Validate rating range
+    if (typeof rating !== "number" || rating < 1 || rating > 5) {
+      return res.status(400).json({ message: "Rating must be a number between 1 and 5." });
+    }
+
+    const product = await FarmerProduct.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found." });
+    }
+
+    // Add the comment
+    const newComment = { rating, userId, comment,date };
+    product.comments.push(newComment);
+
+    // Save the updated product
+    await product.save();
+
+    res.status(201).json({ message: "Comment added successfully.", comment: newComment });
+  } catch (error) {
+    console.error("Error posting comment:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+
+export const getComments = async (req, res) => {
+  try {
+    const productId = req.params.id; // Get the product ID from params
+
+    // Step 1: Fetch the product with comments
+    const product = await FarmerProduct.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found or no comments available." });
+    }
+
+    // Step 2: Fetch the user details for each comment
+    const commentsWithUserDetails = await Promise.all(
+      product.comments.map(async (comment) => {
+        // Fetch the user details based on userId in each comment
+        const user = await User.findById(comment.userId);
+        return {
+          rating: comment.rating,
+          comment: comment.comment,
+          date: comment.date,
+          name: user ? user.name : "Anonymous", // Fallback if no user found
+        };
+      })
+    );
+
+   console.log("/////////////////",commentsWithUserDetails)
+    res.status(200).json({ comments: commentsWithUserDetails });
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+};

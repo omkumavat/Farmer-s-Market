@@ -38,7 +38,18 @@ const productSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", // Reference to the User model (Farmer)
     required: true,
-  },
+  }, comments: [
+    {
+      rating: { type: Number, required: true },
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+      comment: { type: String},
+      date: {
+        type: String,
+        // default: Date.now,
+      },
+    }
+  ],
+  
 }, { timestamps: true }); // Add timestamps for createdAt and updatedAt
 
 function arrayLimit(val) {
