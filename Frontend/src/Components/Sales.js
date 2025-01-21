@@ -43,7 +43,7 @@ const Sales = () => {
                         productName: item.productName,
                         totalRevenue: item.totalRevenue,
                     }));
-                    // console.log(transformedData)
+                    // // console.log(transformedData)
                     setSalesData(transformedData);
                 }
             } catch (err) {

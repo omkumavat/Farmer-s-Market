@@ -17,7 +17,7 @@ const MyCartFarmer = ({ _id, productName, pricePerUnit, images,quantity  , unit,
               `https://farmer-dealer-user.vercel.app/server/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
             );
             setIsAuthReady(false);
-            // console.log(response.data.message); // Success message
+            // // console.log(response.data.message); // Success message
             setFarmerCart((prevCartItems) =>
                 prevCartItems.filter((item) => item._id !== cartId)
               );

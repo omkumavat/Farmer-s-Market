@@ -21,7 +21,7 @@ export const createOrder = async (req, res) => {
             product = await FarmerProduct.findById(productId);
         }
 
-        // console.log(sellerId)
+        // // console.log(sellerId)
         const order = new Order({
             productType,
             productId,
@@ -33,7 +33,7 @@ export const createOrder = async (req, res) => {
             paymentStatus: "Paid",
             shippingAddress,
         });
-        // console.log(order);
+        // // console.log(order);
 
         // Save the order
         await order.save();
@@ -42,7 +42,7 @@ export const createOrder = async (req, res) => {
         user.save();
 
         const sellers = await Seller.findById(sellerId);
-        // console.log(sellers);
+        // // console.log(sellers);
         sellers.totalSales += price * quantity;
         sellers.totalOrders += 1;
 
@@ -84,7 +84,7 @@ export const getOrders = async (req, res) => {
                 { path: 'productId' },
             ],
         });
-        // console.log(user);
+        // // console.log(user);
         const orders = user.orders;
 
         // Send the orders to the front-end or render the dashboard

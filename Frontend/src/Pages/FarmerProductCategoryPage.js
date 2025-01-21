@@ -22,7 +22,7 @@ const ProductCategoryPage = () => {
             axios
                 .get(`https://farmer-dealer-user.vercel.app/server/farmer/getproductbycategory/all?category=${category}`)
                 .then((response) => {
-                    // console.log("Fetched Category Products:", response.data.data);
+                    // // console.log("Fetched Category Products:", response.data.data);
                     setCategoryProducts(response.data.data);
                     setLoadingCategory(false); // Stop loading
                 })

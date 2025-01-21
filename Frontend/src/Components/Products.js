@@ -27,7 +27,7 @@ const Products = () => {
                 if (currentUser) {
                     const id = currentUser._id
                     const response = await axios.get(`https://farmer-dealer-user.vercel.app/server/fetchmyproducts/${id}`);
-                    // console.log(response.data.data);
+                    // // console.log(response.data.data);
                     setMyProducts(response.data.data);
                 }
             } catch (error) {

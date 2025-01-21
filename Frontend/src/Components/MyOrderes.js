@@ -16,7 +16,7 @@ const MyOrderes = () => {
         if (currentUser && currentUser._id) {
             axios.get(`https://farmer-dealer-user.vercel.app/server/orders/get-order/${currentUser._id}`)
                 .then(response => {
-                    // console.log(response.data.orders);
+                    // // console.log(response.data.orders);
                     setOrders(response.data.orders);
                 })
                 .catch(error => {

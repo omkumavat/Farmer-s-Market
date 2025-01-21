@@ -19,7 +19,7 @@ const UserAnalytics = () => {
 
   const fetchCounts = async () => {
     try {
-      const response = await fetch('https://farmer-dealer-user.vercel.app/server/count');
+      const response = await fetch('https://farmer-s-market-theta.vercel.app/server/count');
       const data = await response.json();
       setUserCount(data.userCount);
       setOrderCount(data.orderCount);

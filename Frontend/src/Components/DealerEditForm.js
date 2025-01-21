@@ -4,7 +4,7 @@ import "../CSS/dealereditform.css";
 import { boolean } from "yup";
 import axios from "axios";
 const DealerEditForm = ({ isOpen, onClose, product, onSubmit }) => {
-  // console.log(product);
+  // // console.log(product);
   const [title, setTitle] = useState("");
   const [industry, setIndustry] = useState("");
   const [price, setPrice] = useState("");
@@ -123,7 +123,7 @@ const DealerEditForm = ({ isOpen, onClose, product, onSubmit }) => {
       largerSizes
     };
     const res = await axios.put(`https://farmer-dealer-user.vercel.app/server/dealer/updateproduct/${product._id}`,updatedProduct);
-    // console.log(res.data);
+    // // console.log(res.data);
     onClose();
   };
 

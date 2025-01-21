@@ -27,7 +27,7 @@ function PaymentButton() {
         order_id: order.id,
         handler: function (response) {
           alert('Payment Successful');
-          // console.log(response);
+          // // console.log(response);
         },
         prefill: {
           name: 'Customer Name',

@@ -138,7 +138,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         const fetchCounts = async () => {
             const response = await fetch('https://farmer-dealer-user.vercel.app/server/count');
             const data = await response.json();
-            // console.log(data);
+            // // console.log(data);
             setUserCount(data.userCount);
             setOrderCount(data.orderCount);
             setFarmer(data.farmer);

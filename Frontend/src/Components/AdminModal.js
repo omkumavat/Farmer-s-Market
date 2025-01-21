@@ -10,7 +10,7 @@ const AdminModal = ({ userId, onClose, onApproveSuccess }) => {
 
     const handleApprove = async () => {
         try {
-            // console.log("C",currentUser)
+            // // console.log("C",currentUser)
             if (currentUser && currentUser.role === "admin" && password === "admin123") {
                 const approveResponse = await axios.get(
                     `https://farmer-dealer-user.vercel.app/server/dealer/approveverifieduser/${userId}`

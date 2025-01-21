@@ -6,7 +6,7 @@ import { useAuth } from "../Context/AuthContext";
 
 const Comments = ({ id, sourceType,onAvgRatingUpdate,clickRate }) => {
   const commentsSectionRef = useRef();
-  // console.log(sourceType);
+  // // console.log(sourceType);
   const { currentUser } = useAuth();
   const [reviews, setReviews] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -39,9 +39,9 @@ const Comments = ({ id, sourceType,onAvgRatingUpdate,clickRate }) => {
       try {
         let response;
         if (sourceType === "dealer") {
-          response = await axios.get(`https://farmer-dealer-user.vercel.app/server/dealer/get-comment/${id}`);
+          response = await axios.get(`https://farmer-dealer-user.vercel.app/dealer/get-comment/${id}`);
         } else {
-          response = await axios.get(`https://farmer-dealer-user.vercel.app/server/farmer/get-comment/${id}`);
+          response = await axios.get(`https://farmer-dealer-user.vercel.app/farmer/get-comment/${id}`);
         }
 
         const fetchedReviews = response.data.comments || [];
@@ -50,7 +50,7 @@ const Comments = ({ id, sourceType,onAvgRatingUpdate,clickRate }) => {
         // Calculate the average rating after reviews are fetched
         setAvgRating(calculateAverageRating(fetchedReviews));
         onAvgRatingUpdate(calculateAverageRating(fetchedReviews)); 
-        // console.log(fetchedReviews);
+        // // console.log(fetchedReviews);
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
@@ -67,17 +67,17 @@ const Comments = ({ id, sourceType,onAvgRatingUpdate,clickRate }) => {
   const addReview = (newReview) => {
     const userId = currentUser._id;
     newReview.userId = userId;
-    // console.log(newReview);
+    // // console.log(newReview);
 
     const url =
       sourceType === "dealer"
-        ? `https://farmer-dealer-user.vercel.app/server/dealer/post-comment/${id}`
-        : `https://farmer-dealer-user.vercel.app/server/farmer/post-comment/${id}`;
+        ? `https://farmer-dealer-user.vercel.app/dealer/post-comment/${id}`
+        : `https://farmer-dealer-user.vercel.app/farmer/post-comment/${id}`;
 
     axios
       .post(url, newReview)
       .then((response) => {
-        // console.log(response.data); // Log the full response to verify structure
+        // // console.log(response.data); // Log the full response to verify structure
         setReviews((prev) => [
           response.data.comment || response.data,
           ...prev,

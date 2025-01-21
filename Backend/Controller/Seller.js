@@ -6,7 +6,7 @@ export const getSellerProductSales = async (req, res) => {
     try {
       const sellerId = new mongoose.Types.ObjectId(req.params.id);
 
-      // console.log(sellerId)
+      // // console.log(sellerId)
       const result = await Seller.aggregate([
         // Match the specific seller by ID
         { $match: { _id: sellerId } },
@@ -63,7 +63,7 @@ export const getSellerFarmerProductSales = async (req, res) => {
   try {
     const sellerId = new mongoose.Types.ObjectId(req.params.id);
 
-    // console.log(sellerId)
+    // // console.log(sellerId)
     const result = await Seller.aggregate([
       // Match the specific seller by ID
       { $match: { _id: sellerId } },

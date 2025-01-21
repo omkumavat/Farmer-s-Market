@@ -23,7 +23,7 @@ const AddProduct = () => {
                 );
                 setIsVerified(response.data.status);
                 setIsSubmit(response.data.isSubmitted);
-                // console.log(response.data);
+                // // console.log(response.data);
             } catch (error) {
                 console.error("Failed to fetch verification status:", error);
             } finally {

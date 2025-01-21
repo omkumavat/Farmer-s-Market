@@ -165,11 +165,11 @@ const ProductForm = () => {
             smallerSizes,
             dealerid: currentUser._id,
         };
-        // console.log(payload);
+        // // console.log(payload);
     
         try {
             const response = await axios.post(
-                "https://farmer-dealer-user.vercel.app/server/dealer/addproduct",
+                "https://farmer-dealer-user.vercel.app/dealer/addproduct",
                 payload,
                 {
                     headers: {

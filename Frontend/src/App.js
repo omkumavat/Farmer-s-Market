@@ -50,7 +50,7 @@ function App() {
   }
   // localStorage.clear();
   const isAdmin = currentUser && currentUser?.role === "admin";
-  // console.log(isAdmin);
+  // // console.log(isAdmin);
 
   return (
     <div>

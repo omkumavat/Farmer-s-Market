@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendEmail = async (req, res) => {
-  // console.log(req.body);
+  // // console.log(req.body);
   const { email, subject, name,pname,pdate,pquantity,pprice, response, que, caseType } = req.body;
 
   // Map caseType to template filenames
@@ -71,7 +71,7 @@ export const sendEmail = async (req, res) => {
   // Send the email
   try {
     await transporter.sendMail(mailOptions);
-    // console.log(mailOptions, "Email sent successfully.");
+    // // console.log(mailOptions, "Email sent successfully.");
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);

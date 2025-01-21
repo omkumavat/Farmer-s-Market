@@ -20,9 +20,9 @@ const Farmer = () => {
             }
             const data = response.data;
 
-            // console.log(response.data.data);
+            // // console.log(response.data.data);
             setDisplayProducts(response.data.data);
-            // console.log(displayProducts);
+            // // console.log(displayProducts);
         } catch (error) {
             console.error("Error fetching products:", error);
         }

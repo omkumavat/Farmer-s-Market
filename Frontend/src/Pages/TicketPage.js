@@ -69,7 +69,7 @@ const TicketPage = () => {
 
     // const onSubmit = async (data) => {
     //     if (!currentUser) {
-    //         // console.log(currentUser);
+    //         // // console.log(currentUser);
     //         toast.error("Login First"); 
     //     }
     //     else {
@@ -78,7 +78,7 @@ const TicketPage = () => {
     //             data,
     //             userId
     //         });
-    //         // console.log(response.data);
+    //         // // console.log(response.data);
     //         setSubmitted(true);
 
     //         // Reset the form after submission
@@ -101,7 +101,7 @@ const TicketPage = () => {
                     data,
                     userId
                 });
-                // console.log(response.data);
+                // // console.log(response.data);
     
                 // Show success toast after successful submission
                 toast.success("Your query has been submitted!");

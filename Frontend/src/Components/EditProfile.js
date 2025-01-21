@@ -26,7 +26,7 @@ const EditProfile = () => {
       try {
         const response = await axios.get(`https://farmer-dealer-user.vercel.app/server/user/getuserbyid/${currentUser._id}`); // Replace with your API endpoint
         const data = response.data;
-        // console.log(data);
+        // // console.log(data);
         setUserData({
           name: data.name || "",
           email: data.email || "",

@@ -144,9 +144,9 @@ const FarmerEditForm = ({ isOpen, onClose, product, onSubmit }) => {
             pincode,
             districtState
         };
-        // console.log(updatedProduct)
+        // // console.log(updatedProduct)
             try {
-                // console.log("rrr", updatedProduct)
+                // // console.log("rrr", updatedProduct)
                 const response = await axios.put(
                     `https://farmer-dealer-user.vercel.app/server/farmer/updateproduct/${product._id}`,
                     updatedProduct,
@@ -156,7 +156,7 @@ const FarmerEditForm = ({ isOpen, onClose, product, onSubmit }) => {
                         },
                     }
                 );
-                // console.log("Response:", response.data.updatedProduct);
+                // // console.log("Response:", response.data.updatedProduct);
                 alert("Product added successfully!");
             } catch (error) {
                 console.error("Error submitting form:", error);

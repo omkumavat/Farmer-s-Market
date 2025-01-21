@@ -171,15 +171,41 @@ const FarmerProductForm = () => {
 
         return isValid;
     };
+    
+
+    // const handleSubmit = async (e) => {
+    //     setIsAuthReady(false);
+    //     e.preventDefault();
+    //     if (validateForm()) {
+    //         try {
+    //             // console.log(formData)
+    //             const response = await axios.post(
+    //                 "https://farmer-dealer-user.vercel.app/farmer/addproduct",
+    //                 formData,
+    //                 {
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                     },
+    //                 }
+    //             );
+    //             // console.log("Response:", response.data);
+    //             toast.success("Product added successfully!");
+    //         } catch (error) {
+    //             console.error("Error submitting form:", error);
+    //             toast.error("Failed to add the product. Please try again.");
+    //         }
+    //     }
+    //     setIsAuthReady(true);
+    // };
 
     const handleSubmit = async (e) => {
         setIsAuthReady(true);
         e.preventDefault();
         if (validateForm()) {
             try {
-                // console.log(formData);
+                // // console.log(formData);
                 const response = await axios.post(
-                    "https://farmer-dealer-user.vercel.app/server/farmer/addproduct",
+                    "https://farmer-dealer-user.vercel.app/farmer/addproduct",
                     formData,
                     {
                         headers: {
@@ -188,19 +214,18 @@ const FarmerProductForm = () => {
                     }
                 );
 
-                setFormData(
-                    {
-                        userId: currentUser._id,
-                        productName: "",
-                        category: "",
-                        subCategory: "",
-                        quantity: "",
-                        pricePerUnit: "",
-                        description: "",
-                        images: []
-                    }
-                )
-                setIsAuthReady(false);
+                setFormData({
+                    userId: currentUser._id,
+                    productName: "",
+                    category: "",
+                    subCategory: "",
+                    quantity: "",
+                    pricePerUnit: "",
+                    description: "",
+                    images: []
+                });
+                isAuthReady(false);
+                // console.log("Response:", response.data);
                 toast.success("Product added successfully!");
             } catch (error) {
                 console.error("Error submitting form:", error);
@@ -208,7 +233,7 @@ const FarmerProductForm = () => {
             }
         }
     };
-
+    
     return (
         <>  <ToastContainer />
             <>

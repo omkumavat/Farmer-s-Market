@@ -29,7 +29,7 @@ const Farmersearch = () => {
       setLoading(true);
       // Adjust API call to include the backend server's port
       const response = await axios.get(
-        `https://farmer-dealer-user.vercel.app/server/farmersearch/?q=${encodeURIComponent(
+        `https://farmer-dealer-user.vercel.app/farmersearch/?q=${encodeURIComponent(
           query
         )}`
       );
