@@ -11,7 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 
-const DProduct = ({ id }) => {
+const DProduct = ({ id ,avgRating,clickRate}) => {
   const { currentUser } = useAuth();
   const [rating, setRating] = useState(5);
   const [product, setProduct] = useState(null);
@@ -50,8 +50,10 @@ const DProduct = ({ id }) => {
 
   useEffect(() => {
     setIsAuthReady(true);
+    console.log("rate",avgRating)
     const fetchProductDetails = async () => {
       try {
+        setRating(avgRating)
         const response = await axios.get(
           `http://localhost:4000/server/dealer/getproductbyid/${id}`
         );
@@ -123,7 +125,7 @@ const DProduct = ({ id }) => {
     fetchWishStatus();
     fetchProductDetails();
     setIsAuthReady(false);
-  }, []);
+  }, [avgRating]);
   
 
   if (!product) {
@@ -142,8 +144,10 @@ const DProduct = ({ id }) => {
     setMainImage(image);
   };
 
-  const handleRatingClick = (newRating) => {
-    setRating(newRating);
+  const handleRatingClick = () => {
+    console.log(true);
+    clickRate(true);
+    console.log(clickRate)
   };
 
   const handlePayment = async () => {
@@ -354,13 +358,13 @@ if(isAuthReady){
             <span
               key={star}
               className={`star ${star <= rating ? "selected" : ""}`}
-              onClick={() => handleRatingClick(star)}
+              onClick={() => handleRatingClick}
             >
               ★
             </span>
           ))}
           <span className="rating-text">
-            ({rating} {rating === 1 ? "star" : "stars"})
+            ({rating})
           </span>
         </div>
 

@@ -3,38 +3,46 @@ import NavBar from "../Components/NavBar";
 import Footer from "../Components/Footer";
 import DProduct from "../cards/product";
 import Product from "../cards/FarmerProduct";
-import FarmerProduct from "../Components/FarmerProduct";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import DealerPCard from "../Components/DealerPCard";
 import { useAuth } from "../Context/AuthContext";
 import Loader from "../Components/Loader";
+import Comments from "../Components/Comments";
+import FarmerProduct from '../Components/FarmerProduct'
 
 const ProductPage = () => {
     const { id } = useParams();
     const { currentUser } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
-    const [isLoadingDealer, setIsLoadingDealer] = useState(true);  // Loading state for dealer products
-    const [isLoadingFarmer, setIsLoadingFarmer] = useState(true);  // Loading state for farmer products
+    const [isLoadingDealer, setIsLoadingDealer] = useState(true);
+    const [isLoadingFarmer, setIsLoadingFarmer] = useState(true);
 
     const [category, setCategory] = useState("");
     const [Products, setProducts] = useState({});
     const [FarmerProducts, setFarmerProducts] = useState({});
     const [CategoryProducts, setCategoryProducts] = useState([]);
-    const [sourceType, setSourceType] = useState(""); // "dealer" or "farmer"
+    const [sourceType, setSourceType] = useState(""); 
+    const [avgRating, setAvgRating] = useState(0);
+    const [clickRating, setClickRating] = useState(false);  // State for tracking rating click
+
+    const handleAvgRatingUpdate = (newAvgRating) => {
+        setAvgRating(newAvgRating);  
+    };
+
+    const handleClickRating = () => {
+        setClickRating(true);  
+    };
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                // Attempt to fetch dealer product
-                const dealerResponse = await axios.get(
-                    `http://localhost:4000/server/dealer/getproductbyid/${id}`
-                );
+                const dealerResponse = await axios.get(`http://localhost:4000/server/dealer/getproductbyid/${id}`);
                 if (dealerResponse.data) {
                     setProducts(dealerResponse.data);
                     setCategory(dealerResponse.data.category);
                     setSourceType("dealer");
-                    setIsLoadingDealer(false);  // Set loading to false when dealer product is found
+                    setIsLoadingDealer(false); 
                     return;
                 }
             } catch (error) {
@@ -42,15 +50,12 @@ const ProductPage = () => {
             }
 
             try {
-                // Attempt to fetch farmer product
-                const farmerResponse = await axios.get(
-                    `http://localhost:4000/server/farmer/getproductbyid/${id}`
-                );
+                const farmerResponse = await axios.get(`http://localhost:4000/server/farmer/getproductbyid/${id}`);
                 if (farmerResponse.data) {
                     setFarmerProducts(farmerResponse.data);
                     setCategory(farmerResponse.data.category);
                     setSourceType("farmer");
-                    setIsLoadingFarmer(false);  // Set loading to false when farmer product is found
+                    setIsLoadingFarmer(false); 
                     return;
                 }
             } catch (error) {
@@ -58,11 +63,10 @@ const ProductPage = () => {
             }
         };
 
-        fetchProducts().finally(() => setIsLoading(false)); // Ensure overall loading state is off
+        fetchProducts().finally(() => setIsLoading(false)); 
     }, [id]);
 
     useEffect(() => {
-        // Fetch category products based on source type and category
         if (category) {
             const fetchCategoryProducts = async () => {
                 const endpoint =
@@ -86,12 +90,11 @@ const ProductPage = () => {
         <>
             <NavBar />
             <div>
-                {/* Show loader until data is fetched */}
                 {isLoading ? (
                     <Loader />
                 ) : sourceType === "dealer" ? (
                     <>
-                        <DProduct id={id} />
+                        <DProduct id={id} avgRating={avgRating} clickRate={handleClickRating} />
                         <div className="productsec">
                             <h2>Similar Dealer Products</h2>
                             {isLoadingDealer ? (
@@ -113,7 +116,7 @@ const ProductPage = () => {
                     </>
                 ) : sourceType === "farmer" ? (
                     <>
-                        <Product id={id} />
+                        <Product id={id} avgRating={avgRating} />
                         <div className="productsec">
                             <h2>Similar Farmer Products</h2>
                             {isLoadingFarmer ? (
@@ -136,7 +139,11 @@ const ProductPage = () => {
                 ) : (
                     <div>No product found.</div>
                 )}
+
+                {/* Pass clickRate to Comments component */}
+                <Comments id={id} sourceType={sourceType} onAvgRatingUpdate={handleAvgRatingUpdate} clickRate={clickRating} />
             </div>
+
             <Footer />
         </>
     );

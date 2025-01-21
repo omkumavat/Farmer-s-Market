@@ -72,3 +72,9 @@
     grid-template-columns: repeat(5,1fr);
     margin-left: 240px;
 }
+.empty-order {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}

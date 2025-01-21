@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 
-const Product = ({ id }) => {
+const Product = ({ id,avgRating }) => {
   const { currentUser } = useAuth();
   const [rating, setRating] = useState(5);
   const [product, setProduct] = useState(null);
@@ -63,6 +63,7 @@ const Product = ({ id }) => {
     setIsAuthReady(true);
     const arr = [];
     const fetchProductDetails = async () => {
+      setRating(avgRating)
       try {
         const response = await axios.get(
           `http://localhost:4000/server/farmer/getproductbyid/${id}`
@@ -330,7 +331,7 @@ const handleDeleteWish = async () => {
             <span
               key={star}
               className={`star ${star <= rating ? "selected" : ""}`}
-              onClick={() => handleRatingClick(star)}
+              onClick={() => handleRatingClick}
             >
               ★
             </span>

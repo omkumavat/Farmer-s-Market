@@ -18,7 +18,18 @@ const farmerProductSchema = new mongoose.Schema({
   districtState: { type: String, required: true },
   availableFrom: { type: Date, required: true },
   availableUntil: { type: Date, required: true },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } // Reference to the User collection
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true } ,
+   comments: [
+      {
+        rating: { type: Number, required: true },
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+        comment: { type: String},
+        date: {
+          type: String,
+          // default: Date.now,
+        },
+      }
+    ],
 }, { timestamps: true });
 
 farmerProductSchema.pre('findOneAndDelete', async function (next) {
