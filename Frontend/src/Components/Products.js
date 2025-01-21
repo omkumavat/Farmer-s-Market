@@ -48,13 +48,13 @@ const Products = () => {
 
     return (
         <>
-            <div className="mypro"> 
-                {/* <h2>My Products</h2> */}
+            <div className="mypro1"> 
+                <h2>My Products</h2>
                 {currentUser && currentUser.role === "dealer" && (
-                    <div className="product-list">
+                    <div className="product-list1">
                         {
                             myProducts.map((product, index) => (
-                                <div className="farm" key={index}>
+                                <div className="farm1" key={index}>
                                     <MyProductDealer {...product}
                                     onDelete={handleRemoveProduct} />
                                 </div>
@@ -63,10 +63,10 @@ const Products = () => {
                     </div>
                 )}
                 {currentUser && currentUser.role === "farmer" && (
-                    <div className="product-list">
+                    <div className="product-list1">
                         {
                             myProducts.map((product, index) => (
-                                <div className="farm" key={index}>
+                                <div className="farm1" key={index}>
                                     <MyProductFarmer {...product} />
                                 </div>
                             ))
