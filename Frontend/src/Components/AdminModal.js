@@ -13,7 +13,7 @@ const AdminModal = ({ userId, onClose, onApproveSuccess }) => {
             // // console.log("C",currentUser)
             if (currentUser && currentUser.role === "admin" && password === "admin123") {
                 const approveResponse = await axios.get(
-                    `https://farmer-dealer-user.vercel.app/server/dealer/approveverifieduser/${userId}`
+                    `https://farmer-s-market-theta.vercel.app/server/dealer/approveverifieduser/${userId}`
                 );
                 alert(approveResponse.data.message);
                 onApproveSuccess();

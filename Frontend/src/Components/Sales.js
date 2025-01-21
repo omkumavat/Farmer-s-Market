@@ -37,7 +37,7 @@ const Sales = () => {
             try {
                 if (currentUser) {
                     const response = await axios.get(
-                        `https://farmer-dealer-user.vercel.app/server/sales/get-sale-farmer/${currentUser.sellerId}`
+                        `https://farmer-s-market-theta.vercel.app/server/sales/get-sale-farmer/${currentUser.sellerId}`
                     );
                     const transformedData = response.data.data.map(item => ({
                         productName: item.productName,

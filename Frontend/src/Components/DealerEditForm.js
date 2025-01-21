@@ -122,7 +122,7 @@ const DealerEditForm = ({ isOpen, onClose, product, onSubmit }) => {
       smallerSizes,
       largerSizes
     };
-    const res = await axios.put(`https://farmer-dealer-user.vercel.app/server/dealer/updateproduct/${product._id}`,updatedProduct);
+    const res = await axios.put(`https://farmer-s-market-theta.vercel.app/server/dealer/updateproduct/${product._id}`,updatedProduct);
     // // console.log(res.data);
     onClose();
   };

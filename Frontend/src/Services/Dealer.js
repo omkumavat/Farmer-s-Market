@@ -15,7 +15,7 @@ const Dealer = () => {
 
   const fetchLimitedProducts = async () => {
     try {
-      const response = await axios.get("https://farmer-dealer-user.vercel.app/server/dealer/getallproducts");
+      const response = await axios.get("https://farmer-s-market-theta.vercel.app/server/dealer/getallproducts");
       if (!response) {
         throw new Error("Failed to fetch products");
       }
@@ -110,7 +110,7 @@ const Dealer = () => {
     <>
     <ToastContainer />
       {
-        displayProducts.length>0 || displayProducts.length ===0 ? (
+        displayProducts.length>0 || displayProducts.length === 0 ? (
           <>
           <NavBar />
       <div>

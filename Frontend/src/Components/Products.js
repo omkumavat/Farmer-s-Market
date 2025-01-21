@@ -26,7 +26,7 @@ const Products = () => {
             try {
                 if (currentUser) {
                     const id = currentUser._id
-                    const response = await axios.get(`https://farmer-dealer-user.vercel.app/server/fetchmyproducts/${id}`);
+                    const response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/fetchmyproducts/${id}`);
                     // // console.log(response.data.data);
                     setMyProducts(response.data.data);
                 }

@@ -12,7 +12,7 @@ const Tickets = () => {
     useEffect(() => {
         const fetchTickets = async () => {
             try {
-                const response = await axios.get('https://farmer-dealer-user.vercel.app/getallticket');
+                const response = await axios.get('https://farmer-s-market-theta.vercel.app/getallticket');
                 setTickets(response.data);
             } catch (error) {
                 console.error('Error fetching tickets:', error);
@@ -29,7 +29,7 @@ const Tickets = () => {
 
     const handleSubmitResponse = async (ticketId) => {
         try {
-            const res = await axios.post(`https://farmer-dealer-user.vercel.app/respondtoticket/${ticketId}`, {
+            const res = await axios.post(`https://farmer-s-market-theta.vercel.app/respondtoticket/${ticketId}`, {
                 response: response,
             });
             // // console.log(res.data.ticket);
@@ -43,7 +43,7 @@ const Tickets = () => {
                 que:res.data.ticket.query,
               }
               // console.log(data);
-            const responses = await axios.post("https://farmer-dealer-user.vercel.app/sendmail", data);
+            const responses = await axios.post("https://farmer-s-market-theta.vercel.app/sendmail", data);
             setTickets(tickets.map(ticket => 
                 ticket._id === ticketId ? { ...ticket, status: 'responded', adminResponse: response } : ticket
             ));

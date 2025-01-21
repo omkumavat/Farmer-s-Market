@@ -5,7 +5,7 @@ function PaymentButton() {
   
   const handlePayment = async () => {
     try {
-      const response = await fetch('https://farmer-dealer-user.vercel.app/api/payment/create-order', {
+      const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

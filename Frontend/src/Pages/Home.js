@@ -136,7 +136,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
     useEffect(() => {
         const fetchCounts = async () => {
-            const response = await fetch('https://farmer-dealer-user.vercel.app/server/count');
+            const response = await fetch('https://farmer-s-market-theta.vercel.app/server/count');
             const data = await response.json();
             // // console.log(data);
             setUserCount(data.userCount);

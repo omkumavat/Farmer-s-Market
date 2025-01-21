@@ -19,7 +19,7 @@ const AddProduct = () => {
         const fetchStatus = async () => {
             try {
                 const response = await axios.get(
-                    `https://farmer-dealer-user.vercel.app/server/dealer/getverificationstatus/${currentUser._id}`
+                    `https://farmer-s-market-theta.vercel.app/server/dealer/getverificationstatus/${currentUser._id}`
                 );
                 setIsVerified(response.data.status);
                 setIsSubmit(response.data.isSubmitted);

@@ -16,7 +16,7 @@ const MyCartDealer = ({ _id, title, price, images, largerSizes, smallerSizes, si
             const userId = currentUser._id;
             const cartId = _id;
             const response = await axios.delete(
-                `https://farmer-dealer-user.vercel.app/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
+                `https://farmer-s-market-theta.vercel.app/dealer/delete-wish/${userId}/${cartId}` // Adjust API endpoint
             );
             setIsAuthReady(false);
             // // console.log(response.data.message); // Success message

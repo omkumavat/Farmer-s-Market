@@ -180,7 +180,7 @@ const FarmerProductForm = () => {
     //         try {
     //             // console.log(formData)
     //             const response = await axios.post(
-    //                 "https://farmer-dealer-user.vercel.app/farmer/addproduct",
+    //                 "https://farmer-s-market-theta.vercel.app/farmer/addproduct",
     //                 formData,
     //                 {
     //                     headers: {
@@ -205,7 +205,7 @@ const FarmerProductForm = () => {
             try {
                 // // console.log(formData);
                 const response = await axios.post(
-                    "https://farmer-dealer-user.vercel.app/farmer/addproduct",
+                    "https://farmer-s-market-theta.vercel.app/farmer/addproduct",
                     formData,
                     {
                         headers: {

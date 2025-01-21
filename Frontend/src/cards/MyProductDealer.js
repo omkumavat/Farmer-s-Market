@@ -22,7 +22,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   };
 
   const handleDeleteProducts = async () => {
-    const response = await axios.delete(`https://farmer-dealer-user.vercel.app/dealer/deleteproduct/${_id}`);
+    const response = await axios.delete(`https://farmer-s-market-theta.vercel.app/dealer/deleteproduct/${_id}`);
     if (response.data.success) {
       toast.success("Product Deleted Successfully");
       setIsModalOpen(false);
