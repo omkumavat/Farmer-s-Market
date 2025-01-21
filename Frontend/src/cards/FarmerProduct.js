@@ -18,6 +18,7 @@ const Product = ({ id,avgRating }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [mainImage, setMainImage] = useState("");
   const [Desc, setDesc] = useState("");
+  const [TotalAmount,setTotalAmount]=useState(0);
   const [amount,setAmount]=useState(0);
  const [isAuthReady,setIsAuthReady]=useState(false);
   const [quant,setQuant]=useState(0);
@@ -74,6 +75,7 @@ const Product = ({ id,avgRating }) => {
         setAmount(data.pricePerUnit);
         // setamount(data.pricePerUnit*data.quantity);
         setQuant(data.quantity);
+        setTotalAmount(data.quantity*(data.pricePerUnit));
         console.log(data);
         setMainImage(data.images[0]);
 
@@ -182,7 +184,7 @@ const handleDeleteWish = async () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ amount }),
+          body: JSON.stringify({ amount : TotalAmount}),
         });
 
         const order = await response.json();

@@ -9,6 +9,7 @@ const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity ,availa
 //   console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
 const [isModalOpen, setIsModalOpen] = useState(false);
 const [isEditOpen, setIsEditOpen] = useState(false);
+ const [oldPassword, setOldPassword] = useState("");
 const {currentUser}=useAuth();
   const handleDelete = () => {
     setIsModalOpen(true);
@@ -59,11 +60,13 @@ const {currentUser}=useAuth();
         <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
+
       <PasswordModal
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         userId={currentUser._id}
-        oldPassword={currentUser.password} 
+        setOldPassword={setOldPassword}
+        oldPassword={oldPassword}
         onPasswordVerified={handleDeleteProducts}
       />
        <FarmerEditForm
