@@ -33,7 +33,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
     setIsAuthReady(true);
     try {
       if (currentUser) {
-        const response = await axios.post('https://farmer-s-market-theta.vercel.app/dealer/addtocart', {
+        const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
           userId: currentUser._id,
           productId: product._id,
         });
@@ -55,7 +55,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       try {
         setRating(avgRating)
         const response = await axios.get(
-          `https://farmer-s-market-theta.vercel.app/dealer/getproductbyid/${id}`
+          `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbyid/${id}`
         );
         const data = response.data;
   
@@ -111,7 +111,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       if (currentUser) {
         try {
           const response = await axios.get(
-            `https://farmer-s-market-theta.vercel.app/dealer/check-cart/${id}/${currentUser?._id}`
+            `https://farmer-s-market-theta.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
           );
           const data = response.data;
           // // console.log(data);
@@ -202,7 +202,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/orders/create-order', {
+                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -219,7 +219,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                const responses = await axios.post("https://farmer-s-market-theta.vercel.app/sendmail", data);
+                const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
 
                 if (createOrderResponse.ok) {
                   toast.success('Payment successful and Order created !');
@@ -291,7 +291,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       const userId = currentUser._id;
       const cartId = id;
       const response = await axios.delete(
-        `https://farmer-s-market-theta.vercel.app/dealer/delete-wish/${userId}/${cartId}`
+        `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
       );
       toast.success("Item removed from WishList successfully");
       setIsPresent(false); // Update the state here

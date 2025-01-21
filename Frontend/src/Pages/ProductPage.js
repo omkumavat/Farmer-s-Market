@@ -46,7 +46,7 @@ const ProductPage = () => {
                     return;
                 }
             } catch (error) {
-                console.warn("Dealer product not found:", error);
+                // console.warn("Dealer product not found:", error);
             }
 
             try {
@@ -59,7 +59,7 @@ const ProductPage = () => {
                     return;
                 }
             } catch (error) {
-                console.warn("Farmer product not found:", error);
+                // console.warn("Farmer product not found:", error);
             }
         };
 

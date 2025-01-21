@@ -205,7 +205,7 @@ const FarmerProductForm = () => {
             try {
                 // // console.log(formData);
                 const response = await axios.post(
-                    "https://farmer-s-market-theta.vercel.app/farmer/addproduct",
+                    "https://farmer-s-market-theta.vercel.app/server/farmer/addproduct",
                     formData,
                     {
                         headers: {
