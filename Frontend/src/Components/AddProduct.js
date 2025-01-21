@@ -36,7 +36,7 @@ const AddProduct = () => {
 
     return (
         <>
-            {isVerified===false && currentUser?.role === "dealer" && <div>Status: Pending</div>}
+            {/* {isVerified===false && currentUser?.role === "dealer" &&  <div>Status: Pending</div>} */}
             {currentUser?.role === "dealer" && (
                 <>
                     {isVerified === true ? <ProductForm /> : <VerificationForm />}

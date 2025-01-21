@@ -23,7 +23,7 @@ const {currentUser}=useAuth();
     const response = await axios.delete(`http://localhost:4000/server/farmer/deleteproduct/${_id}`);
     console.log("rr",response.data.success)
     if(response.data.success){
-        toast.sucess("Product Deleted Successfuly");
+        toast.success("Product Deleted Successfuly");
         setIsModalOpen(false);
     }else{
         toast.error("Failed to Delete Product");
@@ -33,7 +33,7 @@ const {currentUser}=useAuth();
   const handleEditSubmit = (updatedProduct) => {
     console.log("Updated Product:", updatedProduct);
     setIsEditOpen(false);
-    // You can also send a PUT request to update the product on the server here
+    
   };
 
   return (

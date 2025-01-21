@@ -24,7 +24,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   const handleDeleteProducts = async () => {
     const response = await axios.delete(`http://localhost:4000/server/dealer/deleteproduct/${_id}`);
     if (response.data.success) {
-      toast.sucess("Product Deleted Successfully");
+      toast.success("Product Deleted Successfully");
       setIsModalOpen(false);
       window.location.reload();
     } else {
@@ -52,9 +52,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
           <p className="product-save">Save ₹{(price * 0.1).toFixed(2)}</p>
         </div>
       </Link>
-      <label htmlFor="size" className="size-label">
-        Size
-      </label>
+    
       <select className="size-select">
         {largerSizes?.map((option, index) => (
           <option key={`larger-${index}`}>{`${option.size} ${option.unit}`}</option>

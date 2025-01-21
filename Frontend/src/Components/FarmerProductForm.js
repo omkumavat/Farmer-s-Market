@@ -213,6 +213,19 @@ const FarmerProductForm = () => {
                     }
                 );
                 console.log("Response:", response.data);
+                
+                // Reset form fields and state after success
+                setFormData({
+                    userId: currentUser._id,
+                    productName: "",
+                    category: "",
+                    subCategory: "",
+                    quantity: "",
+                    pricePerUnit: "",
+                    description: "",
+                    images:[]
+                });
+                setImagePreviews([]); // Reset image previews as well
                 toast.success("Product added successfully!");
             } catch (error) {
                 console.error("Error submitting form:", error);
@@ -220,6 +233,7 @@ const FarmerProductForm = () => {
             }
         }
     };
+    
     
     return (
         <>  <ToastContainer />
