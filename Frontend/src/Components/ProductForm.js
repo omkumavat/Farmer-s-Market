@@ -159,7 +159,7 @@ const ProductForm = () => {
     
         try {
             const response = await axios.post(
-                "https://farmer-s-market-theta.vercel.app/server/dealer/addproduct",
+                "http://localhost:4000/server/dealer/addproduct",
                 payload,
                 {
                     headers: {
@@ -237,8 +237,8 @@ const ProductForm = () => {
                                 <option value="">Select Unit</option>
                                 <option value="kgs">kg</option>
                                 <option value="gms">g</option>
-                                <option value="mls">ml</option>
-                                <option value="Ltrs">l</option>
+                                <option value="ml">ml</option>
+                                <option value="ltr">l</option>
                                 <option value="mm">mm</option>
                                 <option value="cm">cm</option>
                                 <option value="m">m</option>
@@ -358,10 +358,10 @@ const ProductForm = () => {
                                         }
                                         required
                                     >
-                                        <option value="Kgs">kg</option>
-                                        <option value="Gms">g</option>
-                                        <option value="Mls">ml</option>
-                                        <option value="Ltrs">l</option>
+                                        <option value="kgs">kg</option>
+                                        <option value="gms">g</option>
+                                        <option value="ml">ml</option>
+                                        <option value="ltr">l</option>
                                         <option value="mm">mm</option>
                                         <option value="cm">cm</option>
                                         <option value="m">m</option>
@@ -436,10 +436,10 @@ const ProductForm = () => {
                                         }
                                         required
                                     >
-                                        <option value="Kg">kg</option>
-                                        <option value="Gms">g</option>
-                                        <option value="Mls">ml</option>
-                                        <option value="Ltrs">l</option>
+                                        <option value="kg">kg</option>
+                                        <option value="gms">g</option>
+                                        <option value="ml">ml</option>
+                                        <option value="ltr">l</option>
                                         <option value="mm">mm</option>
                                         <option value="cm">cm</option>
                                         <option value="m">m</option>

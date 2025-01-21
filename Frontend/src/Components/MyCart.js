@@ -15,22 +15,19 @@ const MyCart = () => {
   const [error, setError] = useState(null);
   const navigate=useNavigate();
 
-  useEffect(() => {
-    if (currentUser && currentUser._id) {
-      axios
-        .get(
-          `https://farmer-s-market-theta.vercel.app/server/dealer/getcart/${currentUser._id}`
-        )
-        .then((response) => {
-          setFarmerCart(response.data.farmercart);
-          setDealerCart(response.data.dealercart);
-        })
-        .catch((error) => {
-          console.error("Error fetching cart:", error);
-          setError("Failed to load cart");
-        });
-    }
-  }, [currentUser]);
+    useEffect(() => {
+        if (currentUser && currentUser._id) {
+            axios.get(`http://localhost:4000/server/dealer/getcart/${currentUser._id}`)
+                .then(response => {
+                    setFarmerCart(response.data.farmercart);
+                    setDealerCart(response.data.dealercart);
+                })
+                .catch(error => {
+                    console.error('Error fetching cart:', error);
+                    setError('Failed to load cart');
+                });
+        }
+    }, [currentUser]);
 
   return (
     <div className="mycart1">

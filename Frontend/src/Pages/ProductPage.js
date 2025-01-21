@@ -28,7 +28,7 @@ const ProductPage = () => {
             try {
                 // Attempt to fetch dealer product
                 const dealerResponse = await axios.get(
-                    `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbyid/${id}`
+                    `http://localhost:4000/server/dealer/getproductbyid/${id}`
                 );
                 if (dealerResponse.data) {
                     setProducts(dealerResponse.data);
@@ -44,7 +44,7 @@ const ProductPage = () => {
             try {
                 // Attempt to fetch farmer product
                 const farmerResponse = await axios.get(
-                    `https://farmer-s-market-theta.vercel.app/server/farmer/getproductbyid/${id}`
+                    `http://localhost:4000/server/farmer/getproductbyid/${id}`
                 );
                 if (farmerResponse.data) {
                     setFarmerProducts(farmerResponse.data);
@@ -67,8 +67,8 @@ const ProductPage = () => {
             const fetchCategoryProducts = async () => {
                 const endpoint =
                     sourceType === "dealer"
-                        ? `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbycategory/all?category=${category}`
-                        : `https://farmer-s-market-theta.vercel.app/server/farmer/getproductbycategory/all?category=${category}`;
+                        ? `http://localhost:4000/server/dealer/getproductbycategory/all?category=${category}`
+                        : `http://localhost:4000/server/farmer/getproductbycategory/all?category=${category}`;
 
                 try {
                     const response = await axios.get(endpoint);

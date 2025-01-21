@@ -8,49 +8,41 @@ import Loader from "./Loader";
 
 const AddProduct = () => {
     const { currentUser } = useAuth();
-    const [isVerificationSubmitted, setIsVerificationSubmitted] = useState(false);
-    const [isStatus, setIsStatus] = useState(false);
+    const [isVerified, setIsVerified] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        if (!currentUser || !currentUser._id) return;
+
         const fetchStatus = async () => {
             try {
-                const response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/dealer/getverificationstatus/${currentUser._id}`);
-                setIsVerificationSubmitted(response.data.isSubmitted);
-                setIsStatus(response.data.isSubmitted);
+                const response = await axios.get(
+                    `http://localhost:4000/server/dealer/getverificationstatus/${currentUser._id}`
+                );
+                setIsVerified(response.data.isSubmitted);
+                console.log(isVerified)
             } catch (error) {
                 console.error("Failed to fetch verification status:", error);
             } finally {
                 setIsLoading(false);
             }
         };
-
-        // Fetch status initially
         fetchStatus();
+    }, [currentUser]);
 
-        // Set interval to fetch the status every second (1000ms)
-        const interval = setInterval(() => {
-            fetchStatus();
-        }, 1000);
-
-        // Clean up the interval when the component unmounts
-        return () => clearInterval(interval);
-
-    }, [currentUser._id]);
+    if (isLoading) {
+        return <Loader />;
+    }
 
     return (
         <>
-            {isLoading && <div><Loader/></div>}
-            {!isLoading && (
+            {isVerified===false && <div>Status: Pending</div>}
+            {currentUser?.role === "dealer" && (
                 <>
-                    {currentUser.role !== "other" && currentUser.role === "dealer" && isStatus && <ProductForm />}
-                    {currentUser.role !== "other" && currentUser.role === "farmer" && <FarmerProductForm />}
-                    {!isStatus && currentUser.role !== "other" && currentUser.role === "dealer" && !isVerificationSubmitted && (
-                        <VerificationForm />
-                    )}
-                    {isVerificationSubmitted && !isStatus && <div>Status: Pending</div>}
+                    {isVerified === true ? <ProductForm /> : <VerificationForm />}
                 </>
             )}
+            {currentUser?.role === "farmer" && <FarmerProductForm />}
         </>
     );
 };

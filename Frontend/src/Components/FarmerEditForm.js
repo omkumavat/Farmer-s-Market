@@ -148,7 +148,7 @@ const FarmerEditForm = ({ isOpen, onClose, product, onSubmit }) => {
             try {
                 console.log("rrr", updatedProduct)
                 const response = await axios.put(
-                    `https://farmer-s-market-theta.vercel.app/server/farmer/updateproduct/${product._id}`,
+                    `http://localhost:4000/server/farmer/updateproduct/${product._id}`,
                     updatedProduct,
                     {
                         headers: {

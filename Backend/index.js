@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
 app.use(cors({
-  origin: '*',  // You can replace this with the actual frontend URL
+  origin: '*',  
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing these methods
   allowedHeaders: ['Content-Type'], // Allow these headers
 }));
@@ -77,8 +77,13 @@ app.get("/s", (req, res) => {
 });
 
 
-// app.listen(4000, () => {
-//   console.log("app is listening on port 4000");
-// });
+app.listen(4000, () => {
+  console.log("app is listening on port 4000");
+});
 
+<<<<<<< HEAD
 export default app;
+=======
+// module.exports = app;
+// export default app;
+>>>>>>> ebf1eb0141b4670ec4d640b15e97a17994eb72a1

@@ -14,7 +14,7 @@ const Farmer = () => {
     const [displayProducts, setDisplayProducts] = useState([]);
     const fetchLimitedProducts = async () => {
         try {
-            const response = await axios.get("https://farmer-s-market-theta.vercel.app/server/farmer/getallproducts/all?limit=5");
+            const response = await axios.get("http://localhost:4000/server/farmer/getallproducts/all?limit=5");
             if (!response) {
                 throw new Error("Failed to fetch products");
             }
