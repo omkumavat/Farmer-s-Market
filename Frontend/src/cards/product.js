@@ -27,7 +27,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
   const [originalAmount,setOriginalAmount]=useState(0);
   const [isPresent,setIsPresent]=useState(false);
   const [isAuthReady,setIsAuthReady]=useState(false);
-
+  const [Totalamount,settotal]=useState(0);
 
   const handleAddToCart = async () => {
     setIsAuthReady(true);
@@ -79,6 +79,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
           ...arr.map((size) => ({ ...size, type: "Smaller" })),
         ];
         setVariants(combinedVariants);
+        // settotal(data.amount*(data*))
         // // console.log(combinedVariants);
   
         const cleanText = data.desc
@@ -165,7 +166,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       }
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -184,7 +185,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

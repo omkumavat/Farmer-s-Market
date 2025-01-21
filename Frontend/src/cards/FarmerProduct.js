@@ -179,7 +179,7 @@ const handleDeleteWish = async () => {
       // // console.log(data);
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ const handleDeleteWish = async () => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

@@ -14,14 +14,15 @@ const Products = () => {
     const [isAuthReady, setIsAuthReady] = useState(false);
 
     // Check if the `currentUser` is ready
-    useEffect(() => {
-        if (currentUser) {
-            setIsAuthReady(true);
-        }
-    }, [currentUser]);
+    // useEffect(() => {
+    //     if (currentUser) {
+    //         setIsAuthReady(true);
+    //     }
+    // }, [currentUser]);
 
     // Fetch products based on user ID
     useEffect(() => {
+        setIsAuthReady(true);
         const fetchProducts = async () => {
             try {
                 if (currentUser) {
@@ -30,11 +31,13 @@ const Products = () => {
                     // // console.log(response.data.data);
                     setMyProducts(response.data.data);
                 }
+        
             } catch (error) {
                 console.error("Error fetching products:", error);
             }
         };
         fetchProducts();
+        setIsAuthReady(false)
     }, [currentUser, setMyProducts]);
     const handleRemoveProduct = (id) => {
         window.location.reload();
@@ -42,7 +45,7 @@ const Products = () => {
       };
 
     // Show a loader until `currentUser` is ready
-    if (!isAuthReady) {
+    if (isAuthReady) {
         return <Loader />;
     }
 
