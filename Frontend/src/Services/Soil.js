@@ -44,7 +44,7 @@ const Weather = () => {
     setError(null);
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:4000/api/soil-data?lat=${lat}&lon=${lng}`);
+      const response = await axios.get(`https://farmer-dealer-user.vercel.app/api/soil-data?lat=${lat}&lon=${lng}`);
       setSoilData(response.data);
     } catch (err) {
       if (err.response && err.response.data) {

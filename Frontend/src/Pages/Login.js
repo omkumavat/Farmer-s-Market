@@ -36,7 +36,7 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/server/login", {
+      const res = await axios.post("https://farmer-dealer-user.vercel.app/server/login", {
         email,
         password,
       });

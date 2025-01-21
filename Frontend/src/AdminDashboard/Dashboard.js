@@ -12,7 +12,7 @@ function Dashboard() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [selectedPage, setSelectedPage] = useState('Home');
-  console.log(currentUser);
+  // console.log(currentUser);
   
   useEffect(() => {
     if (currentUser !== null) {

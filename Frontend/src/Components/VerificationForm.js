@@ -72,18 +72,18 @@ const VerificationForm = ({ onVerificationSuccess }) => {
 
             try {
                 setIsLoading(true); // Start loading
-                const response = await axios.post("http://localhost:4000/server/dealer/postverifications", formDataToSend, {
+                const response = await axios.post("https://farmer-dealer-user.vercel.app/server/dealer/postverifications", formDataToSend, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     },
                 });
-                console.log("Form submitted:", response.data);
+                // console.log("Form submitted:", response.data);
 
                 // Poll the backend to check for the status
                 const intervalId = setInterval(async () => {
                     try {
                         const statusResponse = await axios.get(
-                            `http://localhost:4000/server/dealer/getVerificationStatus/${currentUser._id}`
+                            `https://farmer-dealer-user.vercel.app/server/dealer/getVerificationStatus/${currentUser._id}`
                         );
                         const { status } = statusResponse.data;
                         if (status === "Pending") {

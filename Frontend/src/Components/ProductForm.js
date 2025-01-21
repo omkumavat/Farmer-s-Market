@@ -8,6 +8,7 @@ import { LoadScript } from "@react-google-maps/api";
 import Loader from "./Loader";
 import { toast, ToastContainer } from "react-toastify"; // Import react-toastify
 import "react-toastify/dist/ReactToastify.css";  // Import toast styles
+import Spinner from "./Spinner";
 
 const ProductForm = () => {
     const [isAuthReady,setisAuthReady]=useState(false);
@@ -164,11 +165,11 @@ const ProductForm = () => {
             smallerSizes,
             dealerid: currentUser._id,
         };
-        console.log(payload);
+        // console.log(payload);
     
         try {
             const response = await axios.post(
-                "http://localhost:4000/server/dealer/addproduct",
+                "https://farmer-dealer-user.vercel.app/server/dealer/addproduct",
                 payload,
                 {
                     headers: {
@@ -176,11 +177,7 @@ const ProductForm = () => {
                     },
                 }
             );
-    
-            setisAuthReady(false);
-            toast.success("Product added successfully!");
-    
-            // Reset form fields after successful submission
+
             setTitle("");
             setName("");
             setCategory("");
@@ -195,21 +192,20 @@ const ProductForm = () => {
             setSmallerSizeAvailable(false);
             setLargerSizes([]);
             setSmallerSizes([]);
+            setisAuthReady(false);
+            toast.success("Product added successfully!");
         } catch (error) {
             console.error("Error submitting form:", error);
             toast.error("Failed to add the product. Please try again. (Make sure all details are filled).");
         }
     };
     
-    
-    if(isAuthReady){
-        return <Loader/>;
-    }
 
 
     return (
         <>
         <ToastContainer />
+        { isAuthReady ? (<Spinner/>) : (
             <div className="formContainer">
                 <div className="wrapper">
                     <form onSubmit={handleSubmit}>
@@ -218,18 +214,18 @@ const ProductForm = () => {
                         {/* Title Field */}
                         <div className="item">
                             <label htmlFor="title">Title</label>
-                            <input id="title" name="title" type="text" onChange={handleTitle} required placeholder="Enter product title" />
+                            <input id="title" name="title" value={title} type="text" onChange={handleTitle} required placeholder="Enter product title" />
                         </div>
 
                         <div>
                             <label htmlFor="name">Industry Name</label>
-                            <input id="name" name="name" type="text" onChange={handleName} required placeholder="Enter Industry Name" />
+                            <input id="name" name="name" value={name} type="text" onChange={handleName} required placeholder="Enter Industry Name" />
                         </div>
 
                         {/* Price Field */}
                         <div className="item">
                             <label htmlFor="price">Price</label>
-                            <input id="price" name="price" type="number" onChange={handlePrice} required placeholder="Enter product price" />
+                            <input id="price" name="price" value={price} type="number" onChange={handlePrice} required placeholder="Enter product price" />
                         </div>
 
                         <div className="item">
@@ -252,13 +248,14 @@ const ProductForm = () => {
                                 <option value="mm">mm</option>
                                 <option value="cm">cm</option>
                                 <option value="m">m</option>
+                                <option value="unit">unit</option>
                             </select>
                             <label htmlFor="quantity">Quantity</label>
                             <input
                                 id="quantity"
                                 name="quantity"
                                 type="number"
-                                // value={}
+                                value={quantity}
                                 onChange={handleQuantityChange}
                                 required
                                 placeholder="Enter product Quantity"
@@ -300,7 +297,7 @@ const ProductForm = () => {
 
                         <div className="item">
                             <label htmlFor="images">Images</label>
-                            <input type="file" id="images" name="images" multiple onChange={handleImages} accept="image/*" />
+                            <input type="file" id="images" name="images"  multiple onChange={handleImages} accept="image/*" />
                             <div className="imagePreviews">
                                 {images.map((img, index) => (
                                     <img key={index} src={img} alt={`Uploaded preview ${index + 1}`} className="imagePreview" />
@@ -375,6 +372,7 @@ const ProductForm = () => {
                                         <option value="mm">mm</option>
                                         <option value="cm">cm</option>
                                         <option value="m">m</option>
+                                        <option value="unit">unit</option>
                                     </select>
                                     <button type="button" onClick={() => removeLargerSize(index)}>
                                         Cancel
@@ -453,6 +451,7 @@ const ProductForm = () => {
                                         <option value="mm">mm</option>
                                         <option value="cm">cm</option>
                                         <option value="m">m</option>
+                                        <option value="unit">unit</option>
                                     </select>
                                     <button type="button" onClick={() => removeSmallerSize(index)}>
                                         Cancel
@@ -480,7 +479,8 @@ const ProductForm = () => {
                     </form>
                 </div>
             </div>
-        </>
+        )}
+                </>
     );
 }
 

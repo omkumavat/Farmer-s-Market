@@ -107,4 +107,9 @@
       justify-content: center;
       padding: 20px; /* Added padding to prevent overlap */
       box-sizing: border-box; /* Ensure padding doesn't overflow */
+      margin-top: 30px; 
+  }
+
+  .team-header h2{
+    color: white;
   }

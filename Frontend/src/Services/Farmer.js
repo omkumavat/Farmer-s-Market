@@ -14,15 +14,15 @@ const Farmer = () => {
     const [displayProducts, setDisplayProducts] = useState([]);
     const fetchLimitedProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/server/farmer/getallproducts/all?limit=5");
+            const response = await axios.get("https://farmer-dealer-user.vercel.app/server/farmer/getallproducts/all?limit=5");
             if (!response) {
                 throw new Error("Failed to fetch products");
             }
             const data = response.data;
 
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setDisplayProducts(response.data.data);
-            console.log(displayProducts);
+            // console.log(displayProducts);
         } catch (error) {
             console.error("Error fetching products:", error);
         }
@@ -112,7 +112,7 @@ const Farmer = () => {
             <div>
                 <div className="mc">
                     <div className="cs">
-                        <h2 className="head1">Farmer Product</h2>
+                        <h2 className="head1">Farm Product</h2>
                         <p className="head2">PROVIDE BY AgriHaven</p>
                     </div>
                 </div>
@@ -148,22 +148,7 @@ const Farmer = () => {
                         </div>
                     ))}
                 </div>
-                {/* <div className="ppp">
-        <h2>Popular Brands</h2>
-        </div>
-        <div className="stylelines"></div>
-        <div className="brandc">
-          
-          <div className="brands">
-            <div className="sliderb">
-              {brandLogos.map((logo, index) => (
-                <div className="imgg" key={index}>
-                  <img src={logo} alt={`Brand ${index + 1}`} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div> */}
+     
                 <div className="services-container">
                     <div className="serv">
                         <h2 className="services-title">Farm Produce</h2>

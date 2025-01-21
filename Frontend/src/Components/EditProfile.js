@@ -24,9 +24,9 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/server/user/getuserbyid/${currentUser._id}`); // Replace with your API endpoint
+        const response = await axios.get(`https://farmer-dealer-user.vercel.app/server/user/getuserbyid/${currentUser._id}`); // Replace with your API endpoint
         const data = response.data;
-        console.log(data);
+        // console.log(data);
         setUserData({
           name: data.name || "",
           email: data.email || "",
@@ -79,7 +79,7 @@ const EditProfile = () => {
       }
   
       const response = await axios.put(
-        `http://localhost:4000/server/user/updateprofile/${currentUser._id}`,
+        `https://farmer-dealer-user.vercel.app/server/user/updateprofile/${currentUser._id}`,
         formData,
         {
           headers: {
@@ -93,7 +93,7 @@ const EditProfile = () => {
         await new Promise((resolve) => setTimeout(resolve, 4000));
         await logout();
   
-        const res = await axios.post("http://localhost:4000/server/login", {
+        const res = await axios.post("https://farmer-dealer-user.vercel.app/server/login", {
           email: formData.get("email"),
           password: loginPassword,
         });

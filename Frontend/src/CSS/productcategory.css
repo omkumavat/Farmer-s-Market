@@ -11,7 +11,11 @@
     margin-bottom: 40px;
     margin-left: 45px;
 }
-
+.no-products-message {
+    color: red;
+    text-align: center;
+    margin: 1rem 0;
+}
 .productsec{
     margin-top: 250px;
     margin-bottom: 10px;

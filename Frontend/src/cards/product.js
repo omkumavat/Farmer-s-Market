@@ -33,7 +33,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
     setIsAuthReady(true);
     try {
       if (currentUser) {
-        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
+        const response = await axios.post('https://farmer-dealer-user.vercel.app/server/dealer/addtocart', {
           userId: currentUser._id,
           productId: product._id,
         });
@@ -50,17 +50,17 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
 
   useEffect(() => {
     setIsAuthReady(true);
-    console.log("rate",avgRating)
+    // console.log("rate",avgRating)
     const fetchProductDetails = async () => {
       try {
         setRating(avgRating)
         const response = await axios.get(
-          `http://localhost:4000/server/dealer/getproductbyid/${id}`
+          `https://farmer-dealer-user.vercel.app/server/dealer/getproductbyid/${id}`
         );
         const data = response.data;
   
         setProduct(data);
-        console.log(data);
+        // console.log(data);
         setMainImage(data.images[0]);
   
         const arr = [];
@@ -79,7 +79,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
           ...arr.map((size) => ({ ...size, type: "Smaller" })),
         ];
         setVariants(combinedVariants);
-        console.log(combinedVariants);
+        // console.log(combinedVariants);
   
         const cleanText = data.desc
         .replace(/&nbsp;/g,' ')
@@ -111,10 +111,10 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       if (currentUser) {
         try {
           const response = await axios.get(
-            `http://localhost:4000/server/dealer/check-cart/${id}/${currentUser?._id}`
+            `https://farmer-dealer-user.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
           );
           const data = response.data;
-          console.log(data);
+          // console.log(data);
           setIsPresent(data.isPresent);
         } catch (error) {
           console.error("Error fetching wishlist status:", error);
@@ -133,7 +133,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
   }
 
   const handleVariantClick = (variant) => {
-    console.log(variant);
+    // console.log(variant);
     setAmount(variant.price)
     setOriginalAmount(variant.price);
     setSelectedVariant(variant);
@@ -145,16 +145,16 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
   };
 
   const handleRatingClick = () => {
-    console.log(true);
+    // console.log(true);
     clickRate(true);
-    console.log(clickRate)
+    // console.log(clickRate)
   };
 
   const handlePayment = async () => {
     try {
       const currentDate=new Date();
       const data = {
-        pname:product.name,
+        pname:product.title,
         pprice:product.price,
         pdate:currentDate,
         pquantity:product.quantity,
@@ -165,7 +165,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       }
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-dealer-user.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -184,7 +184,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-dealer-user.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -202,7 +202,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
+                const createOrderResponse = await fetch('https://farmer-dealer-user.vercel.app/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -219,10 +219,10 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+                const responses = await axios.post("https://farmer-dealer-user.vercel.app/server/sendmail", data);
 
-                if (createOrderResponse.ok && responses.ok) {
-                  toast.success('Payment successful and order created!');
+                if (createOrderResponse.ok) {
+                  toast.success('Payment successful and Order created !');
                 } else {
                   toast.error('Error creating order: ' + orderData.message);
                 }
@@ -264,12 +264,20 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
   };
 
   const incrementQuantity = () => {
+    if(quant===10){
+      toast.error("Maximum 10 Products are allowed");
+      return;
+    }
     const newQuantity = quant + 1;
     setQuant(newQuantity);
     setAmount(newQuantity * originalAmount);
   };
 
   const decrementQuantity = () => {
+    if(quant===1){
+      toast.error("Minimum 1 Products are allowed");
+      return;
+    }
     if (quant > 1) {
       const newQuantity = quant - 1;
       setQuant(newQuantity);
@@ -283,7 +291,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
       const userId = currentUser._id;
       const cartId = id;
       const response = await axios.delete(
-        `http://localhost:4000/server/dealer/delete-wish/${userId}/${cartId}`
+        `https://farmer-dealer-user.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
       );
       toast.success("Item removed from WishList successfully");
       setIsPresent(false); // Update the state here
@@ -351,8 +359,8 @@ if(isAuthReady){
 
 
       <div className="product-details">
-        <h2>{product.name}</h2>
-        <p className="brand-name">{product.title || "Unknown Brand"}</p>
+        <h2>{product.title}</h2>
+        <p className="brand-name">{product.name || "Unknown Brand"}</p>
         <div className="rating">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
@@ -372,16 +380,20 @@ if(isAuthReady){
         <div className="price-section">
           {selectedVariant && (
             <>
-              <span className="current-price">₹{selectedVariant.price}</span>
+             <div className="price-dis">
+             <span className="current-price">₹{selectedVariant.price}</span>
               <span className="original-price">
                 ₹{(selectedVariant.price * 1.1).toFixed(2)}
               </span>
+              <div className="discountbadge">10% OFF</div>
+             </div>
+              {/* <span></span> */}
               <br></br>
               <span className="discount">
                 Save : ₹{(selectedVariant.price * 0.1).toFixed(2)}
               </span>
               <br></br>
-              <span>Size : {selectedVariant.size}{selectedVariant.unit}</span>
+              &nbsp;&nbsp;<span>Size : {selectedVariant.size}{selectedVariant.unit}</span>
             </>
           )}
         </div>

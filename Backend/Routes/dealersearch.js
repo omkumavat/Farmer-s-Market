@@ -28,7 +28,7 @@ router.get("/search", async (req, res) => {
 
     // Query the database for matching products
     const products = await dealerProduct.find(conditions);
-  console.log(products);
+  // console.log(products);
     // Return the results
     return res.status(200).json({
       success: true,

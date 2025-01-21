@@ -7,9 +7,12 @@ import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
+import Spinner from "./Spinner";
+import Loader from "./Loader";
 
 const DealerSearch = () => {
   const [products, setProducts] = useState([]);
+  const [isAuthReady,setisauthReady]=useState(true);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
@@ -25,10 +28,11 @@ const DealerSearch = () => {
 
   const fetchProducts = async () => {
     try {
+      setisauthReady(true);
       setLoading(true);
       // Adjust API call to include the backend server's port
       const response = await axios.get(
-        `http://localhost:4000/api/products/search?q=${encodeURIComponent(
+        `https://farmer-dealer-user.vercel.app/api/products/search?q=${encodeURIComponent(
           query
         )}`
       );
@@ -38,6 +42,7 @@ const DealerSearch = () => {
       toast.error("An error occurred while fetching products.");
     } finally {
       setLoading(false);
+      setisauthReady(false);
     }
   };
 
@@ -46,11 +51,13 @@ const DealerSearch = () => {
         <ToastContainer />
     <div>
         <NavBar/>
-        <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <SearchBar initialSearchTerm={query || ""} />
-      <h1>Search Results for "{query}"</h1>
+        <div style={{ marginBottom:"130px", padding: "20px", fontFamily: "Arial" }}>
+        <div style={{ marginBottom:"-210px",padding: "20px", fontFamily: "Arial" }}>
+        <SearchBar initialSearchTerm={query || ""} />
+        <h1>Search Results for "{query}"</h1>
+        </div>
       {loading ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : products.length > 0 ? (
         <div className="product-section">
         <div className="product-grid">
@@ -65,7 +72,7 @@ const DealerSearch = () => {
         <p>No products found matching "{query}".</p>
       )}
     </div>
-    <Footer/>
+    { !isAuthReady ? ( <Footer/> ) : (<Loader/>) }
     </div>
     </>
   );

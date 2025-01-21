@@ -4,6 +4,7 @@ import axios from "axios";
 import "../ServicesCSS/Market.css";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
+import Spinner from "../Components/Spinner";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -22,8 +23,10 @@ const App = () => {
   const [markets, setMarkets] = useState([]);
   const [commodities, setCommodities] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isAuthReady,setisAuthReady]=useState(false);
 
   useEffect(() => {
+    setisAuthReady(true);
     axios
       .get(
         "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000"
@@ -38,9 +41,11 @@ const App = () => {
         setMarkets(records);
       })
       .catch((error) => console.error("Error fetching data:", error));
+      setisAuthReady(false);
   }, []);
 
   const handleFilterChange = (e) => {
+    setisAuthReady(true);
     const { name, value } = e.target;
     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
 
@@ -64,9 +69,11 @@ const App = () => {
       setFilteredMarkets([...new Set(filtered)]);
       setFilters((prevFilters) => ({ ...prevFilters, market: "" }));
     }
+    setisAuthReady(false);
   };
 
   const handleSearch = () => {
+    setisAuthReady(true);
     const { commodity, state, district, market, dateFrom } = filters;
     const filtered = data.filter((item) => {
       let isValid = true;
@@ -81,6 +88,7 @@ const App = () => {
 
     setFilteredData(filtered);
     setHasSearched(true);
+    setisAuthReady(false);
   };
   const categories = [
     { name: "Offers", img: "/Images/dealer11.jpg", url: "/farmer/category/offers" },
@@ -237,22 +245,24 @@ const services = [
       <div className="mar">
       <h3>Filtered Market Data</h3>
       </div>
-      <section className="data-display">
-        {hasSearched && filteredData.length > 0 ? (
-          filteredData.map((item, index) => (
-            <div className="data-item" key={index}>
-              <p><strong>Commodity :</strong> {item.commodity}</p>
-              <p><strong>Market :</strong> {item.market}</p>
-              <p><strong>State :</strong> {item.state}</p>
-              <p><strong>District :</strong> {item.district}</p>
-              <p><strong>Max Price : </strong>₹ {item.max_price}</p>
-              <p><strong>Min Price : </strong>₹ {item.min_price}</p>
-              <p><strong>Arrival Date :</strong> {item.arrival_date}</p>
-            </div>
-          ))
-        ) : (
-          <p>No data available for the selected filters.</p>
-        )}
+        <section className="data-display">
+          {hasSearched && filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <div className="data-item" key={index}>
+                <p><strong>Commodity :</strong> {item.commodity}</p>
+                <p><strong>Market :</strong> {item.market}</p>
+                <p><strong>State :</strong> {item.state}</p>
+                <p><strong>District :</strong> {item.district}</p>
+                <p><strong>Max Price : </strong>₹ {item.max_price}</p>
+                <p><strong>Min Price : </strong>₹ {item.min_price}</p>
+                <p><strong>Arrival Date :</strong> {item.arrival_date}</p>
+              </div>
+            ))
+          ) : isAuthReady ? (
+            <Spinner />
+          ) : (
+            <p>No data to display</p>
+          )}
       </section>
     </div>
 

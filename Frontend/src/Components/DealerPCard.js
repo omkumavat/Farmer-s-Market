@@ -14,9 +14,7 @@ const DealerPCard = ({ _id, title, price, images, largerSizes, smallerSizes, siz
   return (
     <div className="product-card" onClick={handleNavigation} style={{ cursor: "pointer" }}>
       <div className="discount-badge">10% OFF</div>
-      {/* Product Image */}
       <img src={images?.[0]} alt={title || "Product Image"} className="product-image" />
-      {/* Product Info */}
       <div className="product-info">
         <h3 className="product-title">{title}</h3>
         <p className="product-price">

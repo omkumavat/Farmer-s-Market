@@ -2,11 +2,11 @@ import { User } from "../Models/User.js";
 import mongoose from "mongoose";
 export const addToCart = async (req, res) => {
     const { userId, productId } = req.body; // Get userId and productId from request body
-    console.log(req.body);
+    // console.log(req.body);
     try {
       // Find the user by userId
       const user = await User.findById(userId);
-      console.log(user);
+      // // console.log(user);
   
       // If user is not found, return an error
       if (!user) {
@@ -23,7 +23,7 @@ export const addToCart = async (req, res) => {
   
       // Save the updated user document
       await user.save();
-      console.log(user);
+      // // console.log(user);
   
       return res.status(200).json({ message: 'Product added to cart', cart: user.carts });
     } catch (error) {
@@ -34,7 +34,7 @@ export const addToCart = async (req, res) => {
 
   export const getCart = async (req, res) => {
     const userId = req.params.id;
-    console.log(userId);
+    // // console.log(userId);
   
     try {
       const user = await User.aggregate([

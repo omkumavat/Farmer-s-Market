@@ -7,8 +7,8 @@ import Footer from "./Footer";
 import FarmerProduct from "./FarmerProduct";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
-
-
+import Spinner from "./Spinner";
+import Loader from "./Loader";
 const Farmersearch = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const Farmersearch = () => {
       setLoading(true);
       // Adjust API call to include the backend server's port
       const response = await axios.get(
-        `http://localhost:4000/server/farmersearch/?q=${encodeURIComponent(
+        `https://farmer-dealer-user.vercel.app/server/farmersearch/?q=${encodeURIComponent(
           query
         )}`
       );
@@ -48,10 +48,12 @@ const Farmersearch = () => {
     <div>
         <NavBar/>
         <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <div style={{ marginBottom:"-210px",padding: "20px", fontFamily: "Arial" }}>
       <SearchBar1 initialSearchTerm={query || ""} />
       <h1>Search Results for "{query}"</h1>
+      </div>
       {loading ? (
-        <p>Loading...</p>
+        <Loader/>
       ) : products.length > 0 ? (
         <div className="product-section">
         <div className="product-grid">

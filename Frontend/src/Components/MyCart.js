@@ -17,7 +17,7 @@ const MyCart = () => {
 
     useEffect(() => {
         if (currentUser && currentUser._id) {
-            axios.get(`http://localhost:4000/server/dealer/getcart/${currentUser._id}`)
+            axios.get(`https://farmer-dealer-user.vercel.app/server/dealer/getcart/${currentUser._id}`)
                 .then(response => {
                     setFarmerCart(response.data.farmercart);
                     setDealerCart(response.data.dealercart);

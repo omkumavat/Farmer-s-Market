@@ -79,12 +79,12 @@ const Signup = () => {
         name: userData.name,
       };
 
-      // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+      const responses = await axios.post("https://farmer-dealer-user.vercel.app/server/sendmail", data);
 
-      const response = await axios.post("http://localhost:4000/server/signup", { userData });
+      const response = await axios.post("https://farmer-dealer-user.vercel.app/server/signup", { userData });
 
       if (response) {
-        const res = await axios.post("http://localhost:4000/server/login", {
+        const res = await axios.post("https://farmer-dealer-user.vercel.app/server/login", {
           email,
           password,
         });

@@ -22,9 +22,9 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   };
 
   const handleDeleteProducts = async () => {
-    const response = await axios.delete(`http://localhost:4000/server/dealer/deleteproduct/${_id}`);
+    const response = await axios.delete(`https://farmer-dealer-user.vercel.app/server/dealer/deleteproduct/${_id}`);
     if (response.data.success) {
-      toast.sucess("Product Deleted Successfully");
+      toast.success("Product Deleted Successfully");
       setIsModalOpen(false);
       window.location.reload();
     } else {
@@ -33,7 +33,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   };
 
   const handleEditSubmit = (updatedProduct) => {
-    console.log("Updated Product:", updatedProduct);
+    // console.log("Updated Product:", updatedProduct);
     setIsEditOpen(false);
     // You can also send a PUT request to update the product on the server here
   };

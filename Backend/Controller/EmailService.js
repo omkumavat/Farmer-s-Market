@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendEmail = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { email, subject, name,pname,pdate,pquantity,pprice, response, que, caseType } = req.body;
 
   // Map caseType to template filenames
@@ -51,7 +51,8 @@ export const sendEmail = async (req, res) => {
     } else if (caseType === 2) {
       htmlContent = template({ name, que, response });
     }else if(caseType===3){
-      htmlContent=template({name,pname,pprice,pdate,pquantity});
+      const dateOnly = pdate.split("T")[0];
+      htmlContent=template({name,pname,pprice,pdate:dateOnly,pquantity});
     }
   } catch (error) {
     console.error("Error reading or compiling template file:", error);
@@ -70,7 +71,7 @@ export const sendEmail = async (req, res) => {
   // Send the email
   try {
     await transporter.sendMail(mailOptions);
-    console.log(mailOptions, "Email sent successfully.");
+    // console.log(mailOptions, "Email sent successfully.");
     res.status(200).json({ message: "Email sent successfully" });
   } catch (error) {
     console.error("Error sending email:", error);

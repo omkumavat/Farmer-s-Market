@@ -35,7 +35,7 @@ const Weather = () => {
         setRainAlerts(alerts);
       } catch (err) {
         setWeather(null);
-        setError('Could not fetch weather data');
+        setError('Enter City Name to fetch');
         setRainAlerts([]);
       }
     };

@@ -2,7 +2,7 @@ import { Ticket } from "../Models/User.js";
 
 export const submitTicket = async (req, res) => {
     try {
-        // console.log(req.body);
+        // // console.log(req.body);
       const data = req.body.data;
       const userId=req.body.userId;
   
@@ -37,7 +37,7 @@ export const submitTicket = async (req, res) => {
   export const getAllTickets = async (req, res) => {
     try {
         const tickets = await Ticket.find().populate('userId', 'name email').exec();
-        console.log(tickets);
+        // console.log(tickets);
         res.status(200).json(tickets);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching tickets' });
@@ -58,11 +58,11 @@ export const getTicketById = async (req, res) => {
 
 // Admin response to a ticket
 export const respondToTicket = async (req, res) => {
-    console.log(req.body,req.params.id);
+    // console.log(req.body,req.params.id);
     const { response } = req.body;
     try {
         const ticket = await Ticket.findById(req.params.id);
-        console.log(ticket)
+        // console.log(ticket)
         if (!ticket) {
             return res.status(404).json({ message: 'Ticket not found' });
         }
@@ -73,7 +73,7 @@ export const respondToTicket = async (req, res) => {
 
         await ticket.save();
 
-        console.log(ticket.response)
+        // console.log(ticket.response)
         res.status(200).json({ message: 'Response submitted successfully', ticket });
     } catch (error) {
         res.status(500).json({ message: 'Error submitting response' });

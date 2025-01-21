@@ -15,13 +15,13 @@ export const createOrder = async (req, res) => {
          }
 
         let product = await dealerProduct.findById(productId);
-        let productType = "DealerProduct";
+        let productType = "dealerProduct";
         if (!product) {
             productType = "FarmerProduct";
             product = await FarmerProduct.findById(productId);
         }
 
-        console.log(sellerId)
+        // console.log(sellerId)
         const order = new Order({
             productType,
             productId,
@@ -33,7 +33,7 @@ export const createOrder = async (req, res) => {
             paymentStatus: "Paid",
             shippingAddress,
         });
-        console.log(order);
+        // console.log(order);
 
         // Save the order
         await order.save();
@@ -42,7 +42,7 @@ export const createOrder = async (req, res) => {
         user.save();
 
         const sellers = await Seller.findById(sellerId);
-        console.log(sellers);
+        // console.log(sellers);
         sellers.totalSales += price * quantity;
         sellers.totalOrders += 1;
 
@@ -84,7 +84,7 @@ export const getOrders = async (req, res) => {
                 { path: 'productId' },
             ],
         });
-        console.log(user);
+        // console.log(user);
         const orders = user.orders;
 
         // Send the orders to the front-end or render the dashboard
@@ -94,3 +94,43 @@ export const getOrders = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to fetch orders' });
     }
 };
+
+export const getit = async (req, res) => {
+    try {
+      const userId = req.params.id;
+  
+      // Fetch the user and populate orders along with seller, buyer, and product details
+      const user = await User.findById(userId).populate({
+        path: "orders",
+        populate: [
+          { path: "seller", select: "name email" }, // Populate seller details
+          { path: "buyer", select: "name email" },  // Populate buyer details
+        ],
+      });
+  
+      if (!user) {
+        return res.status(404).json({ success: false, message: "User not found" });
+      }
+  
+      // Manually populate product details based on productType
+      const ordersWithProducts = await Promise.all(
+        user.orders.map(async (order) => {
+          const productModel =
+            order.productType === "FarmerProduct" ? FarmerProduct : dealerProduct;
+  
+          const productDetails = await productModel.findById(order.productId, "name price images");
+  
+          return {
+            ...order.toObject(),
+            productDetails, // Attach populated product details
+          };
+        })
+      );
+  
+      res.status(200).json({ success: true, orders: ordersWithProducts });
+    } catch (error) {
+      console.error("Error fetching user orders:", error);
+      res.status(500).json({ success: false, message: "Failed to fetch orders" });
+    }
+  };
+  

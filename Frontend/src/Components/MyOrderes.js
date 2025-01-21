@@ -14,9 +14,9 @@ const MyOrderes = () => {
 
     useEffect(() => {
         if (currentUser && currentUser._id) {
-            axios.get(`http://localhost:4000/server/orders/get-order/${currentUser._id}`)
+            axios.get(`https://farmer-dealer-user.vercel.app/server/orders/get-order/${currentUser._id}`)
                 .then(response => {
-                    console.log(response.data.orders);
+                    // console.log(response.data.orders);
                     setOrders(response.data.orders);
                 })
                 .catch(error => {
@@ -32,10 +32,10 @@ const MyOrderes = () => {
             <div className="orders">
                 {orders.length > 0 ? (
                     orders.map((product, index) => {
-                        const idd = product.productId._id;
+                        const idd = product.productId;
                         return (
                             <div key={index}>
-                                <MyOrderCard {...product.productId} {...product} idd={idd} />
+                                <MyOrderCard {...product.productDetails} {...product} idd={idd} />
                             </div>
                         );
                     })

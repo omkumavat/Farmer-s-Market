@@ -15,15 +15,15 @@ const Dealer = () => {
 
   const fetchLimitedProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/server/dealer/getallproducts");
+      const response = await axios.get("https://farmer-dealer-user.vercel.app/server/dealer/getallproducts");
       if (!response) {
         throw new Error("Failed to fetch products");
       }
       const data =  response.data; 
 
-      console.log(response.data.data);
+      // console.log(response.data.data);
       setDisplayProducts(response.data.data);
-      console.log(displayProducts);
+      // console.log(displayProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     }

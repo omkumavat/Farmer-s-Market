@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../CSS/pcard.css";
 
-const FarmerProduct = ({ _id, productName, pricePerUnit, images, quantity, unit }) => {
+const FarmerProduct = ({ _id, productName, pricePerUnit, images,totalQuantitySold, quantity, unit }) => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
@@ -22,7 +22,7 @@ const FarmerProduct = ({ _id, productName, pricePerUnit, images, quantity, unit 
           ₹{pricePerUnit} <span className="old-price">₹{pricePerUnit * 1.1}</span>
         </p>
         <p className="product-save">Save ₹{(pricePerUnit * 0.1).toFixed(2)}</p>
-        <p className="">Quantity: {quantity} &nbsp;{unit}</p>
+        <p className="">Quantity: {quantity} {totalQuantitySold} &nbsp;{unit}</p>
       </div>
       <div className="wishlist-icon">❤️</div>
     </div>

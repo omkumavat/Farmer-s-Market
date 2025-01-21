@@ -6,7 +6,7 @@ import { upload, uploadToCloudinary } from "../Database/Cloudinary.js";
 
 export const createProduct = async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     const {
       productName,
       category,
@@ -146,7 +146,7 @@ export const createProduct = async (req, res) => {
 //       { $limit: 5 },
 //     ]);
 
-//     console.log(products);
+//     // console.log(products);
 
 //     return res.status(200).json({
 //       success: true,
@@ -213,7 +213,7 @@ export const getAllProducts = async (req, res) => {
       { $limit: 5 },
     ]);
 
-    console.log(products);
+    // console.log(products);
 
     return res.status(200).json({
       success: true,
@@ -248,9 +248,9 @@ export const getProductById = async (req, res) => {
 export const getProductsByCategory = async (req, res) => {
   try {
     const category = req.query.category;
-    console.log(category);
+    // console.log(category);
     const products = await FarmerProduct.find({ category });
-    console.log(products);
+    // console.log(products);
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.error("Error fetching products by category:", error);
@@ -300,7 +300,7 @@ export const updateProduct = async (req, res) => {
       pincode,
       districtState,
     } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const imageUrls = [];
 
     for (let image of images) {
@@ -356,7 +356,7 @@ export const updateProduct = async (req, res) => {
     if (!updatedProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
-    console.log(updatedProduct);
+    // console.log(updatedProduct);
     res
       .status(200)
       .json({ message: "Product updated successfully", updatedProduct });
@@ -370,7 +370,7 @@ export const getSimilarProducts = async (req, res) => {
   try {
     // Get the limit from the query parameter (default to 6 if not provided)
     const limit = parseInt(req.query.limit) || 1000;
-    console.log(limit);
+    // console.log(limit);
 
     const products = await FarmerProduct.find().limit(limit);
 
@@ -389,7 +389,7 @@ export const getSimilarProducts = async (req, res) => {
 export const getFarmerSearch = async (req, res) => {
   try {
     const query = req.query.q; 
-    console.log("Search query:", query);
+    // console.log("Search query:", query);
 
     if (!query) {
       return res.status(400).json({
@@ -409,11 +409,11 @@ export const getFarmerSearch = async (req, res) => {
       ],
     };
 
-    console.log("Search conditions:", conditions);
+    // console.log("Search conditions:", conditions);
 
     // Query the database for matching products
     const products = await FarmerProduct.find(conditions);
-    console.log("Found products:", products);
+    // console.log("Found products:", products);
 
     // Return the results
     return res.status(200).json({
@@ -490,7 +490,7 @@ export const getComments = async (req, res) => {
       })
     );
 
-   console.log("/////////////////",commentsWithUserDetails)
+   // console.log("/////////////////",commentsWithUserDetails)
     res.status(200).json({ comments: commentsWithUserDetails });
   } catch (error) {
     console.error("Error fetching comments:", error);

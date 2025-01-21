@@ -12,7 +12,7 @@ router.get('/count', async (req, res) => {
        const orderCount = await Order.countDocuments();
        const farmer=await User.countDocuments({role:'farmer'});
        const Dealer=await User.countDocuments({role:'dealer'});
-       console.log(farmer);
+       // console.log(farmer);
        res.json({ 
            userCount, 
            orderCount ,

@@ -285,11 +285,28 @@
     border: 2px solid #007bff;
     transform: scale(1.1);
   }
-  
+
+  .discountbadge {
+    background-color: #ff6600;
+    color: white;
+    padding: 6px 10px;
+    font-size: 12px;
+    max-width: 55px;
+    border-radius: 4px;
+    margin-left: 30px;
+  }
   /* Right side remains unchanged */
   .product-details {
     flex: 1;
     padding: 20px;
+  }
+
+  .price-dis{
+    display: flex;
+  }
+
+  .price-dis{
+    display: flex;
   }
   
 

@@ -32,7 +32,7 @@ const Product = ({ id,avgRating }) => {
     setIsAuthReady(true);
     try {
       if (currentUser) {
-        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
+        const response = await axios.post('https://farmer-dealer-user.vercel.app/server/dealer/addtocart', {
           userId: currentUser._id,
           productId: product._id,
         });
@@ -67,7 +67,7 @@ const Product = ({ id,avgRating }) => {
       setRating(avgRating)
       try {
         const response = await axios.get(
-          `http://localhost:4000/server/farmer/getproductbyid/${id}`
+          `https://farmer-dealer-user.vercel.app/server/farmer/getproductbyid/${id}`
         );
         const data = response.data;
 
@@ -76,7 +76,7 @@ const Product = ({ id,avgRating }) => {
         // setamount(data.pricePerUnit*data.quantity);
         setQuant(data.quantity);
         setTotalAmount(data.quantity*(data.pricePerUnit));
-        console.log(data);
+        // console.log(data);
         setMainImage(data.images[0]);
 
         const cleanText = data.description
@@ -101,10 +101,10 @@ const Product = ({ id,avgRating }) => {
       if (currentUser) {
         try {
           const response = await axios.get(
-            `http://localhost:4000/server/dealer/check-cart/${id}/${currentUser?._id}`
+            `https://farmer-dealer-user.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
           );
           const data = response.data;
-          console.log(data);
+          // console.log(data);
           setIsPresent(data.isPresent);
         } catch (error) {
           console.error("Error fetching wishlist status:", error);
@@ -124,7 +124,7 @@ const handleDeleteWish = async () => {
     const userId = currentUser._id;
     const cartId = id;
     const response = await axios.delete(
-      `http://localhost:4000/server/dealer/delete-wish/${userId}/${cartId}`
+      `https://farmer-dealer-user.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
     );
     toast.success("Item removed from WishList successfully");
     setIsPresent(false); // Update the state here
@@ -176,10 +176,10 @@ const handleDeleteWish = async () => {
         email: 'omkumavat2004@gmail.com',
         name:currentUser.name,
       }
-      console.log(data);
+      // console.log(data);
       if (currentUser) {
         // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-dealer-user.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ const handleDeleteWish = async () => {
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-dealer-user.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -216,7 +216,7 @@ const handleDeleteWish = async () => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
+                const createOrderResponse = await fetch('https://farmer-dealer-user.vercel.app/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -232,7 +232,7 @@ const handleDeleteWish = async () => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                // const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+                // const responses = await axios.post("https://farmer-dealer-user.vercel.app/server/sendmail", data);
 
                 if (createOrderResponse.ok ) {
                   toast.success('Payment successful and order created!');
@@ -344,8 +344,11 @@ const handleDeleteWish = async () => {
         </div>
 
         <div className="price-section">
+          <div className="price-dis">
           <span className="current-price">₹{product.pricePerUnit}/{product.unit}</span>
-          <span className="original-price">₹{product.pricePerUnit * 1.1}</span><br />
+          <span className="original-price">₹{product.pricePerUnit * 1.1}</span>
+          <div className="discountbadge">10% OFF</div>
+          </div>
           <span className="discount">Save : ₹{(product.pricePerUnit * 0.1).toFixed(2)}</span>
           <br></br>
           <span className="current-price">Total Price : ₹{product.pricePerUnit*product.quantity}</span>

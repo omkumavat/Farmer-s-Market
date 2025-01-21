@@ -8,7 +8,7 @@ import multer from 'multer';
 dotenv.config();
 
 export const validateProduct = (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {
     dealerid,
     title,
@@ -191,7 +191,7 @@ export const updateProduct = async (req, res) => {
       largerSizes,
       smallerSizes,
     } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const imageUrls = [];
 
     for (let image of images) {
@@ -207,6 +207,8 @@ export const updateProduct = async (req, res) => {
               folder: "DealerProduct_images", // Optional: Cloudinary folder name
               use_filename: true, // Optional: Use original file name
               unique_filename: true, // Optional: Ensure a unique file name
+              quality:100,
+              format:"webp",
             }
           );
 
@@ -246,7 +248,7 @@ export const updateProduct = async (req, res) => {
     if (!updatedProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
-    console.log(updatedProduct);
+    // console.log(updatedProduct);
     res
       .status(200)
       .json({ message: "Product updated successfully", updatedProduct });
@@ -260,7 +262,7 @@ export const updateProduct = async (req, res) => {
 export const getSimilarProducts = async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 1000;
-    console.log(limit)
+    // console.log(limit)
 
     const products = await dealerProduct.find().limit(limit);
 
@@ -326,7 +328,7 @@ export const getAllProducts = async (req, res) => {
       { $limit: 5 },
     ]);
 
-    console.log(products);
+    // console.log(products);
 
     return res.status(200).json({
       success: true,
@@ -344,9 +346,9 @@ export const getAllProducts = async (req, res) => {
 export const getProductsByCategory = async (req, res) => {
   try {
     const category = req.query.category;
-    console.log(category);
+    // console.log(category);
     const products = await dealerProduct.find({ category });
-    console.log(products);
+    // console.log(products);
     res.status(200).json({ success: true, data: products });
   } catch (error) {
     console.error("Error fetching products by category:", error);
@@ -417,7 +419,7 @@ export const getComments = async (req, res) => {
       })
     );
 
-   console.log("/////////////////",commentsWithUserDetails)
+   // console.log("/////////////////",commentsWithUserDetails)
     res.status(200).json({ comments: commentsWithUserDetails });
   } catch (error) {
     console.error("Error fetching comments:", error);

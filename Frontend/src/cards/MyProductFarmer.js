@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
 const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity ,availableFrom,availableUntil,category,subCategory,qualityGrade,pincode,districtState,description,farmAddress , unit }) => {
-//   console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
+//   // console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
 const [isModalOpen, setIsModalOpen] = useState(false);
 const [isEditOpen, setIsEditOpen] = useState(false);
  const [oldPassword, setOldPassword] = useState("");
@@ -20,10 +20,10 @@ const {currentUser}=useAuth();
   };
 
   const handleDeleteProducts = async() => {
-    const response = await axios.delete(`http://localhost:4000/server/farmer/deleteproduct/${_id}`);
-    console.log("rr",response.data.success)
+    const response = await axios.delete(`https://farmer-dealer-user.vercel.app/server/farmer/deleteproduct/${_id}`);
+    // console.log("rr",response.data.success)
     if(response.data.success){
-        toast.sucess("Product Deleted Successfuly");
+        toast.success("Product Deleted Successfuly");
         setIsModalOpen(false);
     }else{
         toast.error("Failed to Delete Product");
@@ -31,7 +31,7 @@ const {currentUser}=useAuth();
   }
 
   const handleEditSubmit = (updatedProduct) => {
-    console.log("Updated Product:", updatedProduct);
+    // console.log("Updated Product:", updatedProduct);
     setIsEditOpen(false);
     // You can also send a PUT request to update the product on the server here
   };

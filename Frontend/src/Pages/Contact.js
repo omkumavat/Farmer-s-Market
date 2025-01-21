@@ -66,11 +66,11 @@ const ContactUs = () => {
       } else {
           try {
               const userId = currentUser._id;
-              const response = await axios.post(`http://localhost:4000/server/submiticket`, {
+              const response = await axios.post(`https://farmer-dealer-user.vercel.app/server/submiticket`, {
                   data,
                   userId
               });
-              console.log(response.data);
+              // console.log(response.data);
   
               // Show success toast after successful submission
               toast.success("Your query has been submitted!");

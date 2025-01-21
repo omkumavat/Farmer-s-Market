@@ -8,8 +8,10 @@ import Loader from "./Loader";
 
 const AddProduct = () => {
     const { currentUser } = useAuth();
-    const [isVerified, setIsVerified] = useState(false);
+    const [isVerified, setIsVerified] = useState("");
+    const [isSubmit, setIsSubmit] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [Component, setComponent] = useState(null); // Dynamic Component
 
     useEffect(() => {
         if (!currentUser || !currentUser._id) return;
@@ -17,34 +19,51 @@ const AddProduct = () => {
         const fetchStatus = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/server/dealer/getverificationstatus/${currentUser._id}`
+                    `https://farmer-dealer-user.vercel.app/server/dealer/getverificationstatus/${currentUser._id}`
                 );
-                setIsVerified(response.data.isSubmitted);
-                console.log(isVerified)
+                setIsVerified(response.data.status);
+                setIsSubmit(response.data.isSubmitted);
+                // console.log(response.data);
             } catch (error) {
                 console.error("Failed to fetch verification status:", error);
             } finally {
                 setIsLoading(false);
             }
         };
+
         fetchStatus();
-    }, [currentUser]);
+    }, [currentUser,isVerified,isSubmit]);
+
+    useEffect(() => {
+        if (!currentUser || isLoading) return;
+
+        const determineComponent = () => {
+            switch (currentUser.role) {
+                case "dealer":
+                    if (isVerified === 'Pending' && isSubmit) {
+                        return <div>Verification Pending</div>;
+                    }
+                    if (isVerified === "Approved" && isSubmit) {
+                        return <ProductForm />;
+                    }
+                    return <VerificationForm />;
+
+                case "farmer":
+                    return <FarmerProductForm />;
+
+                default:
+                    return <div>Unauthorized Access</div>;
+            }
+        };
+
+        setComponent(determineComponent());
+    }, [currentUser,isLoading,isSubmit,isVerified]);
 
     if (isLoading) {
         return <Loader />;
     }
 
-    return (
-        <>
-            {isVerified===false && currentUser?.role === "dealer" && <div>Status: Pending</div>}
-            {currentUser?.role === "dealer" && (
-                <>
-                    {isVerified === true ? <ProductForm /> : <VerificationForm />}
-                </>
-            )}
-            {currentUser?.role === "farmer" && <FarmerProductForm />}
-        </>
-    );
+    return <>{Component}</>;
 };
 
 export default AddProduct;
