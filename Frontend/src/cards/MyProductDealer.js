@@ -15,6 +15,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const { currentUser } = useAuth();
+  const [oldPassword,setOldPassword]=useState("");
 
   const handleDelete = () => {
     setIsModalOpen(true);
@@ -75,7 +76,8 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         userId={currentUser._id}
-        oldPassword={currentUser.password}
+        setOldPassword={setOldPassword}
+        oldPassword={oldPassword}
         onPasswordVerified={handleDeleteProducts}
       />
       <DealerEditForm
