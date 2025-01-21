@@ -6,6 +6,8 @@ import { useAuth } from "../Context/AuthContext";
 import axios from 'axios';
 import { LoadScript } from "@react-google-maps/api";
 import Loader from "./Loader";
+import { toast, ToastContainer } from "react-toastify"; // Import react-toastify
+import "react-toastify/dist/ReactToastify.css";  // Import toast styles
 
 const ProductForm = () => {
     const [isAuthReady,setisAuthReady]=useState(false);
@@ -138,6 +140,13 @@ const ProductForm = () => {
         setisAuthReady(true);
         event.preventDefault();
     
+        // Validate required fields
+        if (!title || !name || !price || !size || !quantity || !category || !serviceType || !desc || !images.length) {
+            toast.error("All fields are required! Please fill them in.");
+            setisAuthReady(false);
+            return; // Prevent form submission if validation fails
+        }
+    
         const payload = {
             title,
             name,
@@ -168,9 +177,8 @@ const ProductForm = () => {
                 }
             );
     
-            // console.log("Response:", response.data);
             setisAuthReady(false);
-            alert("Product added successfully!");
+            toast.success("Product added successfully!");
     
             // Reset form fields after successful submission
             setTitle("");
@@ -189,9 +197,10 @@ const ProductForm = () => {
             setSmallerSizes([]);
         } catch (error) {
             console.error("Error submitting form:", error);
-            alert("Failed to add the product. Please try again.");
+            toast.error("Failed to add the product. Please try again. (Make sure all details are filled).");
         }
     };
+    
     
     if(isAuthReady){
         return <Loader/>;
@@ -200,6 +209,7 @@ const ProductForm = () => {
 
     return (
         <>
+        <ToastContainer />
             <div className="formContainer">
                 <div className="wrapper">
                     <form onSubmit={handleSubmit}>

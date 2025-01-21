@@ -5,6 +5,10 @@ import PasswordModal from "../Components/PasswordModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import FarmerEditForm from '../Components/FarmerEditForm'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 const FarmerProduct = ({ _id, productName, pricePerUnit, images,quantity ,availableFrom,availableUntil,category,subCategory,qualityGrade,pincode,districtState,description,farmAddress , unit }) => {
 //   console.log(_id, title, price, images, largerSizes, smallerSizes, size, sizeUnit);
 const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,10 +22,10 @@ const {currentUser}=useAuth();
     const response = await axios.delete(`http://localhost:4000/server/farmer/deleteproduct/${_id}`);
     console.log("rr",response.data.success)
     if(response.data.success){
-        alert("Product Deleted Successfuly");
+        toast.sucess("Product Deleted Successfuly");
         setIsModalOpen(false);
     }else{
-        alert("Failed to Delete Product");
+        toast.error("Failed to Delete Product");
     }
   }
 
@@ -32,6 +36,7 @@ const {currentUser}=useAuth();
   };
 
   return (
+        <><ToastContainer />
     <div className="product-card">
       {/* Wrap the entire card in a Link for redirect */}
       <Link
@@ -74,6 +79,7 @@ const {currentUser}=useAuth();
       />
       <div className="wishlist-icon">❤️</div>
     </div>
+    </>
   );
 };
 

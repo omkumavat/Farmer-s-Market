@@ -6,6 +6,10 @@ import "../CARDCSS/myproductcard.css";
 import { useAuth } from "../Context/AuthContext";
 import axios from "axios";
 import DealerEditForm from "../Components/DealerEditForm";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeAvailable,serviceType,category,price, images,name, largerSizes, smallerSizes, desc,size, sizeUnit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,11 +23,11 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   const handleDeleteProducts = async () => {
     const response = await axios.delete(`http://localhost:4000/server/dealer/deleteproduct/${_id}`);
     if (response.data.success) {
-      alert("Product Deleted Successfully");
+      toast.sucess("Product Deleted Successfully");
       setIsModalOpen(false);
       window.location.reload();
     } else {
-      alert("Failed to Delete Product");
+      toast.error("Failed to Delete Product");
     }
   };
 
@@ -34,6 +38,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
   };
 
   return (
+    <><ToastContainer />
     <div className="product-card">
       <Link to={`/dealer/${_id}/product`} style={{ textDecoration: "none", color: "inherit" }}>
         <div className="discount-badge">10% OFF</div>
@@ -81,6 +86,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
       />
       <div className="wishlist-icon">❤️</div>
     </div>
+    </>
   );
 };
 

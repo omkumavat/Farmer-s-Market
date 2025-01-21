@@ -4,6 +4,10 @@ import "../CSS/farmerproductform.css";
 import ReactQuill from "react-quill";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; 
+
+
 const farmProduceCategories = {
     "Fresh Produce": ["Fruits", "Vegetables", "Exotic Produce"],
     "Grains and Cereals": ["Wheat", "Rice", "Maize", "Barley", "Millet"],
@@ -106,23 +110,99 @@ const FarmerProductForm = () => {
     
 
     const validateForm = () => {
-        const newErrors = {};
-        if (!formData.productName) newErrors.productName = "Product name is required.";
-        if (!formData.category) newErrors.category = "Category is required.";
-        if (!formData.subCategory) newErrors.subCategory = "Sub-category is required.";
-        if (!formData.quantity) newErrors.quantity = "Quantity is required.";
-        if (!formData.pricePerUnit) newErrors.pricePerUnit = "Price per unit is required.";
-        if (formData.images.length === 0) newErrors.images = "At least one image is required.";
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
+        let isValid = true;
+    
+        if (!formData.productName) {
+            toast.error("Product name is required.");
+            isValid = false;
+        }
+        if (!formData.category) {
+            toast.error("Category is required.");
+            isValid = false;
+        }
+        if (!formData.subCategory) {
+            toast.error("Sub-category is required.");
+            isValid = false;
+        }
+        if (!formData.quantity) {
+            toast.error("Quantity is required.");
+            isValid = false;
+        }
+        if (!formData.pricePerUnit) {
+            toast.error("Price per unit is required.");
+            isValid = false;
+        }
+        if (!formData.unit) {
+            toast.error("Unit of measurement is required.");
+            isValid = false;
+        }
+        if (!formData.qualityGrade) {
+            toast.error("Quality grade is required.");
+            isValid = false;
+        }
+        if (!formData.description) {
+            toast.error("Description is required.");
+            isValid = false;
+        }
+        if (formData.images.length === 0) {
+            toast.error("At least one image is required.");
+            isValid = false;
+        }
+        if (!formData.farmAddress) {
+            toast.error("Farm address is required.");
+            isValid = false;
+        }
+        if (!formData.pincode) {
+            toast.error("Pincode is required.");
+            isValid = false;
+        }
+        if (!formData.districtState) {
+            toast.error("District/State is required.");
+            isValid = false;
+        }
+        if (!formData.availableFrom) {
+            toast.error("Available from date is required.");
+            isValid = false;
+        }
+        if (!formData.availableUntil) {
+            toast.error("Available until date is required.");
+            isValid = false;
+        }
+    
+        return isValid;
     };
+    
+
+    // const handleSubmit = async (e) => {
+    //     setIsAuthReady(false);
+    //     e.preventDefault();
+    //     if (validateForm()) {
+    //         try {
+    //             console.log(formData)
+    //             const response = await axios.post(
+    //                 "http://localhost:4000/server/farmer/addproduct",
+    //                 formData,
+    //                 {
+    //                     headers: {
+    //                         "Content-Type": "application/json",
+    //                     },
+    //                 }
+    //             );
+    //             console.log("Response:", response.data);
+    //             toast.success("Product added successfully!");
+    //         } catch (error) {
+    //             console.error("Error submitting form:", error);
+    //             toast.error("Failed to add the product. Please try again.");
+    //         }
+    //     }
+    //     setIsAuthReady(true);
+    // };
 
     const handleSubmit = async (e) => {
-        setIsAuthReady(false);
         e.preventDefault();
         if (validateForm()) {
             try {
-                console.log(formData)
+                console.log(formData);
                 const response = await axios.post(
                     "http://localhost:4000/server/farmer/addproduct",
                     formData,
@@ -133,15 +213,16 @@ const FarmerProductForm = () => {
                     }
                 );
                 console.log("Response:", response.data);
-                alert("Product added successfully!");
+                toast.success("Product added successfully!");
             } catch (error) {
                 console.error("Error submitting form:", error);
-                alert("Failed to add the product. Please try again.");
+                toast.error("Failed to add the product. Please try again.");
             }
         }
-        setIsAuthReady(true);
     };
+    
     return (
+        <>  <ToastContainer />
         <div className="form-container">
             <div className="farmtitle">
             <h2>List Your Product</h2>
@@ -332,6 +413,7 @@ const FarmerProductForm = () => {
                 </button>
             </form>
         </div>
+        </>
     );
 };
 
