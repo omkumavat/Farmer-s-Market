@@ -39,9 +39,9 @@ const Comments = ({ id, sourceType,onAvgRatingUpdate,clickRate }) => {
       try {
         let response;
         if (sourceType === "dealer") {
-          response = await axios.get(`https://farmer-s-market-theta.vercel.app/dealer/get-comment/${id}`);
+          response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/dealer/get-comment/${id}`);
         } else {
-          response = await axios.get(`https://farmer-s-market-theta.vercel.app/farmer/get-comment/${id}`);
+          response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/farmer/get-comment/${id}`);
         }
 
         const fetchedReviews = response.data.comments || [];
@@ -71,8 +71,8 @@ const Comments = ({ id, sourceType,onAvgRatingUpdate,clickRate }) => {
 
     const url =
       sourceType === "dealer"
-        ? `https://farmer-s-market-theta.vercel.app/dealer/post-comment/${id}`
-        : `https://farmer-s-market-theta.vercel.app/farmer/post-comment/${id}`;
+        ? `https://farmer-s-market-theta.vercel.app/server/dealer/post-comment/${id}`
+        : `https://farmer-s-market-theta.vercel.app/server/farmer/post-comment/${id}`;
 
     axios
       .post(url, newReview)
