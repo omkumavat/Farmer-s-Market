@@ -70,7 +70,6 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Preprocess the image and predict
 def detect_disease(image_path):
     image = load_img(image_path, target_size=(224, 224))
     image = img_to_array(image) / 255.0
