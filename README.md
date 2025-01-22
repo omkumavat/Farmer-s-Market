@@ -1,13 +1,14 @@
 # Agri Platform for Farmers and Dealers ( AgriHaven )
 
-- [Project summary](#project-summary)
-- [Technology implementation](#technology-implementation)
-  - [The platform consists of three main components :](#ibm-ai-services-used)
-  - [1. DiseaseModel](#solution-architecture)
-  - [2. Backend](#solution-architecture)
-  - [Add environment variables in the .env file](#solution-architecture)
-  - [3. Frontend](#other-ibm-technology-used)
-- [Future Improvements](#presentation-materials)
+- [Project Summary](#project-summary)
+- [Technology Implementation](#technology-implementation)
+  - [The Platform Consists of Three Main Components](#the-platform-consists-of-three-main-components)
+    - [1. DiseaseModel](#1-diseasemodel)
+    - [2. Backend](#2-backend)
+    - [Add Environment Variables in the .env File](#add-environment-variables-in-the-env-file)
+    - [3. Frontend](#3-frontend)
+- [Future Improvements](#future-improvements)
+
 
 ## Project summary
 
