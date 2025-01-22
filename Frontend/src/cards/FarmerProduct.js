@@ -73,7 +73,6 @@ const Product = ({ id,avgRating }) => {
 
         setProduct(data);
         setAmount(data.pricePerUnit);
-        // setamount(data.pricePerUnit*data.quantity);
         setQuant(data.quantity);
         setTotalAmount(data.quantity*(data.pricePerUnit));
         // // console.log(data);
