@@ -165,19 +165,18 @@ const handleDeleteWish = async () => {
   const handlePayment = async () => {
     try {
       const currentDate=new Date();
-      const data = {
+      // // console.log(data);
+      if (currentUser) {
+         const data = {
         pname:product.subCategory,
         pprice:amount,
         pdate:currentDate,
         pquantity:product.quantity,
         subject: "Your Order Was Successfuly Placed",
         caseType: 3,
-        email: 'omkumavat2004@gmail.com',
+        email: currentUser.email,
         name:currentUser.name,
       }
-      // // console.log(data);
-      if (currentUser) {
-        // amount=amount*quant;
         const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
