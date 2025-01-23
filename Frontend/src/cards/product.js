@@ -154,18 +154,17 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
   const handlePayment = async () => {
     try {
       const currentDate=new Date();
-      const data = {
+      if (currentUser) {
+        const data = {
         pname:product.title,
         pprice:product.price,
         pdate:currentDate,
         pquantity:product.quantity,
         subject: "Your Order Was Successfuly Placed",
         caseType: 3,
-        email: 'omkumavat2004@gmail.com',
+        email: currentUser.email,
         name:currentUser.name,
       }
-      if (currentUser) {
-        // amount=amount*quant;
         const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
@@ -248,7 +247,7 @@ const DProduct = ({ id ,avgRating,clickRate}) => {
         const razorpay = new window.Razorpay(options);
         razorpay.open();
       } else {
-        toast.error('Please login first');
+        toast.error('Please Login first');
       }
     } catch (error) {
       console.error('Error during payment:', error);
