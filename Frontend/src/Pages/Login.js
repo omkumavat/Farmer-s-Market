@@ -66,7 +66,7 @@ const Login = () => {
     }
 
     setisAuthReady(false);
-    toast.success("Login successful!"); 
+    // toast.success("Login successful!"); 
   };
 
   return (
