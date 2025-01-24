@@ -84,6 +84,7 @@ cd Frontend
 npm install  
 npm start  
 
+Note: Due to time constraints, we couldn't make it responsive for mobile phones.
 
 #### Future Improvements
 Enhance the disease detection model to support more crops.  
