@@ -40,12 +40,12 @@ const NavBar = () => {
         <li className="nav-item">
           <div className="dropdown">
             <button className="dropbtn">About</button>
-            <div className="dropdown-content">
+            <div className="dropdowncontent">
               <a href="/about">About Us</a>
               <div className="style-line"></div>
               <a href="/contact">Contact Us</a>
-              <div className="style-line"></div>
-              <a href="/team">Our Team</a>
+              {/* <div className="style-line"></div>
+              <a href="/team">Our Team</a> */}
               <div className="style-line"></div>
               <a href="/ticket">FAQs & Query</a>
             </div>
@@ -54,7 +54,7 @@ const NavBar = () => {
         <li className="nav-item">
           <div className="dropdown">
             <button className="dropbtn">Solutions</button>
-            <div className="dropdown-content">
+            <div className="dropdowncontents">
               <a href="/land-preservation">Land Preservation</a>
               <div className="style-line"></div>
               <a href="/water-Management">Water Management</a>
@@ -72,7 +72,7 @@ const NavBar = () => {
         <li className="nav-item">
           <div className="dropdown">
             <button className="dropbtn">Our Services</button>
-            <div className="dropdown-content">
+            <div className="dropdowncont">
               <a href="/market">Market Insights</a>
               <div className="style-line"></div>
               <a href="/weather">Weather Analysis</a>

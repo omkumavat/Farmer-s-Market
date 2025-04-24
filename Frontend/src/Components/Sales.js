@@ -1,79 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { AgCharts } from "ag-charts-react";
 import "../CSS/sales.css";
 import { useAuth } from "../Context/AuthContext";
 
 const Sales = () => {
-    const { currentUser } = useAuth();
-    const [salesData, setSalesData] = useState([]);
-    const [error, setError] = useState(null);
-    const [options, setOptions] = useState({
-        data: [],
-        title: {
-            text: "All Product Sales",
-        },
-        series: [
-            {
-                type: "donut",
-                calloutLabelKey: "productName",
-                angleKey: "totalRevenue",
-                innerRadiusRatio: 0.7,
-                label: {
-                  formatter: ({ datum }) => `₹${datum.totalRevenue}`,
-              },
-              tooltip: {
-                renderer: ({ datum }) => ({
-                    content: `${datum.productName}: ₹${datum.totalRevenue}`, // Tooltip with ₹ symbol
-                }),
-            },
-            },
-           
-        ],
-    });
+  const { currentUser } = useAuth();
+  const [salesData, setSalesData] = useState([]);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchProductSales = async () => {
-            try {
-                if (currentUser) {
-                    const response = await axios.get(
-                        `http://localhost:4000/server/sales/get-sale/${currentUser.sellerId}`
-                    );
-                    const transformedData = response.data.data.map(item => ({
-                        productName: item.productName,
-                        totalRevenue: item.totalRevenue,
-                    }));
-                    setSalesData(transformedData);
-                }
-            } catch (err) {
-                console.error("Error fetching product sales data:", err);
-                setError(err.message);
-            }
-        };
+  const [options, setOptions] = useState({
+    data: [],
+    title: {
+      text: "Top-Selling Products",
+    },
+    series: [
+      {
+        type: "donut",
+        calloutLabelKey: "productName",
+        angleKey: "totalRevenue",
+        innerRadiusRatio: 0.7,
+      },
+    ],
+  });
 
-        fetchProductSales();
-    }, [currentUser]);
-
-    useEffect(() => {
-        setOptions((prevOptions) => ({
+  useEffect(() => {
+    const fetchProductSales = async () => {
+      try {
+        if (currentUser) {
+          const response = await axios.get(
+            `http://localhost:4000/server/sales/get-sale/${currentUser.sellerId}`
+          );
+          const data = response.data.data;
+          console.log(data)
+          setSalesData(data);
+          setOptions((prevOptions) => ({
             ...prevOptions,
-            data: salesData,
-        }));
-    }, [salesData]);
+            data,
+          }));
+        }
+      } catch (err) {
+        console.error("Error fetching product sales data:", err);
+        setError(err.message);
+      }
+    };
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+    fetchProductSales();
+  }, [currentUser,setSalesData]);
 
-    if (!salesData.length) {
-        return <div>No sales data available</div>;
-    }
-
-    return (
-        <div className="chart-container">
-            <AgCharts options={options} />
-        </div>
-    );
+  return (
+    <div className="chart-container">
+      <AgCharts options={options} />
+      <div className="product-list pl" >
+        {salesData.map((product, index) => (
+          <div key={index} className="product-item">
+            <span className="product-name">{product.productName}</span>
+            <span className="product-revenue">
+              ₹{product.totalRevenue.toLocaleString()}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Sales;

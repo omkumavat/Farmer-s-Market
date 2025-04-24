@@ -1,20 +1,49 @@
-/* Container for the chart */
 .chart-container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;    /* Center vertically (if parent has height) */
-    height: 400px;          /* Adjust height as needed */
-    width: 100px;            /* Full width */
-    padding: 20px;          /* Add padding around the chart */
-    
-    border-radius: 10px;    /* Rounded corners */
-    position: absolute;
-    left: 400px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.pl {
+  display: flex;
+  flex-direction: column;  
+  gap: 20px; 
+  margin-top: 20px;
+  padding: 10px;
+  width: 1000px;
+  /* height: 1000px; */
+  margin-left: -10px;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 200px; /* Fixed width for each product */
+  text-align: center; /* Center text inside the item */
+  font-size: 16px;
+  margin-bottom: 20px; /* Space between rows */
+}
+
+  .product-item:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
   
-  /* Optional: Add styles to the chart */
-  .ag-charts-wrapper {
-    width: 1000px;    /* Adjust width */
-    height: 100%;   /* Adjust height */
+  .product-name {
+    font-weight: bold;
+    font-size: 1.2rem;
   }
+  
+  .product-revenue {
+    margin-top: 5px;
+    font-size: 1rem;
+  }
+  
   
