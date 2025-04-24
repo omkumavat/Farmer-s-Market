@@ -72,10 +72,6 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-<<<<<<< HEAD
-
-=======
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
 app.get("/s", (req, res) => {
   res.render("Ticket", { name: "OM", que: "a", response: "a" });
 });
