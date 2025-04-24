@@ -106,3 +106,24 @@
     font-size: 16px;
   }
 }
+
+
+.sidebars {
+  background-color: #2d3e50;
+  color: white;
+  top: 0;
+  left: 0;
+  height: 100vh; /* Full height of the viewport */
+  width: 240px; /* Fixed width for the sidebar */
+  position: fixed; /* Fixed positioning */
+  overflow-y: auto; /* Allow vertical scrolling for sidebar content */
+  padding-top: 150px; /* Add padding for spacing */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  z-index: 500; /* Ensure it stays on top */
+}
+
+.contents {
+  margin-left: 240px; /* Offset for fixed sidebar width */
+  padding: 20px;
+  flex: 1;
+}

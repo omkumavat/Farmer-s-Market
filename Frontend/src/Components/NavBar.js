@@ -16,23 +16,27 @@ const NavBar = () => {
   }
 
   const handleLogout = async () => {
-    setIsAuthReady(false);
+    setIsAuthReady(false); // Show a loading state or disable interactions
     try {
-      await logout();
-      localStorage.removeItem("Users");
-      navigate('/', { replace: true });
-      window.location.reload();
+        await new Promise((resolve) => setTimeout(resolve, 2000)); // Add a delay of 2 seconds
+        await logout();
+        // localStorage.removeItem("Users");
+        navigate('/', { replace: true });
+        window.location.reload();
     } catch (error) {
-      console.error("Error during logout:", error);
+        console.error("Error during logout:", error);
+    } finally {
+        setIsAuthReady(true); // Restore the ready state
     }
-    setIsAuthReady(true);
-  };
+};
 
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="/Images/logo.jpg" alt="Verdica Logo" className="logo-image" />
-        <span className="website-name">Verdica</span>
+        <a href='/'>
+        <img src="/Images/logoweb2.png" alt="AgriHaven Logo" className="logo-image" />
+        
+        </a>
       </div>
       <GoogleTranslateWidget />
       <ul className="nav-links">
@@ -48,6 +52,7 @@ const NavBar = () => {
               <a href="/team">Our Team</a> */}
               <div className="style-line"></div>
               <a href="/ticket">FAQs & Query</a>
+              <div className="style-line"></div>
             </div>
           </div>
         </li>
@@ -66,6 +71,7 @@ const NavBar = () => {
               <a href="/soil-analysis">Soil Analysis</a>
               <div className="style-line"></div>
               <a href="/farm-plans">Farm Plans</a>
+              <div className="style-line"></div>
             </div>
           </div>
         </li>
@@ -82,6 +88,9 @@ const NavBar = () => {
               <a href="/dealer">Agricultural Products</a>
               <div className="style-line"></div>
               <a href="/soil">Soil Information</a>
+              <div className="style-line"></div>
+              <a href="/disease">Disease Detection</a>
+              <div className="style-line"></div>
             </div>
           </div>
         </li>

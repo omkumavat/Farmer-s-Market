@@ -1,0 +1,159 @@
+.app-comment-container {
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-between;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-review-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-review-button:hover {
+    background-color: #218838;
+  }
+  
+  .review-list {
+    margin-top: 20px;
+  }
+  
+  .review-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .reviewer {
+    font-weight: bold;
+  }
+  
+  .rating {
+    margin-left: 60px;
+    color: #ffc107;
+  }
+  
+  .review-date {
+    font-size: 0.9em;
+    color: #555;
+  }
+
+  .average-rating{
+    margin-top: 10px;
+  }
+  .average-rating p{
+    margin-left: 90px;
+  }
+  .review-comment {
+    margin-top: 10px;
+  }
+  
+  .modal-comment-overlay {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    width: 600px;
+    margin-top: 100px;
+    height: 100px;
+    /* background: rgba(0, 0, 0, 0.5); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-comment-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .modalss {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .rating-input {
+    margin-bottom: 15px;
+  }
+  
+  .star {
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc;
+  }
+  
+  .star.active {
+    color: #ffc107;
+  }
+  
+  textarea {
+    width: 95%;
+    height: 80px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .modal-buttons button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modal-buttons button:first-child {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .modal-buttons button:last-child {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .modal-buttons button:hover:first-child {
+    background-color: #218838;
+  }
+  
+  .modal-buttons button:hover:last-child {
+    background-color: #c82333;
+  }
+
+  .modal-buttons{
+    display:flex;
+  }
+  

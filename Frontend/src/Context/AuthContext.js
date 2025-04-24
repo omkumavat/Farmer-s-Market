@@ -33,7 +33,13 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("Users");  // Remove user data from localStorage
   };
 
+  const updateProfile = (updatedUser) => {
+    setCurrentUser(updatedUser);
+    localStorage.setItem("Users", JSON.stringify(updatedUser));
+  };
+
   const value = {
+    updateProfile,
     currentUser,
     login,
     logout,

@@ -52,9 +52,9 @@
     color: #ffcc00;
   }
   
-  .rating .star:hover {
+  /* .rating .star:hover {
     color: #ffcc00;
-  }
+  } */
   
   .rating .rating-text {
     font-size: 16px;
@@ -218,10 +218,10 @@
 
   .product-container {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     max-width: 1200px;
     margin: 20px auto;
-    /* border: 1px solid #ddd; */
+    /* margin-bottom: 1000px; */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -230,6 +230,7 @@
   /* Left side container for images */
   .left-content {
     flex: 1;
+    /* margin-bottom: 100px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -240,17 +241,23 @@
   
   /* Larger selected image */
   .selected-image img {
-    width: 100%; /* Fully utilizes the left container's width */
+    width: 70%; /* Fully utilizes the left container's width */
     height: auto;
-    max-height: 300px;
+    height: 100px;
     object-fit: cover;
     border: 2px solid #007bff;
     border-radius: 8px;
     margin-bottom: 20px;
   }
+
+  /* .main-image img{
+    width: 100px;
+    height: 100px;
+  } */
   
   /* Smaller images below the larger one */
   .thumbnail-images {
+    height: 100px;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
@@ -278,17 +285,36 @@
     border: 2px solid #007bff;
     transform: scale(1.1);
   }
-  
+
+  .discountbadge {
+    background-color: #ff6600;
+    color: white;
+    padding: 6px 10px;
+    font-size: 12px;
+    max-width: 55px;
+    border-radius: 4px;
+    margin-left: 30px;
+  }
   /* Right side remains unchanged */
   .product-details {
     flex: 1;
     padding: 20px;
   }
+
+  .price-dis{
+    display: flex;
+  }
+
+  .price-dis{
+    display: flex;
+  }
   
 
   .product-description {
+    /* width: 1200px; */
+    /* margin-right: 100px; */
     padding: 40px;
-    margin-top: -300px;
+    margin-top: 50px;
     background-color: white;
     border-radius: 8px;
     border: 1px solid #ddd;
@@ -310,9 +336,14 @@
   .product-description pre {
     font-size: 18px;
     color: black;
-
+    /* max-width: calc(100ch); */
     line-height: 1.6;
+    max-width: calc(200ch);
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
+
+
   
   .product-description ul {
     margin-left: 20px;

@@ -6,34 +6,40 @@ import "../CARDCSS/myproductcard.css";
 import { useAuth } from "../Context/AuthContext";
 import axios from "axios";
 import DealerEditForm from "../Components/DealerEditForm";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
 
 const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeAvailable,serviceType,category,price, images,name, largerSizes, smallerSizes, desc,size, sizeUnit }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const { currentUser } = useAuth();
+  const [oldPassword,setOldPassword]=useState("");
 
   const handleDelete = () => {
     setIsModalOpen(true);
   };
 
   const handleDeleteProducts = async () => {
-    const response = await axios.delete(`http://localhost:4000/server/dealer/deleteproduct/${_id}`);
+    const response = await axios.delete(`https://farmer-s-market-theta.vercel.app/server/dealer/deleteproduct/${_id}`);
     if (response.data.success) {
-      alert("Product Deleted Successfully");
+      toast.success("Product Deleted Successfully");
       setIsModalOpen(false);
       window.location.reload();
     } else {
-      alert("Failed to Delete Product");
+      toast.error("Failed to Delete Product");
     }
   };
 
   const handleEditSubmit = (updatedProduct) => {
-    console.log("Updated Product:", updatedProduct);
+    // // console.log("Updated Product:", updatedProduct);
     setIsEditOpen(false);
     // You can also send a PUT request to update the product on the server here
   };
 
   return (
+    <><ToastContainer />
     <div className="product-card">
       <Link to={`/dealer/${_id}/product`} style={{ textDecoration: "none", color: "inherit" }}>
         <div className="discount-badge">10% OFF</div>
@@ -46,9 +52,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
           <p className="product-save">Save ₹{(price * 0.1).toFixed(2)}</p>
         </div>
       </Link>
-      <label htmlFor="size" className="size-label">
-        Size
-      </label>
+    
       <select className="size-select">
         {largerSizes?.map((option, index) => (
           <option key={`larger-${index}`}>{`${option.size} ${option.unit}`}</option>
@@ -70,7 +74,8 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         userId={currentUser._id}
-        oldPassword={currentUser.password}
+        setOldPassword={setOldPassword}
+        oldPassword={oldPassword}
         onPasswordVerified={handleDeleteProducts}
       />
       <DealerEditForm
@@ -81,6 +86,7 @@ const MyProductDealer = ({ _id, title, quantity,largerSizeAvailable,smallerSizeA
       />
       <div className="wishlist-icon">❤️</div>
     </div>
+    </>
   );
 };
 

@@ -44,7 +44,11 @@
     position: absolute;
     top: 0;
     left: 0%; 
+<<<<<<< HEAD
     width: 1500px;
+=======
+    width: 1263px;
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
     height: 100%;
     background-size: cover;
     background-position: center;
@@ -112,12 +116,16 @@
     background-color: #007bff;
     color: white;
     text-decoration: none;
+    margin-left:580px;
+    margin-top:10px;
   }
   
   .buttons .btn-secondary {
     background-color: #6c757d;
     color: white;
     text-decoration: none;
+    margin-top:10px;
+    margin-left:30px;
   }
 
   /* Card Section Container */
@@ -130,7 +138,12 @@
   background-color: #f9fafc;
   margin-top: 150px;
   margin-bottom: -40px;
+<<<<<<< HEAD
   width: 140px;
+=======
+  width: 1100px;
+  margin-left: 45px;
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
 }
 
 /* Individual Card */
@@ -181,8 +194,13 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
   width: 1100px;
   margin-left: 150px;
+=======
+  width: 1000px;
+  margin-left: 90px;
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
   margin-right: 100px;
   margin-top: 80px;
   gap: 30px;
@@ -267,21 +285,25 @@
 
 .maincon {
   display: flex;
+<<<<<<< HEAD
   height: 900px;
   width: 1100px;
+=======
+  height: 700px;
+  width: 1263px;
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
   margin-top: 100px;
   background-image: url('../Images/forlogin.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  /* margin-bottom: 100px; */
 }
 
 .image-section, .content-section {
   flex: 1;
   padding: 20px;
-  height: 1000px;
+  height: 10px;
 }
 
 .image-section img {
@@ -354,7 +376,11 @@
 /* CardLayout.css*/
 .card-layout {
   position: relative;
+<<<<<<< HEAD
   width: 1100px;
+=======
+  width: 1263px;
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
   height: 100vh;
   background-image: url("../Images/10.jpg");
   background-size: cover;
@@ -429,6 +455,7 @@
   line-height: 1.5;
   color: white;
 }
+<<<<<<< HEAD
 
 /* General Section Styling */
 .projects-section {
@@ -516,6 +543,8 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+=======
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
 .pr-text{
   margin-top: 80px;
   height: 100px;
@@ -538,7 +567,7 @@
 .qm {
   display: flex;
   height: 350px;
-  width: 1580px;
+  width: 1263px;
   background-image: url('../Images/12.jpg');
   background-size: cover;
   background-position: center;
@@ -552,7 +581,7 @@
   color: white;
   padding: 40px;
   text-align: center;
-  width: 1580px;
+  width: 1263px;
 }
 
 .get-quote-button {
@@ -572,6 +601,7 @@
   color: black;
 }
 .sm h2{
+  color: white;
     margin-top: 70px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
@@ -584,7 +614,7 @@
 .mains {
   display: flex;
   flex-direction: column;
-  width: 1500px;
+  width: 1000px;
   min-height: 100%; /* Fills viewport height */
   background-color: white; 
   padding: 40px; /* Padding around the edges */
@@ -592,13 +622,14 @@
 
 /* Testimonial section */
 .testimonials {
+  width: 1150px;
   margin-top: 70px;
-  margin-left: 120px;
+  margin-left: 25px;
   margin-right: 120px;
-  gap: 10px;
+  gap: 20px;
   height: 1px;
   flex: 1; /* Takes up remaining space after stats section */
-  overflow: hidden; /* Ensures content doesn't overflow */
+  overflow: hidden; 
   margin-bottom: -30px; /* Spacing between sections */
   display: flex; /* Arranges cards horizontally */
 }
@@ -606,7 +637,7 @@
 /* Individual testimonial card */
 .testimonialcard {
   height: 300px;
-  width: 70px;
+  width: 20px;
   flex: 1; /* Makes cards equally sized */
   padding: 20px;
   background-color: black; /* White background */
@@ -679,8 +710,11 @@
 
 /* Stats section */
 .stats-section {
+  width: 1000px;
+  margin-left: 100px;
+  gap: 20px;
   display: flex;
-  flex-wrap: wrap; /* Allows stats to wrap on smaller screens */
+  /* flex-wrap: wrap; Allows stats to wrap on smaller screens */
   justify-content: space-between; /* Evenly distributes stats */
 }
 
@@ -707,6 +741,7 @@
   justify-content: center;
   margin-top: 70px;
   margin-bottom: 50px;
+  margin-left: 200px;
 }
 
 .dot {
@@ -799,8 +834,8 @@
   background-size: cover; /* Ensures the image covers the entire container */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents image tiling */
-  width: 214%; /* Full width */
-  height: 80vh; /* Adjust height as needed */
+  width: 1263px; /* Full width */
+  height: 100vh; /* Adjust height as needed */
   display: flex; /* Enables centering of child elements */
   align-items: center; /* Vertically centers the content */
   justify-content: center; /* Horizontally centers the content */
@@ -816,6 +851,7 @@
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 15px;
+  margin-top: -10px;
 }
 
 .video-description {
@@ -848,3 +884,45 @@
   border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
+@media (min-width: 1500px) {
+  .card-section {
+    width: 1330px;
+  }
+
+  .slide {
+    width: 1513px;
+  }
+  .about-section{
+    width: 1230px;
+    margin-left: 100px;
+  }
+  .card-layout{
+    width: 1513px;
+  }
+  .maincon{
+    width: 1513px;
+  }
+  .ddd{
+    width: 1513px;
+  }
+  .qm{
+    width: 1513px;
+  }
+  .sm{
+    width: 1513px;
+  }
+  .testimonials{
+    margin-left: 150px;
+  }
+  .dots{
+    margin-left: 450px;
+  }
+  .stats-section{
+    margin-left: 200px;
+  }
+}
+
+
+.texti{
+    color:#e0e6ed;
+}

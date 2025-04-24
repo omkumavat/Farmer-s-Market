@@ -1,69 +1,30 @@
 import mongoose from 'mongoose';
 import dealerProduct from './dealerProducts.js';
 const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    // unique: true,
-  },
-  mobileno: {
-    type: String,
-    required: true,
-    // unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  confirmpassword: {
-    type: String,
-    required: true,
-  },
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  mobileno: { type: String, required: true },
+  password: { type: String, required: true },
+  confirmpassword: { type: String, required: true },
   verified: { type: Boolean, default: false },
-  profilePicture: {
+  profilePicture: { 
     type: String,
-    default:
-      "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png",
+    default: "https://static.vecteezy.com/system/resources/previews/005/544/718/original/profile-icon-design-free-vector.jpg"
   },
-  orders: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Order',
-    }
-  ],
-  carts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'dealerProduct',
-    }
-  ],
-  dealerProducts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'dealerProduct',
-    },
-  ],
-  farmerProducts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'FarmerProduct', // Reference to FarmerProduct model
-    },
-  ],
-  role: {
-    type: String,
-    enum: ['dealer', 'farmer', 'other'], // User roles
-    default: 'other',
-  },
-  sellerId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Seller", // Reference to the User model (Farmer)
-          // required: true,
-        },
+  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+  carts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'dealerProduct', // Reference to dealerProduct
+  }, {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'FarmerProduct', // Reference to FarmerProduct
+  }],
+  dealerProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'dealerProduct' }],
+  farmerProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'FarmerProduct' }],
+  role: { type: String, enum: ['dealer', 'farmer', 'other'], default: 'other' },
+  sellerId: { type: mongoose.Schema.Types.ObjectId, ref: "Seller" },
 }, { timestamps: true });
+
 
 const VerificationSchema = new mongoose.Schema({
   name: { type: String, required: true },

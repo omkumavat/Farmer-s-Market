@@ -6,16 +6,18 @@ import Footer from "../Components/Footer";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';  // Import styles
-
+import Spinner from "../Components/Spinner";
 const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
     const [quote, setQuote] = useState('');
     const [author, setAuthor] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const fetchQuote = async () => {
         try {
+            setLoading(true);
             //https://api.api-ninjas.com/v1/quotes?category=happiness
             const response = await axios.get('https://api.api-ninjas.com/v1/quotes', {
-                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' }, 
+                headers: { 'X-Api-Key': 'buAZSVwYWRt5Or4FmD5KLw==MIEddd3RSlMnoXv5' },
             });
             const data = response.data[0];
             setQuote(data.quote);
@@ -26,40 +28,9 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             setQuote('Unable to fetch quote at this time. Please try again later.');
             setAuthor('');
         }
+        setLoading(false);
     };
 
-    // const slides = [
-    //     {
-    //         image: "/Images/homeimages/4.jpg",
-    //         text: "Good Health Conscious Living",
-    //         button1: "About Us",
-    //         button2: "Contact",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/1.jpg",
-    //         text: "Green Agriculture Practices",
-    //         button1: "Learn More",
-    //         button2: "Join Us",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/2.jpg",
-    //         text: "Empowering Farmers",
-    //         button1: "Get Started",
-    //         button2: "Explore",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/3.jpg",
-    //         text: "Empowering Farmers",
-    //         button1: "Get Started",
-    //         button2: "Explore",
-    //     },
-    //     {
-    //         image: "/Images/homeimages/6.jpg",
-    //         text: "Empowering Farmers",
-    //         button1: "Get Started",
-    //         button2: "Explore",
-    //     }
-    // ];
     const slides = [
         {
             image: "/Images/homeimages/4.jpg",
@@ -74,32 +45,32 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             text: "Green Agriculture Practices",
             button1: "Learn More",
             button2: "Join Us",
-            link1: "/learn-more",  // Add link for button1
-            link2: "/join-us",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         },
         {
             image: "/Images/homeimages/10.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
-            link1: "/get-started",  // Add link for button1
-            link2: "/explore",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         },
         {
             image: "/Images/homeimages/3.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
-            link1: "/get-started",  // Add link for button1
-            link2: "/explore",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         },
         {
             image: "/Images/homeimages/6.jpg",
             text: "Empowering Farmers",
             button1: "Get Started",
             button2: "Explore",
-            link1: "/get-started",  // Add link for button1
-            link2: "/explore",  // Add link for button2
+            link1: "/login",  // Add link for button1
+            link2: "/login",  // Add link for button2
         }
     ];
 
@@ -126,14 +97,6 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
         },
     ];
 
-    // const projects = [
-    //     { id: 1, title: "Project 1", image: "/Images/agri1.jpeg" },
-    //     { id: 2, title: "Project 2", image: "/Images/agri1.jpeg" },
-    //     { id: 3, title: "Project 3", image: "/Images/agri1.jpeg" },
-    //     { id: 4, title: "Project 4", image: "/Images/agri1.jpeg" },
-    //     { id: 5, title: "Project 5", image: "/Images/agri1.jpeg" },
-    //     { id: 6, title: "Project 6", image: "/Images/agri1.jpeg" },
-    // ];
 
     const cards2 = [
         { icon: "🌱", title: "Vegetables", text: "Homes and thoroughly launder them between usage. We give our teams." },
@@ -146,46 +109,67 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
     const testimonials = [
         {
-            name: 'Mark Thomas',
-            title: 'Marketing Department',
-            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            name: 'Sophia Johnson',
+            title: 'Product Manager',
+            quote: "Innovation is the key to success. Always challenge the status quo and push boundaries.",
             image: '/Images/test1.jpeg'
         },
         {
-            name: 'Mark Thomas',
-            title: 'Marketing Department',
-            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            name: 'Liam Anderson',
+            title: 'Software Engineer',
+            quote: "Every problem is an opportunity to learn and grow. Embrace the journey.",
             image: '/Images/test2.jpeg'
         },
         {
-            name: 'Mark Thomas',
-            title: 'Marketing Department',
-            quote: "Don't tell your age, tell your energy. You are younger than you think you are. You have a lot more life ahead of you.",
+            name: 'Olivia Martinez',
+            title: 'Creative Director',
+            quote: "Creativity is intelligence having fun. Let your imagination run wild.",
             image: '/Images/test3.jpeg'
         },
-        // ... other testimonials
     ];
+    
+
+    const [userCount, setUserCount] = useState(0);
+    const [orderCount, setOrderCount] = useState(0);
+    const [farmer, setFarmer] = useState(0);
+    const [dealer, setDealer] = useState(0);
+
+    useEffect(() => {
+        const fetchCounts = async () => {
+            const response = await fetch('https://farmer-s-market-theta.vercel.app/server/count');
+            const data = await response.json();
+            // // console.log(data);
+            setUserCount(data.userCount);
+            setOrderCount(data.orderCount);
+            setFarmer(data.farmer);
+            setDealer(data.Dealer);
+        };
+
+        fetchCounts();
+    }, []);
+
+
 
     const stats = [
         {
             icon: '/Images/stats1.png',
-            number: '1120',
+            number: userCount,
             label: 'HAPPY CUSTOMERS'
         },
         {
             icon: '/Images/stats2.png',
-            number: '1120',
-            label: 'COMPLETE GOALS'
+            number: orderCount,
+            label: 'COMPLETE ORDERS'
         },
         {
             icon: '/Images/stats3.png',
-            number: '1120',
-            label: 'QUALIFY STAFF'
+            number: farmer,
+            label: 'HAPPY FARMER'
         },
         {
-            icon: '/Images/stats4.png',
-            number: '1120',
-            label: 'AWARD RECEIVED'
+            icon: '/Images/stats3.png',
+            number: dealer,
+            label: 'HAPPY DEALER'
         },
         // ... other stats
     ];
@@ -226,7 +210,8 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
             <NavBar />
             <ToastContainer />
             <div className="homepage">
-                {/* <div className="homepage-slider">
+
+                <div className="homepage-slider">
                     {slides.map((slide, index) => (
                         <div
                             key={index}
@@ -236,37 +221,20 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                             <div className="slide-content">
                                 <h1 className="texti">{slide.text}</h1>
                                 <div className="buttons">
-                                    <button className="btn-primary">{slide.button1}</button>
-                                    <button className="btn-secondary">{slide.button2}</button>
+                                    <a href={slide.link1} className="btn-primary">
+                                        {slide.button1}
+                                    </a>
+                                    <a href={slide.link2} className="btn-secondary">
+                                        {slide.button2}
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    ))} */}
-
-                <div className="homepage-slider">
-    {slides.map((slide, index) => (
-        <div
-            key={index}
-            className={`slide ${index === currentSlide ? "active" : ""}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
-        >
-            <div className="slide-content">
-                <h1 className="texti">{slide.text}</h1>
-                <div className="buttons">
-                    <a href={slide.link1} className="btn-primary">
-                        {slide.button1}
-                    </a>
-                    <a href={slide.link2} className="btn-secondary">
-                        {slide.button2}
-                    </a>
+                    ))}
                 </div>
-            </div>
-        </div>
-    ))}
-</div>
 
-                    {/* Dots Navigation */}
-                    {/* </div> */}
+                {/* Dots Navigation */}
+                {/* </div> */}
                 <div>
                     <div className="dots-container">
                         {slides.map((_, index) => (
@@ -298,7 +266,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
 
                     {/* Right Side: Content */}
                     <div className="about-content">
-                        <h3 className="subheading">About Verdica</h3>
+                        <h3 className="subheading">About AgriHaven</h3>
                         <h1 className="heading">Bringing Growth To Agriculture</h1>
                         <p className="description">
                             Our goal at Agri Shop is to improve farmers' quality of life by giving them the resources, knowledge, and market access they require to succeed.
@@ -370,40 +338,28 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         ))}
                     </div>
                 </div>
-                {/* <div className="pr-text">
-                    <h2 className="section-title">Latest Projects</h2>
-                    <p className="section-subtitle">
-                        We have a wide range of projects in all areas of agriculture.
-                    </p>
-                </div>
-                <div className="projects-section">
-                    <div className="projects-grid">
-                        {projects.map((project) => (
-                            <div className="project-card" key={project.id}>
-                                <img src={project.image} alt={project.title} className="project-image" />
-                                <div className="overlay">
-                                    <h3 className="project-title">{project.title}</h3>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
                 <div className="ddd">
-    <div className="video-section">
-    <h2 className="video-title">See How We're Transforming Agriculture</h2>
-    <p className="video-description">Watch our video to learn about our mission, vision, and the impact we’re making in the agricultural community.</p>
-    <video controls className="homepage-video">
-        <source src="/Images/homeimages/video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-    </video>
-</div>
-</div>
+                    <div className="video-section">
+                        <h2 className="video-title">See How We're Transforming Agriculture</h2>
+                        <p className="video-description">Watch our video to learn about our mission, vision, and the impact we’re making in the agricultural community.</p>
+                        <video controls className="homepage-video">
+                            <source src="/Images/homeimages/video.mp4" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
                 <div className="qm">
                     <div className="sm">
                         <h2 >We Are Always Ready to Help You</h2>
-                        <p className="quote">{quote}</p>
-                        <p className="author">{author && `- ${author}`}</p>
-                        <button className="get-quote-button" onClick={fetchQuote}>GET A QUOTE</button>
+                        {loading ? (
+                            <Spinner/>
+                        ) : (
+                            <>
+                                <p className="quote">{quote}</p>
+                                <p className="author">{author && `- ${author}`}</p>
+                                <button className="get-quote-button" onClick={fetchQuote}>GET A QUOTE</button>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="mains">
@@ -411,7 +367,7 @@ const Home = ({ showNavs = true, autoSlide = true, slideInterval = 5000 }) => {
                         {testimonials.map((testimonial, index) => (
                             <div className={`testimonialcard ${index === activeIndex ? 'active' : ''}`} key={index}>
                                 <div className="quote-icon">
-                                <img src="/Images/q.png" alt="Quote Icon" className="q" />
+                                    <img src="/Images/q.png" alt="Quote Icon" className="q" />
                                 </div>
                                 <p className="tquote">{testimonial.quote}</p>
                                 <div className="styles-line"></div>

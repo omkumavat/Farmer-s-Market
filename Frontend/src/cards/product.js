@@ -6,9 +6,12 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"; // Import Google Maps components
 import { color } from "framer-motion";
+import Loader from "../Components/Loader";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 
-const Product = ({ id }) => {
+const DProduct = ({ id ,avgRating,clickRate}) => {
   const { currentUser } = useAuth();
   const [rating, setRating] = useState(5);
   const [product, setProduct] = useState(null);
@@ -22,61 +25,79 @@ const Product = ({ id }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentLocation, setCurrentLocation] = useState({ lat: null, lng: null });
   const [originalAmount,setOriginalAmount]=useState(0);
+  const [isPresent,setIsPresent]=useState(false);
+  const [isAuthReady,setIsAuthReady]=useState(false);
+  const [Totalamount,settotal]=useState(0);
 
-  const handleAddToCart = async() => {
-    console.log(currentUser);
-    console.log(product);
+  const handleAddToCart = async () => {
+    setIsAuthReady(true);
     try {
-      if(currentUser){
-        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
-          userId:currentUser._id,
-          productId:product._id,
+      if (currentUser) {
+        const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
+          userId: currentUser._id,
+          productId: product._id,
         });
-        alert(response.data.message);
-      }else{
-        alert("Login First");
+        toast.success("Item added to WishList successfully");
+        setIsPresent(true); // Update the state here
+      } else {
+        toast.error("Please login first");
       }
     } catch (error) {
-      alert(error.response ? error.response.data.message : 'Error adding to cart');
+      toast.error(error.response ? error.response.data.message : 'Error adding to wishlist');
     }
-  }
+    setIsAuthReady(false);
+  };
 
   useEffect(() => {
-    const arr = [];
+    setIsAuthReady(true);
+    // // console.log("rate",avgRating)
     const fetchProductDetails = async () => {
       try {
+        setRating(avgRating)
         const response = await axios.get(
-          `http://localhost:4000/server/dealer/getproductbyid/${id}`
+          `https://farmer-s-market-theta.vercel.app/server/dealer/getproductbyid/${id}`
         );
         const data = response.data;
-
+  
         setProduct(data);
-        console.log(data);
+        // // console.log(data);
         setMainImage(data.images[0]);
+  
+        const arr = [];
 
-        arr.push(data.size);
-        arr.push(data.sizeUnit);
-        arr.push(data.price);
+        const dt={
+          size:data.size,
+          unit:data.sizeUnit,
+          price:data.price
+        }
+        arr.push(dt);
+
+  
         const combinedVariants = [
           ...data.largerSizes.map((size) => ({ ...size, type: "Larger" })),
           ...data.smallerSizes.map((size) => ({ ...size, type: "Smaller" })),
-          // ...arr
+          ...arr.map((size) => ({ ...size, type: "Smaller" })),
         ];
         setVariants(combinedVariants);
-        console.log(variants);
+        // settotal(data.amount*(data*))
+        // // console.log(combinedVariants);
+  
         const cleanText = data.desc
+        .replace(/&nbsp;/g,' ')
+        .replace(/&amp;/g, '')
           .replace(/<strong>(.*?)<\/strong>/g, '$1') // Remove <strong> but keep text
           .replace(/<ul>/g, '') // Remove <ul> tags
           .replace(/<\/ul>/g, '\n') // Replace </ul> with a new line for list
           .replace(/<ol>/g, '') // Remove <ol> tags
           .replace(/<\/ol>/g, '\n') // Replace </ol> with a new line for ordered list
-          .replace(/<li>/g, '') // Remove <li> tags
-          .replace(/<\/li>/g, '\n- ') // Replace </li> with a new line and bullet point
+          .replace(/<li>/g, ' - ') // Remove <li> tags
+          .replace(/<\/li>/g, '\n') // Replace </li> with a new line and bullet point
           .replace(/<h3>/g, '\n\n') // Add line breaks before headers
           .replace(/<\/h3>/g, '\n') // Add line breaks after headers
           .replace(/<br>/g, '\n')
           .replace(/<[^>]+>/g, ''); // Remove any remaining HTML tags
         setDesc(cleanText);
+  
         if (combinedVariants.length > 0) {
           setSelectedVariant(combinedVariants[0]);
           setAmount(combinedVariants[0].price);
@@ -86,16 +107,34 @@ const Product = ({ id }) => {
         console.error("Error fetching product details:", error);
       }
     };
-
+  
+    const fetchWishStatus = async () => {
+      if (currentUser) {
+        try {
+          const response = await axios.get(
+            `https://farmer-s-market-theta.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
+          );
+          const data = response.data;
+          // // console.log(data);
+          setIsPresent(data.isPresent);
+        } catch (error) {
+          console.error("Error fetching wishlist status:", error);
+        }
+      }
+    };
+    
+    fetchWishStatus();
     fetchProductDetails();
-  }, [id, setMainImage, setSelectedVariant, setMainImage]);
+    setIsAuthReady(false);
+  }, [avgRating]);
+  
 
   if (!product) {
     return <div>Loading...</div>;
   }
 
   const handleVariantClick = (variant) => {
-    console.log(variant);
+    // // console.log(variant);
     setAmount(variant.price)
     setOriginalAmount(variant.price);
     setSelectedVariant(variant);
@@ -106,26 +145,27 @@ const Product = ({ id }) => {
     setMainImage(image);
   };
 
-  const handleRatingClick = (newRating) => {
-    setRating(newRating);
+  const handleRatingClick = () => {
+    // // console.log(true);
+    clickRate(true);
+    // // console.log(clickRate)
   };
 
   const handlePayment = async () => {
     try {
       const currentDate=new Date();
-      const data = {
-        pname:product.name,
+      if (currentUser) {
+        const data = {
+        pname:product.title,
         pprice:product.price,
         pdate:currentDate,
         pquantity:product.quantity,
         subject: "Your Order Was Successfuly Placed",
         caseType: 3,
-        email: 'omkumavat2004@gmail.com',
+        email: currentUser.email,
         name:currentUser.name,
       }
-      if (currentUser) {
-        // amount=amount*quant;
-        const response = await fetch('http://localhost:4000/api/payment/create-order', {
+        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -139,12 +179,12 @@ const Product = ({ id }) => {
           key: 'rzp_test_nwUngHToxCY8p6',
           amount: order.amount * 100,
           currency: order.currency,
-          name: 'VERDICA',
+          name: 'AgriHaven',
           description: 'Payment for your product',
           order_id: order.id,
           handler: async function (response) {
             try {
-              const verificationResponse = await fetch('http://localhost:4000/api/payment/verify-payment', {
+              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -162,7 +202,7 @@ const Product = ({ id }) => {
               const result = await verificationResponse.json();
 
               if (verificationResponse.ok) {
-                const createOrderResponse = await fetch('http://localhost:4000/server/orders/create-order', {
+                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/server/orders/create-order', {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -179,19 +219,19 @@ const Product = ({ id }) => {
                 });
                 
                 const orderData = await createOrderResponse.json();
-                const responses = await axios.post("http://localhost:4000/server/sendmail", data);
+                const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
 
-                if (createOrderResponse.ok && responses.ok) {
-                  alert('Payment successful and order created!');
+                if (createOrderResponse.ok) {
+                  toast.success('Payment successful and Order created !');
                 } else {
-                  alert('Error creating order: ' + orderData.message);
+                  toast.error('Error creating order: ' + orderData.message);
                 }
               } else {
-                alert(result.message || 'Error saving payment');
+                toast.error(result.message || 'Error saving payment');
               }
             } catch (error) {
               console.error('Error during payment verification:', error);
-              alert('Error during payment verification');
+              toast.error('Error during payment verification');
             }
           },
           prefill: {
@@ -207,11 +247,11 @@ const Product = ({ id }) => {
         const razorpay = new window.Razorpay(options);
         razorpay.open();
       } else {
-        alert('Please login first');
+        toast.error('Please Login first');
       }
     } catch (error) {
       console.error('Error during payment:', error);
-      alert('Error while initiating payment');
+      toast.error('Error while initiating payment');
     }
   };
 
@@ -224,21 +264,51 @@ const Product = ({ id }) => {
   };
 
   const incrementQuantity = () => {
+    if(quant===10){
+      toast.error("Maximum 10 Products are allowed");
+      return;
+    }
     const newQuantity = quant + 1;
     setQuant(newQuantity);
     setAmount(newQuantity * originalAmount);
   };
 
   const decrementQuantity = () => {
+    if(quant===1){
+      toast.error("Minimum 1 Products are allowed");
+      return;
+    }
     if (quant > 1) {
       const newQuantity = quant - 1;
       setQuant(newQuantity);
       setAmount(newQuantity * originalAmount);
     }
   };
+
+  const handleDeleteWish = async () => {
+    setIsAuthReady(true);
+    try {
+      const userId = currentUser._id;
+      const cartId = id;
+      const response = await axios.delete(
+        `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
+      );
+      toast.success("Item removed from WishList successfully");
+      setIsPresent(false); // Update the state here
+    } catch (error) {
+      console.error('Error removing item from wishlist:', error);
+      toast.error('Error removing item from wishlist');
+    }
+    setIsAuthReady(false);
+  };
+
+if(isAuthReady){
+  <Loader/>
+}
   
 
   return (
+     <> <ToastContainer />
     <div className="product-container">
       {/* Image Section */}
       <div className="image-section">
@@ -289,49 +359,46 @@ const Product = ({ id }) => {
 
 
       <div className="product-details">
-        <h2>{product.name}</h2>
-        <p className="brand-name">{product.title || "Unknown Brand"}</p>
+        <h2>{product.title}</h2>
+        <p className="brand-name">{product.name || "Unknown Brand"}</p>
         <div className="rating">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
               key={star}
               className={`star ${star <= rating ? "selected" : ""}`}
-              onClick={() => handleRatingClick(star)}
+              onClick={() => handleRatingClick}
             >
               ★
             </span>
           ))}
           <span className="rating-text">
-            ({rating} {rating === 1 ? "star" : "stars"})
+            ({rating})
           </span>
-        </div>
-
-        <div className="price-section">
-          <span className="current-price">₹{product.price}</span>
-          <span className="original-price">₹{product.price * 1.1}</span><br />
-          <span className="discount">Save : ₹{(product.price * 0.1).toFixed(2)}</span>
-          {/* <span className="discount">Extra ₹{(product.price * 0.1).toFixed(2)} off on Online payments</span> */}
         </div>
 
         {/* Price Section */}
         <div className="price-section">
           {selectedVariant && (
             <>
-              <span className="current-price">₹{selectedVariant.price}</span>
+             <div className="price-dis">
+             <span className="current-price">₹{selectedVariant.price}</span>
               <span className="original-price">
                 ₹{(selectedVariant.price * 1.1).toFixed(2)}
               </span>
+              <div className="discountbadge">10% OFF</div>
+             </div>
+              {/* <span></span> */}
+              <br></br>
               <span className="discount">
-                ₹{(selectedVariant.price * 0.1).toFixed(2)}
+                Save : ₹{(selectedVariant.price * 0.1).toFixed(2)}
               </span>
+              <br></br>
+              &nbsp;&nbsp;<span>Size : {selectedVariant.size}{selectedVariant.unit}</span>
             </>
           )}
         </div>
-        <p className="extra-discount">
-          Extra ₹{selectedVariant && (selectedVariant.price * 0.1).toFixed(2)}{" "}
-          off on Online payments
-        </p>
-
+          
+        
         {/* Variants Section */}
         <div className="variant-section">
           <h4>Variants</h4>
@@ -382,7 +449,13 @@ const Product = ({ id }) => {
 
         {/* Buttons */}
         <div className="button-section">
-          <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+          {
+            currentUser && isPresent ? (
+              <button className="add-to-cart" onClick={handleDeleteWish}>Remove from WishList</button>
+            ) : (
+              <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
+            )
+          }
           <button className="buy-now" onClick={openModal}>Buy Now</button>
         </div>
       </div>
@@ -396,6 +469,7 @@ const Product = ({ id }) => {
         <img src={pmethodImage} alt="Payment Method" />
       </div>
     </div>
+    </>
   );
 };
 
@@ -434,4 +508,4 @@ const styles = {
   },
 };
 
-export default Product;
+export default DProduct;

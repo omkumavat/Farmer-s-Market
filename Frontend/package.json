@@ -12,13 +12,15 @@
     "@testing-library/user-event": "^13.5.0",
     "ag-charts-react": "^11.0.3",
     "autoprefixer": "^10.4.20",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.7",
     "flowbite-react": "^0.10.2",
     "framer-motion": "^11.11.17",
     "postcss": "^8.4.49",
     "react": "^18.3.1",
     "react-animated-weather": "^4.0.1",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2",
     "react-icons": "^5.3.0",
@@ -29,13 +31,13 @@
     "react-simple-image-slider": "^2.4.1",
     "react-toastify": "^10.0.6",
     "recharts": "^2.13.3",
-    "tailwindcss": "^3.4.15",
     "web-vitals": "^2.1.4",
+    "webpack": "^5.97.1",
     "yup": "^1.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -43,7 +45,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "jsx-a11y/alt-text": "warn",
+      "no-unused-vars": "warn"
+    }
   },
   "browserslist": {
     "production": [
@@ -56,5 +62,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "cross-env": "^7.0.3"
   }
 }

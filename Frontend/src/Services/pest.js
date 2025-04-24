@@ -28,7 +28,7 @@ const PestDiseaseUpload = () => {
 
     try {
       // Sending image to the backend API
-      const response = await axios.post("http://localhost:4000/api/pest-disease/predict", formData, {
+      const response = await axios.post("https://farmer-s-market-theta.vercel.app/api/pest-disease/predict", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

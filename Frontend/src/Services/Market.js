@@ -4,6 +4,7 @@ import axios from "axios";
 import "../ServicesCSS/Market.css";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
+import Spinner from "../Components/Spinner";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -22,8 +23,10 @@ const App = () => {
   const [markets, setMarkets] = useState([]);
   const [commodities, setCommodities] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const [isAuthReady,setisAuthReady]=useState(false);
 
   useEffect(() => {
+    setisAuthReady(true);
     axios
       .get(
         "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd0000017704f08e67e4414747189afb9ef2d662&format=json&offset=0&limit=4000"
@@ -38,9 +41,11 @@ const App = () => {
         setMarkets(records);
       })
       .catch((error) => console.error("Error fetching data:", error));
+      setisAuthReady(false);
   }, []);
 
   const handleFilterChange = (e) => {
+    setisAuthReady(true);
     const { name, value } = e.target;
     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
 
@@ -64,9 +69,11 @@ const App = () => {
       setFilteredMarkets([...new Set(filtered)]);
       setFilters((prevFilters) => ({ ...prevFilters, market: "" }));
     }
+    setisAuthReady(false);
   };
 
   const handleSearch = () => {
+    setisAuthReady(true);
     const { commodity, state, district, market, dateFrom } = filters;
     const filtered = data.filter((item) => {
       let isValid = true;
@@ -81,6 +88,7 @@ const App = () => {
 
     setFilteredData(filtered);
     setHasSearched(true);
+    setisAuthReady(false);
   };
   const categories = [
     { name: "Offers", img: "/Images/dealer11.jpg", url: "/farmer/category/offers" },
@@ -149,7 +157,7 @@ const services = [
     <div className="mc">
           <div className="cs">
             <h2 className="head1">Market Insight</h2>
-            <p className="head2">PROVIDE BY VERDICA</p>
+            <p className="head2">PROVIDE BY AgriHaven</p>
           </div>
           </div>
     <div className="container">
@@ -237,22 +245,24 @@ const services = [
       <div className="mar">
       <h3>Filtered Market Data</h3>
       </div>
-      <section className="data-display">
-        {hasSearched && filteredData.length > 0 ? (
-          filteredData.map((item, index) => (
-            <div className="data-item" key={index}>
-              <p><strong>Commodity :</strong> {item.commodity}</p>
-              <p><strong>Market :</strong> {item.market}</p>
-              <p><strong>State :</strong> {item.state}</p>
-              <p><strong>District :</strong> {item.district}</p>
-              <p><strong>Max Price : </strong>₹ {item.max_price}</p>
-              <p><strong>Min Price : </strong>₹ {item.min_price}</p>
-              <p><strong>Arrival Date :</strong> {item.arrival_date}</p>
-            </div>
-          ))
-        ) : (
-          <p>No data available for the selected filters.</p>
-        )}
+        <section className="data-display">
+          {hasSearched && filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <div className="data-item" key={index}>
+                <p><strong>Commodity :</strong> {item.commodity}</p>
+                <p><strong>Market :</strong> {item.market}</p>
+                <p><strong>State :</strong> {item.state}</p>
+                <p><strong>District :</strong> {item.district}</p>
+                <p><strong>Max Price : </strong>₹ {item.max_price}</p>
+                <p><strong>Min Price : </strong>₹ {item.min_price}</p>
+                <p><strong>Arrival Date :</strong> {item.arrival_date}</p>
+              </div>
+            ))
+          ) : isAuthReady ? (
+            <Spinner />
+          ) : (
+            <p>No data to display</p>
+          )}
       </section>
     </div>
 
@@ -260,7 +270,7 @@ const services = [
                     <div className="serv">
                         <h2 className="services-title">Market Analysis</h2>
                         <p className="services-subtitle">
-                        VERDICA empowers businesses and individuals with data-driven insights, ensuring informed decisions through comprehensive market analysis.
+                        AgriHaven empowers businesses and individuals with data-driven insights, ensuring informed decisions through comprehensive market analysis.
                         </p>
                     </div>
                     <div className="services-grid">
@@ -276,18 +286,18 @@ const services = [
                 <div className="container-market">
                     {/* Top Section */}
                     <div className="content-market">
-                        <p className="sub-heading-market">AT VERDICA</p>
+                        <p className="sub-heading-market">AT AgriHaven</p>
                         <h1 className="main-heading-market">
                           For a Data-Driven Market Future<br /> <span>Tomorrow</span>
                         </h1>
                         <div className="descc-market">
                         <p className="description-market">
-                        Verdica offers a platform for businesses to access detailed market insights, helping them stay ahead of trends, track sales performance, and analyze regional dynamics. This enables companies to make data-driven decisions and refine their strategies.
+                        AgriHaven offers a platform for businesses to access detailed market insights, helping them stay ahead of trends, track sales performance, and analyze regional dynamics. This enables companies to make data-driven decisions and refine their strategies.
                         </p>
                         <p className="description-market">
-                        Businesses can generate custom reports, perform competitive analysis, and gain a comprehensive understanding of market conditions. Verdica makes it easier for organizations to connect with the right opportunities and optimize their operations for success.
+                        Businesses can generate custom reports, perform competitive analysis, and gain a comprehensive understanding of market conditions. AgriHaven makes it easier for organizations to connect with the right opportunities and optimize their operations for success.
                         </p>
-                        <p className="description-market">Verdica is dedicated to fostering a trusted environment where businesses can thrive by leveraging data. We aim to build a forward-thinking marketplace that promotes growth and success for all stakeholders.</p>
+                        <p className="description-market">AgriHaven is dedicated to fostering a trusted environment where businesses can thrive by leveraging data. We aim to build a forward-thinking marketplace that promotes growth and success for all stakeholders.</p>
                         </div>
                     </div>
 

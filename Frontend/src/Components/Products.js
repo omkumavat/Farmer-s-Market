@@ -14,27 +14,30 @@ const Products = () => {
     const [isAuthReady, setIsAuthReady] = useState(false);
 
     // Check if the `currentUser` is ready
-    useEffect(() => {
-        if (currentUser) {
-            setIsAuthReady(true);
-        }
-    }, [currentUser]);
+    // useEffect(() => {
+    //     if (currentUser) {
+    //         setIsAuthReady(true);
+    //     }
+    // }, [currentUser]);
 
     // Fetch products based on user ID
     useEffect(() => {
+        setIsAuthReady(true);
         const fetchProducts = async () => {
             try {
                 if (currentUser) {
                     const id = currentUser._id
-                    const response = await axios.get(`http://localhost:4000/server/fetchmyproducts/${id}`);
-                    console.log(response.data.data);
+                    const response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/fetchmyproducts/${id}`);
+                    // // console.log(response.data.data);
                     setMyProducts(response.data.data);
                 }
+        
             } catch (error) {
                 console.error("Error fetching products:", error);
             }
         };
         fetchProducts();
+        setIsAuthReady(false)
     }, [currentUser, setMyProducts]);
     const handleRemoveProduct = (id) => {
         window.location.reload();
@@ -42,19 +45,19 @@ const Products = () => {
       };
 
     // Show a loader until `currentUser` is ready
-    if (!isAuthReady) {
+    if (isAuthReady) {
         return <Loader />;
     }
 
     return (
         <>
-            <div className="mypro"> 
-                {/* <h2>My Products</h2> */}
+            <div className="mypro1"> 
+                <h2>My Products</h2>
                 {currentUser && currentUser.role === "dealer" && (
-                    <div className="product-list">
+                    <div className="product-list1">
                         {
                             myProducts.map((product, index) => (
-                                <div className="farm" key={index}>
+                                <div className="farm1" key={index}>
                                     <MyProductDealer {...product}
                                     onDelete={handleRemoveProduct} />
                                 </div>
@@ -63,10 +66,10 @@ const Products = () => {
                     </div>
                 )}
                 {currentUser && currentUser.role === "farmer" && (
-                    <div className="product-list">
+                    <div className="product-list1">
                         {
                             myProducts.map((product, index) => (
-                                <div className="farm" key={index}>
+                                <div className="farm1" key={index}>
                                     <MyProductFarmer {...product} />
                                 </div>
                             ))

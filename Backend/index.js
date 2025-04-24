@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 dotenv.config();
 connectDB();
 app.use(cors({
-  origin: 'http://localhost:3000',  // You can replace this with the actual frontend URL
+  origin: '*',  
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowing these methods
   allowedHeaders: ['Content-Type'], // Allow these headers
 }));
@@ -50,6 +50,8 @@ app.use('/server', orders);
 import seller from './Routes/seller.js';
 app.use('/server', seller);
 
+import Happy from './Routes/Happy.js'
+app.use('/server',Happy);
 
 app.use(fileuPload({
   useTempFiles: true,
@@ -62,17 +64,26 @@ cloudinaryConnect();
 
 app.use('/api/payment', payment);
 
+import dealersearch from './Routes/dealersearch.js';
+app.use('/api/products',dealersearch);
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, '..', 'src', 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
 app.get("/s", (req, res) => {
   res.render("Ticket", { name: "OM", que: "a", response: "a" });
 });
 
 
-app.listen(4000, () => {
-  console.log("app is listening on port 4000");
-});
+// app.listen(4000, () => {
+//    // console.log("app is listening on port 4000");
+// });
+
+
+export default app;

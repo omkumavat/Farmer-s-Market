@@ -4,10 +4,12 @@ import "../CSS/editprofile.css"; // Import your CSS for EditProfile
 import { useAuth } from "../Context/AuthContext";
 import axios from "axios";
 import Loader from "./Loader";
+import { useNavigate } from "react-router-dom";
 const EditProfile = () => {
-  const {currentUser}=useAuth();
+  const { currentUser, login, logout } = useAuth();
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthReady,setisAuthReady]=useState(true);
+  const [isAuthReady, setisAuthReady] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -16,21 +18,21 @@ const EditProfile = () => {
     confirmpassword: "",
     profilePicture: "",
   });
-  const [oldPassword, setOldPassword] = useState(""); // Store old password
+  const [oldPassword, setOldPassword] = useState("");
 
-  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/server/user/getuserbyid/${currentUser._id}`); // Replace with your API endpoint
+        const response = await axios.get(`https://farmer-s-market-theta.vercel.app/server/user/getuserbyid/${currentUser._id}`); // Replace with your API endpoint
         const data = response.data;
-        console.log(data);
+        // // console.log(data);
         setUserData({
           name: data.name || "",
           email: data.email || "",
           mobileno: data.mobileno || "",
-          password: "", // Don't populate for security
-          confirmpassword: "", // Don't populate for security
+          password: "", 
+          confirmpassword: "", 
           profilePicture: data.profilePicture || "",
         });
         setisAuthReady(false);
@@ -59,42 +61,61 @@ const EditProfile = () => {
     setIsModalOpen(true);
   };
 
-  const handlePasswordVerified = async () => {
-    // Perform update after password verification
+  const handlePasswordVerified = async (verifiedPassword) => {
+    setisAuthReady(true);
     try {
       const formData = new FormData();
       formData.append("name", userData.name);
       formData.append("email", userData.email);
       formData.append("mobileno", userData.mobileno);
-      formData.append("password", userData.password);
+  
+      // Add password if it is updated
+      if (userData.password) {
+        formData.append("password", userData.password);
+      }
+  
       if (userData.profilePicture) {
         formData.append("profilePicture", userData.profilePicture);
       }
-      console.log(formData.profilePicture);
+  
       const response = await axios.put(
-        `http://localhost:4000/server/user/updateprofile/${currentUser._id}`,
+        `https://farmer-s-market-theta.vercel.app/server/user/updateprofile/${currentUser._id}`,
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Axios sets this automatically, but you can specify explicitly
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      if (response.ok) {
-        alert("Profile updated successfully!");
+  
+      if (response.status === 200) {
+        const loginPassword = userData.password || verifiedPassword; // Use new password if updated, else old password
+        await new Promise((resolve) => setTimeout(resolve, 4000));
+        await logout();
+  
+        const res = await axios.post("https://farmer-s-market-theta.vercel.app/server/login", {
+          email: formData.get("email"),
+          password: loginPassword,
+        });
+  
+        const data = res.data;
+  
+        login(data.user);
+        navigate("/dashboard", { replace: true });
+        window.location.reload();
       } else {
-        const errorData = await response.json();
-        alert(`Failed to update profile: ${errorData.message}`);
+        alert(`Failed to update profile: ${response.data.message}`);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
+    } finally {
+      setisAuthReady(false);
+      setIsModalOpen(false);
     }
-
-    setIsModalOpen(false); // Close modal after verification
   };
-
-  if(isAuthReady){
-    return <Loader/>;
+  
+  if (isAuthReady) {
+    return <Loader />;
   }
 
   return (
@@ -109,6 +130,7 @@ const EditProfile = () => {
             name="name"
             value={userData.name}
             onChange={handleChange}
+            disabled={isAuthReady}
             required
           />
         </div>
@@ -121,6 +143,7 @@ const EditProfile = () => {
             name="email"
             value={userData.email}
             onChange={handleChange}
+            disabled={isAuthReady}
             required
           />
         </div>
@@ -133,6 +156,7 @@ const EditProfile = () => {
             name="mobileno"
             value={userData.mobileno}
             onChange={handleChange}
+            disabled={isAuthReady}
             required
           />
         </div>
@@ -145,6 +169,7 @@ const EditProfile = () => {
             name="password"
             value={userData.password}
             onChange={handleChange}
+            disabled={isAuthReady}
           />
         </div>
 
@@ -156,6 +181,7 @@ const EditProfile = () => {
             name="confirmpassword"
             value={userData.confirmpassword}
             onChange={handleChange}
+            disabled={isAuthReady}
           />
         </div>
 
@@ -166,14 +192,15 @@ const EditProfile = () => {
             id="profilePicture"
             name="profilePicture"
             onChange={handleProfilePictureChange}
+            disabled={isAuthReady}
           />
           {userData.profilePicture && (
             <div className="profile-pic-preview">
               <img
                 src={
-                  userData.profilePicture !== "string"
-                    ? userData.profilePicture
-                    : URL.createObjectURL(userData.profilePicture)
+                  typeof userData.profilePicture === "string"
+                    ? userData.profilePicture // Existing image URL
+                    : URL.createObjectURL(userData.profilePicture) // New file preview
                 }
                 alt="Profile Preview"
                 width="100"
@@ -182,6 +209,7 @@ const EditProfile = () => {
               />
             </div>
           )}
+
         </div>
 
         <button type="submit">Submit</button>
@@ -192,7 +220,8 @@ const EditProfile = () => {
         isOpen={isModalOpen}
         closeModal={() => setIsModalOpen(false)}
         userId={currentUser._id}
-        oldPassword={oldPassword} // Pass old password to modal
+        setOldPassword={setOldPassword}
+        oldPassword={oldPassword}
         onPasswordVerified={handlePasswordVerified}
       />
     </div>

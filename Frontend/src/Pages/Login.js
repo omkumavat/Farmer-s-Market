@@ -36,7 +36,7 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/server/login", {
+      const res = await axios.post("https://farmer-s-market-theta.vercel.app/server/login", {
         email,
         password,
       });
@@ -58,7 +58,7 @@ const Login = () => {
         navigate("/dash");
       } else {
         navigate("/");
-        toast.success("Login successful !"); 
+        // toast.success("Login successful !"); 
       }
     } catch (error) {
       setError("Login failed. Please try again.");
@@ -66,7 +66,7 @@ const Login = () => {
     }
 
     setisAuthReady(false);
-    toast.success("Login successful!"); 
+    // toast.success("Login successful!"); 
   };
 
   return (
@@ -133,7 +133,7 @@ const Login = () => {
       <Footer />
 
       {/* Toast Container */}
-      <ToastContainer autoClose={10000} /> {/* 10 seconds */}
+      <ToastContainer autoClose={90000} /> {/* 10 seconds */}
 
     </>
   );

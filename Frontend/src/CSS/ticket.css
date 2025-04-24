@@ -85,7 +85,7 @@
   
   .accordion-item {
     border-bottom: 1px solid #ddd;
-    /* height: 70px;/ */
+    /* height: 70px; */
   }
   
   .accordion-item:last-child {
@@ -135,6 +135,7 @@
   align-items: center;
   text-align: center;
   margin: 0 ;
+  height:100px;
   padding: 2rem 1rem;
 }
 
@@ -153,6 +154,7 @@
   line-height: 1.4;
   margin-top: 0; /* Ensure no gap above the heading */
   margin-bottom: 1.5rem; /* Adjust this to control gap between the two texts */
+  margin-left:100px;
   
 }
 

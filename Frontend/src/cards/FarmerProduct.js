@@ -5,8 +5,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 import Loader from "../Components/Loader";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
-const Product = ({ id }) => {
+
+const Product = ({ id,avgRating }) => {
   const { currentUser } = useAuth();
   const [rating, setRating] = useState(5);
   const [product, setProduct] = useState(null);
@@ -14,24 +18,36 @@ const Product = ({ id }) => {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [mainImage, setMainImage] = useState("");
   const [Desc, setDesc] = useState("");
+  const [TotalAmount,setTotalAmount]=useState(0);
+  const [amount,setAmount]=useState(0);
+ const [isAuthReady,setIsAuthReady]=useState(false);
+  const [quant,setQuant]=useState(0);
+  const [shippingAddress,setShippingAddress]=useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPresent,setIsPresent]=useState(false);
+   const [currentLocation, setCurrentLocation] = useState({ lat: null, lng: null });
 
-  const handleAddToCart = async() => {
-    console.log(currentUser);
-    console.log(product);
+
+  const handleAddToCart = async () => {
+    setIsAuthReady(true);
     try {
-      if(currentUser){
-        const response = await axios.post('http://localhost:4000/server/dealer/addtocart', {
-          userId:currentUser._id,
-          productId:product._id,
+      if (currentUser) {
+        const response = await axios.post('https://farmer-s-market-theta.vercel.app/server/dealer/addtocart', {
+          userId: currentUser._id,
+          productId: product._id,
         });
-        alert(response.data.message);
-      }else{
-        alert("Login First");
+        toast.success("Item added to WishList successfully");
+        setIsPresent(true); // Update the state here
+      } else {
+        toast.error("Please login first");
       }
     } catch (error) {
-      alert(error.response ? error.response.data.message : 'Error adding to cart');
+      toast.error(error.response ? error.response.data.message : 'Error adding to wishlist');
     }
-  }
+    setIsAuthReady(false);
+  };
+  
+
   function handleDates(dateStr) {
     const date = new Date(dateStr);
 
@@ -45,16 +61,21 @@ const Product = ({ id }) => {
   }
 
   useEffect(() => {
+    setIsAuthReady(true);
     const arr = [];
     const fetchProductDetails = async () => {
+      setRating(avgRating)
       try {
         const response = await axios.get(
-          `http://localhost:4000/server/farmer/getproductbyid/${id}`
+          `https://farmer-s-market-theta.vercel.app/server/farmer/getproductbyid/${id}`
         );
         const data = response.data;
 
         setProduct(data);
-        console.log(data);
+        setAmount(data.pricePerUnit);
+        setQuant(data.quantity);
+        setTotalAmount(data.quantity*(data.pricePerUnit));
+        // // console.log(data);
         setMainImage(data.images[0]);
 
         const cleanText = data.description
@@ -75,8 +96,45 @@ const Product = ({ id }) => {
       }
     };
 
+    const fetchWishStatus = async () => {
+      if (currentUser) {
+        try {
+          const response = await axios.get(
+            `https://farmer-s-market-theta.vercel.app/server/dealer/check-cart/${id}/${currentUser?._id}`
+          );
+          const data = response.data;
+          // // console.log(data);
+          setIsPresent(data.isPresent);
+        } catch (error) {
+          console.error("Error fetching wishlist status:", error);
+        }
+      }
+    };
+    
+    fetchWishStatus();
     fetchProductDetails();
-  }, [id, setMainImage, setProduct]);
+    setIsAuthReady(false);
+  }, []);
+
+
+const handleDeleteWish = async () => {
+  setIsAuthReady(true);
+  try {
+    const userId = currentUser._id;
+    const cartId = id;
+    const response = await axios.delete(
+      `https://farmer-s-market-theta.vercel.app/server/dealer/delete-wish/${userId}/${cartId}`
+    );
+    toast.success("Item removed from WishList successfully");
+    setIsPresent(false); // Update the state here
+  } catch (error) {
+    console.error('Error removing item from wishlist:', error);
+    toast.error('Error removing item from wishlist');
+  }
+  setIsAuthReady(false);
+};
+
+
 
   useEffect(() => {
     if (product) {
@@ -104,7 +162,120 @@ const Product = ({ id }) => {
     setRating(newRating);
   };
 
+  const handlePayment = async () => {
+    try {
+      const currentDate=new Date();
+      // // console.log(data);
+      if (currentUser) {
+         const data = {
+        pname:product.subCategory,
+        pprice:amount,
+        pdate:currentDate,
+        pquantity:product.quantity,
+        subject: "Your Order Was Successfuly Placed",
+        caseType: 3,
+        email: currentUser.email,
+        name:currentUser.name,
+      }
+        const response = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/create-order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ amount : TotalAmount}),
+        });
+
+        const order = await response.json();
+
+        const options = {
+          key: 'rzp_test_nwUngHToxCY8p6',
+          amount: order.amount * 100,
+          currency: order.currency,
+          name: 'AgriHaven',
+          description: 'Payment for your product',
+          order_id: order.id,
+          handler: async function (response) {
+            try {
+              const verificationResponse = await fetch('https://farmer-s-market-theta.vercel.app/api/payment/verify-payment', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  razorpay_order_id: response.razorpay_order_id,
+                  razorpay_payment_id: response.razorpay_payment_id,
+                  razorpay_signature: response.razorpay_signature,
+                  userId: currentUser._id,
+                  productId: product._id,
+                  amount,
+                }),
+              });
+
+              const result = await verificationResponse.json();
+
+              if (verificationResponse.ok) {
+                const createOrderResponse = await fetch('https://farmer-s-market-theta.vercel.app/server/orders/create-order', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    productId: product._id,
+                    buyer: currentUser._id,
+                    sellerId:product.userId.sellerId,
+                    quantity: quant,
+                    price: amount,
+                    shippingAddress: shippingAddress,
+                  }),
+                });
+                
+                const orderData = await createOrderResponse.json();
+                const responses = await axios.post("https://farmer-s-market-theta.vercel.app/server/sendmail", data);
+
+                if (createOrderResponse.ok ) {
+                  toast.success('Payment successful and order created!');
+                } else {
+                  toast.error('Error creating order: ' + orderData.message);
+                }
+              } else {
+                toast.error(result.message || 'Error saving payment');
+              }
+            } catch (error) {
+              console.error('Error during payment verification:', error);
+              toast.error('Error during payment verification');
+            }
+          },
+          prefill: {
+            name: 'Customer Name',
+            email: 'customer@example.com',
+            contact: '9876543210',
+          },
+          theme: {
+            color: '#F37254',
+          },
+        };
+
+        const razorpay = new window.Razorpay(options);
+        razorpay.open();
+      } else {
+        toast.error('Please login first');
+      }
+    } catch (error) {
+      console.error('Error during payment:', error);
+      toast.error('Error while initiating payment');
+    }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
+    <> <ToastContainer />
     <div className="product-container">
       <div className="image-section">
         <div className="main-image">
@@ -123,6 +294,33 @@ const Product = ({ id }) => {
           ))}
         </div>
       </div>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Select Shipping Address</h2>
+            <button onClick={openModal}>Use Current Location</button>
+            <input
+              type="text"
+              placeholder="Enter Shipping Address"
+              value={shippingAddress}
+              onChange={(e) => setShippingAddress(e.target.value)}
+            />
+            <LoadScript googleMapsApiKey="AIzaSyD0w1lvfJkEcNqp-3gJ-9s8GSLr8GrhzoQ">
+              <GoogleMap
+                center={currentLocation}
+                zoom={14}
+                mapContainerStyle={{ width: "100%", height: "400px" }}
+              >
+                {currentLocation.lat && currentLocation.lng && (
+                  <Marker position={currentLocation} />
+                )}
+              </GoogleMap>
+            </LoadScript>
+            <button onClick={handlePayment}>Pay Now</button>
+            <button onClick={closeModal}>Close</button>
+          </div>
+        </div>
+      )}
 
       <div className="product-details">
         <h2>{product.productName}</h2>
@@ -133,7 +331,7 @@ const Product = ({ id }) => {
             <span
               key={star}
               className={`star ${star <= rating ? "selected" : ""}`}
-              onClick={() => handleRatingClick(star)}
+              onClick={() => handleRatingClick}
             >
               ★
             </span>
@@ -144,8 +342,11 @@ const Product = ({ id }) => {
         </div>
 
         <div className="price-section">
+          <div className="price-dis">
           <span className="current-price">₹{product.pricePerUnit}/{product.unit}</span>
-          <span className="original-price">₹{product.pricePerUnit * 1.1}</span><br />
+          <span className="original-price">₹{product.pricePerUnit * 1.1}</span>
+          <div className="discountbadge">10% OFF</div>
+          </div>
           <span className="discount">Save : ₹{(product.pricePerUnit * 0.1).toFixed(2)}</span>
           <br></br>
           <span className="current-price">Total Price : ₹{product.pricePerUnit*product.quantity}</span>
@@ -169,8 +370,14 @@ const Product = ({ id }) => {
 
         {/* Buttons */}
         <div className="button-section">
-          <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
-          <button className="buy-now">Buy Now</button>
+          {
+            currentUser && isPresent ? (
+              <button className="add-to-cart" onClick={handleDeleteWish}>Remove from WishList</button>
+            ) : (
+              <button className="add-to-cart" onClick={handleAddToCart}>Add to WishList</button>
+            )
+          }
+          <button className="buy-now" onClick={openModal}>Buy Now</button>
         </div>
       </div>
 
@@ -183,6 +390,7 @@ const Product = ({ id }) => {
         <img src={pmethodImage} alt="Payment Method" />
       </div>
     </div>
+    </>
   );
 };
 

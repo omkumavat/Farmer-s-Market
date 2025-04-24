@@ -1,15 +1,4 @@
-/* MapComponent.css */
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-top: 20px;
-    color: #2C3E50;
-  }
   
   .map-container {
     display: flex;

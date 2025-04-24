@@ -5,21 +5,25 @@ import NavBar from "../Components/NavBar";
 import "../ServicesCSS/dealer.css";
 import axios from "axios";
 import Loader from "../Components/Loader";
+import { useNavigate } from "react-router-dom";
+import {SearchBar} from "../Components/SearchBar";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the default styles
 
 const Dealer = () => {
   const [displayProducts, setDisplayProducts] = useState([]);
 
   const fetchLimitedProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/server/dealer/getallproducts/all?limit=5");
+      const response = await axios.get("https://farmer-s-market-theta.vercel.app/server/dealer/getallproducts");
       if (!response) {
         throw new Error("Failed to fetch products");
       }
       const data =  response.data; 
 
-      console.log(response.data.data);
+      // // console.log(response.data.data);
       setDisplayProducts(response.data.data);
-      console.log(displayProducts);
+      // // console.log(displayProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -28,7 +32,7 @@ const Dealer = () => {
   // UseEffect to fetch the products when the component mounts
   useEffect(() => {
     fetchLimitedProducts(); // Only call this once on component mount
-  }, [displayProducts]); // Empty dependency array to ensure it runs once on mount
+  }, []); // Empty dependency array to ensure it runs once on mount
 
   const categories = [
     { name: "Offers", img: "/Images/dealer11.jpg", url: "offers" },
@@ -88,21 +92,40 @@ const Dealer = () => {
       description: "Includes tools like sprinklers, drip systems, and pumps, designed to deliver water to crops efficiently.",
     },
   ];
+ 
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      toast.error("Please enter a search term!");
+      return;
+    }
+    // Navigate to the Search Results page with the query as a parameter
+    navigate(`/dealersearch?q=${encodeURIComponent(searchTerm)}`);
+  };
+
   
   return (
     <>
+    <ToastContainer />
       {
-        displayProducts.length>0 ? (
+        displayProducts.length>0 || displayProducts.length === 0 ? (
           <>
           <NavBar />
       <div>
         <div className="mc">
           <div className="cs">
             <h2 className="head1">Dealer Product</h2>
-            <p className="head2">PROVIDE BY VERDICA</p>
+            <p className="head2">PROVIDE BY AgriHaven</p>
           </div>
         </div>
         <div className="categories-container">
+          
+        <div className="sbar">
+        <SearchBar/>
+        </div>
+
           <h2 className="categories-heading">Categories</h2>
           <div className="styleline"></div>
           <div className="categories-grid">
@@ -150,7 +173,7 @@ const Dealer = () => {
           <div className="serv">
             <h2 className="services-title">Dealer Products</h2>
             <p className="services-subtitle">
-            Verdica empowers farmer to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
+            AgriHaven empowers farmer to connect and sell their products directly, ensuring fair prices through a global community-driven platform.
             </p>
           </div>
           <div className="services-grid">
@@ -168,16 +191,16 @@ const Dealer = () => {
           </div>
         </div>
         <div className="content-market">
-    <p className="sub-heading-market">AT VERDICA</p>
+    <p className="sub-heading-market">AT AgriHaven</p>
     <h1 className="main-heading-market">
       Connecting Dealers and Farmers<br /> <span>For Agricultural Excellence</span>
     </h1>
     <div className="descc-market">
         <p className="description-market">
-        Verdica bridges the gap between agricultural dealers and farmers, providing a platform where dealers can showcase fertilizers, equipment, seeds, and other essential farming products. This ensures farmers have access to high-quality supplies for their agricultural needs.
+        AgriHaven bridges the gap between agricultural dealers and farmers, providing a platform where dealers can showcase fertilizers, equipment, seeds, and other essential farming products. This ensures farmers have access to high-quality supplies for their agricultural needs.
         </p>
         <p className="description-market">
-        Through Verdica, dealers can reach a vast network of farmers, promote their products, and gain insights into farmers' specific requirements. Farmers, in turn, can explore a diverse range of trusted products, compare prices, and make informed purchasing decisions.
+        Through AgriHaven, dealers can reach a vast network of farmers, promote their products, and gain insights into farmers' specific requirements. Farmers, in turn, can explore a diverse range of trusted products, compare prices, and make informed purchasing decisions.
         </p>
         <p className="description-market">
         Our mission is to build a transparent and efficient marketplace that empowers farmers with reliable resources while enabling dealers to expand their reach and grow their businesses sustainably.

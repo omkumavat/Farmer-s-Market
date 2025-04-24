@@ -9,9 +9,9 @@ import { uploadToCloudinary } from '../Database/Cloudinary.js';
 export const signup = async (req, res) => {
     try {
         // get data
-        console.log("alll ", req.body);
+        // // // console.log("alll ", req.body);
         const { name, email, mobileno, password, confirmpassword, role } = req.body.userData;
-        console.log(name);
+        // // // console.log(name);
         // check if user already exist 
         const existingUser = await User.findOne({ email });
 
@@ -35,26 +35,26 @@ export const signup = async (req, res) => {
         }
 
         
-        let user = await User.create({
+        let users = await User.create({
             name, email, mobileno, password: hashedPassword, confirmpassword: hashedPassword, role
         });
 
         const newSeller = new Seller({
             name: name,
             email: email,
-            userId: user._id 
+            userId: users._id 
         });
 
         await newSeller.save();
-        console.log(newSeller._id);
+        // // // console.log(newSeller._id);
 
-        user.sellerId=newSeller._id;
-        await user.save();
+        users.sellerId=newSeller._id;
+        await users.save();
 
         return res.status(200).json({
             success: true,
             message: "User Created Successfully",
-            data: user
+            data: users
         });
     }
     catch (err) {
@@ -150,7 +150,7 @@ export const getUserById = async (req, res) => {
 };
 
 export const verifyPassword = async (req, res) => {
-    console.log(req.body)
+    // // // console.log(req.body)
     const { userId, oldPassword } = req.body;
 
     try {
@@ -172,9 +172,9 @@ export const verifyPassword = async (req, res) => {
         }
 
         const isMatch = await bcrypt.compare(oldPassword, user.password);
-        console.log(user.password)
-        console.log(oldPassword)
-        console.log(isMatch)
+        // // // console.log(user.password)
+        // // // console.log(oldPassword)
+        // // // console.log(isMatch)
         if (isMatch) {
             return res.status(200).json({ success: true });
         } else {
@@ -188,8 +188,8 @@ export const verifyPassword = async (req, res) => {
 
 
 export const updateProfile = async (req, res) => {
-    console.log(req.body)
-    console.log(req.params);
+    // // // console.log(req.body)
+    // // // console.log(req.params);
     const { id } = req.params; // Assuming you're using userId from URL params
     const { name, email, mobileno, password } = req.body; // Form data (excluding file upload)
     try {
@@ -225,7 +225,7 @@ export const updateProfile = async (req, res) => {
             const height = 500; // Resize height if needed
             const result = await uploadToCloudinary(fileBuffer, folder, quality, width, height);
             user.profilePicture = result.secure_url;
-            console.log(result.secure_url)
+            // // // console.log(result.secure_url)
         }
 
         // Save the updated user data
@@ -244,3 +244,4 @@ export const updateProfile = async (req, res) => {
         });
     }
 };
+

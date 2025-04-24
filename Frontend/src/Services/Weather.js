@@ -18,7 +18,7 @@ const Weather = () => {
       try {
         const apiKey = '1652c40573d542a297f85139241811'; // Replace with your API key
         const response = await axios.get(
-          `http://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`
+          `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3`
         );
 
         setWeather(response.data);
@@ -35,7 +35,7 @@ const Weather = () => {
         setRainAlerts(alerts);
       } catch (err) {
         setWeather(null);
-        setError('Could not fetch weather data');
+        setError('Enter City Name to fetch');
         setRainAlerts([]);
       }
     };
@@ -107,7 +107,7 @@ const Weather = () => {
         <div className="mc">
           <div className="cs">
             <h2 className="head1">Weather Analysis</h2>
-            <p className="head2">PROVIDED BY VERDICA</p>
+            <p className="head2">PROVIDED BY AgriHaven</p>
           </div>
         </div>
 
@@ -169,7 +169,7 @@ const Weather = () => {
           <div className="serv">
             <h2 className="services-title">Weather Updates</h2>
             <p className="services-subtitle">
-            VERDICA empowers users to access real-time weather updates and forecasts, ensuring accurate and timely information through a global, community-driven platform.
+            AgriHaven empowers users to access real-time weather updates and forecasts, ensuring accurate and timely information through a global, community-driven platform.
             </p>
           </div>
           <div className="services-grid">
@@ -186,23 +186,23 @@ const Weather = () => {
         <div className="container-weather">
           {/* Top Section */}
           <div className="content-weather">
-            <p className="sub-heading-weather">AT VERDICA</p>
+            <p className="sub-heading-weather">AT AgriHaven</p>
             <h1 className="main-heading-weather">
               For Accurate Weather Insights<br /> <span>Every Day</span>
             </h1>
             <div className='desccc-weather'>
             <p className="description-weather">
-            At VERDICA, we are dedicated to bridging the gap between meteorologists and the public, providing seamless access to accurate and timely weather information.
+            At AgriHaven, we are dedicated to bridging the gap between meteorologists and the public, providing seamless access to accurate and timely weather information.
             </p>
             <p className='description-weather'> Our platform empowers users to stay informed with reliable forecasts, ensuring safety and preparedness in any weather condition.</p>
             <p className="description-weather">
-            With a focus on innovation and accuracy, VERDICA offers real-time data, advanced tracking tools, and weather insights. From rainfall measurements to storm predictions,
+            With a focus on innovation and accuracy, AgriHaven offers real-time data, advanced tracking tools, and weather insights. From rainfall measurements to storm predictions,
             </p>
             <p className="description-weather">
             we aim to deliver comprehensive weather updates that keep you ahead of the forecast.
             </p>
             <p className="description-weather">
-            VERDICA is your trusted partner, helping individuals and communities navigate the weather with confidence while promoting preparedness and resilience.
+            AgriHaven is your trusted partner, helping individuals and communities navigate the weather with confidence while promoting preparedness and resilience.
             </p>
             </div>
           </div>

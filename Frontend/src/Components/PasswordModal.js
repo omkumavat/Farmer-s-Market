@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../CSS/PasswordModal.css"; // Assuming the CSS file is named Modal.css
 
-const PasswordModal = ({ isOpen, closeModal, userId, onPasswordVerified }) => {
-  const [oldPassword, setOldPassword] = useState("");
+const PasswordModal = ({ isOpen, closeModal, setOldPassword,oldPassword, userId, onPasswordVerified }) => {
+  // const [oldPassword, setOldPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -15,11 +15,15 @@ const PasswordModal = ({ isOpen, closeModal, userId, onPasswordVerified }) => {
     e.preventDefault();
     setLoading(true);
     setError(""); // Reset error message
-
+  
     try {
-      const response = await axios.post(`http://localhost:4000/server/user/verifypassword`, { userId, oldPassword });
+      const response = await axios.post(`https://farmer-s-market-theta.vercel.app/server/user/verifypassword`, {
+        userId,
+        oldPassword,
+      });
+  
       if (response.data.success) {
-        onPasswordVerified();
+        onPasswordVerified(oldPassword); // Pass oldPassword to the parent callback
         closeModal();
       } else {
         setError("Incorrect password. Please try again.");
@@ -30,6 +34,7 @@ const PasswordModal = ({ isOpen, closeModal, userId, onPasswordVerified }) => {
       setLoading(false);
     }
   };
+  
 
   if (!isOpen) return null;
 
@@ -50,7 +55,7 @@ const PasswordModal = ({ isOpen, closeModal, userId, onPasswordVerified }) => {
             />
           </div>
           {error && <p className="error">Password does not match. Try again later</p>}
-          <button type="submit" disabled={loading}>
+          <button className="close-button" type="submit" disabled={loading}>
             {loading ? "Verifying..." : "Submit"}
           </button>
         </form>

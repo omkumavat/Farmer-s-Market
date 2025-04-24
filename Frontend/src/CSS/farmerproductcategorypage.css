@@ -1,8 +1,17 @@
-.product-list{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+
+
+.categoryproducts h1{
+    margin-top: 130px;
 }
 
-.product-display-page{
-    margin-top: 150px;
+.productgrid{
+    margin-left: 57px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 5 cards per row */
+    gap: 20px;
+    justify-content: center;
+}
+
+.similar-products h2{
+    margin-top: 40px;
 }

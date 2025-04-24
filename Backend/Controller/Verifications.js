@@ -12,7 +12,7 @@ export const getVerifications = async (req, res) => {
 
 export const getVerificationStatus = async (req, res) => {
     const  userId  = req.params.id;
-    // console.log(userId);
+    // // // console.log(userId);
 
     try {
         const verification = await Verification.findOne({ userId });
@@ -32,7 +32,7 @@ export const getVerificationStatus = async (req, res) => {
 
 export const approveVerifiedUser = async (req, res) => {
     const  userId  = req.params.id;
-    console.log(userId);
+    // // console.log(userId);
 
     try {
         
@@ -81,7 +81,7 @@ export const getVerificationbyId = async (req, res) => {
 
 export const postVerifications = async (req, res) => {
     try {
-        console.log(req.body);
+        // // console.log(req.body);
         const { name, email, mobileno, location, userId } = req.body;
 
 

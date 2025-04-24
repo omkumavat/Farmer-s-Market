@@ -1,0 +1,80 @@
+
+.mycart
+{
+    margin-top: 30px;
+    margin-right: -50px;
+}
+/* Product list container */
+.productlist {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    flex-wrap: wrap;
+    justify-content: center; /* Centers product cards */
+    gap: 20px;
+    /* width: 100%; */
+    width: 800px;
+    /* height: 1000px; */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.productCard {
+    width: 250px;
+    height: 1000px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+
+    box-sizing: border-box;
+}
+
+
+/* Error message styles */
+.errorMessage {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Cart heading */
+.hh {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    /* margin-bottom: -100px;
+    margin-left: -1500px;
+    margin-top: 200px; */
+    margin-top: 300px;
+    margin-right: -100px;
+}
+
+/* Make the layout responsive */
+@media (max-width: 768px) {
+    .myCartContainer {
+        margin-left: 20px; /* Reduce margin for smaller screens */
+        padding: 10px;
+    }
+
+    .productlist {
+        padding: 10px;
+    }
+
+    .productCard {
+        width: 100%;
+    }
+}
+
+.orders{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin-left: 240px;
+}
+.empty-order {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}

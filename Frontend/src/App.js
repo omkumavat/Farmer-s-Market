@@ -29,6 +29,10 @@ import Soil from "./Services/Soil";
 import EditProfile from './Components/EditProfile';
 import Pest from "./Services/pest"
 import Sales from './Components/Sales'
+import Disease from './Services/disease'
+import Notfound from './Pages/Notfound'
+import Dealersearch from './Components/DealerSearch';
+import Farmersearch from './Components/Farmersearch'
 
 function App() {
   const { currentUser } = useAuth();
@@ -46,7 +50,7 @@ function App() {
   }
   // localStorage.clear();
   const isAdmin = currentUser && currentUser?.role === "admin";
-  console.log(isAdmin);
+  // // console.log(isAdmin);
 
   return (
     <div>
@@ -83,15 +87,18 @@ function App() {
               <Route path="/dealer/category/:category" element={<ProductCategoryPage />} />
               <Route path="/farmer/category/:category" element={<FarmerProductCategoryPage />} />
               <Route path="/dealer/:id/product" element={<ProductPage />} />
+              <Route path="/farmer/:id/product" element={<ProductPage />} />
               <Route path="/farmer" element={<Farmer />} />
               <Route path="/market" element={<Market />} />
               <Route path="/dashboard" element={<Sidebar />} />
-              <Route path="*" element={<Navigate to="/login" />} />
               <Route path="/payment" element={<PaymentButton  />} />
               <Route path="/ticket" element={<TicketPage  />} />
               <Route path="/soil" element={<Soil  />} />
               <Route path="/pest" element={<Pest  />} />
-              {/* <Route path="/edit-profile" element={< />} /> */}
+              <Route path="/disease" element={<Disease  />} />
+              <Route path="*" element={<Notfound />} />
+              <Route path="/dealersearch" element={<Dealersearch  />} />
+              <Route path="/farmersearch" element={<Farmersearch  />} />
             </>
           )}
         </Routes>

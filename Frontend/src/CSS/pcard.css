@@ -8,6 +8,10 @@
     margin: 10px;
   }
 
+  .deletewish button{
+    background-color: blue;
+  }
+
   .product-list{
     margin-top: 200px;
     margin-left: -1240px;
@@ -15,9 +19,7 @@
     gap: 20px;
     grid-template-columns: repeat(6, 1fr);
 }
-.farm{
-  /* margin-top: 200px; */
-}
+
 .product-display-page{
     margin-top: 150px;
 }
@@ -99,3 +101,6 @@
     color: red;
   }
   
+  .deletewish{
+    color: blue;
+  }

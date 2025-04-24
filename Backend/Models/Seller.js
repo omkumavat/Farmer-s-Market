@@ -5,7 +5,7 @@ const sellerSchema = new mongoose.Schema({
     email:{type:String,unique:true},
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User", // Reference to the User model (Farmer)
+        ref: "User", 
         required: true,
       },
     totalSales: { type: Number, default: 0 }, // Total sales amount
@@ -13,6 +13,11 @@ const sellerSchema = new mongoose.Schema({
     productsSold: [
         {
             productId: { type: mongoose.Schema.Types.ObjectId, ref: 'dealerProduct' },
+            quantity: Number,
+            revenue: Number,
+        },
+        {
+            productId: { type: mongoose.Schema.Types.ObjectId, ref: 'FarmerProduct' },
             quantity: Number,
             revenue: Number,
         }

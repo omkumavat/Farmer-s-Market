@@ -1,16 +1,19 @@
 import mongoose from "mongoose";
+import FarmerProduct from "./farmerProducts.js";
+import dealerProduct from "./dealerProducts.js";
 
 const orderSchema = new mongoose.Schema({
   productType: {
     type: String,
     required: true,
-    enum: ["DealerProduct", "FarmerProduct"], // To differentiate between product types
+    enum: ["dealerProduct", "FarmerProduct"], 
   },
   productId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-    ref: "dealerProduct", 
+    refPath:"productType"
   },
+
   buyer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -18,7 +21,7 @@ const orderSchema = new mongoose.Schema({
   },
   seller: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the seller (dealer for dealer products, farmer for farmer products)
+    ref: "User", 
     required: true,
   },
   quantity: {
@@ -44,7 +47,7 @@ const orderSchema = new mongoose.Schema({
     default: Date.now,
   },
   deliveryDate: {
-    type: Date, // Optional delivery date
+    type: Date, 
   },
   shippingAddress: {
     type: String,

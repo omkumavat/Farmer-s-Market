@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../AdminDashboardCSS/dashboard.css';
 import { useAuth } from '../Context/AuthContext';
-import NavBar from '../Components/NavBar';
+import NavBar1 from './dashNav';
 import Verifications from './Verifications';
 import FeedBacks from './FeedBacks';
 import Sales from './Sales';
@@ -11,9 +11,8 @@ import UserAnalytics from './UserAnalytics';
 function Dashboard() {
   const { currentUser } = useAuth();
   const [isAuthReady, setIsAuthReady] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedPage, setSelectedPage] = useState('Home');
-  console.log(currentUser);
+  // // console.log(currentUser);
   
   useEffect(() => {
     if (currentUser !== null) {
@@ -25,28 +24,19 @@ function Dashboard() {
     return <div>Loading...</div>; 
   }
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   const handlePageChange = (page) => {
     setSelectedPage(page);
   };
 
   return (
     <>
-      <NavBar />
+      <NavBar1 />
       <div className="appcontainer">
-        <div className={`sidebars ${isSidebarOpen ? 'open' : 'closed'}`}>
-          <button className="toggle-btn" onClick={toggleSidebar}>
-            {isSidebarOpen ? '←' : '→'}
-          </button>
+        <div className="sidebars open"> {/* Sidebar is always open now */}
           <ul className="sidebarmenu">
             <li onClick={() => handlePageChange('tk')}>Tickets</li>
             <li onClick={() => handlePageChange('ver')}>Verifications</li>
             <li onClick={() => handlePageChange('ua')}>User Analytics</li>
-            <li onClick={() => handlePageChange('sales')}>Sales</li>
-            <li onClick={() => handlePageChange('fb')}>FeedBacks</li>
           </ul>
         </div>
 
@@ -54,8 +44,6 @@ function Dashboard() {
           {selectedPage === 'tk' && <Tickets />}
           {selectedPage === 'ver' && <Verifications />}
           {selectedPage === 'ua' && <UserAnalytics />}
-          {selectedPage === 'sales' && <Sales />}
-          {selectedPage === 'fb' && <FeedBacks />}
         </div>
       </div>
     </>

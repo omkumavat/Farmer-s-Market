@@ -2,47 +2,68 @@ import React, { useState, useEffect } from "react";
 import ProductForm from "./ProductForm";
 import { useAuth } from "../Context/AuthContext";
 import VerificationForm from "./VerificationForm";
-import axios from "axios"; // Or your preferred HTTP library
+import axios from "axios";
 import FarmerProductForm from "./FarmerProductForm";
 import Loader from "./Loader";
 
 const AddProduct = () => {
     const { currentUser } = useAuth();
-    const [isVerificationSubmitted, setIsVerificationSubmitted] = useState(false);
-    const [isStatus, isSetStatus] = useState(false);
+    const [isVerified, setIsVerified] = useState("");
+    const [isSubmit, setIsSubmit] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [Component, setComponent] = useState(null); // Dynamic Component
 
     useEffect(() => {
+        if (!currentUser || !currentUser._id) return;
+
         const fetchStatus = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/server/dealer/getverificationstatus/${currentUser._id}`);
-                setIsVerificationSubmitted(response.data.isSubmitted);
-                isSetStatus(response.data.status);
+                const response = await axios.get(
+                    `https://farmer-s-market-theta.vercel.app/server/dealer/getverificationstatus/${currentUser._id}`
+                );
+                setIsVerified(response.data.status);
+                setIsSubmit(response.data.isSubmitted);
+                // // console.log(response.data);
             } catch (error) {
                 console.error("Failed to fetch verification status:", error);
             } finally {
                 setIsLoading(false);
             }
         };
+
         fetchStatus();
-    }, [currentUser._id]);
+    }, [currentUser,isVerified,isSubmit]);
 
+    useEffect(() => {
+        if (!currentUser || isLoading) return;
 
-    return (
-        <>
-            {isLoading && <div><Loader/></div>}
-            {!isLoading && (
-                <>
-                    {currentUser.role !== "other" && currentUser.role==="dealer" && currentUser.verified && <ProductForm />}
-                    {currentUser.role !== "other" && currentUser.role==="farmer" && <FarmerProductForm />}
-                    {!currentUser.verified && currentUser.role !== "other" &&currentUser.role==="dealer" && !isVerificationSubmitted && (
-                        <VerificationForm  />
-                    )}
-                    {isVerificationSubmitted && isStatus === "Pending" &&  <div>Status: Pending</div>}
-                </>
-            )}
-        </>
-    );
+        const determineComponent = () => {
+            switch (currentUser.role) {
+                case "dealer":
+                    if (isVerified === 'Pending' && isSubmit) {
+                        return <div>Verification Pending</div>;
+                    }
+                    if (isVerified === "Approved" && isSubmit) {
+                        return <ProductForm />;
+                    }
+                    return <VerificationForm />;
+
+                case "farmer":
+                    return <FarmerProductForm />;
+
+                default:
+                    return <div>Unauthorized Access</div>;
+            }
+        };
+
+        setComponent(determineComponent());
+    }, [currentUser,isLoading,isSubmit,isVerified]);
+
+    if (isLoading) {
+        return <Loader />;
+    }
+
+    return <>{Component}</>;
 };
 
 export default AddProduct;
