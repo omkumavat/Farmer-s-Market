@@ -101,11 +101,7 @@
     color: green;
     background-color: rgb(144, 214, 109);
     min-width: 200px;
-<<<<<<< HEAD
     min-height: 190px;
-=======
-    min-height: 100%;
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
     border-radius: 8px;
     z-index: 1;
     border: 1px solid gray;

@@ -44,11 +44,7 @@
     position: absolute;
     top: 0;
     left: 0%; 
-<<<<<<< HEAD
     width: 1500px;
-=======
-    width: 1263px;
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
     height: 100%;
     background-size: cover;
     background-position: center;
@@ -138,12 +134,7 @@
   background-color: #f9fafc;
   margin-top: 150px;
   margin-bottom: -40px;
-<<<<<<< HEAD
   width: 140px;
-=======
-  width: 1100px;
-  margin-left: 45px;
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
 }
 
 /* Individual Card */
@@ -194,13 +185,8 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-<<<<<<< HEAD
   width: 1100px;
   margin-left: 150px;
-=======
-  width: 1000px;
-  margin-left: 90px;
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
   margin-right: 100px;
   margin-top: 80px;
   gap: 30px;
@@ -285,13 +271,8 @@
 
 .maincon {
   display: flex;
-<<<<<<< HEAD
   height: 900px;
   width: 1100px;
-=======
-  height: 700px;
-  width: 1263px;
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
   margin-top: 100px;
   background-image: url('../Images/forlogin.jpg');
   background-size: cover;
@@ -376,11 +357,7 @@
 /* CardLayout.css*/
 .card-layout {
   position: relative;
-<<<<<<< HEAD
   width: 1100px;
-=======
-  width: 1263px;
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
   height: 100vh;
   background-image: url("../Images/10.jpg");
   background-size: cover;
@@ -455,7 +432,6 @@
   line-height: 1.5;
   color: white;
 }
-<<<<<<< HEAD
 
 /* General Section Styling */
 .projects-section {
@@ -543,8 +519,6 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-=======
->>>>>>> 38e407aa3131a9eb87a7c78fee78262c6e6a79a0
 .pr-text{
   margin-top: 80px;
   height: 100px;
