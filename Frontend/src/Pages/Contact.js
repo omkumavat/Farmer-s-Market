@@ -190,13 +190,19 @@ const ContactUs = () => {
             </div>
 
         {/* Google Map */}
-        <div className="map-container">
-          <h3>Our Office Location</h3>
-          {/* Embed Google Map */}
-            <LoadScript googleMapsApiKey={"AIzaSyD0w1lvfJkEcNqp-3gJ-9s8GSLr8GrhzoQ"}>
-            <GoogleMap mapContainerStyle={mapStyles} center={defaultCenter} zoom={13} />
-            </LoadScript>
-        </div>
+<div className="map-container">
+  <h3>Our Office Location</h3>
+  {/* Embedded Google Map using iframe */}
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1137.2718012345345!2d73.84819918702547!3d18.459061138998926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2eac9e41c7edf%3A0x934e2c88eccb2cc!2sRadheshyam%20Boys%20Hostel!5e0!3m2!1sen!2sin!4v1746254308715!5m2!1sen!2sin"
+    width="100%"
+    height="400"
+    style={{ border: 0 }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
       </div>
       <Footer />
        <ToastContainer /> 
