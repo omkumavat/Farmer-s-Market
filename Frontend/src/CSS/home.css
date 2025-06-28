@@ -2,7 +2,7 @@
 .homepage-slider {
   margin-top: 100px;
     position: relative;
-    top: 100px; /* Ensures content outside the slider is hidden */
+    top: 100px;
     width: 100%;
     height: 450px;
     background-image: url('../Images/forlogin2.jpg');
