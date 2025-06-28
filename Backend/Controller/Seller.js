@@ -40,7 +40,7 @@ export const getSellerProductSales = async (req, res) => {
         },
   
         // Optionally sort by total revenue in descending order
-        { $sort: { totalRevenue: -1 } },
+        { $sort: { totalRevenue: 1 } },
       ]);
   
       // Send the response

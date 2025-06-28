@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/x-charts": "^7.23.6",
+    "nodemailer": "^6.9.16"
+  }
+}

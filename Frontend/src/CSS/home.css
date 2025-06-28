@@ -2,14 +2,14 @@
 .homepage-slider {
   margin-top: 100px;
     position: relative;
-    top: 100px; /* Ensures content outside the slider is hidden */
+    top: 100px;
     width: 100%;
     height: 450px;
     background-image: url('../Images/forlogin2.jpg');
   }
 
   .homepage{
-    width: 100vh;
+    width: 100px;
     position: relative;
     bottom: 100px;
   }
@@ -433,6 +433,93 @@
   line-height: 1.5;
   color: white;
 }
+
+/* General Section Styling */
+.projects-section {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #fff;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+/* Grid Layout for Projects
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  justify-items: center;
+  width: 1200px;
+  margin-left: 180px;
+  margin-right: 90px;
+} */
+
+
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  width: 350px;
+  /* max-width: 300px; */
+  height: 350px;
+  border-radius: 1px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 35px;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+/* Overlay Styling */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 165, 0, 0.7); /* Transparent orange */
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translate(-100%, -100%); /* Start from top-left corner */
+}
+
+.project-card:hover .overlay {
+  opacity: 1;
+  transform: translate(0, 0); /* Fill the entire image */
+}
+
+.project-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .pr-text{
   margin-top: 80px;
   height: 100px;
