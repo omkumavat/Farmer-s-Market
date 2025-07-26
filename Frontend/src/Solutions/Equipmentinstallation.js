@@ -64,7 +64,7 @@ function Solutions1() {
             </div>
           </div>
 
-          {/* Main Content */}
+      
           <div className="mainsections">
             <h2>The Agricultural Engineering Provided by AgriHaven</h2>
             <div className="equip">

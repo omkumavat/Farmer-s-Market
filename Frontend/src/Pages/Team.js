@@ -9,7 +9,6 @@ const Team = () => {
   return (
     <>
       <NavBar />
-      {/* Team Header Section */}
       <div className="team-header">
         <h2>Meet Our Team</h2>
         <p>GET TO KNOW US</p>
