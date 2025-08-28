@@ -9,7 +9,6 @@
     - [3. Frontend](#3-frontend)
 - [Future Improvements](#future-improvements)
 
-
 ## Project summary
 
 Agri Platform for Farmers and Dealers is a comprehensive solution that combines machine learning and web technologies to provide :  
