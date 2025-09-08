@@ -29,7 +29,7 @@ function Dashboard() {
   };
 
   return (
-    <>
+        <>
       <NavBar1 />
       <div className="appcontainer">
         <div className="sidebars open"> {/* Sidebar is always open now */}
