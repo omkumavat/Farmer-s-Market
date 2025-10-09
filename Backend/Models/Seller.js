@@ -13,7 +13,7 @@ const sellerSchema = new mongoose.Schema({
     productsSold: [
         {
             productId: { type: mongoose.Schema.Types.ObjectId, ref: 'dealerProduct' },
-            quantity: Number,
+            quantity: Number, //product Quantity
             revenue: Number,
         },
         {
