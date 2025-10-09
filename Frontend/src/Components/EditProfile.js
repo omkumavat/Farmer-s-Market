@@ -41,6 +41,8 @@ const EditProfile = () => {
       }
     };
 
+    //fectching user data
+
     fetchUserData();
   }, [currentUser]);
 
