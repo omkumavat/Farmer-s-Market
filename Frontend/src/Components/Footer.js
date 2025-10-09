@@ -55,7 +55,7 @@ const Footer = () => {
           <h3>About</h3>
           <ul>
             <li><a href="/about">About</a></li>
-            <li><a href="/team">Team</a></li>
+            {/* <li><a href="/team">Team</a></li> */}
             <li><a href="/contact">Contact</a></li>
             <li><a href="/ticket">FAQ</a></li>
           </ul>
